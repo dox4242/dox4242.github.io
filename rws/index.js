@@ -106,7 +106,7 @@ function processSave(dat) {
   for (i = 0; i < 10; i++) {
     hits.push(ownedBuildings[RNG.strikeTier(ownedBuildings.length)]);
   }
-  hits[hits.length] = "<a onclick='addMoreHits()' href='#'>Give me a longer forecast...</a>"
+  hits[hits.length] = "<a onclick='addMoreHits()' href='javascript:;'>Give me a longer forecast...</a>"
   document.getElementById("forecast").innerHTML = "Forecast: " + ulJoin(hits);
   document.hits = hits;
   document.RNG = RNG;
