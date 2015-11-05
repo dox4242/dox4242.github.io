@@ -6,15 +6,6 @@ var bnames = ["Farms", "Inns", "Blacksmiths", "Deep Mines",
 "Stone Pillars", "Alchemist Labs", "Monasteries", "Labyrinths",
 "Iron Strongholds", "Ancient Pyramids", "Halls of Legends"];
 
-document.addEventListener('paste', clipboardHandler);
-
-$(document).on("mousewheel DOMMouseScroll", function(e) {
-  var delta = Math.max(-1, Math.min(1, (e.originalEvent.wheelDelta || -e.originalEvent.detail)));
-  if (delta == -1 && ($(window).scrollTop() + $(window).height() == $(document).height())) {
-    addMoreHits();
-  }
-});
-
 function listJoin(a) {
   if (a.length == 0) {
     return "";
@@ -52,7 +43,7 @@ function clipboardHandler(e) {
   }
   // chrome/firefox/safari
   else {
-    dat = e.clipboardData.getData('text/plain');
+    dat = e.originalEvent.clipboardData.getData('text/plain');
   }
   processSave(dat);
 }
@@ -132,3 +123,12 @@ function addMoreHits() {
 
   return false;
 }
+
+$(document).on('paste', clipboardHandler);
+
+$(document).on("mousewheel DOMMouseScroll", function(e) {
+  var delta = Math.max(-1, Math.min(1, (e.originalEvent.wheelDelta || -e.originalEvent.detail)));
+  if (delta == -1 && ($(window).scrollTop() + $(window).height() == $(document).height())) {
+    addMoreHits();
+  }
+});

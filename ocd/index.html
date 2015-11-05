@@ -47,8 +47,8 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Useful Tools <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li class="active"><a href="#">Realm Weather Service<span class="sr-only"> (current)</span></a></li>
-                <!--<li><a href="../ocd/index.html">Obsessive Conjurer Disorder</a></li>-->
+                <li><a href="../rws/index.html">Realm Weather Service</a></li>
+                <li class="active"><a href="#">Obsessive Conjurer Disorder</a><span class="sr-only"> (current)</span></li>
               </ul>
             </li>
           </ul>
@@ -58,14 +58,22 @@
 
     <div class="container">
       <div class="page-header">
-        <h2 id='title'>Realm Weather Service <small>Because Luck is a Fallacy</small></h2>
+        <h2 id='title'>Obsessive Conjurer Disorder <small>You'll Thank Me Later</small></h2>
       </div>
 
       <div class="panel panel-success">
-        <div class="panel-heading">Your court meteorologist looks at you expectantly. "Your Majesty, I will need the kingdom's records in order to produce a forecast," he says.</div>
+        <div class="panel-heading">Your kingdom's archmage is tinkering with incomprehensible magical devices. Without a glance, she says, "Stick your focus crystal in that thingy over there, I'll be right over."</div>
         <div class="input-group">
           <span class="input-group-addon">Save</span>
           <input type="text" class="form-control" onclick='this.value=""', id="save-field"></input>
+        </div>
+      </div>
+
+      <div class="panel panel-success">   
+        <div class="panel-heading">Your mage is waiting...</div>
+        <div class="input-group">
+          <span class="input-group-addon">Mana Threshold</span>
+          <input type="number" disabled="true" class="form-control", id="mana-field" value=0></input>
         </div>
       </div>
 
