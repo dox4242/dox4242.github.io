@@ -16,6 +16,8 @@
     <script src='../lib/zlib.min.js'></script>
     <script src='../lib/savecodec.js'></script>
     <script src='../lib/pmprng.js'></script>
+    <script src='../lib/flavor.js'></script>
+    <script src='flavor.js'></script>
     <script src='index.js'></script>
   </head>
   <body>
@@ -62,7 +64,7 @@
       </div>
 
       <div class='panel panel-primary'>
-        <div class='panel-heading'>Your kingdom's archmage is tinkering with incomprehensible magical devices. Without a glance, she says, 'Stick your focus crystal in that thingy over there, I'll be right over.'</div>
+        <div class='panel-heading' id='intro-message'></div>
         <div class='input-group'>
           <span class='input-group-addon'>Save</span>
           <input type='text' class='form-control' onclick='this.value=""' id='save-field'></input>
@@ -70,14 +72,14 @@
       </div>
 
       <div class='panel panel-default' id='manabox'>   
-        <div class='panel-heading' id='status-message'>The mage is waiting...</div>
+        <div class='panel-heading' id='status-message'></div>
         <div class='input-group'>
           <span class='input-group-addon'>Mana Threshold</span>
-          <input type='number' class='form-control' id='mana-field' value='0' disabled></input>
+          <input type='number' class='form-control' id='mana-field' min='0' value='0' disabled></input>
         </div>
         <div class='input-group'>
           <span class='input-group-addon'>Save</span>
-          <input readonly type='text' class='form-control' id='save-out' onclick='this.select();'></input>
+          <input readonly type='text' class='form-control' id='save-out'></input>
         </div>
       </div>
     </div>

@@ -8,6 +8,9 @@ function controller() {
   this.hasUpgrade = function(id) {
     return this.save.upgrade.hasOwnProperty(id);
   }
+  this.hasResearch = function(id) {
+    return this.hasUpgrade(id) && this.save.upgrade[id].u == 2;
+  }
 
   this.buildingCount = function(good) {
     var sum = 0;
@@ -43,14 +46,14 @@ function controller() {
       maxMana += Math.floor(this.buildingCount(true) / 12);      
     }
     if (this.hasUpgrade('ur:EarthlyBond')) {
-      maxMana += 1.5 * this.build['b:StonePillars'].q;
+      maxMana += 1.5 * this.save.build['b:StonePillars'].q;
     }
     // Vacuumancy
-    if (this.hasUpgrade('urs:Spellcraft04')) {
+    if (this.hasResearch('urs:Spellcraft04')) {
       maxMana += Math.floor(25 * this.save.stats[1] / 60 / 60);
     }
     // Rampage
-    if (this.hasUpgrade('urs:Warfare06')) {
+    if (this.hasResearch('urs:Warfare06')) {
       maxMana += Math.floor(1.25 * this.trophyCount());
     }
     if (this.hasUpgrade('u:Premeditation')) {
@@ -60,8 +63,16 @@ function controller() {
       maxMana += 25 * this.save.rei;
     }
 
-    console.log(maxMana);
     return maxMana;
+  }
+
+  this.getCont = function() {
+    return this.save.contv / 100 * this.maxMana;
+  }
+
+  this.setCont = function(level) {
+    this.save.contv = 100 * (Number(level) / this.maxMana);
+    View.updateOutput();
   }
 
   this.loadSave = function(dat) {
@@ -70,46 +81,72 @@ function controller() {
     }
     catch(err) {
       console.log(err);
-      View.saveValid(false);
+      Flavor.saveInvalid();
       return
     }
-    View.saveValid(true);
     this.maxMana = this.getMaxMana();
-    $('#status-message').html('Your save is loaded. You have ' + this.maxMana + ' max mana.');
+    View.maxMana(this.maxMana);
+    Flavor.saveLoaded();
+    View.setThreshold(Math.floor(this.getCont()));
+    View.updateOutput();
+  }
+
+  this.pasteHandler = function(e) {
+    var dat;
+    // IE
+    if (window.clipboardData && window.clipboardData.getData) {
+      dat = window.clipboardData.getData('text');
+    }
+    // chrome/firefox/safari
+    else {
+      dat = e.originalEvent.clipboardData.getData('text/plain');
+    }
+    this.loadSave(dat);
+  }
+
+  this.clickHandler = function(e) {
+    this.setCont($('#mana-field').prop('value'));
+    $('#save-out').select();
   }
 }
 
 function view() {
-  this.saveValid = function(valid) {
-    if (valid) {
-      $('#status-message').html('Your save is loaded.');
+  this.saveStatus = function(status) {
+    if (status == 1) {
       $('#manabox').prop('class', 'panel panel-success');
       $('#mana-field').prop('disabled', false);
     }
-    else {
-      $('#status-message').html('Your save is invalid.');
+    else if (status == -1) {
       $('#manabox').prop('class', 'panel panel-danger');
       $('#mana-field').prop('disabled', true);
     }
+    else if (status == 0) {
+      $('#manabox').prop('class', 'panel panel-default');
+      $('#mana-field').prop('disabled', true);
+    }
+  }
+  this.maxMana = function(max) {
+    $('#mana-field').prop('max', max)
+  }
+  this.setStatus = function(message) {
+      $('#status-message').html(message);
+  }
+  this.setIntro = function(message) {
+      $('#intro-message').html(message);
+  }
+  this.setThreshold = function(level) {
+    $('#mana-field').prop('value', level);
+  }
+  this.updateOutput = function() {
+    $('#save-out').prop('value', encode(Controller.save));
   }
 }
 
 Controller = new controller();
 View = new view();
 
-function pasteHandler(e) {
-  var dat;
-  // IE
-  if (window.clipboardData && window.clipboardData.getData) {
-    dat = window.clipboardData.getData('text');
-  }
-  // chrome/firefox/safari
-  else {
-    dat = e.originalEvent.clipboardData.getData('text/plain');
-  }
-  Controller.loadSave(dat);
-}
-
 $(function initialize() {
-  $('#save-field').on('paste', pasteHandler);
+  Flavor.pageLoaded();
+  $('#save-field').on('paste', function(e) {Controller.pasteHandler(e)});
+  $('#save-out').on('click', function(e) {Controller.clickHandler(e)});
 });
