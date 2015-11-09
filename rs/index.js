@@ -1,9 +1,9 @@
 function isBuildStat(stat) {
-  return typeve(stat) == 'string' && stat.substr(0,2) == 'b:';
+  return typeve(stat) === 'string' && stat.substr(0,2) === 'b:';
 }
 
 function isSpellStat(stat) {
-  return typeve(stat) == 'string' && stat.substr(0,2) == 's:';  
+  return typeve(stat) === 'string' && stat.substr(0,2) === 's:';  
 }
 
 function controller() {
@@ -27,7 +27,7 @@ function controller() {
   this.sumStat = function(stat, level) {
     var sum = 0;
     for (var i = 0; i <= level; i++) {
-      if (level >= 0 && i == 0 && isBuildStat(stat)) {
+      if (level > 0 && i === 0 && isBuildStat(stat)) {
         continue;
       }
       sum += this.sumAtom(stat, i);
@@ -47,7 +47,7 @@ function controller() {
   this.maxStat = function(stat, level) {
     var atoms = [];
     for (var i = 0; i <= level; i++) {
-      atoms.push(this.maxAtom());
+      atoms.push(this.maxAtom(stat, i));
     }
     return(Math.max.apply(null, atoms));
   }
@@ -72,6 +72,9 @@ function controller() {
     else if (mode === 'max') {
       return this.maxStat(stat, level);
     }
+    else if (mode === 'plain') {
+      return this.sumAtom(stat, level);
+    }
   }
 
   this.getData = function(stat, mode) {
@@ -87,6 +90,7 @@ function controller() {
     for (var i = 0; i < statTables.length; i++) {
       var table = {
         heading: statTables[i].heading,
+        description: statTables[i].description,
         stats: []
       };
       for (var j = 0; j < statTables[i].stats.length; j++) {
@@ -110,6 +114,7 @@ function controller() {
       return
     }
     this.getStats();
+    View.renderAccordion();
   }
 
   this.pasteHandler = function(e) {
@@ -135,6 +140,67 @@ function view() {
   }
   this.setTagline = function(message) {
       $('#tagline').html(message);
+  }
+
+  this.renderCell = function(data, form) {
+    var res = '<td>';
+    if (form === 'plain') {
+      res += data;
+    }
+    else if (form === 'time') {
+      res += renderTime(data);
+    }
+    else if (form === 'number') {
+      res += renderShort(data);
+    }
+    return res + '</td>';
+  }
+
+  this.renderRow = function(row) {
+    var res = '<tr><th>' + row.name + '</th>';
+    for (var i = 0; i < row.data.length; i++) {
+      res += this.renderCell(row.data[i], row.form);
+    }
+    return res + '</tr>';
+  }
+
+  this.renderTable = function(table) {
+    var res = '<table class="table"><tr><th>Stat</th><th>This Game</th>';
+    res += '<th>Total</th><th>All Reincarnations</th></tr>';
+    for (var i = 0; i < table.length; i++) {
+      res += this.renderRow(table[i]);
+    }
+    return res + '</table>';
+  }
+
+  this.renderPanel = function(panel, id) {
+    var res = '<div class="panel panel-default">';
+      res += '<div class="panel-heading role="tab" id="heading' + id + '">';
+        res += '<span class="panel-title">';
+          res += '<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse' + id + '" aria-expanded="false" aria-controls="collapse' + id + '">';
+          res += panel.heading;
+          res += '</a>';
+        res += '</span>';
+      res += '</div>';
+      res += '<div id="collapse' + id + '" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading' + id + '">';
+        if (panel.description) {
+          res += '<div class="panel-body">';
+            res += panel.description;
+          res += '</div>';
+        }
+        res += this.renderTable(panel.stats);
+      res += '</div>';
+    res += '</div>';
+    return res
+  }
+
+  this.renderAccordion = function() {
+    var res = '<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">';
+    for (var i = 0; i < Controller.stats.length; i++) {
+      res += this.renderPanel(Controller.stats[i], i);
+    }
+    res += '</div>';
+    $('#result-area').html(res);
   }
 }
 

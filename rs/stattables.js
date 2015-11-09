@@ -15,6 +15,12 @@ var statTables = [
         form: 'number'
       },
       {
+        name: 'Manual Clicks',
+        type: 'sumdiff',
+        stat: [4, 63],
+        form: 'number'
+      },
+      {
         name: 'Coins Gained',
         type: 'sum',
         stat: 0,
@@ -31,11 +37,18 @@ var statTables = [
         type: 'sum',
         stat: 5,
         form: 'number'
+      },
+      {
+        name: 'Coins Gained Automatically',
+        type: 'sumdiff',
+        stat: [0, 5],
+        form: 'number'
       }
     ]
   },
   {
     heading: 'Buildings',
+    description: 'Note: the "All reincarnations" parts of all stats on this panel except "Max Buildings" are not set to 0 on a hard reset. If you have hard reset, these stats may be inaccurate.',
     stats: [
       {
         name: 'Buildings Built',
@@ -71,6 +84,7 @@ var statTables = [
   },
   {
     heading: 'Neutral Buildings',
+    description: 'Note: the "All reincarnations" parts of all stats on this panel are not set to 0 on a hard reset. If you have hard reset, these stats may be inaccurate.',
     stats: [
       {
         name: 'Farms Built',
@@ -208,6 +222,7 @@ var statTables = [
   },
   {
     heading: 'Good Buildings',
+    description: 'Note: the "All reincarnations" parts of all stats on this panel are not set to 0 on a hard reset. If you have hard reset, these stats may be inaccurate.',
     stats: [
       {
         name: 'Warrior Barracks Built',
@@ -297,6 +312,7 @@ var statTables = [
   },
   {
     heading: 'Evil Buildings',
+    description: 'Note: the "All reincarnations" parts of all stats on this panel are not set to 0 on a hard reset. If you have hard reset, these stats may be inaccurate.',
     stats: [
       {
         name: 'Slave Pens Built',
@@ -427,6 +443,7 @@ var statTables = [
   },
   {
     heading: 'Magic',
+    description: 'Note: the "All reincarnations" parts of all "&lt;Spell&gt; Casts" stats on this panel except "Lightning Strike Casts (Alt)" are not set to 0 on a hard reset. If you have hard reset, these stats may be inaccurate. "Lightning Strike Casts (Alt)" has existed longer than its normal variant and may be larger and more accurate.',
     stats: [
       {
         name: 'Mana Produced',
@@ -572,19 +589,19 @@ var statTables = [
         form: 'number'
       },
       {
-        name: 'Max FC at Once',
+        name: 'Max Faction Coins at Once',
         type: 'sum',
         stat: 78,
         form: 'number'
       },
       {
-        name: 'FC Gained with Diamond Pickaxe',
+        name: 'Diamond Pickaxe Faction Coins',
         type: 'sum',
         stat: 47,
         form: 'number'
       },
       {
-        name: 'FC Gained with Honor Among Killers',
+        name: 'Honor Among Killers Faction Coins',
         type: 'sum',
         stat: 48,
         form: 'number'
@@ -706,7 +723,7 @@ var statTables = [
         name: 'Fairy Upgrades Bought',
         type: 'sum',
         stat: 66,
-        form: 'time'
+        form: 'number'
       },
       {
         name: 'Elf Affiliations',
@@ -724,7 +741,7 @@ var statTables = [
         name: 'Elf Upgrades Bought',
         type: 'sum',
         stat: 67,
-        form: 'time'
+        form: 'number'
       },
       {
         name: 'Angel Affiliations',
@@ -742,7 +759,7 @@ var statTables = [
         name: 'Angel Upgrades Bought',
         type: 'sum',
         stat: 68,
-        form: 'time'
+        form: 'number'
       },
       {
         name: 'Goblin Affiliations',
@@ -760,7 +777,7 @@ var statTables = [
         name: 'Goblin Upgrades Bought',
         type: 'sum',
         stat: 69,
-        form: 'time'
+        form: 'number'
       },
       {
         name: 'Undead Affiliations',
@@ -778,7 +795,7 @@ var statTables = [
         name: 'Undead Upgrades Bought',
         type: 'sum',
         stat: 70,
-        form: 'time'
+        form: 'number'
       },
       {
         name: 'Demon Affiliations',
@@ -796,7 +813,7 @@ var statTables = [
         name: 'Demon Upgrades Bought',
         type: 'sum',
         stat: 71,
-        form: 'time'
+        form: 'number'
       },
       {
         name: 'Titan Affiliations',
@@ -814,7 +831,7 @@ var statTables = [
         name: 'Titan Upgrades Bought',
         type: 'sum',
         stat: 72,
-        form: 'time'
+        form: 'number'
       },
       {
         name: 'Druid Affiliations',
@@ -832,7 +849,7 @@ var statTables = [
         name: 'Druid Upgrades Bought',
         type: 'sum',
         stat: 73,
-        form: 'time'
+        form: 'number'
       },
       {
         name: 'Faceless Affiliations',
@@ -850,7 +867,7 @@ var statTables = [
         name: 'Faceless Upgrades Bought',
         type: 'sum',
         stat: 74,
-        form: 'time'
+        form: 'number'
       },
       {
         name: 'Dwarf Affiliations',
@@ -868,7 +885,7 @@ var statTables = [
         name: 'Dwarf Upgrades Bought',
         type: 'sum',
         stat: 75,
-        form: 'time'
+        form: 'number'
       },
       {
         name: 'Drow Affiliations',
@@ -886,7 +903,7 @@ var statTables = [
         name: 'Drow Upgrades Bought',
         type: 'sum',
         stat: 76,
-        form: 'time'
+        form: 'number'
       },
       {
         name: 'Mercenary Affiliations',
@@ -904,7 +921,7 @@ var statTables = [
         name: 'Mercenary Upgrades Bought',
         type: 'sum',
         stat: 77,
-        form: 'time'
+        form: 'number'
       }
     ]
   },
@@ -998,6 +1015,7 @@ var statTables = [
   },
   {
     heading: 'Experimental',
+    description: 'Note: what all the "Unknown Stat" stats are tracking is currently unknown. All stats below and including "Pay Upkeep Casts" are non-functional and all parts should be 0.',
     stats: [
       {
         name: 'Unknown Stat (14)',
