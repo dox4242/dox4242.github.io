@@ -1,5 +1,3 @@
-//The archmage glares at you. "I told you, I don't know why the scrying orb is cloudy, there's all this wibbly wibbly wobbly magic around that's confusing it. Oh, you're not here about that..."
-
 function controller() {
   this.hiddenTrophies = ['t:ArcheologyFacelessTrophy', 't:ArcheologyTitanTrophy', 't:ArcheologyDruidTrophy', 't:ArcheologyUnderworldTrophy', 't:DwarvenInvitationTrophy', 't:DrowInvitationTrophy', 't:ArcheologyDwarfTrophy', 't:ArcheologyDrowTrophy', 't:MercenaryOathTrophy', 't:ResearchDemonTrophy', 't:ResearchUndeadTrophy', 't:ResearchFairyTrophy', 't:ResearchGoblinTrophy', 't:ResearchAngelTrophy', 't:ResearchElvenTrophy'];
 
@@ -9,7 +7,7 @@ function controller() {
     return this.save.upgrade.hasOwnProperty(id);
   }
   this.hasResearch = function(id) {
-    return this.hasUpgrade(id) && this.save.upgrade[id].u == 2;
+    return this.hasUpgrade(id) && this.save.upgrade[id].u === 2;
   }
 
   this.buildingCount = function(good) {
@@ -31,7 +29,7 @@ function controller() {
   this.trophyCount = function() {
     var count = 0;
     for (var k in this.save.trophy) {
-      if (this.hiddenTrophies.indexOf(k) == -1) count += 1;
+      if (this.hiddenTrophies.indexOf(k) === -1) count += 1;
     }
     return count;
   }
@@ -112,15 +110,15 @@ function controller() {
 
 function view() {
   this.saveStatus = function(status) {
-    if (status == 1) {
+    if (status === 1) {
       $('#manabox').prop('class', 'panel panel-success');
       $('#mana-field').prop('disabled', false);
     }
-    else if (status == -1) {
+    else if (status === -1) {
       $('#manabox').prop('class', 'panel panel-danger');
       $('#mana-field').prop('disabled', true);
     }
-    else if (status == 0) {
+    else if (status === 0) {
       $('#manabox').prop('class', 'panel panel-default');
       $('#mana-field').prop('disabled', true);
     }

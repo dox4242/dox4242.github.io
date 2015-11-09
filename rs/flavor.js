@@ -123,7 +123,7 @@ Flavor.loadedStatus = [
 
 Flavor.pageLoaded = function() {
   View.setIntro(this.renderString(this.intro));
-  View.setStatus('The mage is waiting...');
+  //View.setStatus('The mage is waiting...');
 }
 
 Flavor.saveInvalid = function() {
