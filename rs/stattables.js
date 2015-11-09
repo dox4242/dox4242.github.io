@@ -43,6 +43,24 @@ var statTables = [
         type: 'sumdiff',
         stat: [0, 5],
         form: 'number'
+      },
+      {
+        name: 'Coins Gained by Assistants',
+        type: 'sum',
+        stat: 25,
+        form: 'number'            
+      },
+      {
+        name: 'Coins Spent',
+        type: 'sum',
+        stat: 26,
+        form: 'number'            
+      },
+      {
+        name: 'Gems Gained Last Game',
+        type: 'plain',
+        stat: 30,
+        form: 'number'            
       }
     ]
   },
@@ -410,6 +428,12 @@ var statTables = [
         form: 'time'
       },
       {
+        name: 'Playtime Last Game',
+        type: 'plain',
+        stat: 29,
+        form: 'time'            
+      },
+      {
         name: 'Neutral Playtime',
         type: 'sumdiff',
         stat: [1, [2, 3]],
@@ -708,6 +732,12 @@ var statTables = [
     heading: 'Factions',
     stats: [
       {
+        name: 'Time Spent Unaffiliated',
+        type: 'sum',
+        stat: 62,
+        form: 'time'            
+      },
+      {
         name: 'Fairy Affiliations',
         type: 'sum',
         stat: 17,
@@ -970,6 +1000,12 @@ var statTables = [
     heading: 'Miscellaneous',
     stats: [
       {
+        name: 'Number of Abdications',
+        type: 'sum',
+        stat: 28,
+        form: 'number'            
+      },
+      {
         name: 'Max Base Assistants',
         type: 'max',
         stat: 96,
@@ -1024,45 +1060,9 @@ var statTables = [
         form: 'plain'            
       },
       {
-        name: 'Unknown Stat (25)',
-        type: 'plain',
-        stat: 25,
-        form: 'plain'            
-      },
-      {
-        name: 'Unknown Stat (26)',
-        type: 'plain',
-        stat: 26,
-        form: 'plain'            
-      },
-      {
         name: 'Unknown Stat (27)',
         type: 'plain',
         stat: 27,
-        form: 'plain'            
-      },
-      {
-        name: 'Unknown Stat (28)',
-        type: 'plain',
-        stat: 28,
-        form: 'plain'            
-      },
-      {
-        name: 'Unknown Stat (29)',
-        type: 'plain',
-        stat: 29,
-        form: 'plain'            
-      },
-      {
-        name: 'Unknown Stat (30)',
-        type: 'plain',
-        stat: 30,
-        form: 'plain'            
-      },
-      {
-        name: 'Unknown Stat (62)',
-        type: 'plain',
-        stat: 62,
         form: 'plain'            
       },
       {
