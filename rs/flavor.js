@@ -23,7 +23,23 @@ Flavor.intro = [
   }
 ];
 
+Flavor.title = [
+  {
+    rule: 'const',
+    payload: 'Royal Scribe'
+  }
+];
+
+Flavor.tagline = [
+  {
+    rule: 'const',
+    payload: 'Not The Stats Panel The Game Needs, But The One It Deserves'
+  }
+];
+
 Flavor.pageLoaded = function() {
   View.setIntro(this.renderString(this.intro));
+  View.setTitle(this.renderString(this.title));
+  View.setTagline(this.renderString(this.tagline));
   //View.setStatus('The mage is waiting...');
 }
