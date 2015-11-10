@@ -60,7 +60,8 @@ var statTables = [
         name: 'Gems Gained Last Game',
         type: 'plain',
         stat: 30,
-        form: 'number'            
+        form: 'number',
+        override: ['---', null, '---']         
       }
     ]
   },
@@ -431,7 +432,8 @@ var statTables = [
         name: 'Playtime Last Game',
         type: 'plain',
         stat: 29,
-        form: 'time'            
+        form: 'time',
+        override: ['---', null, '---']
       },
       {
         name: 'Neutral Playtime',
@@ -1009,7 +1011,8 @@ var statTables = [
         name: 'Number of Abdications',
         type: 'sum',
         stat: 28,
-        form: 'number'            
+        form: 'number',
+        override: ['---', null, null]
       },
       {
         name: 'Max Base Assistants',
@@ -1051,7 +1054,8 @@ var statTables = [
         name: 'Facelessness',
         type: 'sum',
         stat: 38,
-        form: 'number'            
+        form: 'number',
+        override: ['---', null, null]
       }
     ]
   },

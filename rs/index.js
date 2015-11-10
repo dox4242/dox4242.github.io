@@ -98,7 +98,8 @@ function controller() {
         table.stats.push({
           name: stat.name,
           form: stat.form,
-          data: this.getData(stat.stat, stat.type)
+          data: this.getData(stat.stat, stat.type),
+          override: stat.override
         });
       }
       this.stats.push(table);
@@ -142,9 +143,12 @@ function view() {
       $('#tagline').html(message);
   }
 
-  this.renderCell = function(data, form) {
+  this.renderCell = function(data, form, override) {
     var res = '<td>';
-    if (form === 'plain') {
+    if (override !== null) {
+      res += override;
+    }
+    else if (form === 'plain') {
       res += data;
     }
     else if (form === 'time') {
@@ -159,7 +163,11 @@ function view() {
   this.renderRow = function(row) {
     var res = '<tr><th>' + row.name + '</th>';
     for (var i = 0; i < row.data.length; i++) {
-      res += this.renderCell(row.data[i], row.form);
+      var override = null;
+      if (row.override && row.override[i] !== null) {
+        override = row.override[i];
+      }
+      res += this.renderCell(row.data[i], row.form, override);
     }
     return res + '</tr>';
   }

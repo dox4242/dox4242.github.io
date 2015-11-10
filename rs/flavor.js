@@ -14,7 +14,8 @@ Flavor.intro = [
       'A Lusty Argonian Maid',
       'Extracting Stats for Dummies',
       'Large Quantities of Gold Coins and General Relativity',
-      'How to Embezzle on an Archaeological Expedition'
+      'How to Embezzle on an Archaeological Expedition',
+      'How ugmethesecond Discovered the Mana Spent Stat'
     ]
   },
   {
