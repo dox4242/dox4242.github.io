@@ -476,6 +476,12 @@ var statTables = [
         form: 'number'
       },
       {
+        name: 'Mana Spent',
+        type: 'sum',
+        stat: 27,
+        form: 'number'            
+      },
+      {
         name: 'Spells Cast',
         type: 'sum',
         stat: 15,
@@ -1051,18 +1057,12 @@ var statTables = [
   },
   {
     heading: 'Experimental',
-    description: 'Note: what all the "Unknown Stat" stats are tracking is currently unknown. All stats below and including "Pay Upkeep Casts" are non-functional and all parts should be 0.',
+    description: 'Note: what "Unknown Stat (14)" is tracking is currently unknown. All other stats in this table are non-functional and all parts should be 0.',
     stats: [
       {
         name: 'Unknown Stat (14)',
         type: 'plain',
         stat: 14,
-        form: 'plain'            
-      },
-      {
-        name: 'Unknown Stat (27)',
-        type: 'plain',
-        stat: 27,
         form: 'plain'            
       },
       {
