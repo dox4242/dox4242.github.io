@@ -178,7 +178,7 @@ function view() {
       res += '<div class="panel-heading role="tab" id="heading' + id + '">';
         res += '<span class="panel-title">';
           res += '<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse' + id + '" aria-expanded="false" aria-controls="collapse' + id + '">';
-          res += panel.heading;
+            res += panel.heading;
           res += '</a>';
         res += '</span>';
       res += '</div>';

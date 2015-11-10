@@ -6,35 +6,6 @@ var bnames = ["Farms", "Inns", "Blacksmiths", "Deep Mines",
 "Stone Pillars", "Alchemist Labs", "Monasteries", "Labyrinths",
 "Iron Strongholds", "Ancient Pyramids", "Halls of Legends"];
 
-function listJoin(a) {
-  if (a.length == 0) {
-    return "";
-  }
-  else if (a.length == 1) {
-    return a[0];
-  }
-  else if (a.length == 2) {
-    return a[0] + " and " + a[1];
-  }
-  else {
-    var list = a[0];
-    for (var i = 1; i < a.length-1;i++) {
-      list += ", " + a[i]
-    }
-    list += ", and " + a[a.length-1]
-    return list
-  }
-}
-
-function ulJoin(a) {
-  list = "<ul>"
-  for (i = 0; i < a.length; i++) {
-    list += "<li>" + a[i] + "</li>"
-  }
-  list += "</ul>"
-  return list
-}
-
 function clipboardHandler(e) {
   var dat;
   // IE
@@ -98,7 +69,7 @@ function processSave(dat) {
     hits.push(ownedBuildings[RNG.strikeTier(ownedBuildings.length)]);
   }
   hits[hits.length] = "<a onclick='addMoreHits()' href='javascript:;'>Give me a longer forecast...</a>"
-  document.getElementById("forecast").innerHTML = "Forecast: " + ulJoin(hits);
+  document.getElementById("forecast").innerHTML = "Forecast: " + olJoin(hits);
   document.hits = hits;
   document.RNG = RNG;
   document.ownedBuildings = ownedBuildings;
@@ -116,7 +87,7 @@ function addMoreHits() {
     hits.push(ownedBuildings[RNG.strikeTier(ownedBuildings.length)]);
   }
   hits[hits.length] = "<a onclick='addMoreHits()' href='javascript:;'>Give me an even longer forecast...</a>"
-  document.getElementById("forecast").innerHTML = "Forecast: " + ulJoin(hits);
+  document.getElementById("forecast").innerHTML = "Forecast: " + olJoin(hits);
   document.hits = hits;
   document.RNG = RNG;
   document.ownedBuildings = ownedBuildings;
