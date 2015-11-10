@@ -143,10 +143,12 @@ function view() {
       $('#tagline').html(message);
   }
 
-  this.renderCell = function(data, form, override) {
-    var res = '<td>';
+  this.renderData = function(data, form, override) {   
     if (override !== null) {
       res += override;
+      if (data !== 0) {
+        res += ' (' + this.renderData(data, form, null) + ')';
+      }
     }
     else if (form === 'plain') {
       res += data;
@@ -157,6 +159,11 @@ function view() {
     else if (form === 'number') {
       res += renderShort(data);
     }
+  }
+
+  this.renderCell = function(data, form, override) {
+    var res = '<td>';
+    res += this.renderData(data, form, override);
     return res + '</td>';
   }
 
