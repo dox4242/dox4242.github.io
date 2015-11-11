@@ -1,9 +1,16 @@
-function isBuildStat(stat) {
-  return typeve(stat) === 'string' && stat.substr(0,2) === 'b:';
-}
-
-function isSpellStat(stat) {
-  return typeve(stat) === 'string' && stat.substr(0,2) === 's:';  
+function statType (stat) {
+  if (typeve(stat) === 'number') {
+    return 'main';
+  }
+  else if (typeve(stat) === 'string') {
+    var types = {
+      b: 'build',
+      s: 'spell',
+      d: 'derived',
+      g: 'global'
+    }
+    if (stat.substr(1,1) == ':') return types[stat.substr(0,1)];
+  }
 }
 
 function controller() {
@@ -13,21 +20,34 @@ function controller() {
   this.spellSums = ['c', 'r', 'e'];
 
   this.sumAtom = function(stat, level) {
-    if (typeve(stat) === 'number') {
+    var type = statType(stat);
+    if (type === 'main') {
       return this.save[this.statLists[level]][stat];
     }
-    else if (isBuildStat(stat)) {
+    else if (type === 'build') {
       return this.save.build[stat][this.buildSums[level]];
     }
-    else if (isSpellStat(stat)) {
+    else if (type === 'spell') {
       return this.save.spell[stat][this.spellSums[level]];
+    }
+    else if (type === 'global') {
+      return this.save[stat.substr(2)];
+    }
+    else if (type === 'derived') {
+      stat = stat.substr(2);
+      if (typeve(this.derivedStats[stat]) === 'array') {
+        return this.derivedStats[stat][level];
+      }
+      else {
+        return this.derivedStats[stat];
+      }
     }
   }
 
   this.sumStat = function(stat, level) {
     var sum = 0;
     for (var i = 0; i <= level; i++) {
-      if (level > 0 && i === 0 && isBuildStat(stat)) {
+      if (level > 0 && i === 0 && statType(stat) === 'build') {
         continue;
       }
       sum += this.sumAtom(stat, i);
@@ -36,10 +56,11 @@ function controller() {
   }
 
   this.maxAtom = function(stat, level) {
-    if (typeve(stat) === 'number') {
+    var type = statType(stat);
+    if (type === 'main') {
       return this.sumAtom(stat, level);
     }
-    else if (isBuildStat(stat)) {
+    else if (type === 'build') {
       return this.save.build[stat][this.buildMaxes[level]];
     }    
   }
@@ -106,6 +127,19 @@ function controller() {
     }
   }
 
+  this.deriveStats = function() {
+    this.derivedStats = {
+      timestamp: util.render.timeISO(this.save.lastsave),
+      timedelta: (Date.now() - this.save.lastsave * 1000) / 1000,
+      facelessAlly: [0, 0, this.save.facelessAlly],
+      version: this.save.version,
+      buyMode: ['1', '10', '100', 'Max'][this.save.buyMode]
+    };
+    if (this.save.version_rev !== '0') {
+      this.derivedStats += '.' + this.save.version_rev;
+    }
+  }
+
   this.loadSave = function(dat) {
     try {
       this.save = decode(dat);
@@ -114,6 +148,7 @@ function controller() {
       console.log(err);
       return
     }
+    this.deriveStats();
     this.getStats();
     View.renderAccordion();
   }
@@ -145,19 +180,21 @@ function view() {
 
   this.renderData = function(data, form, override) {   
     if (override !== null) {
-      res += override;
+      var res = override;
       if (data !== 0) {
         res += ' (' + this.renderData(data, form, null) + ')';
       }
+      return res
     }
     else if (form === 'plain') {
-      res += data;
+      return data;
     }
     else if (form === 'time') {
-      res += renderTime(data);
+      return util.render.time(data);
     }
     else if (form === 'number') {
-      res += renderShort(data);
+      var renderers = ['short', 'sci', 'eng'];
+      return util.render[renderers[Controller.save.options.not]](data);
     }
   }
 

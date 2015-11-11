@@ -896,6 +896,13 @@ var statTables = [
         form: 'number'
       },
       {
+        name: 'Faceless Alliances',
+        type: 'plain',
+        stat: 'd:facelessAlly',
+        form: 'number',
+        override: ['---', '---', null]
+      },
+      {
         name: 'Faceless Playtime',
         type: 'sum',
         stat: 58,
