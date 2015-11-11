@@ -238,12 +238,12 @@ function view() {
   }
 
   this.renderTabs = function() {
-    var res = '<ul class="nav nav-tabs" role="tablist">';
+    var res = '<ul class="nav nav-pills" role="tablist">';
     for (var i = 0; i < Controller.stats.length; i++) {
       var head = Controller.stats[i].heading;
       res += '<li role="presentation"' + (i == 0 ? ' class="active">' : '>');
         res += '<a href="#stattab' + i + '" aria-controls="' + head +
-               '" role="tab" data-toggle="tab">' + head + '</a>';
+               '" role="tab" data-toggle="pill">' + head + '</a>';
       res += '</li>';
     }
     res += '</ul>';
