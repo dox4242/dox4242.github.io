@@ -1,5 +1,72 @@
 var statTables = [
   {
+    heading: 'General',
+    levels: [0],
+    columns: ['Stat', 'Value'],
+    stats: [
+      {
+        name: 'Reincarnation',
+        type: 'plain',
+        stat: 'g:rei',
+        form: 'plain'
+      },
+      {
+        name: 'Gems',
+        type: 'plain',
+        stat: 'g:gems',
+        form: 'number'
+      },
+      {
+        name: 'Gold',
+        type: 'plain',
+        stat: 'g:resource',
+        form: 'number'
+      },
+      {
+        name: 'Alignment',
+        type: 'plain',
+        stat: 'g:alignment',
+        form: 'f:alignment'
+      },
+      {
+        name: 'Faction',
+        type: 'plain',
+        stat: 'g:faction',
+        form: 'f:faction'
+      },
+      {
+        name: 'Prestige Faction',
+        type: 'plain',
+        stat: 'g:activeFaction',
+        form: 'f:faction'
+      },
+      {
+        name: 'Bloodline Faction',
+        type: 'plain',
+        stat: 'g:bFaction',
+        form: 'f:faction'
+      },
+      {
+        name: 'Save Timestamp',
+        type: 'plain',
+        stat: 'd:timestamp',
+        form: 'plain'
+      },
+      {
+        name: 'Save Created',
+        type: 'plain',
+        stat: 'd:timedelta',
+        form: 'timedelta'
+      },
+      {
+        name: 'Game Version',
+        type: 'plain',
+        stat: 'd:version',
+        form: 'plain'
+      }
+    ]
+  },
+  {
     heading: 'Production',
     stats: [
       {
@@ -61,7 +128,8 @@ var statTables = [
         type: 'plain',
         stat: 30,
         form: 'number',
-        override: ['---', null, '---']         
+        levels: [1],
+        override: [null, '---', '---']         
       }
     ]
   },
@@ -102,6 +170,7 @@ var statTables = [
     ]
   },
   {
+    layout: 'table',
     heading: 'Neutral Buildings',
     description: 'Note: the "All reincarnations" parts of all stats on this panel are not set to 0 on a hard reset. If you have hard reset, these stats may be inaccurate.',
     stats: [
@@ -240,6 +309,7 @@ var statTables = [
     ]
   },
   {
+    layout: 'table',
     heading: 'Good Buildings',
     description: 'Note: the "All reincarnations" parts of all stats on this panel are not set to 0 on a hard reset. If you have hard reset, these stats may be inaccurate.',
     stats: [
@@ -330,6 +400,7 @@ var statTables = [
     ]
   },
   {
+    layout: 'table',
     heading: 'Evil Buildings',
     description: 'Note: the "All reincarnations" parts of all stats on this panel are not set to 0 on a hard reset. If you have hard reset, these stats may be inaccurate.',
     stats: [
@@ -420,6 +491,7 @@ var statTables = [
     ]
   },
   {
+    layout: 'table',
     heading: 'Time',
     stats: [
       {
@@ -433,7 +505,8 @@ var statTables = [
         type: 'plain',
         stat: 29,
         form: 'time',
-        override: ['---', null, '---']
+        levels: [1],
+        override: [null, '---', '---']
       },
       {
         name: 'Neutral Playtime',
@@ -468,9 +541,17 @@ var statTables = [
     ]
   },
   {
+    layout: 'table',
     heading: 'Magic',
     description: 'Note: the "All reincarnations" parts of all "&lt;Spell&gt; Casts" stats on this panel except "Lightning Strike Casts (Alt)" are not set to 0 on a hard reset. If you have hard reset, these stats may be inaccurate. "Lightning Strike Casts (Alt)" has existed longer than its normal variant and may be larger and more accurate.',
     stats: [
+      {
+        name: 'Current Mana',
+        type: 'plain',
+        stat: 'g:mana',
+        form: 'number',
+        override: [null, '---', '---']
+      },
       {
         name: 'Mana Produced',
         type: 'sum',
@@ -598,6 +679,13 @@ var statTables = [
         form: 'number'
       },
       {
+        name: 'Combo Strike Casts (Alt)',
+        type: 'sum',
+        stat: 'g:comboStrike',
+        form: 'number',
+        override: [null, '---', '---']
+      },
+      {
         name: 'Spiritual Surge Casts',
         type: 'sum',
         stat: 's:SpiritualSurge',
@@ -606,6 +694,7 @@ var statTables = [
     ]
   },
   {
+    layout: 'table',
     heading: 'Faction Coins',
     stats: [
       {
@@ -737,6 +826,7 @@ var statTables = [
     ]
   },
   {
+    layout: 'table',
     heading: 'Factions',
     stats: [
       {
@@ -898,7 +988,7 @@ var statTables = [
       {
         name: 'Faceless Alliances',
         type: 'plain',
-        stat: 'd:facelessAlly',
+        stat: 'g:facelessAlly',
         form: 'number',
         override: ['---', '---', null]
       },
@@ -971,6 +1061,7 @@ var statTables = [
     ]
   },
   {
+    layout: 'table',
     heading: 'Research',
     stats: [
       {
@@ -1012,10 +1103,12 @@ var statTables = [
     ]
   },
   {
+    layout: 'table',
     heading: 'Miscellaneous',
+    description: '<ul><li>Greedyness is used to award Greed Drive, its current game value is the streak of casts of Goblin\'s Greed, and if there is a streak on abdication, it will be moved to the other two columns like any other stat.</li><li>Strike-y-ness is similar, used to award Perfect Combo and is the streak of Combo Strike casts. However, it is not a normal stat, and has no non-current game value.</li><li>Facelessness is used to award Faceless Overmind, and is the number of consecutive Faceless affiliations (buying the trade treaty), the streak is reset by buying any other trade treaty, and if you have a streak when you reincarnate, the value will be added to your all time stat.</li></ul>',
     stats: [
       {
-        name: 'Number of Abdications',
+        name: 'Abdications',
         type: 'sum',
         stat: 28,
         form: 'number',
@@ -1063,6 +1156,96 @@ var statTables = [
         stat: 38,
         form: 'number',
         override: ['---', null, null]
+      },
+      {
+        name: 'Strike-y-ness',
+        type: 'plain',
+        stat: 'g:comboStrikeCont',
+        form: 'number',
+        override: [null, '---', '---']
+      }
+    ]
+  },
+  {
+    heading: 'Technical',
+    levels: [0],
+    columns: ['Stat', 'Value'],
+    stats: [
+      {
+        name: 'Lightning Strike Tier',
+        type: 'plain',
+        stat: 'g:strikeTier',
+        form: 'f:tier'        
+      },
+      {
+        name: 'LS_is_out_to_get_player',
+        form: 'c:true'        
+      },
+      {
+        name: 'Grand Balance Tier',
+        type: 'plain',
+        stat: 'g:empoweredTier',
+        form: 'f:tier'        
+      },
+      {
+        name: 'Grand Balance Multiplier',
+        type: 'plain',
+        stat: 'g:empoweredBonus',
+        form: 'number'        
+      },
+      {
+        name: 'Charged Buildings/Clicks Timer',
+        type: 'plain',
+        stat: 'g:chargedTimer',
+        form: 'f:ticks'        
+      },
+      {
+        name: 'Scry Production Bonus',
+        type: 'plain',
+        stat: 'g:oTimer',
+        form: 'time'        
+      },
+      {
+        name: 'Scry Mana Bonus',
+        type: 'plain',
+        stat: 'g:oTimer2',
+        form: 'time'        
+      },
+      {
+        name: 'Time Since Last Mouse Move',
+        type: 'plain',
+        stat: 'g:mTimer',
+        form: 'f:ticks'        
+      },
+      {
+        name: 'Time Since Last Mouse Click',
+        type: 'plain',
+        stat: 'g:cTimer',
+        form: 'f:ticks'        
+      },
+      {
+        name: 'Time Since Last Keypress',
+        type: 'plain',
+        stat: 'g:kcTimer',
+        form: 'f:ticks'        
+      },
+      {
+        name: 'Angel Bloodline Timer',
+        type: 'plain',
+        stat: 'g:sTimer',
+        form: 'f:ticks'        
+      },
+      {
+        name: 'Green Fingers Discount Timer',
+        type: 'plain',
+        stat: 'g:goblinTimer',
+        form: 'time'        
+      },
+      {
+        name: 'Hellfire Blast Charge',
+        type: 'plain',
+        stat: 'g:blastCharge',
+        form: 'time'        
       }
     ]
   },

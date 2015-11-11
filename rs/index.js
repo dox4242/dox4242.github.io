@@ -31,7 +31,7 @@ function controller() {
       return this.save.spell[stat][this.spellSums[level]];
     }
     else if (type === 'global') {
-      return this.save[stat.substr(2)];
+      return level === 0 ? this.save[stat.substr(2)] : 0;
     }
     else if (type === 'derived') {
       stat = stat.substr(2);
@@ -39,7 +39,7 @@ function controller() {
         return this.derivedStats[stat][level];
       }
       else {
-        return this.derivedStats[stat];
+        return level === 0 ? this.derivedStats[stat] : 0;
       }
     }
   }
@@ -98,32 +98,51 @@ function controller() {
     }
   }
 
-  this.getData = function(stat, mode) {
+  this.getData = function(stat, levels) {
+    var padding = levels ? levels.length : 3;
+    if (stat.levels) {
+      levels = stat.levels;
+    }
+    else if (!levels) {
+      levels = [0, 1, 2];
+    }
+    padding -= levels.length;
     var data = [];
-    for (var i = 0; i <= 2; i++) {
-      data.push(this.getStat(stat, mode, i));
+    for (var i = 0; i < levels.length; i++) {
+      data.push(this.getStat(stat.stat, stat.type, levels[i]));
+    }
+    for (var i = 0; i < padding; i++) {
+      data.push(undefined);
     }
     return data
+  }
+
+  this.getTable = function(table, levels) {
+    var items = [];
+    for (var i = 0; i < table.length; i++) {
+      var stat = table[i];
+      items.push({
+        name: stat.name,
+        form: stat.form,
+        data: this.getData(stat, levels),
+        override: stat.override
+      });
+    }
+    return items;
   }
 
   this.getStats = function() {
     this.stats = [];
     for (var i = 0; i < statTables.length; i++) {
-      var table = {
+      var panel = {
         heading: statTables[i].heading,
+        levels: statTables[i].levels,
+        columns: statTables[i].columns,
         description: statTables[i].description,
         stats: []
       };
-      for (var j = 0; j < statTables[i].stats.length; j++) {
-        var stat = statTables[i].stats[j];
-        table.stats.push({
-          name: stat.name,
-          form: stat.form,
-          data: this.getData(stat.stat, stat.type),
-          override: stat.override
-        });
-      }
-      this.stats.push(table);
+      panel.stats = this.getTable(statTables[i].stats, statTables[i].levels);      
+      this.stats.push(panel);
     }
   }
 
@@ -131,9 +150,9 @@ function controller() {
     this.derivedStats = {
       timestamp: util.render.timeISO(this.save.lastsave),
       timedelta: (Date.now() - this.save.lastsave * 1000) / 1000,
-      facelessAlly: [0, 0, this.save.facelessAlly],
       version: this.save.version,
-      buyMode: ['1', '10', '100', 'Max'][this.save.buyMode]
+      lsOTGP: 'true'
+      //buyMode: ['1', '10', '100', 'Max'][this.save.buyMode]
     };
     if (this.save.version_rev !== '0') {
       this.derivedStats += '.' + this.save.version_rev;
@@ -178,10 +197,17 @@ function view() {
       $('#tagline').html(message);
   }
 
+  this.formatters = {
+    faction: function(x) {return ['None', 'Fairy', 'Elf', 'Angel', 'Goblin', 'Undead', 'Demon', 'Titan', 'Druid', 'Faceless', 'Dwarf', 'Drow', 'Mercenary'][x+1]},
+    alignment: function(x) {return ['None', 'Neutral', 'Good', 'Evil'][x+1]},
+    tier: function(x) {return x > -1 ? 'Tier ' + (x + 1) : 'N/A'},
+    ticks: function(x) {return x > -1 ? util.render.time(x/30) : 'N/A'}
+  };
+
   this.renderData = function(data, form, override) {   
     if (override !== null) {
       var res = override;
-      if (data !== 0) {
+      if (data != 0 && data != undefined) {
         res += ' (' + this.renderData(data, form, null) + ')';
       }
       return res
@@ -195,6 +221,15 @@ function view() {
     else if (form === 'number') {
       var renderers = ['short', 'sci', 'eng'];
       return util.render[renderers[Controller.save.options.not]](data);
+    }
+    else if (form === 'timedelta') {
+      return util.render.timedelta(data);
+    }
+    else if (form.substr(0,2) === 'f:') {
+      return this.formatters[form.substr(2)](data);
+    }
+    else if (form.substr(0,2) === 'c:') {
+      return form.substr(2);
     }
   }
 
@@ -216,11 +251,33 @@ function view() {
     return res + '</tr>';
   }
 
-  this.renderTable = function(table) {
-    var res = '<table class="table"><tr><th>Stat</th><th>This Game</th>';
-    res += '<th>Total</th><th>All Reincarnations</th></tr>';
-    for (var i = 0; i < table.length; i++) {
-      res += this.renderRow(table[i]);
+  this.defaultColumns = ['Stat', 'This Game', 'Total', 'All Time'];
+
+  this.renderHeader = function(tab) {
+    var res = '<tr>';
+    var columns = [this.defaultColumns[0]];
+    if (tab.columns) {
+      columns = tab.columns;
+    }
+    else if (tab.levels) {
+      for (i = 0; i < tab.levels.length; i++) {
+        columns.push(this.defaultColumns[i + 1]);
+      }
+    }
+    else {
+      columns = this.defaultColumns;
+    }
+    for (i = 0; i < columns.length; i++) {
+      res += '<th>' + columns[i] + '</th>';
+    }
+    return res + '</tr>';
+  }
+
+  this.renderTable = function(tab) {
+    var res = '<table class="table">';
+    res += this.renderHeader(tab);
+    for (var i = 0; i < tab.stats.length; i++) {
+      res += this.renderRow(tab.stats[i]);
     }
     return res + '</table>';
   }
@@ -232,7 +289,7 @@ function view() {
           res += tab.description;
         res += '</div>';
       }
-      res += this.renderTable(tab.stats);
+      res += this.renderTable(tab);
     res += '</div>';
     return res
   }
@@ -254,8 +311,7 @@ function view() {
         res += this.renderTab(Controller.stats[i]);
       res += '</div>';
     }
-    res += '</div>'
-    console.log(res);
+    res += '</div>';
     $('#result-area').html(res);
   }
 
