@@ -543,7 +543,7 @@ var statTables = [
   {
     layout: 'table',
     heading: 'Magic',
-    description: 'Note: the "All reincarnations" parts of all "&lt;Spell&gt; Casts" stats on this panel except "Lightning Strike Casts (Alt)" are not set to 0 on a hard reset. If you have hard reset, these stats may be inaccurate. "Lightning Strike Casts (Alt)" has existed longer than its normal variant and may be larger and more accurate.',
+    description: 'Note: the "All reincarnations" parts of all "&lt;Spell&gt; Casts" stats on this panel except the "(Alt)" ones are not set to 0 on a hard reset. If you have hard reset, these stats may be inaccurate. "Lightning Strike Casts (Alt)" has existed longer than its normal variant and may be larger and more accurate. Combo Strike Casts (Alt) is not a normal stat and is current game only.',
     stats: [
       {
         name: 'Current Mana',
@@ -680,7 +680,7 @@ var statTables = [
       },
       {
         name: 'Combo Strike Casts (Alt)',
-        type: 'sum',
+        type: 'plain',
         stat: 'g:comboStrike',
         form: 'number',
         override: [null, '---', '---']
@@ -1105,7 +1105,7 @@ var statTables = [
   {
     layout: 'table',
     heading: 'Miscellaneous',
-    description: '<ul><li>Greedyness is used to award Greed Drive, its current game value is the streak of casts of Goblin\'s Greed, and if there is a streak on abdication, it will be moved to the other two columns like any other stat.</li><li>Strike-y-ness is similar, used to award Perfect Combo and is the streak of Combo Strike casts. However, it is not a normal stat, and has no non-current game value.</li><li>Facelessness is used to award Faceless Overmind, and is the number of consecutive Faceless affiliations (buying the trade treaty), the streak is reset by buying any other trade treaty, and if you have a streak when you reincarnate, the value will be added to your all time stat.</li></ul>',
+    description: '<ul><li>Greedyness is used to award Greed Drive, its current game value is the streak of casts of Goblin\'s Greed, and if there is a streak on abdication, it will be moved to the other two columns like any other stat.</li><li>Strike-y-ness is similar, used to award Perfect Combo and is the streak of Combo Strike casts. However, it is not a normal stat, and is current game only.</li><li>Facelessness is used to award Faceless Overmind, and is the number of consecutive Faceless affiliations (buying the trade treaty), the streak is reset by buying any other trade treaty, and if you have a streak when you reincarnate, the value will be added to your all time stat.</li></ul>',
     stats: [
       {
         name: 'Abdications',
@@ -1163,6 +1163,12 @@ var statTables = [
         stat: 'g:comboStrikeCont',
         form: 'number',
         override: [null, '---', '---']
+      },
+      {
+        name: 'Trophy Counter (No Longer in Use)',
+        type: 'sum',
+        stat: 14,
+        form: 'number'            
       }
     ]
   },
@@ -1250,15 +1256,166 @@ var statTables = [
     ]
   },
   {
-    heading: 'Experimental',
-    description: 'Note: what "Unknown Stat (14)" is tracking is currently unknown. All other stats in this table are non-functional and all parts should be 0.',
+    heading: 'Settings',
+    levels: [0],
+    columns: ['Setting', 'Value'],
     stats: [
       {
-        name: 'Unknown Stat (14)',
+        name: 'Buy Mode',
         type: 'plain',
-        stat: 14,
-        form: 'plain'            
+        stat: 'g:buyMode',
+        form: 'f:buymode'        
       },
+      {
+        name: 'Selected Game Tab',
+        type: 'plain',
+        stat: 'o:tab',
+        form: 'f:currtab'        
+      },
+      {
+        name: 'Notation',
+        type: 'plain',
+        stat: 'o:not',
+        form: 'f:notation'        
+      },
+      {
+        name: 'Sort Unpurchased Upgrades',
+        type: 'plain',
+        stat: 'o:sortLocked',
+        form: 'f:setting'        
+      },
+      {
+        name: 'Sort Purchased Upgrades',
+        type: 'plain',
+        stat: 'o:sortUnlocked',
+        form: 'f:setting'        
+      },
+      {
+        name: 'Multibuy Upgrade Series',
+        type: 'plain',
+        stat: 'o:multiUpgrade',
+        form: 'f:setting'        
+      },
+      {
+        name: 'Don\'t Consolidate Upgrades',
+        type: 'plain',
+        stat: 'o:conUpgrade',
+        form: 'f:setting'        
+      },
+      {
+        name: 'Don\'t Consolidate Trophies',
+        type: 'plain',
+        stat: 'o:conTrophy',
+        form: 'f:setting'        
+      },
+      {
+        name: 'Disable Premium Features',
+        type: 'plain',
+        stat: 'o:disableKred',
+        form: 'f:setting'        
+      },
+      {
+        name: 'Excavation Warning',
+        type: 'plain',
+        stat: 'o:warnExcavation',
+        form: 'f:setting'        
+      },
+      {
+        name: 'Exchange Warning',
+        type: 'plain',
+        stat: 'o:warnExchange',
+        form: 'f:setting'        
+      },
+      {
+        name: 'Disable Multibuy Button',
+        type: 'plain',
+        stat: 'g:buyButton',
+        form: 'f:setting'        
+      },
+      {
+        name: 'Disable Cloud Warning',
+        type: 'plain',
+        stat: 'o:skipCloud',
+        form: 'f:setting'        
+      },
+      {
+        name: 'Hide Upgrades Separator',
+        type: 'plain',
+        stat: 'o:hideUpgHeader',
+        form: 'f:setting'        
+      },
+      {
+        name: 'Block Treasure Clicks',
+        type: 'plain',
+        stat: 'o:blockClick',
+        form: 'f:setting'        
+      },
+      {
+        name: 'Disable Spell Timer',
+        type: 'plain',
+        stat: 'o:spellTimer',
+        form: 'f:setting'        
+      },
+      {
+        name: 'Disable Spell Icon',
+        type: 'plain',
+        stat: 'o:spellIcon',
+        form: 'f:setting'        
+      },
+      {
+        name: 'Disable Floating Text',
+        type: 'plain',
+        stat: 'o:floatingText',
+        form: 'f:setting'        
+      },
+      {
+        name: 'Disable Building Glow',
+        type: 'plain',
+        stat: 'o:buildingGlow',
+        form: 'f:setting'        
+      },
+      {
+        name: 'Disable Mana Bar Glow',
+        type: 'plain',
+        stat: 'o:manaGlow',
+        form: 'f:setting'        
+      },
+      {
+        name: 'Disable Treasure Glow',
+        type: 'plain',
+        stat: 'o:treasureGlow',
+        form: 'f:setting'        
+      },
+      {
+        name: 'Disable Assistant Icon',
+        type: 'plain',
+        stat: 'o:assistant',
+        form: 'f:setting'        
+      },
+      {
+        name: 'Disable Thousands Separator',
+        type: 'plain',
+        stat: 'o:thousandsSep',
+        form: 'f:setting'        
+      },
+      {
+        name: 'Disable Trophy Popups',
+        type: 'plain',
+        stat: 'o:toast',
+        form: 'f:setting'        
+      },
+      {
+        name: 'Hide Purchased Upgrades',
+        type: 'plain',
+        stat: 'o:hideUnlocked',
+        form: 'f:setting'        
+      }
+    ]
+  },
+  {
+    heading: 'Experimental',
+    description: 'All stats in this table are non-functional and all parts should be 0.',
+    stats: [
       {
         name: 'Pay Upkeep Casts (Unused)',
         type: 'plain',

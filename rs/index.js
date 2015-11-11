@@ -7,7 +7,8 @@ function statType (stat) {
       b: 'build',
       s: 'spell',
       d: 'derived',
-      g: 'global'
+      g: 'global',
+      o: 'option'
     }
     if (stat.substr(1,1) == ':') return types[stat.substr(0,1)];
   }
@@ -32,6 +33,9 @@ function controller() {
     }
     else if (type === 'global') {
       return level === 0 ? this.save[stat.substr(2)] : 0;
+    }
+    else if (type === 'option') {
+      return level === 0 ? this.save.options[stat.substr(2)] : 0;
     }
     else if (type === 'derived') {
       stat = stat.substr(2);
@@ -150,9 +154,7 @@ function controller() {
     this.derivedStats = {
       timestamp: util.render.timeISO(this.save.lastsave),
       timedelta: (Date.now() - this.save.lastsave * 1000) / 1000,
-      version: this.save.version,
-      lsOTGP: 'true'
-      //buyMode: ['1', '10', '100', 'Max'][this.save.buyMode]
+      version: this.save.version
     };
     if (this.save.version_rev !== '0') {
       this.derivedStats += '.' + this.save.version_rev;
@@ -201,7 +203,11 @@ function view() {
     faction: function(x) {return ['None', 'Fairy', 'Elf', 'Angel', 'Goblin', 'Undead', 'Demon', 'Titan', 'Druid', 'Faceless', 'Dwarf', 'Drow', 'Mercenary'][x+1]},
     alignment: function(x) {return ['None', 'Neutral', 'Good', 'Evil'][x+1]},
     tier: function(x) {return x > -1 ? 'Tier ' + (x + 1) : 'N/A'},
-    ticks: function(x) {return x > -1 ? util.render.time(x/30) : 'N/A'}
+    ticks: function(x) {return x > -1 ? util.render.time(x/30) : 'N/A'},
+    setting: function(x) {return x ? 'On' : 'Off'},
+    buymode: function(x) {return ['1', '10', '100', 'Max'][x]},
+    notation: function(x) {return ['Short Scale', 'Scientific', 'Engineering'][x]},
+    currtab: function(x) {return ['Stats', 'Upgrades', 'Trophies', 'Save', 'Shop'][x]}
   };
 
   this.renderData = function(data, form, override) {   
