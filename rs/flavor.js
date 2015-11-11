@@ -33,8 +33,14 @@ Flavor.title = [
 
 Flavor.tagline = [
   {
-    rule: 'const',
-    payload: 'Not The Stats Panel The Game Needs, But The One It Deserves'
+    rule: 'rand',
+    payloads: [
+      'Not the Stats Panel the Game Needs, but the One It Deserves',
+      'Bringing You Uselessly Comprehensive Data for Over 75 Years',
+      'The Only Realm Grinder Statistics Tool with Dead Parents',
+      'Not Included: Complaints About Lightning Strike',
+      'Number of Possible Taglines: 5; Number of Batman References: 2'
+    ]
   }
 ];
 
