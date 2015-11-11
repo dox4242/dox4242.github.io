@@ -150,7 +150,7 @@ function controller() {
     }
     this.deriveStats();
     this.getStats();
-    View.renderAccordion();
+    View.renderTabs();
   }
 
   this.pasteHandler = function(e) {
@@ -223,6 +223,40 @@ function view() {
       res += this.renderRow(table[i]);
     }
     return res + '</table>';
+  }
+
+  this.renderTab = function(tab) {
+    var res = '<div class="panel panel-default">';
+      if (tab.description) {
+        res += '<div class="panel-body">';
+          res += tab.description;
+        res += '</div>';
+      }
+      res += this.renderTable(tab.stats);
+    res += '</div>';
+    return res
+  }
+
+  this.renderTabs = function() {
+    var res = '<ul class="nav nav-pills" role="tablist">';
+    for (var i = 0; i < Controller.stats.length; i++) {
+      var head = Controller.stats[i].heading;
+      res += '<li role="presentation"' + (i == 0 ? ' class="active">' : '>');
+        res += '<a href="#stattab' + i + '" aria-controls="' + head +
+               '" role="tab" data-toggle="pill">' + head + '</a>';
+      res += '</li>';
+    }
+    res += '</ul>';
+    res += '<div class="tab-content">';
+    for (var i = 0; i < Controller.stats.length; i++) {
+      res += '<div role="tabpanel" class="tab-pane fade' + (i == 0 ? ' in active"' : '"') +
+             ' id="stattab' + i + '">';
+        res += this.renderTab(Controller.stats[i]);
+      res += '</div>';
+    }
+    res += '</div>'
+    console.log(res);
+    $('#result-area').html(res);
   }
 
   this.renderPanel = function(panel, id) {
