@@ -15,7 +15,12 @@ Flavor.intro = [
       'Extracting Stats for Dummies',
       'Large Quantities of Gold Coins and General Relativity',
       'How to Embezzle on an Archaeological Expedition',
-      'How ugmethesecond Discovered the Mana Spent Stat'
+      'How ugmethesecond Discovered the Mana Spent Stat',
+      'How to Not Kill People Even When You Probably Should',
+      'Using the Whole Angel: from Magic to Cuisine',
+      'Hell Portal Zoning Regulations: an Overview',
+      'Keynesian, Goblin, Voodoo: the Major Econonometric Models',
+      'So You Died but You\'re Reading This Anyways'
     ]
   },
   {
@@ -39,7 +44,7 @@ Flavor.tagline = [
       'Bringing You Uselessly Comprehensive Data for Over 75 Years',
       'The Only Realm Grinder Statistics Tool with Dead Parents',
       'Not Included: Times Complained about Lightning Strike',
-      'Number of Possible Taglines: 5; Number of Batman References: 2'
+      'Number of Possible Taglines: 5; Number of Batman References: 3'
     ]
   }
 ];
