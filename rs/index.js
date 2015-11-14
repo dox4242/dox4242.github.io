@@ -227,7 +227,10 @@ function view() {
   };
 
   this.renderData = function(data, form, override) {
-    if (override !== null) {
+    if (form.substr(0,2) === 'c:') {
+      return form.substr(2);
+    }
+    else if (override !== null) {
       var res = override;
       if (data != 0 && data != undefined) {
         res += ' (' + this.renderData(data, form, null) + ')';
@@ -252,9 +255,6 @@ function view() {
     }
     else if (form.substr(0,2) === 'f:') {
       return this.formatters[form.substr(2)](data);
-    }
-    else if (form.substr(0,2) === 'c:') {
-      return form.substr(2);
     }
   }
 
