@@ -169,7 +169,8 @@ function controller() {
       timestamp: util.render.timeISO(this.save.lastsave),
       timedelta: (Date.now() - this.save.lastsave * 1000) / 1000,
       version: this.save.version,
-      notation: this.save.options.not != null ? this.save.options.not : (this.save.options.notation ? 1 : 0)
+      notation: this.save.options.not != null ? this.save.options.not : (this.save.options.notation ? 1 : 0),
+      gemGain: Math.max(0, Math.floor((Math.sqrt(1 + 8 * (this.save.stats[0] + this.save.statsReset[0]) / 1e12) - 1) / 2) - this.save.gems)
     };
     if (this.save.version_rev !== '0' && this.save.version) {
       this.derivedStats.version += '.' + this.save.version_rev;

@@ -17,6 +17,12 @@ var statTables = [
         form: 'number'
       },
       {
+        name: 'Gems on Abdication',
+        type: 'plain',
+        stat: 'd:gemGain',
+        form: 'number'
+      },
+      {
         name: 'Gold',
         type: 'plain',
         stat: 'g:resource',
