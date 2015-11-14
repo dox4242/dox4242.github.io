@@ -23,12 +23,15 @@ function controller() {
   this.sumAtom = function(stat, level) {
     var type = statType(stat);
     if (type === 'main') {
+      if (level === 2 && this.save.statsRei == null) return null;
       return this.save[this.statLists[level]][stat];
     }
     else if (type === 'build') {
+      if (!this.save.build[stat]) return null;
       return this.save.build[stat][this.buildSums[level]];
     }
     else if (type === 'spell') {
+      if (!this.save.spell || !this.save.spell[stat]) return null;
       return this.save.spell[stat][this.spellSums[level]];
     }
     else if (type === 'global') {
@@ -54,7 +57,9 @@ function controller() {
       if (level > 0 && i === 0 && statType(stat) === 'build') {
         continue;
       }
-      sum += this.sumAtom(stat, i);
+      var part = this.sumAtom(stat, i);
+      if (part == null) return null;
+      sum += null;
     }
     return sum;
   }
@@ -62,17 +67,22 @@ function controller() {
   this.maxAtom = function(stat, level) {
     var type = statType(stat);
     if (type === 'main') {
+      if (level === 2 && this.save.statsRei == null) return null;
       return this.sumAtom(stat, level);
     }
     else if (type === 'build') {
+      if (!this.save.build[stat]) return null;
       return this.save.build[stat][this.buildMaxes[level]];
     }    
   }
 
   this.maxStat = function(stat, level) {
+    if (stat >= Controller.save.stats.length) return null;
     var atoms = [];
     for (var i = 0; i <= level; i++) {
-      atoms.push(this.maxAtom(stat, i));
+      var part = this.maxAtom(stat, i);
+      if (part == null) return null;
+      atoms.push(part);
     }
     return(Math.max.apply(null, atoms));
   }
@@ -81,18 +91,22 @@ function controller() {
     if (mode === 'sum') {
       if (typeve(stat) === 'array') {
         var sum = 0;
+        var broken = 0;
         for (var i = 0; i < stat.length; i++) {
-          sum += this.sumStat(stat[i], level);
+          var part = this.sumStat(stat[i], level);
+          if (part == null) broken += 1;
+          sum += part;
         }
-        return sum;
+        return (broken == stat.length) ? null : sum;
       }
       else {
         return this.sumStat(stat, level);
       }
     }
     else if (mode === 'sumdiff') {
-      return this.getStat(stat[0], 'sum', level) - 
-             this.getStat(stat[1], 'sum', level);
+      var p1 = this.getStat(stat[0], 'sum', level);
+      var p2 = this.getStat(stat[1], 'sum', level)
+      return (p1 == null || p2 == null) ? null : p1 - p2;
     }
     else if (mode === 'max') {
       return this.maxStat(stat, level);
@@ -154,10 +168,11 @@ function controller() {
     this.derivedStats = {
       timestamp: util.render.timeISO(this.save.lastsave),
       timedelta: (Date.now() - this.save.lastsave * 1000) / 1000,
-      version: this.save.version
+      version: this.save.version,
+      notation: this.save.options.not != null ? this.save.options.not : (this.save.options.notation ? 1 : 0)
     };
-    if (this.save.version_rev !== '0') {
-      this.derivedStats += '.' + this.save.version_rev;
+    if (this.save.version_rev !== '0' && this.save.version) {
+      this.derivedStats.version += '.' + this.save.version_rev;
     }
   }
 
@@ -210,13 +225,16 @@ function view() {
     currtab: function(x) {return ['Stats', 'Upgrades', 'Trophies', 'Save', 'Shop'][x]}
   };
 
-  this.renderData = function(data, form, override) {   
+  this.renderData = function(data, form, override) {
     if (override !== null) {
       var res = override;
       if (data != 0 && data != undefined) {
         res += ' (' + this.renderData(data, form, null) + ')';
       }
       return res
+    }
+    else if (data == null || data == NaN) {
+      return '&ndash;N/I&ndash;';
     }
     else if (form === 'plain') {
       return data;
@@ -226,7 +244,7 @@ function view() {
     }
     else if (form === 'number') {
       var renderers = ['short', 'sci', 'eng'];
-      return util.render[renderers[Controller.save.options.not]](data);
+      return util.render[renderers[Controller.derivedStats.notation]](data);
     }
     else if (form === 'timedelta') {
       return util.render.timedelta(data);
@@ -357,7 +375,6 @@ View = new view();
 
 $(function initialize() {
   Flavor.pageLoaded();
-  $('[data-toggle="popover"]').popover();
+  $('.tooltip-fixed').popover();
   $('#save-field').on('paste', function(e) {Controller.pasteHandler(e)});
-  test = 0;
 });

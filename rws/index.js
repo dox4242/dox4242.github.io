@@ -103,3 +103,9 @@ $(document).on("mousewheel DOMMouseScroll", function(e) {
     addMoreHits();
   }
 });
+
+$(function initialize() {
+  //Flavor.pageLoaded();
+  $('.tooltip-fixed').popover();
+  //$('#save-field').on('paste', function(e) {Controller.pasteHandler(e)});
+});

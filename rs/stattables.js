@@ -129,7 +129,7 @@ var statTables = [
         stat: 30,
         form: 'number',
         levels: [1],
-        override: [null, '---', '---']         
+        override: [null, '&ndash;', '&ndash;']         
       }
     ]
   },
@@ -506,7 +506,7 @@ var statTables = [
         stat: 29,
         form: 'time',
         levels: [1],
-        override: [null, '---', '---']
+        override: [null, '&ndash;', '&ndash;']
       },
       {
         name: 'Neutral Playtime',
@@ -550,7 +550,7 @@ var statTables = [
         type: 'plain',
         stat: 'g:mana',
         form: 'number',
-        override: [null, '---', '---']
+        override: [null, '&ndash;', '&ndash;']
       },
       {
         name: 'Mana Produced',
@@ -683,7 +683,7 @@ var statTables = [
         type: 'plain',
         stat: 'g:comboStrike',
         form: 'number',
-        override: [null, '---', '---']
+        override: [null, '&ndash;', '&ndash;']
       },
       {
         name: 'Spiritual Surge Casts',
@@ -990,7 +990,7 @@ var statTables = [
         type: 'plain',
         stat: 'g:facelessAlly',
         form: 'number',
-        override: ['---', '---', null]
+        override: ['&ndash;', '&ndash;', null]
       },
       {
         name: 'Faceless Playtime',
@@ -1112,7 +1112,7 @@ var statTables = [
         type: 'sum',
         stat: 28,
         form: 'number',
-        override: ['---', null, null]
+        override: ['&ndash;', null, null]
       },
       {
         name: 'Max Base Assistants',
@@ -1155,14 +1155,14 @@ var statTables = [
         type: 'sum',
         stat: 38,
         form: 'number',
-        override: ['---', null, null]
+        override: ['&ndash;', null, null]
       },
       {
         name: 'Strike-y-ness',
         type: 'plain',
         stat: 'g:comboStrikeCont',
         form: 'number',
-        override: [null, '---', '---']
+        override: [null, '&ndash;', '&ndash;']
       },
       {
         name: 'Trophy Counter (No Longer in Use)',
@@ -1275,7 +1275,7 @@ var statTables = [
       {
         name: 'Notation',
         type: 'plain',
-        stat: 'o:not',
+        stat: 'd:notation',
         form: 'f:notation'        
       },
       {
