@@ -59,7 +59,7 @@ function controller() {
       }
       var part = this.sumAtom(stat, i);
       if (part == null) return null;
-      sum += null;
+      sum += part;
     }
     return sum;
   }
