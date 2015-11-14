@@ -144,6 +144,7 @@ Controller = new controller();
 View = new view();
 
 $(function initialize() {
+  $('.tooltip-fixed').popover();
   Flavor.pageLoaded();
   $('#save-field').on('paste', function(e) {Controller.pasteHandler(e)});
   $('#save-out').on('click', function(e) {Controller.clickHandler(e)});

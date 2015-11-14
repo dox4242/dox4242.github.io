@@ -67,7 +67,7 @@
       <div class='panel panel-primary'>
         <div class='panel-heading' id='intro-message'></div>
         <div class='input-group'>
-          <span class='input-group-addon'>Save</span>
+          <span class='input-group-addon'>Save <a class='tooltip-fixed' title='Exported Save' data-content='Export your save from Realm Grinder and paste it to fine-tune your contingency autocasting threshold.' data-trigger='hover'>(?)</a></span>
           <input type='text' class='form-control' onclick='this.value=""' id='save-field'></input>
         </div>
       </div>
@@ -75,11 +75,11 @@
       <div class='panel panel-default' id='manabox'>   
         <div class='panel-heading' id='status-message'></div>
         <div class='input-group'>
-          <span class='input-group-addon'>Mana Threshold</span>
+          <span class='input-group-addon'>Threshold <a class='tooltip-fixed' title='Contingency Threshold' data-content='This is the value that contingency autocasting triggers at (where the gold arrow is). Setting this value will work even if autocasting is disabled. Note that this is stored as a percentage of max mana, not an actual amount of mana, so the value of the threshold can increase as your max mana increases.' data-trigger='hover'>(?)</a></span>
           <input type='number' class='form-control' id='mana-field' min='0' value='0' disabled></input>
         </div>
         <div class='input-group'>
-          <span class='input-group-addon'>Save</span>
+          <span class='input-group-addon'>Save <a class='tooltip-fixed' title='Save to Import' data-content='Click to select this, copy it, and import it into Realm Grinder to apply the change to your threshold.' data-trigger='hover'>(?)</a></span>
           <input readonly type='text' class='form-control' id='save-out'></input>
         </div>
       </div>
