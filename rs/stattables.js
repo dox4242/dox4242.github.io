@@ -17,9 +17,15 @@ var statTables = [
         form: 'number'
       },
       {
-        name: 'Gems on Abdication',
+        name: 'Gem Gain on Abdication',
         type: 'plain',
         stat: 'd:gemGain',
+        form: 'number'
+      },
+      {
+        name: 'Gems after Abdication',
+        type: 'sum',
+        stat: ['d:gemGain', 'g:gems'],
         form: 'number'
       },
       {
