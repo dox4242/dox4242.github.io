@@ -26,6 +26,7 @@ function processSave(dat) {
   document.hits = undefined;
   try {
     dat = decode(dat);
+    console.log(dat);
   }
   catch(err) {
     console.log(err);
