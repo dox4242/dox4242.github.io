@@ -259,6 +259,7 @@ function view() {
     }
     else if (form === 'number') {
       var renderers = ['short', 'sci', 'eng'];
+      console.log(Controller.derivedStats.notation);
       return util.render[renderers[Controller.derivedStats.notation]](data);
     }
     else if (form === 'timedelta') {

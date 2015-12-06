@@ -45,8 +45,7 @@ function processSave(dat) {
       ownedBuildings[ownedBuildings.length] = bnames[i];
     }
   }
-  if (!(dat.faction == 6 || dat.msp == "Lightning Strike"
-        || dat.msp2 == "Lightning Strike")) {
+  if (!(dat.faction == 6 || dat.msp == 13 || dat.msp2 == 13)) {
     document.getElementById("intro").innerHTML = "You don't have lightning strike.";
     document.getElementById("forecast").innerHTML = "Forecast: no lightning.";
     return
