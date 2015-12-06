@@ -44,7 +44,8 @@ Flavor.tagline = [
       'Bringing You Uselessly Comprehensive Data for Over 75 Years',
       'The Only Realm Grinder Statistics Tool with Dead Parents',
       'Not Included: Times Complained about Lightning Strike',
-      'Number of Possible Taglines: 5; Number of Batman References: 3'
+      'Number of Possible Taglines: 5; Number of Batman References: 3',
+      'Now with 20% More Working'
     ]
   }
 ];
