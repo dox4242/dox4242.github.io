@@ -172,9 +172,11 @@ function controller() {
     this.derivedStats = {
       timestamp: util.render.timeISO(this.save.lastsave),
       timedelta: (Date.now() - this.save.lastsave * 1000) / 1000,
-      version: this.save.version,
       notation: this.save.options.not != null ? this.save.options.not : (this.save.options.notation ? 1 : 0)
     };
+    if (this.derivedStats.notation == 3) {
+      this.derivedStats.notation = 0;
+    }
     if (this.save.hasOwnProperty('save_version')) {
       reiCoins = this.save.stats[0].abd + this.save.stats[0].rei;
     }
@@ -184,18 +186,24 @@ function controller() {
     this.derivedStats.gemGain = Math.max(0, Math.floor((Math.sqrt(1 + 8
       * reiCoins / 1e12) - 1) / 2) - this.save.gems);
     if (this.save.version_rev !== '0' && this.save.version) {
-      this.derivedStats.version += '.' + this.save.version_rev;
+      this.derivedStats.version = 'JSON/SOL (';
+      this.derivedStats.version += this.save.version;
+      this.derivedStats.version += '.' + this.save.version_rev + ')';
+    }
+    else {
+      this.derivedStats.version = 'Struct v';
+      this.derivedStats.version += this.save.save_version + ' (';
+      this.derivedStats.version += this.save.other21 + ')';
     }
   }
 
   this.loadSave = function(dat) {
-    // try {
+    try {
       this.save = decode(dat);
-    // }
-    // catch(err) {
-    //   console.log(err);
-    //   throw
-    // }
+    }
+    catch(err) {
+      console.log(err);
+    }
     this.deriveStats();
     this.getStats();
     View.renderTabs();

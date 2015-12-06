@@ -65,7 +65,7 @@ var statTables = [
         form: 'timedelta'
       },
       {
-        name: 'Game Version',
+        name: 'Save/Game Version',
         type: 'plain',
         stat: 'd:version',
         form: 'plain'

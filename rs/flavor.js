@@ -45,7 +45,7 @@ Flavor.tagline = [
       'The Only Realm Grinder Statistics Tool with Dead Parents',
       'Not Included: Times Complained about Lightning Strike',
       'Number of Possible Taglines: 5; Number of Batman References: 3',
-      'Now with 20% More Working'
+      'Now with 20% More Working Except on IE'
     ]
   }
 ];
