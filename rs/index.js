@@ -200,6 +200,12 @@ function controller() {
   this.loadSave = function(dat) {
     try {
       this.save = decode(dat);
+      if (this.save.options[0]) {
+        this.save.options = this.save.options[0];
+      }
+      if (this.save.hasOwnProperty('buyButton')) {
+        this.save.options.buyButton = this.save.buyButton;
+      }
     }
     catch(err) {
       console.log(err);

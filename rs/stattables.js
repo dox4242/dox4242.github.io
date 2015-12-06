@@ -1342,7 +1342,7 @@ var statTables = [
       {
         name: 'Disable Multibuy Button',
         type: 'plain',
-        stat: 'g:buyButton',
+        stat: 'o:buyButton',
         form: 'f:setting'        
       },
       {
