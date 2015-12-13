@@ -17,10 +17,12 @@ Flavor.intro = [
       'How to Embezzle on an Archaeological Expedition',
       'How ugmethesecond Discovered the Mana Spent Stat',
       'How to Not Kill People Even When You Probably Should',
+      'Fairies and a Woodchipper: Fertilizer in 3 Easy Steps',
       'Using the Whole Angel: from Magic to Cuisine',
       'Hell Portal Zoning Regulations: an Overview',
       'Keynesian, Goblin, Voodoo: the Major Econonometric Models',
-      'So You Died but You\'re Reading This Anyways'
+      'So You Died but You\'re Reading This Anyways',
+      'On the Susceptibility of Uganda to Cheating-Related Fires'
     ]
   },
   {
