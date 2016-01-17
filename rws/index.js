@@ -15,7 +15,7 @@
 		// chrome/firefox/safari
 		else {
 			dat = e.originalEvent.clipboardData.getData('text/plain');
-		}
+		}console.log(e);
 		processSave(dat);
 	}
 
