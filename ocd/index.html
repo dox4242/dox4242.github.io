@@ -19,7 +19,6 @@
     <script src='../lib/savecodec.js'></script>
     <script src='../lib/flavor.js'></script>
     <script src='flavor.js'></script>
-    <script src='stattables.js'></script>
     <script src='index.js'></script>
   </head>
   <body>
@@ -52,8 +51,8 @@
               <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Useful Tools <span class='caret'></span></a>
               <ul class='dropdown-menu'>
                 <li><a href='../rws/index.html'>Realm Weather Service</a></li>
-                <!-- <li><a href='../ocd/index.html'>Obsessive Conjurer Disorder</a></li> -->
-                <li class='active'><a href='#'>Royal Scribe</a><span class='sr-only'> (current)</span></li>
+                <li class='active'><a href='#'>Obsessive Conjurer Disorder</a><span class='sr-only'> (current)</span></li>
+                <li><a href="../rs/index.html">Royal Scribe</a></li>
               </ul>
             </li>
           </ul>
@@ -63,18 +62,28 @@
 
     <div class='container'>
       <div class='page-header'>
-        <h2><span id='title'></span> <small id='tagline'></small></h2>
+        <h2 id='title'>Obsessive Conjurer Disorder <small>You'll Thank Me Later</small></h2>
       </div>
 
       <div class='panel panel-primary'>
         <div class='panel-heading' id='intro-message'></div>
         <div class='input-group'>
-          <span class='input-group-addon'>Save <a class='tooltip-fixed' title='Exported Save' data-content='Export your save from Realm Grinder and paste it in this field to view a variety of stats that are not shown in-game.' data-trigger='hover'>(?)</a></span>
+          <span class='input-group-addon'>Save <a class='tooltip-fixed' title='Exported Save' data-content='Export your save from Realm Grinder and paste it to fine-tune your contingency autocasting threshold.' data-trigger='hover'>(?)</a></span>
           <input type='text' class='form-control' onclick='this.value=""' id='save-field'></input>
         </div>
       </div>
 
-      <div id='result-area'></div>
+      <div class='panel panel-default' id='manabox'>   
+        <div class='panel-heading' id='status-message'></div>
+        <div class='input-group'>
+          <span class='input-group-addon'>Threshold <a class='tooltip-fixed' title='Contingency Threshold' data-content='This is the value that contingency autocasting triggers at (where the gold arrow is). Setting this value will work even if autocasting is disabled. Note that this is stored as a percentage of max mana, not an actual amount of mana, so the value of the threshold can increase as your max mana increases.' data-trigger='hover'>(?)</a></span>
+          <input type='number' class='form-control' id='mana-field' min='0' value='0' disabled></input>
+        </div>
+        <div class='input-group'>
+          <span class='input-group-addon'>Save <a class='tooltip-fixed' title='Save to Import' data-content='Click to select this, copy it, and import it into Realm Grinder to apply the change to your threshold.' data-trigger='hover'>(?)</a></span>
+          <input readonly type='text' class='form-control' id='save-out'></input>
+        </div>
+      </div>
     </div>
   </body>
 </html>
