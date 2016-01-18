@@ -178,8 +178,8 @@
 			} else {
 				this.derivedStats.version = 'Struct v';
 				this.derivedStats.version += this.save.save_version + ' (';
-        this.derivedStats.version += this.save.other21 + 'r';
-        this.derivedStats.version += this.save.version_rev + ')';
+				this.derivedStats.version += this.save.other21 + 'r';
+				this.derivedStats.version += this.save.version_rev + ')';
 			}
 		}
 
