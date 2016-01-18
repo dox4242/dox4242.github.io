@@ -70,11 +70,23 @@
 					stat: 4,
 					form: 'number'
 				}, {
+          name: 'Max Clicks',
+          type: 'max',
+          stat: 87,
+          form: 'number',
+          override: ['&ndash;', null, null]
+        }, {
 					name: 'Automatic Clicks',
 					type: 'sum',
 					stat: 63,
 					form: 'number'
 				}, {
+          name: 'Max Automatic Clicks',
+          type: 'max',
+          stat: 89,
+          form: 'number',
+          override: ['&ndash;', null, null]
+        }, {
 					name: 'Manual Clicks',
 					type: 'sumdiff',
 					stat: [4, 63],
@@ -443,6 +455,12 @@
 					levels: [1],
 					override: [null, '&ndash;', '&ndash;']
 				}, {
+          name: 'Max Playtime',
+          type: 'max',
+          stat: 39,
+          form: 'time',
+          override: ['&ndash;', null, null]
+        }, {
 					name: 'Neutral Playtime',
 					type: 'sumdiff',
 					stat: [1, [2, 3]],
@@ -496,6 +514,11 @@
 					stat: 15,
 					form: 'number'
 				}, {
+          name: 'Max Spells Cast',
+          type: 'max',
+          stat: 40,
+          form: 'number'            
+        }, {
 					name: 'Time with Active Spell(s)',
 					type: 'sum',
 					stat: 97,
@@ -1051,6 +1074,12 @@
 					stat: 23,
 					form: 'number'
 				}, {
+          name: 'Max Assistant Squishes',
+          type: 'max',
+          stat: 88,
+          form: 'number',
+          override: ['&ndash;', null, null]
+        }, {
 					name: 'Max Upgrades Purchased',
 					type: 'max',
 					stat: 13,
@@ -1311,31 +1340,6 @@
 					name: 'Pay Upkeep Casts (Unused)',
 					type: 'plain',
 					stat: 65,
-					form: 'plain'            
-				}, {
-					name: 'Max Playtime (Broken)',
-					type: 'plain',
-					stat: 39,
-					form: 'plain'            
-				}, {
-					name: 'Max Spells Cast (Broken)',
-					type: 'plain',
-					stat: 40,
-					form: 'plain'            
-				}, {
-					name: 'Max Treasure Clicks (Broken)',
-					type: 'plain',
-					stat: 87,
-					form: 'plain'            
-				}, {
-					name: 'Max Assistant Squishes (Broken)',
-					type: 'plain',
-					stat: 88,
-					form: 'plain'            
-				}, {
-					name: 'Max Automatic Clicks (Broken)',
-					type: 'plain',
-					stat: 89,
 					form: 'plain'            
 				}
 			]
