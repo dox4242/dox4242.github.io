@@ -70,11 +70,23 @@
 					stat: 4,
 					form: 'number'
 				}, {
+          name: 'Max Clicks',
+          type: 'max',
+          stat: 87,
+          form: 'number',
+          override: ['&ndash;', null, null]
+        }, {
 					name: 'Automatic Clicks',
 					type: 'sum',
 					stat: 63,
 					form: 'number'
 				}, {
+          name: 'Max Automatic Clicks',
+          type: 'max',
+          stat: 89,
+          form: 'number',
+          override: ['&ndash;', null, null]
+        }, {
 					name: 'Manual Clicks',
 					type: 'sumdiff',
 					stat: [4, 63],
@@ -443,6 +455,12 @@
 					levels: [1],
 					override: [null, '&ndash;', '&ndash;']
 				}, {
+          name: 'Max Playtime',
+          type: 'max',
+          stat: 39,
+          form: 'time',
+          override: ['&ndash;', null, null]
+        }, {
 					name: 'Neutral Playtime',
 					type: 'sumdiff',
 					stat: [1, [2, 3]],
@@ -496,6 +514,11 @@
 					stat: 15,
 					form: 'number'
 				}, {
+          name: 'Max Spells Cast',
+          type: 'max',
+          stat: 40,
+          form: 'number'            
+        }, {
 					name: 'Time with Active Spell(s)',
 					type: 'sum',
 					stat: 97,
@@ -623,11 +646,16 @@
 					stat: 47,
 					form: 'number'
 				}, {
-					name: 'Honor Among Killers Faction Coins',
-					type: 'sum',
-					stat: 48,
-					form: 'number'
-				}, {
+          name: 'Honor Among Killers Faction Coins',
+          type: 'sum',
+          stat: 48,
+          form: 'number'
+        }, {
+          name: 'Lightning Strike Faction Coins',
+          type: 'sum',
+          stat: 112,
+          form: 'number'
+        }, {
 					name: 'Fairy Coins Gained',
 					type: 'sum',
 					stat: 6,
@@ -907,45 +935,127 @@
 				}
 			]
 		}, {
-			layout: 'table',
-			heading: 'Research',
-			stats: [
-				{
-					name: 'Spellcraft Level',
-					type: 'sum',
-					stat: 90,
-					form: 'number'
-				}, {
-					name: 'Craftsmanship Level',
-					type: 'sum',
-					stat: 91,
-					form: 'number'
-				}, {
-					name: 'Divine Level',
-					type: 'sum',
-					stat: 92,
-					form: 'number'
-				}, {
-					name: 'Economics Level',
-					type: 'sum',
-					stat: 93,
-					form: 'number'
-				}, {
-					name: 'Alchemy Level',
-					type: 'sum',
-					stat: 94,
-					form: 'number'
-				}, {
-					name: 'Warfare Level',
-					type: 'sum',
-					stat: 95,
-					form: 'number'
-				}
-			]
-		}, {
+      layout: 'table',
+      heading: 'Research',
+      stats: [
+        {
+          name: 'Spellcraft Level',
+          type: 'sum',
+          stat: 90,
+          form: 'number'
+        }, {
+          name: 'Craftsmanship Level',
+          type: 'sum',
+          stat: 91,
+          form: 'number'
+        }, {
+          name: 'Divine Level',
+          type: 'sum',
+          stat: 92,
+          form: 'number'
+        }, {
+          name: 'Economics Level',
+          type: 'sum',
+          stat: 93,
+          form: 'number'
+        }, {
+          name: 'Alchemy Level',
+          type: 'sum',
+          stat: 94,
+          form: 'number'
+        }, {
+          name: 'Warfare Level',
+          type: 'sum',
+          stat: 95,
+          form: 'number'
+        }
+      ]
+    }, {
+      layout: 'table',
+      heading: 'Excavation',
+      stats: [
+        {
+          name: 'Excavations',
+          type: 'sum',
+          stat: 35,
+          form: 'number'        
+        }, {
+          name: 'Max Excavations',
+          type: 'max',
+          stat: 98,
+          form: 'number'        
+        }, {
+          name: 'Excavation Reports (sorta)',
+          type: 'sum',
+          stat: 36,
+          form: 'number'        
+        }, {
+          name: 'Excavation Resets',
+          type: 'sum',
+          stat: 104,
+          form: 'number'        
+        }
+      ]
+    }, {
+      layout: 'table',
+      heading: 'Rubies',
+      stats: [
+        {
+          name: 'Rubies Found',
+          type: 'sum',
+          stat: 102,
+          form: 'number'        
+        }, {
+          name: 'Rubies Purchased',
+          type: 'sum',
+          stat: 103,
+          form: 'number'        
+        }, {
+          name: 'Ruby Assistant Upgrades',
+          type: 'sum',
+          stat: 105,
+          form: 'number'        
+        }, {
+          name: 'Ruby Mana Regen Upgrades',
+          type: 'sum',
+          stat: 106,
+          form: 'number'        
+        }, {
+          name: 'Ruby Max Mana Upgrades',
+          type: 'sum',
+          stat: 107,
+          form: 'number'        
+        }, {
+          name: 'Ruby Gem Bonus Upgrades',
+          type: 'sum',
+          stat: 108,
+          form: 'number'        
+        }, {
+          name: 'Ruby Royal Exchange Upgrades',
+          type: 'sum',
+          stat: 109,
+          form: 'number'        
+        }
+      ]
+    }, {
+      layout: 'table',
+      heading: 'Events',
+      stats: [
+        {
+          name: 'Snowballs Found (Christmas)',
+          type: 'sum',
+          stat: 110,
+          form: 'number'
+        }, {
+          name: 'Gifts Found (Christmas)',
+          type: 'sum',
+          stat: 111,
+          form: 'number'
+        }
+      ]
+    }, {
 			layout: 'table',
 			heading: 'Miscellaneous',
-			description: '<ul><li>Greedyness is used to award Greed Drive, its current game value is the streak of casts of Goblin\'s Greed, and if there is a streak on abdication, it will be moved to the other two columns like any other stat.</li><li>Strike-y-ness is similar, used to award Perfect Combo and is the streak of Combo Strike casts. However, it is not a normal stat, and is current game only.</li><li>Facelessness is used to award Faceless Overmind, and is the number of consecutive Faceless affiliations (buying the trade treaty), the streak is reset by buying any other trade treaty, and if you have a streak when you reincarnate, the value will be added to your all time stat.</li></ul>',
 			stats: [
 				{
 					name: 'Abdications',
@@ -964,38 +1074,56 @@
 					stat: 23,
 					form: 'number'
 				}, {
+          name: 'Max Assistant Squishes',
+          type: 'max',
+          stat: 88,
+          form: 'number',
+          override: ['&ndash;', null, null]
+        }, {
 					name: 'Max Upgrades Purchased',
 					type: 'max',
 					stat: 13,
 					form: 'number'        
 				}, {
-					name: 'Excavations',
-					type: 'sum',
-					stat: 35,
-					form: 'number'        
-				}, {
-					name: 'Excavation Reports (sorta)',
-					type: 'sum',
-					stat: 36,
-					form: 'number'        
-				}, {
-					name: 'Greedyness',
+					name: 'Consecutive Goblin\'s Greed Casts',
 					type: 'sum',
 					stat: 64,
 					form: 'number'        
 				}, {
-					name: 'Facelessness',
-					type: 'sum',
-					stat: 38,
-					form: 'number',
-					override: ['&ndash;', null, null]
-				}, {
-					name: 'Strike-y-ness',
+          name: 'Consecutive Faceless Affiliations',
+          type: 'sum',
+          stat: 38,
+          form: 'number',
+          override: ['&ndash;', null, null]
+        }, {
+          name: 'Consecutive Angel Affiliations',
+          type: 'sum',
+          stat: 99,
+          form: 'number',
+          override: ['&ndash;', null, null]
+        }, {
+          name: 'Consecutive Demon Affiliations',
+          type: 'sum',
+          stat: 100,
+          form: 'number',
+          override: ['&ndash;', null, null]
+        }, {
+					name: 'Consecutive Combo Strike Casts',
 					type: 'plain',
 					stat: 'g:comboStrikeCont',
 					form: 'number',
 					override: [null, '&ndash;', '&ndash;']
 				}, {
+          name: 'Consecutive Elven Luck Triggers',
+          type: 'sum',
+          stat: 101,
+          form: 'number'
+        }, {
+          name: 'Labyrinths Created by Territorial Expanse',
+          type: 'sum',
+          stat: 113,
+          form: 'number'
+        }, {
 					name: 'Trophy Counter (No Longer in Use)',
 					type: 'sum',
 					stat: 14,
@@ -1212,31 +1340,6 @@
 					name: 'Pay Upkeep Casts (Unused)',
 					type: 'plain',
 					stat: 65,
-					form: 'plain'            
-				}, {
-					name: 'Max Playtime (Broken)',
-					type: 'plain',
-					stat: 39,
-					form: 'plain'            
-				}, {
-					name: 'Max Spells Cast (Broken)',
-					type: 'plain',
-					stat: 40,
-					form: 'plain'            
-				}, {
-					name: 'Max Treasure Clicks (Broken)',
-					type: 'plain',
-					stat: 87,
-					form: 'plain'            
-				}, {
-					name: 'Max Assistant Squishes (Broken)',
-					type: 'plain',
-					stat: 88,
-					form: 'plain'            
-				}, {
-					name: 'Max Automatic Clicks (Broken)',
-					type: 'plain',
-					stat: 89,
 					form: 'plain'            
 				}
 			]
