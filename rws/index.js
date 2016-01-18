@@ -9,13 +9,11 @@
 	function clipboardHandler(e) {
 		var dat;
 		// IE
-		if (window.clipboardData && window.clipboardData.getData) {
+		if (window.clipboardData && window.clipboardData.getData)
 			dat = window.clipboardData.getData('text');
-		}
 		// chrome/firefox/safari
-		else {
+		else
 			dat = e.originalEvent.clipboardData.getData('text/plain');
-		}
 		processSave(dat);
 	}
 
