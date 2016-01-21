@@ -26,6 +26,7 @@
 			
 			try {
 				var save = SaveHandler.Decode(saveStr);
+				console.log(save);
 			} catch (e) {
 				$('#buildings').html('Your save is invalid.');
 				return;
@@ -47,7 +48,7 @@
 			if (save.alignment != 3) {
 				lightningMessage = 'You are not Neutral aligned.';
 				lightningForecast = 'No Lightning.';
-			} else if (!(save.faction == 6 || save.msp == 13 || save.msp2 == 13)) {
+			} else if (!(save.faction == 6 || save.mercSpell1 == 13 || save.mercSpell2 == 13)) {
 				lightningMessage = 'You don\'t have Lightning Strike.';
 				lightningForecast = 'No Lightning.';
 			} else if (buildingsOwned.length == 0) {
