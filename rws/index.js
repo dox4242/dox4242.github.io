@@ -82,6 +82,8 @@
 			for (var i in save.upgrades)
 				if (save.upgrades[i].id == 143719)
 					miracle = save.upgrades[i];
+			if (!miracle)
+				return;
 			
 			if (!miracle.u1) {
 				miracleMessage = 'You can\'t get any Miracles yet.';
