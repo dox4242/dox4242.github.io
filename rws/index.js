@@ -1,108 +1,173 @@
-	var bkeys = [ 'b:Farm', 'b:Inn', 'b:Blacksmith', 'b:DeepMine',
-		'b:StonePillars', 'b:AlchemistLab','b:Monastery', 'b:Labyrinth',
-		'b:IronStronghold', 'b:AncientPyramid', 'b:HallOfLegends' ];
 
-	var bnames = [ 'Farms', 'Inns', 'Blacksmiths', 'Deep Mines',
-		'Stone Pillars', 'Alchemist Labs', 'Monasteries', 'Labyrinths',
-		'Iron Strongholds', 'Ancient Pyramids', 'Halls of Legends' ];
-
-	function clipboardHandler(e) {
-		var dat;
-		// IE
-		if (window.clipboardData && window.clipboardData.getData)
-			dat = window.clipboardData.getData('text');
-		// chrome/firefox/safari
-		else
-			dat = e.originalEvent.clipboardData.getData('text/plain');
-		processSave(dat);
-	}
-
-	function processSave(dat) {
-		document.getElementById('intro').innerHTML = '';
-		document.getElementById('buildings').innerHTML = '';
-		document.getElementById('forecast').innerHTML = '';
-		document.hits = undefined;
-		try {
-			dat = decode(dat);
-			console.log(dat);
-		} catch(err) {
-			console.log(err);
-			document.getElementById('intro').innerHTML = 'Your save is invalid.';
-			document.getElementById('forecast').innerHTML = 'Forecast: no lightning.';
-			return
-		}
-		if (dat.alignment != 3) {
-			document.getElementById('intro').innerHTML = 'You are not aligned neutral.';
-			document.getElementById('forecast').innerHTML = 'Forecast: no lightning.';
-			return
-		}
-		var ownedBuildings = [];
-		for (var i = 0; i < bkeys.length; i++) {
-			if (dat.build[bkeys[i]].q > 0) {
-				ownedBuildings[ownedBuildings.length] = bnames[i];
+	(function(window, document, $, undefined) {
+		'use strict';
+		
+		// 
+		var buildingNames = [
+			'Farm', 'Inn', 'Blacksmith', 
+			'Warrior Barrack', 'Knights Joust', 'Wizard Tower', 'Cathedral', 'Citadel', 'Royal Castle', 'Heaven\'s Gate', 
+			'Slave Pen', 'Orcish Arena', 'Witch Conclave', 'Dark Temple', 'Necropolis', 'Evil Fortress', 'Hell Portal', 
+			'Deep Mine', 'Stone Pillar', 'Alchemist Lab', 'Monastery', 'Labyrinth', 'Iron Stronghold', 'Ancient Pyramid', 
+			'Hall of Legends'
+		];
+		
+		var buildingsOwned = [];
+		var lightningRNG = '', lightningHits = [];
+		var miracleRNG = '', miracleHits = [];
+		
+		// 
+		var forecast = function(saveStr) {
+			buildingsOwned = [];
+			lightningHits = [];
+			miracleHits = [];
+			lightningRNG = '';
+			miracleRNG = '';
+			$('#lightningMessage, #lightningForecast, #miracleMessage, #miracleForecast').html('');
+			
+			try {
+				var save = SaveHandler.Decode(saveStr);
+			} catch (e) {
+				$('#buildings').html('Your save is invalid.');
+				return;
 			}
-		}
-		if (!(dat.faction == 6 || dat.msp == 13 || dat.msp2 == 13)) {
-			document.getElementById('intro').innerHTML = 'You don\'t have lightning strike.';
-			document.getElementById('forecast').innerHTML = 'Forecast: no lightning.';
-			return
-		}
-		if (ownedBuildings.length == 0) {
-			document.getElementById('intro').innerHTML = 'You have no buildings.';
-			document.getElementById('forecast').innerHTML = 'Forecast: no lightning.';
-			return
-		}
-		if (ownedBuildings.length == 1) {
-			document.getElementById('intro').innerHTML = 'You only have ' + ownedBuildings[0] + '.';
-			document.getElementById('forecast').innerHTML = 'Forecast: the only thing you have, as many times as you like.';
-			return
-		}
-		var state = dat.spell['s:LightningStrike'].s;
-		document.getElementById('intro').innerHTML = 'Your RNG state is: ' + state + '.';
-		document.getElementById('buildings').innerHTML = 'You have ' + listJoin(ownedBuildings) + '.';
-		var RNG = new PM_PRNG(state);
-		var hits = [];
-		for (i = 0; i < 10; i++) {
-			hits.push(ownedBuildings[RNG.strikeTier(ownedBuildings.length)]);
-		}
-		hits[hits.length] = '<a onclick="addMoreHits()" href="javascript:;">Give me a longer forecast...</a>'
-		document.getElementById('forecast').innerHTML = 'Forecast: ' + olJoin(hits);
-		document.hits = hits;
-		document.RNG = RNG;
-		document.ownedBuildings = ownedBuildings;
-	}
+			for (var i in save.buildings)
+				if (save.buildings[i].q > 0)
+					buildingsOwned.push(i);
+			$('#buildings').html('<b>Buildings owned</b><br>' + buildingsOwned.map(function(val, key) { return buildingNames[val]; }).join(', '));
+			
+			forecastLightning(save, buildingsOwned);
+			forecastMiracle(save, buildingsOwned);
+		};
+		
+		// 
+		var forecastLightning = function(save, buildingsOwned) {
+			var lightningMessage = '';
+			var lightningForecast = '';
+			
+			if (save.alignment != 3) {
+				lightningMessage = 'You are not Neutral aligned.';
+				lightningForecast = 'No Lightning.';
+			} else if (!(save.faction == 6 || save.msp == 13 || save.msp2 == 13)) {
+				lightningMessage = 'You don\'t have Lightning Strike.';
+				lightningForecast = 'No Lightning.';
+			} else if (buildingsOwned.length == 0) {
+				lightningMessage = 'You have no Buildings.';
+				lightningForecast = 'No Lightning.';
+			} else if (buildingsOwned.length == 1) {
+				lightningMessage = 'You only have ' + buildingNames[buildingsOwned[0]] + '.';
+				lightningForecast = 'The only Building you have, as often as you want.';
+			}
+			
+			if (lightningMessage != '' || lightningForecast != '') {
+				$('#lightningMessage').html('<b>Lightning Strike</b><br>').append(lightningMessage);
+				$('#lightningForecast').html('<b>Forecast</b><br>').append(lightningForecast);
+				return;
+			}
+			
+			lightningRNG = new PM_PRNG(save.spells[11].s);
+			$('#lightningMessage').html('<b>Lightning Strike</b><br>Your RNG state is: ' + lightningRNG.state + '.');
+			$('#lightningForecast').html('<b>Forecast</b><br><ol></ol>')
+				.append($('<a href="javascript:;" />').html('Give me a longer Forecast').on('click', forecastLightningMore));
+			
+			forecastLightningMore();
+		};
+		
+		// 
+		var forecastMiracle = function(save, buildingsOwned) {
+			var miracleMessage = '';
+			var miracleForecast = '';
+			
+			var miracle;
+			for (var i in save.upgrades)
+				if (save.upgrades[i].id == 143719)
+					miracle = save.upgrades[i];
+			
+			if (!miracle.u1) {
+				miracleMessage = 'You can\'t get any Miracles yet.';
+				miracleForecast = 'No Miracles.';
+			} else if (buildingsOwned.length == 0) {
+				miracleMessage = 'You have no Buildings.';
+				miracleForecast = 'No Miracles.';
+			} else if (buildingsOwned.length == 1) {
+				miracleMessage = 'You only have ' + buildingNames[buildingsOwned[0]] + '.';
+				miracleForecast = 'The only Building you have, as long as you want.';
+			}
+			
+			if (miracleMessage != '' || miracleForecast != '') {
+				$('#miracleMessage').html('<b>Miracle</b><br>').append(miracleMessage);
+				$('#miracleForecast').html('<b>Forecast</b><br>').append(miracleForecast);
+				return;
+			}
+			
+			miracleRNG = new PM_PRNG(miracle.s);
+			$('#miracleMessage').html('<b>Miracle</b><br>Your RNG state is: ' + miracleRNG.state + '.');
+			$('#miracleForecast').html('<b>Forecast</b><br><ol></ol>')
+				.append($('<a href="javascript:;" />').html('Give me a longer Forecast').on('click', forecastMiracleMore));
+			
+			forecastMiracleMore();
+		};
+		
+		// 
+		var forecastLightningMore = function(e) {
+			for (var i = 0; i < 10; i++) {
+				var tier = lightningRNG.strikeTier(buildingsOwned.length);
+				var hit = buildingNames[buildingsOwned[tier]];
+				lightningHits.push(hit);
+				$('#lightningForecast').children().last().prev().append($('<li />').html(hit));
+			}
+		};
+		
+		// 
+		var forecastMiracleMore = function(e) {
+			for (var i = 0; i < 10; i++) {
+				var tier = miracleRNG.strikeTier(buildingsOwned.length);
+				var hit = buildingNames[buildingsOwned[tier]];
+				miracleHits.push(hit);
+				$('#miracleForecast').children().last().prev().append($('<li />').html(hit));
+			}
+		};
+		
+		
+		$(function() {
+			
+			// Initialize Bootstrap popovers
+			$('[data-toggle="popover"]').popover();
 
-	function addMoreHits() {
-		if (!document.hits) {
-			return
-		}
-		var hits = document.hits;
-		var RNG = document.RNG;
-		var ownedBuildings = document.ownedBuildings;
-		hits.splice(hits.length-1, 1);
-		for (var i = 0; i < 10; i++) {
-			hits.push(ownedBuildings[RNG.strikeTier(ownedBuildings.length)]);
-		}
-		hits[hits.length] = '<a onclick="addMoreHits()" href="javascript:;">Give me an even longer forecast...</a>'
-		document.getElementById('forecast').innerHTML = 'Forecast: ' + olJoin(hits);
-		document.hits = hits;
-		document.RNG = RNG;
-		document.ownedBuildings = ownedBuildings;
-
-		return false;
-	}
-
-	$(document).on('paste', clipboardHandler);
-
-	$(document).on('mousewheel DOMMouseScroll', function(e) {
-		var delta = Math.max(-1, Math.min(1, (e.originalEvent.wheelDelta || -e.originalEvent.detail)));
-		if (delta == -1 && ($(window).scrollTop() + $(window).height() == $(document).height())) {
-		addMoreHits();
-		}
-	});
-
-	$(function initialize() {
-		//Flavor.pageLoaded();
-		$('.tooltip-fixed').popover();
-		//$('#save-field').on('paste', function(e) {Controller.pasteHandler(e)});
-	});
+			// Bind Save decoding and parsing
+			$('#saveInput').on('paste', function(e) {
+				// Empty the input right before the paste comes through
+				$(this).val('');
+				
+				// The timeout ensures we can grab the save right after the paste comes through, without messing with the clipboard
+				var self = this;
+				setTimeout(function() {
+					var saveStr = $(self).val();
+					if (saveStr)
+						forecast(saveStr);
+				}, 1);
+			}).trigger('focus');
+			
+			// Bind Copy button
+			$('#doSaveCopy').on('click', function(e) {
+				$('#saveInput').trigger('focus');
+				var save = $('#saveInput').val();
+				window.prompt('Copy to clipboard: Press Ctrl+C, then Enter', save);
+			});
+			
+			// Bind Clear button
+			$('#doSaveClear').on('click', function(e) {
+				$('#saveInput').val('').trigger('focus');
+			});
+			
+			// Automatically lengthen the forecast when scrolling to the bottom of the screen
+			$(document).on('mousewheel DOMMouseScroll', function(e) {
+				var delta = Math.max(-1, Math.min(1, (e.originalEvent.wheelDelta || -e.originalEvent.detail)));
+				if (delta == -1 && ($(window).scrollTop() + $(window).height() >= $(document).height())) {
+					forecastLightningMore();
+					forecastMiracleMore();
+				}
+			});
+			
+		});
+		
+	} (window, document, jQuery));

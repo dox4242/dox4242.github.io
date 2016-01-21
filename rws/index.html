@@ -15,7 +15,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/0.2.8/pako.js"></script>
 	
     <script src="../lib/zlib.min.js"></script>
-    <script src="../lib/savecodec.js"></script>
+    <script src="../lib/savecodec2.js"></script>
     <script src="../lib/pmprng.js"></script>
     <script src="../lib/util.js"></script>
     <script src="index.js"></script>
@@ -61,18 +61,34 @@
 		</div>
 		<div class="panel panel-primary">
 			<div class="panel-heading">Your court meteorologist looks at you expectantly. "Your Majesty, I will need the kingdom's records in order to produce a forecast," he says.</div>
-			<div class="input-group">
-				<span class="input-group-addon">Save <a class="tooltip-fixed" title="Exported Save" data-content="Export your save from Realm Grinder and paste it in this field to view a forecast of lightning strikes." data-trigger="hover">(?)</a></span>
-				<input type="text" class="form-control" onclick="this.value=''" id="save-field"></input>
+			<div class="panel-body input-group panelSaveInput">
+				<label id="saveInputLabel" class="input-group-addon" for="saveInput"><a title="Save" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="Export your save from Realm Grinder and paste it in this field to view your forecast.">Save (?)</a></label>
+				<input id="saveInput" class="form-control" type="text" name="saveInput" value="">
+				<div class="input-group-btn">
+					<button id="doSaveCopy" class="btn btn-info" type="button">Copy save</button>
+					<button id="doSaveClear" class="btn btn-danger" type="button">Clear save</button>
+				</div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-5">
-				<div id="intro"></div>
+			<div class="col-xs-12">
 				<div id="buildings"></div>
-				<div id="forecast"></div>
 			</div>
 		</div>
+		<br>
+		<div class="row">
+			<div class="col-xs-6">
+				<div id="lightningMessage"></div>
+				<br>
+				<div id="lightningForecast"></div>
+			</div>
+			<div class="col-xs-6">
+				<div id="miracleMessage"></div>
+				<br>
+				<div id="miracleForecast"></div>
+			</div>
+		</div>
+		<br><br>
 	</div>
 </body>
 </html>
