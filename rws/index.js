@@ -2,7 +2,7 @@
 	(function(window, document, $, undefined) {
 		'use strict';
 		
-		// 
+		// A list of all building names in ID'ed order
 		var buildingNames = [
 			'Farm', 'Inn', 'Blacksmith', 
 			'Warrior Barrack', 'Knights Joust', 'Wizard Tower', 'Cathedral', 'Citadel', 'Royal Castle', 'Heaven\'s Gate', 
@@ -12,14 +12,14 @@
 		];
 		
 		var buildingsOwned = [];
-		var lightningRNG = '';
-		var miracleRNG = '';
+		var lightningRNG = null;
+		var miracleRNG = null;
 		
-		// 
+		// Refresh the entire forecast
 		var forecast = function(saveStr) {
 			buildingsOwned = [];
-			lightningRNG = '';
-			miracleRNG = '';
+			lightningRNG = null;
+			miracleRNG = null;
 			$('#lightningMessage, #lightningForecast, #miracleMessage, #miracleForecast').html('');
 			
 			try {
@@ -38,7 +38,7 @@
 			forecastMiracle(save, buildingsOwned);
 		};
 		
-		// 
+		// Add the Lightning forecast
 		var forecastLightning = function(save, buildingsOwned) {
 			var lightningMessage = '';
 			var lightningForecast = '';
@@ -66,12 +66,12 @@
 			lightningRNG = new PM_PRNG(save.spells[11].s);
 			$('#lightningMessage').html('<b>Lightning Strike</b><br>Your RNG state is: ' + lightningRNG.state + '.');
 			$('#lightningForecast').html('<b>Forecast</b><br><ol></ol>')
-				.append($('<a href="javascript:;" />').html('Give me a longer Forecast').on('click', forecastLightningMore));
+				.append($('<button class="btn btn-link" type="button" />').html('Give me a longer Forecast').on('click', forecastLightningMore));
 			
 			forecastLightningMore();
 		};
 		
-		// 
+		// Add the Miracle forecast
 		var forecastMiracle = function(save, buildingsOwned) {
 			var miracleMessage = '';
 			var miracleForecast = '';
@@ -101,27 +101,29 @@
 			miracleRNG = new PM_PRNG(miracle.s);
 			$('#miracleMessage').html('<b>Miracle</b><br>Your RNG state is: ' + miracleRNG.state + '.');
 			$('#miracleForecast').html('<b>Forecast</b><br><ol></ol>')
-				.append($('<a href="javascript:;" />').html('Give me a longer Forecast').on('click', forecastMiracleMore));
+				.append($('<button class="btn btn-link" type="button" />').html('Give me a longer Forecast').on('click', forecastMiracleMore));
 			
 			forecastMiracleMore();
 		};
 		
-		// 
+		// Add Lightning forecast hits
 		var forecastLightningMore = function(e) {
-			for (var i = 0; i < 10; i++) {
-				var tier = lightningRNG.strikeTier(buildingsOwned.length);
-				var hit = buildingNames[buildingsOwned[tier]];
-				$('#lightningForecast').children().last().prev().append($('<li />').html(hit));
-			}
+			if (buildingsOwned.length > 0)
+				for (var i = 0; i < 10; i++) {
+					var tier = lightningRNG.strikeTier(buildingsOwned.length);
+					var hit = buildingNames[buildingsOwned[tier]];
+					$('#lightningForecast').children().last().prev().append($('<li />').html(hit));
+				}
 		};
 		
-		// 
+		// Add Miracle forecast hits
 		var forecastMiracleMore = function(e) {
-			for (var i = 0; i < 10; i++) {
-				var tier = miracleRNG.strikeTier(buildingsOwned.length);
-				var hit = buildingNames[buildingsOwned[tier]];
-				$('#miracleForecast').children().last().prev().append($('<li />').html(hit));
-			}
+			if (buildingsOwned.length > 0)
+				for (var i = 0; i < 10; i++) {
+					var tier = miracleRNG.strikeTier(buildingsOwned.length);
+					var hit = buildingNames[buildingsOwned[tier]];
+					$('#miracleForecast').children().last().prev().append($('<li />').html(hit));
+				}
 		};
 		
 		
