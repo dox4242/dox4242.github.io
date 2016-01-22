@@ -22,13 +22,10 @@
 			miracleRNG = null;
 			$('#lightningMessage, #lightningForecast, #miracleMessage, #miracleForecast').html('');
 			
-			try {
-				var save = SaveHandler.Decode(saveStr);
-				console.log(save);
-			} catch (e) {
-				$('#buildings').html('Your save is invalid.');
-				return;
-			}
+			var save = SaveHandler.Decode(saveStr);
+			console.log('Decoded save:', save);
+			
+			// Only buildings owned by the player can be hit
 			for (var i in save.buildings)
 				if (save.buildings[i].q > 0)
 					buildingsOwned.push(i);
@@ -43,6 +40,7 @@
 			var lightningMessage = '';
 			var lightningForecast = '';
 			
+			// Check if the save actually has Lightning Strikes to forecast
 			if (save.alignment != 3) {
 				lightningMessage = 'You are not Neutral aligned.';
 				lightningForecast = 'No Lightning.';
@@ -57,12 +55,14 @@
 				lightningForecast = 'The only Building you have, as often as you want.';
 			}
 			
+			// Early exit
 			if (lightningMessage != '' || lightningForecast != '') {
 				$('#lightningMessage').html('<b>Lightning Strike</b><br>').append(lightningMessage);
 				$('#lightningForecast').html('<b>Forecast</b><br>').append(lightningForecast);
 				return;
 			}
 			
+			// Create the RNG and get the initial forecast
 			lightningRNG = new PM_PRNG(save.spells[11].s);
 			$('#lightningMessage').html('<b>Lightning Strike</b><br>Your RNG state is: ' + lightningRNG.state + '.');
 			$('#lightningForecast').html('<b>Forecast</b><br><ol></ol>')
@@ -76,11 +76,13 @@
 			var miracleMessage = '';
 			var miracleForecast = '';
 			
+			// (TEMP) Find the Miracle research upgrade
 			var miracle;
 			for (var i in save.upgrades)
 				if (save.upgrades[i].id == 143719)
 					miracle = save.upgrades[i];
 			
+			// Check if the save actually has Miracles to forecast
 			if (!miracle || !miracle.u1) {
 				miracleMessage = 'You can\'t get any Miracles yet.';
 				miracleForecast = 'No Miracles.';
@@ -92,12 +94,14 @@
 				miracleForecast = 'The only Building you have, as long as you want.';
 			}
 			
+			// Early exit
 			if (miracleMessage != '' || miracleForecast != '') {
 				$('#miracleMessage').html('<b>Miracle</b><br>').append(miracleMessage);
 				$('#miracleForecast').html('<b>Forecast</b><br>').append(miracleForecast);
 				return;
 			}
 			
+			// Create the RNG and get the initial forecast
 			miracleRNG = new PM_PRNG(miracle.s);
 			$('#miracleMessage').html('<b>Miracle</b><br>Your RNG state is: ' + miracleRNG.state + '.');
 			$('#miracleForecast').html('<b>Forecast</b><br><ol></ol>')
@@ -108,7 +112,7 @@
 		
 		// Add Lightning forecast hits
 		var forecastLightningMore = function(e) {
-			if (buildingsOwned.length > 0)
+			if (buildingsOwned.length > 0 && lightningRNG)
 				for (var i = 0; i < 10; i++) {
 					var tier = lightningRNG.strikeTier(buildingsOwned.length);
 					var hit = buildingNames[buildingsOwned[tier]];
@@ -118,7 +122,7 @@
 		
 		// Add Miracle forecast hits
 		var forecastMiracleMore = function(e) {
-			if (buildingsOwned.length > 0)
+			if (buildingsOwned.length > 0 && miracleRNG)
 				for (var i = 0; i < 10; i++) {
 					var tier = miracleRNG.strikeTier(buildingsOwned.length);
 					var hit = buildingNames[buildingsOwned[tier]];
@@ -146,21 +150,21 @@
 				}, 1);
 			}).trigger('focus');
 			
-			// Bind Re-Enter button
+			// Bind Re-Enter button to refresh the forecast using the current save string
 			$('#doReEnter').on('click', function(e) {
 				$('#saveInput').trigger('focus');
 				var saveStr = $('#saveInput').val();
 				if (saveStr)
 					forecast(saveStr);
 			});
-			// Bind Copy button
+			// Bind Copy button to copy the current save string
 			$('#doSaveCopy').on('click', function(e) {
 				$('#saveInput').trigger('focus');
 				var save = $('#saveInput').val();
 				window.prompt('Copy to clipboard: Press Ctrl+C, then Enter', save);
 			});
 			
-			// Bind Clear button
+			// Bind Clear button to clear the save input field
 			$('#doSaveClear').on('click', function(e) {
 				$('#saveInput').val('').trigger('focus');
 			});
@@ -173,6 +177,9 @@
 					forecastMiracleMore();
 				}
 			});
+			
+			// 
+			//$('')
 			
 		});
 		
