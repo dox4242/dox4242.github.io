@@ -12,14 +12,12 @@
 		];
 		
 		var buildingsOwned = [];
-		var lightningRNG = '', lightningHits = [];
-		var miracleRNG = '', miracleHits = [];
+		var lightningRNG = '';
+		var miracleRNG = '';
 		
 		// 
 		var forecast = function(saveStr) {
 			buildingsOwned = [];
-			lightningHits = [];
-			miracleHits = [];
 			lightningRNG = '';
 			miracleRNG = '';
 			$('#lightningMessage, #lightningForecast, #miracleMessage, #miracleForecast').html('');
@@ -82,10 +80,8 @@
 			for (var i in save.upgrades)
 				if (save.upgrades[i].id == 143719)
 					miracle = save.upgrades[i];
-			if (!miracle)
-				return;
 			
-			if (!miracle.u1) {
+			if (!miracle || !miracle.u1) {
 				miracleMessage = 'You can\'t get any Miracles yet.';
 				miracleForecast = 'No Miracles.';
 			} else if (buildingsOwned.length == 0) {
@@ -115,7 +111,6 @@
 			for (var i = 0; i < 10; i++) {
 				var tier = lightningRNG.strikeTier(buildingsOwned.length);
 				var hit = buildingNames[buildingsOwned[tier]];
-				lightningHits.push(hit);
 				$('#lightningForecast').children().last().prev().append($('<li />').html(hit));
 			}
 		};
@@ -125,7 +120,6 @@
 			for (var i = 0; i < 10; i++) {
 				var tier = miracleRNG.strikeTier(buildingsOwned.length);
 				var hit = buildingNames[buildingsOwned[tier]];
-				miracleHits.push(hit);
 				$('#miracleForecast').children().last().prev().append($('<li />').html(hit));
 			}
 		};
@@ -150,6 +144,13 @@
 				}, 1);
 			}).trigger('focus');
 			
+			// Bind Re-Enter button
+			$('#doReEnter').on('click', function(e) {
+				$('#saveInput').trigger('focus');
+				var saveStr = $('#saveInput').val();
+				if (saveStr)
+					forecast(saveStr);
+			});
 			// Bind Copy button
 			$('#doSaveCopy').on('click', function(e) {
 				$('#saveInput').trigger('focus');
