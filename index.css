@@ -3,3 +3,22 @@
 		padding-top: 70px;
 		overflow-y: scroll;
 	}
+	
+	/* RWS Building highlighting */
+	ol > li {
+		cursor: pointer;
+	}
+	ol > li.highlight {
+		font-weight: bold;
+	}
+	ol > li.highlight.tier0 { color: maroon; }
+	ol > li.highlight.tier1 { color: red; }
+	ol > li.highlight.tier2 { color: purple; }
+	ol > li.highlight.tier3 { color: fuchsia; }
+	ol > li.highlight.tier4 { color: green; }
+	ol > li.highlight.tier5 { color: lime; }
+	ol > li.highlight.tier6 { color: olive; }
+	ol > li.highlight.tier7 { color: navy; }
+	ol > li.highlight.tier8 { color: blue; }
+	ol > li.highlight.tier9 { color: teal; }
+	ol > li.highlight.tier10 { color: aqua; }

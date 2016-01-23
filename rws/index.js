@@ -12,12 +12,14 @@
 		];
 		
 		var buildingsOwned = [];
+		var buildingsHighlighted = [];
 		var lightningRNG = null;
 		var miracleRNG = null;
 		
 		// Refresh the entire forecast
 		var forecast = function(saveStr) {
 			buildingsOwned = [];
+			buildingsHighlighted = [];
 			lightningRNG = null;
 			miracleRNG = null;
 			$('#lightningMessage, #lightningForecast, #miracleMessage, #miracleForecast').html('');
@@ -116,7 +118,8 @@
 				for (var i = 0; i < 10; i++) {
 					var tier = lightningRNG.strikeTier(buildingsOwned.length);
 					var hit = buildingNames[buildingsOwned[tier]];
-					$('#lightningForecast').children().last().prev().append($('<li />').html(hit));
+					var li = $('<li />').html(hit).addClass('tier' + tier).data('tier', tier);
+					$('#lightningForecast').children().last().prev().append(li);
 				}
 		};
 		
@@ -126,7 +129,8 @@
 				for (var i = 0; i < 10; i++) {
 					var tier = miracleRNG.strikeTier(buildingsOwned.length);
 					var hit = buildingNames[buildingsOwned[tier]];
-					$('#miracleForecast').children().last().prev().append($('<li />').html(hit));
+					var li = $('<li />').html(hit).addClass('tier' + tier).data('tier', tier);
+					$('#miracleForecast').children().last().prev().append(li);
 				}
 		};
 		
@@ -157,6 +161,7 @@
 				if (saveStr)
 					forecast(saveStr);
 			});
+			
 			// Bind Copy button to copy the current save string
 			$('#doSaveCopy').on('click', function(e) {
 				$('#saveInput').trigger('focus');
@@ -178,8 +183,14 @@
 				}
 			});
 			
-			// 
-			//$('')
+			// Building highlighting
+			$('#lightningForecast, #miracleForecast').on('click', 'ol > li', function(e) {
+				var tier = $(this).data('tier');
+				if ($(this).hasClass('highlight'))
+					$(this).parent().children('.tier' + tier).removeClass('highlight');
+				else
+					$(this).parent().children('.tier' + tier).addClass('highlight');
+			});
 			
 		});
 		
