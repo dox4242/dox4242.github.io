@@ -12,19 +12,20 @@
 		];
 		
 		var buildingsOwned = [];
-		var buildingsHighlighted = [];
+		var buildingsHighlighted = [ [], [] ];
 		var lightningRNG = null;
 		var miracleRNG = null;
 		
 		// Refresh the entire forecast
 		var forecast = function(saveStr) {
 			buildingsOwned = [];
-			buildingsHighlighted = [];
+			buildingsHighlighted = [ [], [] ];
 			lightningRNG = null;
 			miracleRNG = null;
 			$('#lightningMessage, #lightningForecast, #miracleMessage, #miracleForecast').html('');
 			
 			var save = SaveHandler.Decode(saveStr);
+			window.decoded = save;
 			console.log('Decoded save:', save);
 			
 			// Only buildings owned by the player can be hit
@@ -67,7 +68,7 @@
 			// Create the RNG and get the initial forecast
 			lightningRNG = new PM_PRNG(save.spells[11].s);
 			$('#lightningMessage').html('<b>Lightning Strike</b><br>Your RNG state is: ' + lightningRNG.state + '.');
-			$('#lightningForecast').html('<b>Forecast</b><br><ol></ol>')
+			$('#lightningForecast').html('<b>Forecast</b> <small><i>(Click a building to toggle its highlighting)</i></small><br><ol></ol>')
 				.append($('<button class="btn btn-link" type="button" />').html('Give me a longer Forecast').on('click', forecastLightningMore));
 			
 			forecastLightningMore();
@@ -106,7 +107,7 @@
 			// Create the RNG and get the initial forecast
 			miracleRNG = new PM_PRNG(miracle.s);
 			$('#miracleMessage').html('<b>Miracle</b><br>Your RNG state is: ' + miracleRNG.state + '.');
-			$('#miracleForecast').html('<b>Forecast</b><br><ol></ol>')
+			$('#miracleForecast').html('<b>Forecast</b> <small><i>(Click a building to toggle its highlighting)</i></small><br><ol></ol>')
 				.append($('<button class="btn btn-link" type="button" />').html('Give me a longer Forecast').on('click', forecastMiracleMore));
 			
 			forecastMiracleMore();
@@ -119,8 +120,15 @@
 					var tier = lightningRNG.strikeTier(buildingsOwned.length);
 					var hit = buildingNames[buildingsOwned[tier]];
 					var li = $('<li />').html(hit).addClass('tier' + tier).data('tier', tier);
-					$('#lightningForecast').children().last().prev().append(li);
+					$('#lightningForecast > ol').append(li);
 				}
+			
+			// Update building highlighting
+			for (var tier in buildingsHighlighted[0])
+				if (buildingsHighlighted[0][tier])
+					$('#lightningForecast > ol > li.tier' + tier).addClass('highlight');
+				else
+					$('#lightningForecast > ol > li.tier' + tier).removeClass('highlight');
 		};
 		
 		// Add Miracle forecast hits
@@ -130,8 +138,15 @@
 					var tier = miracleRNG.strikeTier(buildingsOwned.length);
 					var hit = buildingNames[buildingsOwned[tier]];
 					var li = $('<li />').html(hit).addClass('tier' + tier).data('tier', tier);
-					$('#miracleForecast').children().last().prev().append(li);
+					$('#miracleForecast > ol').append(li);
 				}
+			
+			// Update building highlighting
+			for (var tier in buildingsHighlighted[1])
+				if (buildingsHighlighted[1][tier])
+					$('#miracleForecast > ol > li.tier' + tier).addClass('highlight');
+				else
+					$('#miracleForecast > ol > li.tier' + tier).removeClass('highlight');
 		};
 		
 		
@@ -183,13 +198,22 @@
 				}
 			});
 			
-			// Building highlighting
+			// Click to toggle a building highlight
 			$('#lightningForecast, #miracleForecast').on('click', 'ol > li', function(e) {
+				var type = $(this).parent().parent().parent().index();
 				var tier = $(this).data('tier');
-				if ($(this).hasClass('highlight'))
+				if (buildingsHighlighted[type][tier]) {
+					buildingsHighlighted[type][tier] = false;
 					$(this).parent().children('.tier' + tier).removeClass('highlight');
-				else
+				} else {
+					buildingsHighlighted[type][tier] = true;
 					$(this).parent().children('.tier' + tier).addClass('highlight');
+				}
+			// Hover to temporarily highlight the building
+			}).on('mouseenter', 'ol > li', function(e) {
+				$(this).parent().children('.tier' + $(this).data('tier')).addClass('hover');
+			}).on('mouseleave', 'ol > li', function(e) {
+				$(this).parent().children('.tier' + $(this).data('tier')).removeClass('hover');
 			});
 			
 		});
