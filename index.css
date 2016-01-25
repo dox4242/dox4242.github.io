@@ -2,6 +2,7 @@
 	body {
 		padding: 70px 0;
 		overflow-y: scroll;
+		background-color: whitesmoke;
 	}
 	
 	/* RWS Building highlighting */
@@ -12,7 +13,7 @@
 		font-weight: bold;
 	}
 	ol > li.hover {
-		background-color: whitesmoke;
+		background-color: #e6e6e6;
 	}
 	ol > li.highlight.tier0, ol > li.hover.tier0 { color: maroon; }
 	ol > li.highlight.tier1, ol > li.hover.tier1 { color: red; }
