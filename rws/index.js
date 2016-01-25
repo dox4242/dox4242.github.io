@@ -32,7 +32,13 @@
 			for (var i in save.buildings)
 				if (save.buildings[i].q > 0)
 					buildingsOwned.push(i);
-			$('#buildings').html('<b>Buildings owned</b><br>' + buildingsOwned.map(function(val, key) { return buildingNames[val]; }).join(', '));
+			$('#buildings').html('<b>Buildings owned</b> <small><i>(Click a building to toggle its highlighting)</i></small><br>');
+			for (var tier in buildingsOwned) {
+				var hit = buildingNames[buildingsOwned[tier]];
+				var span = $('<span />').html(hit).addClass('tier' + tier).data('tier', tier);
+				if (tier != 0) $('#buildings').append(', ');
+				$('#buildings').append(span);
+			}
 			
 			forecastLightning(save, buildingsOwned);
 			forecastMiracle(save, buildingsOwned);
@@ -214,6 +220,25 @@
 				$(this).parent().children('.tier' + $(this).data('tier')).addClass('hover');
 			}).on('mouseleave', 'ol > li', function(e) {
 				$(this).parent().children('.tier' + $(this).data('tier')).removeClass('hover');
+			});
+			
+			$('#buildings').on('click', 'span', function(e) {
+				var tier = $(this).data('tier');
+				if ($(this).hasClass('highlight')) {
+					$(this).removeClass('highlight');
+					buildingsHighlighted[0][tier] = buildingsHighlighted[1][tier] = false;
+					$('#lightningForecast > ol, #miracleForecast > ol').children('.tier' + tier).removeClass('highlight');
+				} else {
+					$(this).addClass('highlight');
+					buildingsHighlighted[0][tier] = buildingsHighlighted[1][tier] = true;
+					$('#lightningForecast > ol, #miracleForecast > ol').children('.tier' + tier).addClass('highlight');
+				}
+			}).on('mouseenter', 'span', function(e) {
+				$(this).addClass('hover');
+				$('#lightningForecast > ol, #miracleForecast > ol').children('.tier' + $(this).data('tier')).addClass('hover');
+			}).on('mouseleave', 'span', function(e) {
+				$(this).removeClass('hover');
+				$('#lightningForecast > ol, #miracleForecast > ol').children('.tier' + $(this).data('tier')).removeClass('hover');
 			});
 			
 		});

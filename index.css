@@ -9,20 +9,20 @@
 	ol > li {
 		cursor: pointer;
 	}
-	ol > li.highlight {
+	.highlight {
 		font-weight: bold;
 	}
-	ol > li.hover {
+	.hover {
 		background-color: #e6e6e6;
 	}
-	ol > li.highlight.tier0, ol > li.hover.tier0 { color: maroon; }
-	ol > li.highlight.tier1, ol > li.hover.tier1 { color: red; }
-	ol > li.highlight.tier2, ol > li.hover.tier2 { color: purple; }
-	ol > li.highlight.tier3, ol > li.hover.tier3 { color: fuchsia; }
-	ol > li.highlight.tier4, ol > li.hover.tier4 { color: green; }
-	ol > li.highlight.tier5, ol > li.hover.tier5 { color: lime; }
-	ol > li.highlight.tier6, ol > li.hover.tier6 { color: olive; }
-	ol > li.highlight.tier7, ol > li.hover.tier7 { color: navy; }
-	ol > li.highlight.tier8, ol > li.hover.tier8 { color: blue; }
-	ol > li.highlight.tier9, ol > li.hover.tier9 { color: teal; }
-	ol > li.highlight.tier10, ol > li.hover.tier10 { color: aqua; }
+	.highlight.tier0, .hover.tier0 { color: maroon; }
+	.highlight.tier1, .hover.tier1 { color: red; }
+	.highlight.tier2, .hover.tier2 { color: purple; }
+	.highlight.tier3, .hover.tier3 { color: fuchsia; }
+	.highlight.tier4, .hover.tier4 { color: green; }
+	.highlight.tier5, .hover.tier5 { color: lime; }
+	.highlight.tier6, .hover.tier6 { color: olive; }
+	.highlight.tier7, .hover.tier7 { color: navy; }
+	.highlight.tier8, .hover.tier8 { color: blue; }
+	.highlight.tier9, .hover.tier9 { color: teal; }
+	.highlight.tier10, .hover.tier10 { color: aqua; }
