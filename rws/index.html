@@ -21,7 +21,7 @@
     <script src="index.js"></script>
 </head>
 <body>
-	<nav class="navbar navbar-default navbar-fixed-top">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-collapsable-content" aria-expanded="false">
@@ -30,7 +30,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Royal Advisory Board</a>
+				<a class="navbar-brand" href="../index.html">Royal Advisory Board</a>
 			</div>
 			<div class="collapse navbar-collapse" id="nav-collapsable-content">
 				<ul class="nav navbar-nav">
@@ -56,9 +56,7 @@
 		</div>
 	</nav>
 	<div class="container">
-		<div class="page-header">
-			<h2 id="title">Realm Weather Service <small>Because Luck is a Fallacy</small></h2>
-		</div>
+		<h2 id="title" class="page-header">Realm Weather Service <small>Because Luck is a Fallacy</small></h2>
 		<div class="panel panel-primary">
 			<div class="panel-heading">Your court meteorologist looks at you expectantly. "Your Majesty, I will need the kingdom's records in order to produce a forecast," he says.</div>
 			<div class="panel-body input-group panelSaveInput">
@@ -78,18 +76,17 @@
 		</div>
 		<br>
 		<div class="row">
-			<div class="col-xs-6">
+			<div class="col-xs-5">
 				<div id="lightningMessage"></div>
 				<br>
 				<div id="lightningForecast"></div>
 			</div>
-			<div class="col-xs-6">
+			<div class="col-xs-5 col-xs-offset-1">
 				<div id="miracleMessage"></div>
 				<br>
 				<div id="miracleForecast"></div>
 			</div>
 		</div>
-		<br><br>
 	</div>
 </body>
 </html>

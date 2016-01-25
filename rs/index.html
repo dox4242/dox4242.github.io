@@ -23,7 +23,7 @@
     <script src="index.js"></script>
 </head>
 <body>
-	<nav class="navbar navbar-default navbar-fixed-top">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-collapsable-content" aria-expanded="false">
@@ -32,7 +32,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Royal Advisory Board</a>
+				<a class="navbar-brand" href="../index.html">Royal Advisory Board</a>
 			</div>
 			<div class="collapse navbar-collapse" id="nav-collapsable-content">
 				<ul class="nav navbar-nav">
@@ -58,10 +58,7 @@
 		</div>
 	</nav>
 	<div class="container">
-		<div class="page-header">
-			<h2><span id="title"></span> <small id="tagline"></small></h2>
-		</div>
-
+		<h2 class="page-header"><span id="title"></span> <small id="tagline"></small></h2>
 		<div class="panel panel-primary">
 			<div class="panel-heading" id="intro-message"></div>
 			<div class="input-group">
@@ -69,7 +66,6 @@
 				<input type="text" class="form-control" onclick="this.value=''" id="save-field"></input>
 			</div>
 		</div>
-
 		<div id="result-area"></div>
 	</div>
 </body>
