@@ -1264,11 +1264,6 @@
 					type: 'plain',
 					stat: 'g:goblinTimer',
 					form: 'time'
-				}, {
-					name: 'Hellfire Blast Charge',
-					type: 'plain',
-					stat: 'g:blastCharge',
-					form: 'time'
 				}
 			]
 		}, {
