@@ -225,7 +225,9 @@
 				setting: function(x) {return x ? 'On' : 'Off'},
 				buymode: function(x) {return ['1', '10', '100', 'Max'][x]},
 				notation: function(x) {return ['Short Scale', 'Scientific', 'Engineering'][x]},
-				currtab: function(x) {return ['Stats', 'Upgrades', 'Trophies', 'Save', 'Shop'][x]}
+				currtab: function(x) {return ['Stats', 'Upgrades', 'Trophies', 'Save', 'Shop'][x]},
+				giftdate: function(x) {var s = x.toString(); return s.substr(0,4) + '/' + s.substr(4,2) + '/' + s.substr(6,2)},
+				season: function(x) {return ['None', 'Thanksgiving', 'Christmas', 'Valentine\'s'][x]}
 			};
 
 			this.renderData = function(data, form, override) {
