@@ -163,7 +163,11 @@
 				this.derivedStats = {
 					timestamp: util.render.timeISO(this.save.lastsave),
 					timedelta: (Date.now() - this.save.lastsave * 1000) / 1000,
-					notation: this.save.options.not != null ? this.save.options.not : (this.save.options.notation ? 1 : 0)
+					notation: this.save.options.not != null ? this.save.options.not : (this.save.options.notation ? 1 : 0),
+					lightningState: this.save.spell['s:LightningStrike'].s,
+					greedState: this.save.spell['s:GoblinsGreed'].s,
+					snowballs: this.save.extraResources[0].amount,
+					hearts: this.save.extraResources[2].amount
 				};
 				if (this.derivedStats.notation == 3) {
 					this.derivedStats.notation = 0;
@@ -182,7 +186,7 @@
 				} else {
 					this.derivedStats.version = 'Struct v';
 					this.derivedStats.version += this.save.save_version + ' (';
-					this.derivedStats.version += this.save.other21 + 'r';
+					this.derivedStats.version += this.save.game_version + 'r';
 					this.derivedStats.version += this.save.version_rev + ')';
 				}
 			}

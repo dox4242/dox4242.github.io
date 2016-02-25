@@ -1001,6 +1001,12 @@
 			heading: 'Premium',
 			stats: [
 				{
+					name: 'Rubies Possessed',
+					type: 'plain',
+					stat: 'g:unspentRubies',
+					form: 'number',
+					override: [null, '&ndash;', '&ndash;']
+				}, {
 					name: 'Rubies Found',
 					type: 'sum',
 					stat: 102,
@@ -1054,6 +1060,12 @@
 			heading: 'Events',
 			stats: [
 				{
+					name: 'Snowballs Possessed (Christmas)',
+					type: 'plain',
+					stat: 'd:snowballs',
+					form: 'number',
+					override: [null, '&ndash;', '&ndash;']
+				}, {
 					name: 'Snowballs Found (Christmas)',
 					type: 'sum',
 					stat: 110,
@@ -1080,6 +1092,12 @@
 					type: 'plain',
 					stat: 'g:lastGiftDate',
 					form: 'f:giftdate',
+					override: [null, '&ndash;', '&ndash;']
+				}, {
+					name: 'Hearts Possessed (Valentine\'s)',
+					type: 'plain',
+					stat: 'd:hearts',
+					form: 'number',
 					override: [null, '&ndash;', '&ndash;']
 				}, {
 					name: 'Heart Assistant Upgrades (Valentine\'s)',
@@ -1262,6 +1280,16 @@
 					name: 'Artifact RNG State',
 					type: 'plain',
 					stat: 'g:artifactRNGState',
+					form: 'plain'
+				}, {
+					name: 'Lightning Strike RNG State',
+					type: 'plain',
+					stat: 'd:lightningState',
+					form: 'plain'
+				}, {
+					name: 'Goblin\'s Greed RNG State',
+					type: 'plain',
+					stat: 'd:greedState',
 					form: 'plain'
 				}, {
 					name: 'Time Since Last Mouse Move',
