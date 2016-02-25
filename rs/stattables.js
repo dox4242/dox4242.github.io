@@ -1209,7 +1209,7 @@
 					override: [null, '&ndash;', '&ndash;']
 				}, {
 					name: 'Consecutive Elven Luck Triggers',
-					type: 'sum',
+					type: 'max',
 					stat: 101,
 					form: 'number'
 				}, {
