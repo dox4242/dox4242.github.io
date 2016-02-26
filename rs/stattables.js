@@ -115,19 +115,19 @@
 					name: 'Coins Gained by Assistants',
 					type: 'sum',
 					stat: 25,
-					form: 'number'            
+					form: 'number'
 				}, {
 					name: 'Coins Spent',
 					type: 'sum',
 					stat: 26,
-					form: 'number'            
+					form: 'number'
 				}, {
 					name: 'Gems Gained Last Game',
 					type: 'plain',
 					stat: 30,
 					form: 'number',
 					levels: [1],
-					override: [null, '&ndash;', '&ndash;']         
+					override: [null, '&ndash;', '&ndash;']
 				}, {
 					name: 'Gem Gain on Abdication',
 					type: 'plain',
@@ -507,7 +507,7 @@
 					name: 'Mana Spent',
 					type: 'sum',
 					stat: 27,
-					form: 'number'            
+					form: 'number'
 				}, {
 					name: 'Spells Cast',
 					type: 'sum',
@@ -517,7 +517,7 @@
 					name: 'Max Spells Cast',
 					type: 'max',
 					stat: 40,
-					form: 'number'            
+					form: 'number'
 				}, {
 					name: 'Time with Active Spell(s)',
 					type: 'sum',
@@ -745,7 +745,7 @@
 					name: 'Time Spent Unaffiliated',
 					type: 'sum',
 					stat: 62,
-					form: 'time'            
+					form: 'time'
 				}, {
 					name: 'Fairy Affiliations',
 					type: 'sum',
@@ -978,63 +978,81 @@
 					name: 'Excavations',
 					type: 'sum',
 					stat: 35,
-					form: 'number'        
+					form: 'number'
 				}, {
 					name: 'Max Excavations',
 					type: 'max',
 					stat: 98,
-					form: 'number'        
+					form: 'number'
 				}, {
 					name: 'Excavation Reports (sorta)',
 					type: 'sum',
 					stat: 36,
-					form: 'number'        
+					form: 'number'
 				}, {
 					name: 'Excavation Resets',
 					type: 'sum',
 					stat: 104,
-					form: 'number'        
+					form: 'number'
 				}
 			]
 		}, {
 			layout: 'table',
-			heading: 'Rubies',
+			heading: 'Premium',
 			stats: [
 				{
+					name: 'Rubies Possessed',
+					type: 'plain',
+					stat: 'g:unspentRubies',
+					form: 'number',
+					override: [null, '&ndash;', '&ndash;']
+				}, {
 					name: 'Rubies Found',
 					type: 'sum',
 					stat: 102,
-					form: 'number'        
+					form: 'number'
 				}, {
 					name: 'Rubies Purchased',
 					type: 'sum',
 					stat: 103,
-					form: 'number'        
+					form: 'number'
 				}, {
 					name: 'Ruby Assistant Upgrades',
 					type: 'sum',
 					stat: 105,
-					form: 'number'        
+					form: 'number'
 				}, {
 					name: 'Ruby Mana Regen Upgrades',
 					type: 'sum',
 					stat: 106,
-					form: 'number'        
+					form: 'number'
 				}, {
 					name: 'Ruby Max Mana Upgrades',
 					type: 'sum',
 					stat: 107,
-					form: 'number'        
+					form: 'number'
 				}, {
 					name: 'Ruby Gem Bonus Upgrades',
 					type: 'sum',
 					stat: 108,
-					form: 'number'        
+					form: 'number'
 				}, {
 					name: 'Ruby Royal Exchange Upgrades',
 					type: 'sum',
 					stat: 109,
-					form: 'number'        
+					form: 'number'
+				}, {
+					name: 'Scry Production Bonus',
+					type: 'plain',
+					stat: 'g:oTimer',
+					form: 'time',
+					override: [null, '&ndash;', '&ndash;']
+				}, {
+					name: 'Scry Mana Bonus',
+					type: 'plain',
+					stat: 'g:oTimer2',
+					form: 'time',
+					override: [null, '&ndash;', '&ndash;']
 				}
 			]
 		}, {
@@ -1042,6 +1060,12 @@
 			heading: 'Events',
 			stats: [
 				{
+					name: 'Snowballs Possessed (Christmas)',
+					type: 'plain',
+					stat: 'd:snowballs',
+					form: 'number',
+					override: [null, '&ndash;', '&ndash;']
+				}, {
 					name: 'Snowballs Found (Christmas)',
 					type: 'sum',
 					stat: 110,
@@ -1051,6 +1075,76 @@
 					type: 'sum',
 					stat: 111,
 					form: 'number'
+				}, {
+					name: 'Snowball Scry Uses (Christmas)',
+					type: 'plain',
+					stat: 'g:snowballScryUses',
+					form: 'number',
+					override: [null, '&ndash;', '&ndash;']
+				}, {
+					name: 'Snowball Size (Christmas)',
+					type: 'plain',
+					stat: 'g:snowballSize',
+					form: 'number',
+					override: [null, '&ndash;', '&ndash;']
+				}, {
+					name: 'Last Gift Date (Christmas)',
+					type: 'plain',
+					stat: 'g:lastGiftDate',
+					form: 'f:giftdate',
+					override: [null, '&ndash;', '&ndash;']
+				}, {
+					name: 'Hearts Possessed (Valentine\'s)',
+					type: 'plain',
+					stat: 'd:hearts',
+					form: 'number',
+					override: [null, '&ndash;', '&ndash;']
+				}, {
+					name: 'Heart Assistant Upgrades (Valentine\'s)',
+					type: 'sum',
+					stat: 114,
+					form: 'number'
+				}, {
+					name: 'Heart Mana Regen Upgrades (Valentine\'s)',
+					type: 'sum',
+					stat: 115,
+					form: 'number'
+				}, {
+					name: 'Heart Max Mana Upgrades (Valentine\'s)',
+					type: 'sum',
+					stat: 116,
+					form: 'number'
+				}, {
+					name: 'Heart Gem Bonus Upgrades (Valentine\'s)',
+					type: 'sum',
+					stat: 117,
+					form: 'number'
+				}, {
+					name: 'Heart Royal Exchange Upgrades (Valentine\'s)',
+					type: 'sum',
+					stat: 118,
+					form: 'number'
+				}, {
+					name: 'Hearts Found (Valentine\'s)',
+					type: 'sum',
+					stat: 119,
+					form: 'number'
+				}, {
+					name: 'Call to Love Casts (Valentine\'s)',
+					type: 'sum',
+					stat: 120,
+					form: 'number'
+				}, {
+					name: 'Time Spent Offline (During Valentine\'s)',
+					type: 'sum',
+					stat: 121,
+					form: 'time'
+				}, {
+					name: 'Scry Hearts Bonus (Valentine\'s)',
+					type: 'plain',
+					stat: 'g:oTimer3',
+					form: 'time',
+					override: [null, '&ndash;', '&ndash;']
 				}
 			]
 		}, {
@@ -1083,12 +1177,12 @@
 					name: 'Max Upgrades Purchased',
 					type: 'max',
 					stat: 13,
-					form: 'number'        
+					form: 'number'
 				}, {
 					name: 'Consecutive Goblin\'s Greed Casts',
 					type: 'sum',
 					stat: 64,
-					form: 'number'        
+					form: 'number'
 				}, {
 					name: 'Consecutive Faceless Affiliations',
 					type: 'sum',
@@ -1115,7 +1209,7 @@
 					override: [null, '&ndash;', '&ndash;']
 				}, {
 					name: 'Consecutive Elven Luck Triggers',
-					type: 'sum',
+					type: 'max',
 					stat: 101,
 					form: 'number'
 				}, {
@@ -1127,77 +1221,94 @@
 					name: 'Trophy Counter (No Longer in Use)',
 					type: 'sum',
 					stat: 14,
-					form: 'number'            
+					form: 'number'
 				}
 			]
 		}, {
-			heading: 'Technical',
+			heading: 'Game State',
 			levels: [0],
-			columns: ['Stat', 'Value'],
+			columns: ['Item', 'Value'],
 			stats: [
 				{
 					name: 'Lightning Strike Tier',
 					type: 'plain',
 					stat: 'g:strikeTier',
-					form: 'f:tier'        
+					form: 'f:tier'
 				}, {
-					name: 'LS_is_out_to_get_player',
-					form: 'c:true'        
-				}, {
-					name: 'Grand Balance Tier',
+					name: 'Miracle Tier',
 					type: 'plain',
-					stat: 'g:empoweredTier',
-					form: 'f:tier'        
+					stat: 'g:miracleTier',
+					form: 'f:tier'
 				}, {
-					name: 'Grand Balance Multiplier',
+					name: 'Miracle Timer',
 					type: 'plain',
-					stat: 'g:empoweredBonus',
-					form: 'number'        
+					stat: 'g:miracleTimer',
+					form: 'time'
+				}, {
+					name: 'Lightning Storm Timer',
+					type: 'plain',
+					stat: 'g:lightningStormTimer',
+					form: 'time'
 				}, {
 					name: 'Charged Buildings/Clicks Timer',
 					type: 'plain',
 					stat: 'g:chargedTimer',
-					form: 'f:ticks'        
-				}, {
-					name: 'Scry Production Bonus',
-					type: 'plain',
-					stat: 'g:oTimer',
-					form: 'time'        
-				}, {
-					name: 'Scry Mana Bonus',
-					type: 'plain',
-					stat: 'g:oTimer2',
-					form: 'time'        
-				}, {
-					name: 'Time Since Last Mouse Move',
-					type: 'plain',
-					stat: 'g:mTimer',
-					form: 'f:ticks'        
-				}, {
-					name: 'Time Since Last Mouse Click',
-					type: 'plain',
-					stat: 'g:cTimer',
-					form: 'f:ticks'        
-				}, {
-					name: 'Time Since Last Keypress',
-					type: 'plain',
-					stat: 'g:kcTimer',
-					form: 'f:ticks'        
+					form: 'f:ticks'
 				}, {
 					name: 'Angel Bloodline Timer',
 					type: 'plain',
 					stat: 'g:sTimer',
-					form: 'f:ticks'        
+					form: 'f:ticks'
 				}, {
 					name: 'Green Fingers Discount Timer',
 					type: 'plain',
 					stat: 'g:goblinTimer',
-					form: 'time'        
-				}, {
-					name: 'Hellfire Blast Charge',
+					form: 'time'
+				}
+			]
+		}, {
+			heading: 'Technical',
+			levels: [0],
+			columns: ['Item', 'Value'],
+			stats: [
+				{
+					name: 'Artifact RNG State',
 					type: 'plain',
-					stat: 'g:blastCharge',
-					form: 'time'        
+					stat: 'g:artifactRNGState',
+					form: 'plain'
+				}, {
+					name: 'Lightning Strike RNG State',
+					type: 'plain',
+					stat: 'd:lightningState',
+					form: 'plain'
+				}, {
+					name: 'Goblin\'s Greed RNG State',
+					type: 'plain',
+					stat: 'd:greedState',
+					form: 'plain'
+				}, {
+					name: 'Time Since Last Mouse Move',
+					type: 'plain',
+					stat: 'g:mTimer',
+					form: 'f:ticks'
+				}, {
+					name: 'Time Since Last Mouse Click',
+					type: 'plain',
+					stat: 'g:cTimer',
+					form: 'f:ticks'
+				}, {
+					name: 'Time Since Last Keypress',
+					type: 'plain',
+					stat: 'g:kcTimer',
+					form: 'f:ticks'
+				}, {
+					name: 'Season',
+					type: 'plain',
+					stat: 'g:season',
+					form: 'f:season'
+				}, {
+					name: 'LS_is_out_to_get_player',
+					form: 'c:true'
 				}
 			]
 		}, {
@@ -1209,127 +1320,142 @@
 					name: 'Buy Mode',
 					type: 'plain',
 					stat: 'g:buyMode',
-					form: 'f:buymode'        
+					form: 'f:buymode'
 				}, {
 					name: 'Selected Game Tab',
 					type: 'plain',
 					stat: 'o:tab',
-					form: 'f:currtab'        
+					form: 'f:currtab'
 				}, {
 					name: 'Notation',
 					type: 'plain',
 					stat: 'd:notation',
-					form: 'f:notation'        
+					form: 'f:notation'
 				}, {
 					name: 'Sort Unpurchased Upgrades',
 					type: 'plain',
 					stat: 'o:sortLocked',
-					form: 'f:setting'        
+					form: 'f:setting'
 				}, {
 					name: 'Sort Purchased Upgrades',
 					type: 'plain',
 					stat: 'o:sortUnlocked',
-					form: 'f:setting'        
+					form: 'f:setting'
 				}, {
 					name: 'Multibuy Upgrade Series',
 					type: 'plain',
 					stat: 'o:multiUpgrade',
-					form: 'f:setting'        
+					form: 'f:setting'
 				}, {
 					name: 'Don\'t Consolidate Upgrades',
 					type: 'plain',
 					stat: 'o:conUpgrade',
-					form: 'f:setting'        
+					form: 'f:setting'
 				}, {
 					name: 'Don\'t Consolidate Trophies',
 					type: 'plain',
 					stat: 'o:conTrophy',
-					form: 'f:setting'        
-				}, {
-					name: 'Disable Premium Features',
-					type: 'plain',
-					stat: 'o:disableKred',
-					form: 'f:setting'        
+					form: 'f:setting'
 				}, {
 					name: 'Excavation Warning',
 					type: 'plain',
 					stat: 'o:warnExcavation',
-					form: 'f:setting'        
+					form: 'f:setting'
 				}, {
 					name: 'Exchange Warning',
 					type: 'plain',
 					stat: 'o:warnExchange',
-					form: 'f:setting'        
+					form: 'f:setting'
 				}, {
 					name: 'Disable Multibuy Button',
 					type: 'plain',
 					stat: 'o:buyButton',
-					form: 'f:setting'        
+					form: 'f:setting'
 				}, {
 					name: 'Disable Cloud Warning',
 					type: 'plain',
 					stat: 'o:skipCloud',
-					form: 'f:setting'        
+					form: 'f:setting'
 				}, {
 					name: 'Hide Upgrades Separator',
 					type: 'plain',
 					stat: 'o:hideUpgHeader',
-					form: 'f:setting'        
+					form: 'f:setting'
 				}, {
 					name: 'Block Treasure Clicks',
 					type: 'plain',
 					stat: 'o:blockClick',
-					form: 'f:setting'        
+					form: 'f:setting'
 				}, {
 					name: 'Disable Spell Timer',
 					type: 'plain',
 					stat: 'o:spellTimer',
-					form: 'f:setting'        
+					form: 'f:setting'
 				}, {
 					name: 'Disable Spell Icon',
 					type: 'plain',
 					stat: 'o:spellIcon',
-					form: 'f:setting'        
+					form: 'f:setting'
 				}, {
 					name: 'Disable Floating Text',
 					type: 'plain',
 					stat: 'o:floatingText',
-					form: 'f:setting'        
+					form: 'f:setting'
 				}, {
 					name: 'Disable Building Glow',
 					type: 'plain',
 					stat: 'o:buildingGlow',
-					form: 'f:setting'        
+					form: 'f:setting'
 				}, {
 					name: 'Disable Mana Bar Glow',
 					type: 'plain',
 					stat: 'o:manaGlow',
-					form: 'f:setting'        
+					form: 'f:setting'
 				}, {
 					name: 'Disable Treasure Glow',
 					type: 'plain',
 					stat: 'o:treasureGlow',
-					form: 'f:setting'        
+					form: 'f:setting'
 				}, {
 					name: 'Disable Assistant Icon',
 					type: 'plain',
 					stat: 'o:assistant',
-					form: 'f:setting'        
+					form: 'f:setting'
 				}, {
 					name: 'Disable Thousands Separator',
 					type: 'plain',
 					stat: 'o:thousandsSep',
-					form: 'f:setting'        
+					form: 'f:setting'
 				}, {
 					name: 'Disable Trophy Popups',
 					type: 'plain',
 					stat: 'o:toast',
-					form: 'f:setting'        
+					form: 'f:setting'
 				}, {
 					name: 'Hide Purchased Upgrades',
 					type: 'plain',
 					stat: 'o:hideUnlocked',
-					form: 'f:setting'        
+					form: 'f:setting'
+				}, {
+					name: 'Disable Gift of the Heroes',
+					type: 'plain',
+					stat: 'o:disableGOTH',
+					form: 'f:setting'
+				}, {
+					name: 'Disable Gift of the Kings',
+					type: 'plain',
+					stat: 'o:disableGOTK',
+					form: 'f:setting'
+				}, {
+					name: 'Disable Gift of the Gods',
+					type: 'plain',
+					stat: 'o:disableGOTG',
+					form: 'f:setting'
+				}, {
+					name: 'Hide Unavailable Researches',
+					type: 'plain',
+					stat: 'o:hideLockedResearches',
+					form: 'f:setting'
 				}
 			]
 		}, {
@@ -1340,7 +1466,7 @@
 					name: 'Pay Upkeep Casts (Unused)',
 					type: 'plain',
 					stat: 65,
-					form: 'plain'            
+					form: 'plain'
 				}
 			]
 		}
