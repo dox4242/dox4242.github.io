@@ -519,11 +519,6 @@
 					stat: 40,
 					form: 'number'
 				}, {
-					name: 'Time with Active Spell(s)',
-					type: 'sum',
-					stat: 97,
-					form: 'time'
-				}, {
 					name: 'Tax Collection Casts',
 					type: 'sum',
 					stat: 's:TaxCollection',
@@ -619,6 +614,102 @@
 					type: 'sum',
 					stat: 's:SpiritualSurge',
 					form: 'number'
+				}
+			]
+		}, {
+			layout: 'table',
+			heading: 'Magic (Time)',
+			stats: [
+				{
+					name: 'Time with Active Spell(s)',
+					type: 'sum',
+					stat: 97,
+					form: 'time'
+				}, {
+					name: 'Tax Collection Time Active',
+					type: 'sum',
+					stat: 't:TaxCollection',
+					form: 'time'
+				}, {
+					name: 'Call to Arms Time Active',
+					type: 'sum',
+					stat: 't:CallToArms',
+					form: 'time'
+				}, {
+					name: 'Holy Light Time Active',
+					type: 'sum',
+					stat: 't:HolyLight',
+					form: 'time'
+				}, {
+					name: 'Blood Frenzy Time Active',
+					type: 'sum',
+					stat: 't:BloodFrenzy',
+					form: 'time'
+				}, {
+					name: 'Gem Grinder Time Active',
+					type: 'sum',
+					stat: 't:GemGrinder',
+					form: 'time'
+				}, {
+					name: 'Fairy Chanting Time Active',
+					type: 'sum',
+					stat: 't:FairyChanting',
+					form: 'time'
+				}, {
+					name: 'Moon Blessing Time Active',
+					type: 'sum',
+					stat: 't:MoonBlessing',
+					form: 'time'
+				}, {
+					name: 'God\'s Hand Time Active',
+					type: 'sum',
+					stat: 't:GodsHand',
+					form: 'time'
+				}, {
+					name: 'Goblin\'s Greed Time Active',
+					type: 'sum',
+					stat: 't:GoblinsGreed',
+					form: 'time'
+				}, {
+					name: 'Night Time Time Active',
+					type: 'sum',
+					stat: 't:NightTime',
+					form: 'time'
+				}, {
+					name: 'Hellfire Blast Time Active',
+					type: 'sum',
+					stat: 't:HellfireBlast',
+					form: 'time'
+				}, {
+					name: 'Lightning Strike Time Active',
+					type: 'sum',
+					stat: 't:LightningStrike',
+					form: 'time'
+				}, {
+					name: 'Grand Balance Time Active',
+					type: 'sum',
+					stat: 't:GrandBalance',
+					form: 'time'
+				}, {
+					name: 'Brainwave Time Active',
+					type: 'sum',
+					stat: 't:Brainwave',
+					form: 'time'
+				}, {
+					name: 'Diamond Pickaxe Time Active',
+					type: 'sum',
+					stat: 't:DiamondPickaxe',
+					form: 'time'
+				}, {
+					name: 'Combo Strike Time Active',
+					type: 'sum',
+					stat: 't:ComboStrike',
+					form: 'time'
+				}, {
+					name: 'Spiritual Surge Time Active',
+					type: 'sum',
+					stat: 't:SpiritualSurge',
+					form: 'time'
 				}
 			]
 		}, {
