@@ -9,6 +9,7 @@
 				var types = {
 					b: 'build',
 					s: 'spell',
+					t: 'spelltime',
 					d: 'derived',
 					g: 'global',
 					o: 'option'
@@ -23,6 +24,7 @@
 			this.buildSums = ['q', 't', 'r'];
 			this.buildMaxes = ['q', 'm', 'e'];
 			this.spellSums = ['c', 'r', 'e'];
+			this.spelltimeSums = ['active0', 'active1', 'active2'];
 
 			this.sumAtom = function(stat, level) {
 				var type = statType(stat);
@@ -38,6 +40,11 @@
 				} else if (type === 'spell') {
 					if (!this.save.spell || !this.save.spell[stat]) return null;
 					return this.save.spell[stat][this.spellSums[level]];
+				} else if (type === 'spelltime') {
+					var spellid = 's:'+stat.substr(2,stat.length-2);
+					if (!this.save.spell || !this.save.spell[spellid]) return null;
+					console.log(spellid);
+					return this.save.spell[spellid][this.spelltimeSums[level]];
 				} else if (type === 'global') {
 					return level === 0 ? this.save[stat.substr(2)] : 0;
 				} else if (type === 'option') {
