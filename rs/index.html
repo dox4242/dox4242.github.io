@@ -1,80 +1,77 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  <head>
-    <script src='https://code.jquery.com/jquery-2.1.4.min.js'
-    integrity='sha384-R4/ztc4ZlRqWjqIuvf6RX5yb/v90qNGx6fS48N0tRxiGkqveZETq72KgDVJCp2TC'
-    crossorigin='anonymous'></script>
-
-    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'
-    integrity='sha384-pdapHxIh7EYuwy6K7iE41uXVxGCXY0sAjBzaElYGJUrzwodck3Lx6IE2lA0rFREo'
-    crossorigin='anonymous'></link>
-    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'
-    integrity='sha384-pPttEvTHTuUJ9L2kCoMnNqCRcaMPMVMsWVO+RLaaaYDmfSP5//dP6eKRusbPcqhZ' 
-    crossorigin='anonymous'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/pako/0.2.8/pako.js'></script>
-
-    <link rel='stylesheet' href='../index.css'></link>
-    <script src='../lib/util.js'></script>
-    <script src='../lib/zlib.min.js'></script>
-    <script src='../lib/savecodec.js'></script>
-    <script src='../lib/flavor.js'></script>
-    <script src='flavor.js'></script>
-    <script src='stattables.js'></script>
-    <script src='index.js'></script>
-  </head>
-  <body>
-    <nav class='navbar navbar-default navbar-fixed-top'>
-      <div class='container-fluid'>
-        <!-- brand and mobile toggle button -->
-        <div class='navbar-header'>
-          <button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#nav-collapsable-content' aria-expanded='false'>
-            <span class='sr-only'>Toggle navigation</span>
-            <span class='icon-bar'></span>
-            <span class='icon-bar'></span>
-            <span class='icon-bar'></span>
-          </button>
-          <a class='navbar-brand' href='../index.html'>Royal Advisory Board</a>
-        </div>
-
-        <!-- toggleable content for mobile -->
-        <div class='collapse navbar-collapse' id='nav-collapsable-content'>
-          <ul class='nav navbar-nav'>
-            <li><a href='../index.html'>Home</a></li>
-            <li class='dropdown'>
-              <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Realm Grinder <span class='caret'></span></a>    
-              <ul class='dropdown-menu'>
-                <li><a href='http://www.kongregate.com/games/divinegames/realm-grinder'>Realm Grinder</a></li>
-                <li><a href='http://www.divinegames.it/'>Divine Games</a></li>
-                <li><a href='http://realm-grinder.wikia.com/wiki/Realm_Grinder_Wikia'>Realm Grinder Wiki</a></li>
-              </ul>    
-            </li>
-            <li class='dropdown'>
-              <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Useful Tools <span class='caret'></span></a>
-              <ul class='dropdown-menu'>
-                <li><a href='../rws/index.html'>Realm Weather Service</a></li>
-                <!-- <li><a href='../ocd/index.html'>Obsessive Conjurer Disorder</a></li> -->
-                <li class='active'><a href='#'>Royal Scribe</a><span class='sr-only'> (current)</span></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <div class='container'>
-      <div class='page-header'>
-        <h2><span id='title'></span> <small id='tagline'></small></h2>
-      </div>
-
-      <div class='panel panel-primary'>
-        <div class='panel-heading' id='intro-message'></div>
-        <div class='input-group'>
-          <span class='input-group-addon'>Save <a class='tooltip-fixed' title='Exported Save' data-content='Export your save from Realm Grinder and paste it in this field to view a variety of stats that are not shown in-game.' data-trigger='hover'>(?)</a></span>
-          <input type='text' class='form-control' onclick='this.value=""' id='save-field'></input>
-        </div>
-      </div>
-
-      <div id='result-area'></div>
-    </div>
-  </body>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+		integrity="sha384-pdapHxIh7EYuwy6K7iE41uXVxGCXY0sAjBzaElYGJUrzwodck3Lx6IE2lA0rFREo"
+		crossorigin="anonymous"></link>
+	<link rel="stylesheet" href="../index.css"></link>
+	
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"
+		integrity="sha384-R4/ztc4ZlRqWjqIuvf6RX5yb/v90qNGx6fS48N0tRxiGkqveZETq72KgDVJCp2TC"
+		crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+		integrity="sha384-pPttEvTHTuUJ9L2kCoMnNqCRcaMPMVMsWVO+RLaaaYDmfSP5//dP6eKRusbPcqhZ" 
+		crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/0.2.8/pako.js"></script>
+	
+    <script src="../lib/util.js"></script>
+    <script src="../lib/zlib.min.js"></script>
+    <script src="../lib/savecodec.js"></script>
+    <script src="../lib/flavor.js"></script>
+    <script src="flavor.js"></script>
+    <script src="stattables.js"></script>
+    <script src="index.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-collapsable-content" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="../index.html">Royal Advisory Board</a>
+			</div>
+			<div class="collapse navbar-collapse" id="nav-collapsable-content">
+				<ul class="nav navbar-nav">
+					<li><a href="../index.html">Home</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Realm Grinder <span class="caret"></span></a>    
+						<ul class="dropdown-menu">
+							<li><a href="http://www.kongregate.com/games/divinegames/realm-grinder">Realm Grinder</a></li>
+							<li><a href="http://www.divinegames.it/">Divine Games</a></li>
+							<li><a href="http://realm-grinder.wikia.com/wiki/Realm_Grinder_Wikia">Realm Grinder Wiki</a></li>
+						</ul>    
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Useful Tools <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="../rws/index.html">Realm Weather Service</a></li>
+							<!-- <li><a href="../ocd/index.html">Obsessive Conjurer Disorder</a></li> -->
+							<li class="active"><a href="../rs/index.html">Royal Scribe</a><span class="sr-only"> (current)</span></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<h2 class="page-header"><span id="title"></span> <small id="tagline"></small></h2>
+		<div class="panel panel-primary">
+			<div class="panel-heading" id="intro-message"></div>
+			<div class="panel-body input-group panelSaveInput">
+				<label id="saveInputLabel" class="input-group-addon" for="saveInput"><a title="Save" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="Export your save from Realm Grinder and paste it in this field to view a variety of stats that are not shown in-game.">Save (?)</a></label>
+				<input id="saveInput" class="form-control" type="text" name="saveInput" value="">
+				<div class="input-group-btn">
+					<button id="doReEnter" class="btn btn-success" type="button">Re-Enter save</button>
+					<button id="doSaveCopy" class="btn btn-info" type="button">Copy save</button>
+					<button id="doSaveClear" class="btn btn-danger" type="button">Clear save</button>
+				</div>
+			</div>
+		</div>
+		<div id="result-area"></div>
+	</div>
+</body>
 </html>

@@ -1,3 +1,28 @@
-body {
-  padding-top: 70px;
-}
+
+	body {
+		padding: 70px 0;
+		overflow-y: scroll;
+		background-color: whitesmoke;
+	}
+	
+	/* RWS Building highlighting */
+	ol > li {
+		cursor: pointer;
+	}
+	.highlight {
+		font-weight: bold;
+	}
+	.hover {
+		background-color: #e6e6e6;
+	}
+	.highlight.tier0, .hover.tier0 { color: maroon; }
+	.highlight.tier1, .hover.tier1 { color: red; }
+	.highlight.tier2, .hover.tier2 { color: purple; }
+	.highlight.tier3, .hover.tier3 { color: fuchsia; }
+	.highlight.tier4, .hover.tier4 { color: green; }
+	.highlight.tier5, .hover.tier5 { color: lime; }
+	.highlight.tier6, .hover.tier6 { color: olive; }
+	.highlight.tier7, .hover.tier7 { color: navy; }
+	.highlight.tier8, .hover.tier8 { color: blue; }
+	.highlight.tier9, .hover.tier9 { color: teal; }
+	.highlight.tier10, .hover.tier10 { color: aqua; }

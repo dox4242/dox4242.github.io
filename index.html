@@ -1,94 +1,97 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  <head>
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"
-    integrity="sha384-R4/ztc4ZlRqWjqIuvf6RX5yb/v90qNGx6fS48N0tRxiGkqveZETq72KgDVJCp2TC"
-    crossorigin="anonymous"></script>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
-    integrity="sha384-pdapHxIh7EYuwy6K7iE41uXVxGCXY0sAjBzaElYGJUrzwodck3Lx6IE2lA0rFREo"
-    crossorigin="anonymous"></link>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
-    integrity="sha384-pPttEvTHTuUJ9L2kCoMnNqCRcaMPMVMsWVO+RLaaaYDmfSP5//dP6eKRusbPcqhZ" 
-    crossorigin="anonymous"></script>
-
-    <link rel="stylesheet" href="index.css"></link>
-  </head>
-  <body>
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container-fluid">
-        <!-- brand and mobile toggle button -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-collapsable-content" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Royal Advisory Board</a>
-        </div>
-
-        <!-- toggleable content for mobile -->
-        <div class="collapse navbar-collapse" id="nav-collapsable-content">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home<span class="sr-only"> (current)</span></a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Realm Grinder <span class="caret"></span></a>    
-              <ul class="dropdown-menu">
-                <li><a href="http://www.kongregate.com/games/divinegames/realm-grinder">Realm Grinder</a></li>
-                <li><a href="http://www.divinegames.it/">Divine Games</a></li>
-                <li><a href="http://realm-grinder.wikia.com/wiki/Realm_Grinder_Wikia">Realm Grinder Wiki</a></li>
-              </ul>    
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Useful Tools <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="rws/index.html">Realm Weather Service</a></li>
-                <!-- <li><a href="ocd/index.html">Obsessive Conjurer Disorder</a></li> -->
-                <li><a href="rs/index.html">Royal Scribe</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <div class="container">
-      <div class="page-header">
-        <h2>Introduction</h2>
-      </div>
-
-      <p>Welcome! This is a collection of tools for the incremental game <a href="http://www.kongregate.com/games/divinegames/realm-grinder">Realm Grinder</a> by <a href="http://www.divinegames.it/">Divine Games</a>.</p>
-
-      <div class="page-header">
-        <h2>Tools</h2>
-      </div>
-
-      <p><a href="rws/index.html">Realm Weather Service</a> is a forecasting tool for Lightning Strike. It extracts the RNG state from a provided save file and predicts the future pattern of strikes.</p>
-
-      <p><a href="ocd/index.html">Obsessive Conjurer Disorder</a> is a contingency autocasting fine tuner that lets you set your threshold to any number you like.</p>
-
-      <p><a href="rs/index.html">Royal Scribe</a> is a stats utility that shows a variety of stats that can be extracted from save files, many of which are not displayed in-game.</p>
-
-      <div class="page-header">
-        <h2>News</h2>
-      </div>
-
-      <div class="page-header">
-        <h2>Other Things</h2>
-      </div>
-
-      <p>Everything here is open source and licensed MIT, here's the <a href="https://github.com/nyanlathotep/royal-advisory-board">source code</a>.</p>
-
-      <p>These tools use libraries by various lovely people and/or corporations, namely <a href="https://github.com/imaya/zlib.js">zlib.js</a>, <a href="https://jquery.com">jQuery</a>, and <a href="http://getbootstrap.com/">Bootstrap</a>.</p>
-
-      <p> I have also written some simple libraries as part of this project, which you might find useful if you are a codey sort.</p>
-      <ul>
-          <li><b>pmprng</b> is a port of realm grinder's RNG with some extra helper functions for the various upgrades and spells with dedicated RNG instances, like lightning strike. There are <a href="py/pmprng.py">python</a> and <a href="lib/pmprng.js">javascript</a> implementations.</li>
-          <li><b>savecodec</b> is a library that converts between exported saves and objects/dicts. There are <a href="py/savecodec.py">python</a> and <a href="lib/savecodec.js">javascript</a> implementations.</li>
-      </ul>
-
-      <p>For in-depth information about Realm Grinder, you might like the <a href="http://realm-grinder.wikia.com/wiki/Realm_Grinder_Wikia">wiki</a>.</p>
-    </div>
-  </body>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+		integrity="sha384-pdapHxIh7EYuwy6K7iE41uXVxGCXY0sAjBzaElYGJUrzwodck3Lx6IE2lA0rFREo"
+		crossorigin="anonymous"></link>
+	<link rel="stylesheet" href="index.css"></link>
+	
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"
+		integrity="sha384-R4/ztc4ZlRqWjqIuvf6RX5yb/v90qNGx6fS48N0tRxiGkqveZETq72KgDVJCp2TC"
+		crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+		integrity="sha384-pPttEvTHTuUJ9L2kCoMnNqCRcaMPMVMsWVO+RLaaaYDmfSP5//dP6eKRusbPcqhZ" 
+		crossorigin="anonymous"></script>
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-collapsible" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html">Royal Advisory Board</a>
+			</div>
+			<div class="collapse navbar-collapse" id="nav-collapsible">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="index.html">Home<span class="sr-only"> (current)</span></a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Realm Grinder <span class="caret"></span></a>    
+						<ul class="dropdown-menu">
+							<li><a href="http://www.kongregate.com/games/divinegames/realm-grinder">Realm Grinder</a></li>
+							<li><a href="http://www.divinegames.it/">Divine Games</a></li>
+							<li><a href="http://realm-grinder.wikia.com/wiki/Realm_Grinder_Wikia">Realm Grinder Wiki</a></li>
+						</ul>    
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Useful Tools <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="rws/index.html">Realm Weather Service</a></li>
+							<!-- <li><a href="ocd/index.html">Obsessive Conjurer Disorder</a></li> -->
+							<li><a href="rs/index.html">Royal Scribe</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<h2 class="page-header">Introduction</h2>
+		<p>Welcome! This is a collection of tools for the incremental game <a href="http://www.kongregate.com/games/divinegames/realm-grinder">Realm Grinder</a> by <a href="http://www.divinegames.it/">Divine Games</a>.</p>
+		<h2 class="page-header">Tools</h2>
+		<p><a href="rws/index.html">Realm Weather Service</a> is a forecasting tool for Lightning Strike. It extracts the RNG state from a provided save file and predicts the future pattern of strikes.</p>
+		<!--<p><a href="ocd/index.html">Obsessive Conjurer Disorder</a> is a contingency autocasting fine tuner that lets you set your threshold to any number you like.</p>-->
+		<p><a href="rs/index.html">Royal Scribe</a> is a stats utility that shows a variety of stats that can be extracted from save files, many of which are not displayed in-game.</p>
+		<h2 class="page-header">News</h2>
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<a class="pull-right" href="http://www.kongregate.com/forums/8945-realm-grinder/topics/590493-royal-advisory-board-realm-weather-forecast-more?page=1#posts-10105031">Link to Forum Post</a>
+				24-01-2016 Update: Building Highlighting for the RWS
+			</div>
+			<div class="panel-body">
+				The RWS has now been enhanced with a <b>Building Highlighting</b> feature.<br>
+				<br>
+				<b>Hovering over a building</b> in the forecast list will highlight all instances of that building in the entire list. The highlight changes the text color and teints the background. Moving the cursor away removes the highlight.<br>
+				<br>
+				<b>Clicking on a building</b> in the forecast list will further accentuate the highlight by bolding the text. Additionally, this highlight persists until you click the building again (somewhere in the list), to remove the highlight.<br>
+				<br>
+				Every building tier has a different highlight color, these are hardcoded and will always be the same, no matter what save you try, of how many times you refresh. As there are 11 building tiers, there are also 11 highlight colors. different buildings with the same tier get the same color highlight (for example Heaven's Gate, Hell Portal, and Ancient Pyramid are all highlighted in Teal color).<br>
+				<br>
+				Both the hover and the click highlights are unique for that type of forecast, so that the Lightning and Miracle forecasts can have different buildings highlighted.<br>
+			</div>
+		</div>
+		<div class="panel panel-info">
+			<div class="panel-heading">17-01-2016 Update: Maintenance shift and new location!</div>
+			<div class="panel-body">
+				As of today, the RAB has changed urls! Pseudobyte is retiring from maintenance duties, and I'll be taking over (<a href="https://github.com/GeneralYouri">GeneralYouri</a>).<br>
+				This first of all means that the currently available tools have been updated to work with RG v1.5.45. Some tool changes, as well as new tool additions are planned for the future.<br>
+				<br>
+				<b>PS:</b> Questions, comments, suggestions, bug reports, or just want to chat? You can open an issue on <a href="https://github.com/generalyouri/royal-advisory-board/issues">GitHub</a>, PM <a href="http://www.kongregate.com/accounts/GeneralYouri">GeneralYouri</a> on Kongregate, or if you like, see if I'm around in Realm Grinder Room #2.
+			</div>
+		</div>
+		<h2 class="page-header">Other stuff</h2>
+		<p>Everything here is open source and licensed MIT, here's the <a href="https://github.com/generalyouri/royal-advisory-board">source code</a>.</p>
+		<p>These tools use libraries by various lovely people and/or corporations, namely <a href="https://github.com/imaya/zlib.js">zlib.js</a>, <a href="https://jquery.com">jQuery</a>, and <a href="http://getbootstrap.com/">Bootstrap</a></p>
+		<p> I have also written some simple libraries as part of this project, which you might find useful if you are a codey sort.</p>
+		<ul>
+			<li><b>pmprng</b> is a port of realm grinder's RNG with some extra helper functions for the various upgrades and spells with dedicated RNG instances, like lightning strike. There are <a href="py/pmprng.py">python</a> and <a href="lib/pmprng.js">javascript</a> implementations.</li>
+			<li><b>savecodec</b> is a library that converts between exported saves and objects/dicts. There are <a href="py/savecodec.py">python</a> and <a href="lib/savecodec.js">javascript</a> implementations.</li>
+		</ul>
+		<p>For in-depth information about Realm Grinder, you might like the <a href="http://realm-grinder.wikia.com/wiki/Realm_Grinder_Wikia">wiki</a>.</p>
+		<p>Questions, comments, suggestions, bug reports, or just want to chat? You can open an issue on <a href="https://github.com/generalyouri/royal-advisory-board/issues">GitHub</a>, PM <a href="http://www.kongregate.com/accounts/GeneralYouri">GeneralYouri</a> on Kongregate, or if you like, see if I'm around in Realm Grinder Room #2.</p>
+	</div>
+</body>
 </html>
