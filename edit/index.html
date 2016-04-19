@@ -15,7 +15,7 @@
 <script src="../lib/pmprng.js"></script>
 <script src="../lib/util.js"></script>
 <div id="app">
-(still under construction)
+(triple-click to select save data) (still under construction)
 <table>
 <tr><td>Enter save:</td><td><input type="text" v-model="datainput"></td></tr>
 <tr><td>Edited save:</td><td><input type="text" v-model="editdata"></td></tr>
@@ -33,15 +33,16 @@
 <tr><td>Alignment</td><td>alignment</td></tr>
 <tr><td>Faction</td><td>faction</td></tr>
 <tr><td>Prestige Faction</td><td>activeFaction</td></tr>
-<tr><td>Faction Bloodstream<br>bonus is based on</td><td>bFaction</td></tr>
+<tr><td>Bloodstream bonus based<br>on this faction</td><td>bFaction</td></tr>
+<tr><td>Excavations</td><td>excavations</td></tr>
+<tr><td>FCs and REs</td><td>secondaryResources</td></tr>
 <tr><td>Gems</td><td>gems</td></tr>
 <tr><td>Gold</td><td>resource</td></tr>
 <tr><td>Rubies</td><td>rubies</td></tr>
-<tr><td>Excavations</td><td>excavations</td></tr>
-<tr><td>FCs and REs</td><td>secondaryResources</td></tr>
 <tr><td>Reincarnation</td><td>rei</td></tr>
 <tr><td>Ascension</td><td>ascension</td></tr>
 <tr><td>Last save time</td><td>lastsave</td></tr>
+<tr><td>Time since starting<br>Angelline bonus</td><td>sTimer</td></tr>
 <tr><td>Current mana</td><td>mana</td></tr>
 <tr><td>Contingency bar</td><td>cont</td></tr>
 <tr><td>Contingency level</td><td>contv</td></tr>
@@ -57,7 +58,6 @@
 <tr><td>Time since last click</td><td>cTimer</td></tr>
 <tr><td>Time since last keypress</td><td>kcTimer</td></tr>
 <tr><td>Time since last<br>mouse motion</td><td>mTimer</td></tr>
-<tr><td>Time since starting<br>Angelline bonus</td><td>sTimer</td></tr>
 <tr><td>Scry production timer</td><td>oTimer</td></tr>
 <tr><td>Scry mana timer</td><td>oTimer2</td></tr>
 <tr><td>Scry event timer</td><td>oTimer3</td></tr>
@@ -89,7 +89,6 @@ var myViewModel = new Vue({
         console.log('Decoded save:', savedata);
         this.editdata = 'Decoded. No edits made';
         this.version = savedata.saveVersion
-        <!-- this.save.saveVersion == 16 -->
       } catch(err) {
           this.editdata = 'Invalid data';
           console.log(err);
@@ -98,4 +97,3 @@ var myViewModel = new Vue({
   }
 });
 </script>
-
