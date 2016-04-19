@@ -23,7 +23,7 @@
 </table><br>
 <template v-if="version == 16">
 <table border=2>
-<tr><td><b>Field</b></td><td><b>Python key</b></td><td><b>Current value</b></td><td><b>New value</b></td></tr>
+<tr><td><b>Field</b></td><td><b>JS key</b></td><td><b>Current value</b></td><td><b>New value</b></td></tr>
 <tr><td>Stats</td><td>stats</td></tr>
 <tr><td>Buildings</td><td>build</td></tr>
 <tr><td>Upgrades</td><td>upgrade</td></tr>
@@ -32,29 +32,29 @@
 <tr><td>Artifact RNG value</td><td>artifactRngState</td></tr>
 <tr><td>Alignment</td><td>alignment</td></tr>
 <tr><td>Faction</td><td>faction</td></tr>
-<tr><td>Prestige Faction</td><td>activeFaction</td></tr>
+<tr><td>Prestige Faction</td><td>prestigeFaction</td></tr>
 <tr><td>Bloodstream bonus based<br>on this faction</td><td>bFaction</td></tr>
 <tr><td>Excavations</td><td>excavations</td></tr>
-<tr><td>FCs and REs</td><td>secondaryResources</td></tr>
+<tr><td>FCs and REs</td><td>factionCoins</td></tr>
 <tr><td>Gems</td><td>gems</td></tr>
-<tr><td>Gold</td><td>resource</td></tr>
+<tr><td>Gold</td><td>coins</td></tr>
 <tr><td>Rubies</td><td>rubies</td></tr>
-<tr><td>Reincarnation</td><td>rei</td></tr>
+<tr><td>Reincarnation</td><td>reincarnation</td></tr>
 <tr><td>Ascension</td><td>ascension</td></tr>
 <tr><td>Last save time</td><td>lastsave</td></tr>
 <tr><td>Time since starting<br>Angelline bonus</td><td>sTimer</td></tr>
 <tr><td>Current mana</td><td>mana</td></tr>
-<tr><td>Contingency bar</td><td>cont</td></tr>
-<tr><td>Contingency level</td><td>contv</td></tr>
+<tr><td>Contingency bar</td><td>contingency</td></tr>
+<tr><td>Contingency level</td><td>contingencyValue</td></tr>
 <tr><td>Current LS target</td><td>strikeTier</td></tr>
 <tr><td>Current Miracle target</td><td>miracleTier</td></tr>
 <tr><td>Time left on Miracle</td><td>miracleTimer</td></tr>
 <tr><td>Time left on Titan<br>charged effects</td><td>chargedTimer</td></tr>
 <tr><td>Combo Strike streak</td><td>comboStrikeCont</td></tr>
 <tr><td>Time since Green<br>Fingers bonus</td><td>goblinTimer</td></tr>
-<tr><td>Time since last<br>Storm of Wealth</td><td>somethingNew</td></tr>
-<tr><td>Mercenary spell 1</td><td>msp</td></tr>
-<tr><td>Mercenary spell 2</td><td>msp2</td></tr>
+<tr><td>Time since last<br>Storm of Wealth</td><td>wealthStorm</td></tr>
+<tr><td>Mercenary spell 1</td><td>mercSpell1</td></tr>
+<tr><td>Mercenary spell 2</td><td>mercSpell2</td></tr>
 <tr><td>Time since last click</td><td>cTimer</td></tr>
 <tr><td>Time since last keypress</td><td>kcTimer</td></tr>
 <tr><td>Time since last<br>mouse motion</td><td>mTimer</td></tr>
@@ -62,7 +62,7 @@
 <tr><td>Scry mana timer</td><td>oTimer2</td></tr>
 <tr><td>Scry event timer</td><td>oTimer3</td></tr>
 <tr><td>Event season</td><td>season</td></tr>
-<tr><td>Event resources</td><td>extraResources</td></tr>
+<tr><td>Event resources</td><td>eventResources</td></tr>
 <tr><td>Snowball scrys</td><td>snowballScryUses</td></tr>
 <tr><td>Snowball size</td><td>snowballSize</td></tr>
 <tr><td>Last Christmas gift</td><td>lastGiftDate</td></tr>
@@ -97,3 +97,4 @@ var myViewModel = new Vue({
   }
 });
 </script>
+
