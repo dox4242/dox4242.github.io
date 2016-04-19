@@ -1,9 +1,102 @@
-<<html>
-<head>
-  <script>
-    window.location = 'https://repl.it/B6Dy/135';
-  </script>
-</head>
-<body>
-</body>
-</html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+		integrity="sha384-pdapHxIh7EYuwy6K7iE41uXVxGCXY0sAjBzaElYGJUrzwodck3Lx6IE2lA0rFREo"
+		crossorigin="anonymous"></link>
+<link rel="stylesheet" href="../index.css"></link>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"
+		integrity="sha384-R4/ztc4ZlRqWjqIuvf6RX5yb/v90qNGx6fS48N0tRxiGkqveZETq72KgDVJCp2TC"
+		crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+		integrity="sha384-pPttEvTHTuUJ9L2kCoMnNqCRcaMPMVMsWVO+RLaaaYDmfSP5//dP6eKRusbPcqhZ" 
+		crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/0.2.8/pako.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.21/vue.js"></script>
+<script src="../lib/zlib.min.js"></script>
+<script src="../lib/savecodec2.js"></script>
+<script src="../lib/pmprng.js"></script>
+<script src="../lib/util.js"></script>
+<div id="app">
+(still under construction)
+<table>
+<tr><td>Enter save:</td><td><input type="text" v-model="datainput"></td></tr>
+<tr><td>Edited save:</td><td><input type="text" v-model="editdata"></td></tr>
+<tr></tr>
+</table><br><table border=2>
+<tr><td><b>Field</b></td><td><b>Python key</b></td><td><b>Current value</b></td><td><b>New value</b></td></tr>
+<tr><td>Save version</td><td>saveVersion</td></tr>
+<tr><td>Egg RNG value</td><td>eggRngState</td></tr>
+<tr><td>Egg stack size</td><td>eggStackSize</td></tr>
+<tr><td>CtA faction casts</td><td>ctaFactionCasts</td></tr>
+<tr><td>Buildings</td><td>build</td></tr>
+<tr><td>Upgrades</td><td>upgrade</td></tr>
+<tr><td>Trophies</td><td>trophy</td></tr>
+<tr><td>Artifact RNG value</td><td>artifactRngState</td></tr>
+<tr><td>Spells</td><td>spell</td></tr>
+<tr><td>Alignment</td><td>alignment</td></tr>
+<tr><td>Faction</td><td>faction</td></tr>
+<tr><td>Prestige Faction</td><td>activeFaction</td></tr>
+<tr><td>Gems</td><td>gems</td></tr>
+<tr><td>Reincarnation</td><td>rei</td></tr>
+<tr><td>Ascension</td><td>ascension</td></tr>
+<tr><td>Last save time</td><td>lastsave</td></tr>
+<tr><td>Current mana</td><td>mana</td></tr>
+<tr><td>Gold</td><td>resource</td></tr>
+<tr><td>Rubies</td><td>rubies</td></tr>
+<tr><td>Excavations</td><td>excavations</td></tr>
+<tr><td>FCs and REs</td><td>secondaryResources</td></tr>
+<tr><td>Event resources</td><td>extraResources</td></tr>
+<tr><td>Stats</td><td>stats</td></tr>
+<tr><td>Contingency bar</td><td>cont</td></tr>
+<tr><td>Contingency level</td><td>contv</td></tr>
+<tr><td>Current LS target</td><td>strikeTier</td></tr>
+<tr><td>Current Miracle target</td><td>miracleTier</td></tr>
+<tr><td>Time left on Miracle</td><td>miracleTimer</td></tr>
+<tr><td>Snowball scrys</td><td>snowballScryUses</td></tr>
+<tr><td>Snowball size</td><td>snowballSize</td></tr>
+<tr><td>Last Christmas gift</td><td>lastGiftDate</td></tr>
+<tr><td>Time left on Titan<br>charged effects</td><td>chargedTimer</td></tr>
+<tr><td>Combo Strike streak</td><td>comboStrikeCont</td></tr>
+<tr><td>Time since Green<br>Fingers bonus</td><td>goblinTimer</td></tr>
+<tr><td>Time since last<br>Storm of Wealth</td><td>somethingNew</td></tr>
+<tr><td>Mercenary spell 1</td><td>msp</td></tr>
+<tr><td>Mercenary spell 2</td><td>msp2</td></tr>
+<tr><td>Time since last click</td><td>cTimer</td></tr>
+<tr><td>Time since last keypress</td><td>kcTimer</td></tr>
+<tr><td>Time since last<br>mouse motion</td><td>mTimer</td></tr>
+<tr><td>Time since starting<br>Angelline bonus</td><td>sTimer</td></tr>
+<tr><td>Scry production timer</td><td>oTimer</td></tr>
+<tr><td>Scry mana timer</td><td>oTimer2</td></tr>
+<tr><td>Scry event timer</td><td>oTimer3</td></tr>
+<tr><td>Event season</td><td>season</td></tr>
+<tr><td>Faction Bloodstream<br>bonus is based on</td><td>bFaction</td></tr>
+</table>
+</div>
+<script type="text/javascript">
+var myViewModel = new Vue({
+  el: '#app',
+  data: {
+    datainput: '',
+    editdata: 'empty',
+  },
+  watch: {
+    datainput: function(data){
+      try {
+        this.save = SaveHandler.Decode(this.datainput);
+        console.log('Decoded save:', this.save);
+        this.editdata = 'Decoded. No edits made.';
+        if (this.save.options[0]) {
+          this.save.options = this.save.options[0];
+          console.log('options', this.save.options);
+        }
+        if (this.save.hasOwnProperty('buyButton')) {
+          this.save.options.buyButton = this.save.buyButton;
+          console.log('buybutton', this.save.options.buyButton);
+        }
+      } catch(err) {
+          this.editdata = 'Invalid data';
+          console.log(err);
+      }
+    }
+  }
+});
+</script>
+
