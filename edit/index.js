@@ -1,10 +1,11 @@
-var savedata = {}
 var myViewModel = new Vue({
   el: '#app',
   data: {
     datainput: '',
+    save: {},
     editdata: 'empty',
     version: '',
+    artifactRngState: '',
     showStatsAb: 'False',
     showStatsReinc: 'False',
     showStatsAll: 'False',
@@ -15,10 +16,11 @@ var myViewModel = new Vue({
     datainput: function(data){
       this.version = ''
       try {
-        savedata = SaveHandler.Decode(this.datainput)
-        console.log('Decoded save:', savedata)
+        this.save = SaveHandler.Decode(this.datainput)
+        console.log('Decoded save:', this.save)
         this.editdata = 'Decoded. No edits made'
-        this.version = savedata.saveVersion
+        this.version = this.save.saveVersion
+        this.artifactRngState = this.save.artifactRngState
       } catch(err) {
           this.editdata = 'Invalid data'
           console.log(err)
