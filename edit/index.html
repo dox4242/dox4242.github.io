@@ -21,567 +21,495 @@
 <tr><td>Edited save:</td><td><input type="text" v-model="editdata"></td></tr>
 <tr></tr>
 </table><br>
-<template v-if="version == 16">
-<table border=2>
-<tr><td><b>Field</b></td><td><b>JS key</b></td><td><b>Current value</b></td><td><b>New value</b></td></tr>
-<tr><td>Stats (current abdication)</td><td>stats, stats</td></tr>
-<tr><td>Coins gained</td><td>0</td>
-<tr><td>Playtime</td><td>1</td>
-<tr><td>Good playtime</td><td>2</td>
-<tr><td>Evil playtime</td><td>3</td>
-<tr><td>Clicks</td><td>4</td>
-<tr><td>Coins gained from clicks</td><td>5</td>
-<tr><td>Fairy coins gained</td><td>6</td>
-<tr><td>Elf coins gained</td><td>7</td>
-<tr><td>Angel coins gained</td><td>8</td>
-<tr><td>Goblin coins gained</td><td>9</td>
-<tr><td>Undead coins gained</td><td>10</td>
-<tr><td>Demon coins gained</td><td>11</td>
-<tr><td>Buildings, max</td><td>12</td>
-<tr><td>Upgrades, max</td><td>13</td>
-<tr><td>Trophy counter</td><td>14</td>
-<tr><td>Spells cast</td><td>15</td>
-<tr><td>Mana produced</td><td>16</td>
-<tr><td>Fairy affiliations</td><td>17</td>
-<tr><td>Elf affiliations</td><td>18</td>
-<tr><td>Angel affiliations</td><td>19</td>
-<tr><td>Goblin affiliations</td><td>20</td>
-<tr><td>Undead affiliations</td><td>21</td>
-<tr><td>Demon affiliations</td><td>22</td>
-<tr><td>Assistant squishes</td><td>23</td>
-<tr><td>Faction exchanges bought</td><td>24</td>
-<tr><td>Coins gain from assistants</td><td>25</td>
-<tr><td>Coins spent</td><td>26</td>
-<tr><td>Mana spent</td><td>27</td>
-<tr><td>Total abdications</td><td>28</td>
-<tr><td>Playtime last abdication</td><td>29</td>
-<tr><td>Gems gained last abdication</td><td>30</td>
-<tr><td>Coins, max</td><td>31</td>
-<tr><td>Titan affiliations</td><td>32</td>
-<tr><td>Druid affiliations</td><td>33</td>
-<tr><td>Faceless affiliations</td><td>34</td>
-<tr><td>Excavations</td><td>35</td>
-<tr><td>Excavation reports (?)</td><td>36</td>
-<tr><td>Lightning Strike casts</td><td>37</td>
-<tr><td>Faceless affiliation streak</td><td>38</td>
-<tr><td>Playtime, max</td><td>39</td>
-<tr><td>Spells, max</td><td>40</td>
-<tr><td>Dwarf coins gained</td><td>41</td>
-<tr><td>Drow coins gained</td><td>42</td>
-<tr><td>Dwarf affiliations</td><td>43</td>
-<tr><td>Drow affiliations</td><td>44</td>
-<tr><td>Offline playtime</td><td>45</td>
-<tr><td>Offline time, max</td><td>46</td>
-<tr><td>Diamond Pickaxe FCs</td><td>47</td>
-<tr><td>Honor Among Killers FCs</td><td>48</td>
-<tr><td>Mercenary affiliations</td><td>49</td>
-<tr><td>Fairy Playtime</td><td>50</td>
-<tr><td>Elf playtime</td><td>51</td>
-<tr><td>Angel playtime</td><td>52</td>
-<tr><td>Goblin playtime</td><td>53</td>
-<tr><td>Undead playtime</td><td>54</td>
-<tr><td>Demon playtime</td><td>55</td>
-<tr><td>Titan playtime</td><td>56</td>
-<tr><td>Druid playtime</td><td>57</td>
-<tr><td>Faceless playtime</td><td>58</td>
-<tr><td>Dwarf playtime</td><td>59</td>
-<tr><td>Drow playtime</td><td>60</td>
-<tr><td>Mercenary playtime</td><td>61</td>
-<tr><td>Unaffiliated playtime</td><td>62</td>
-<tr><td>Automatic clicks</td><td>63</td>
-<tr><td>Goblin's Greed streak</td><td>64</td>
-<tr><td>Pay upkeep (unused)</td><td>65</td>
-<tr><td>Fairy upgrades bought</td><td>66</td>
-<tr><td>Elf upgrades bought</td><td>67</td>
-<tr><td>Angel upgrades bought</td><td>68</td>
-<tr><td>Goblin upgrades bought</td><td>69</td>
-<tr><td>Undead upgrades bought</td><td>70</td>
-<tr><td>Demon upgrades bought</td><td>71</td>
-<tr><td>Titan upgrades bought</td><td>72</td>
-<tr><td>Druid upgrades bought</td><td>73</td>
-<tr><td>Faceless upgrades bought</td><td>74</td>
-<tr><td>Dwarf upgrades bought</td><td>75</td>
-<tr><td>Drow upgrades bought</td><td>76</td>
-<tr><td>Mercenary upgrades bought</td><td>77</td>
-<tr><td>Max FCs at once</td><td>78</td>
-<tr><td>Fairy coins gained, max</td><td>79</td>
-<tr><td>Elf coins gained, max</td><td>80</td>
-<tr><td>Angel coins gained, max</td><td>81</td>
-<tr><td>Goblin coins gained, max</td><td>82</td>
-<tr><td>Undead coins gained, max</td><td>83</td>
-<tr><td>Demon coins gained, max</td><td>84</td>
-<tr><td>Dwarf coins gained, max</td><td>85</td>
-<tr><td>Drow coins gained, max</td><td>86</td>
-<tr><td>Treasure clicks, max</td><td>87</td>
-<tr><td>Assistant squishes, max</td><td>88</td>
-<tr><td>Automatic clicks, max</td><td>89</td>
-<tr><td>Spellcraft research level</td><td>90</td>
-<tr><td>Craftsmanship research level</td><td>91</td>
-<tr><td>Divine research level</td><td>92</td>
-<tr><td>Economics research level</td><td>93</td>
-<tr><td>Alchemy research level</td><td>94</td>
-<tr><td>Warfare research level</td><td>95</td>
-<tr><td>Base assistants, max</td><td>96</td>
-<tr><td>Time with at least one spell active</td><td>97</td>
-<tr><td>Excavations, max</td><td>98</td>
-<tr><td>Angel affiliations streak</td><td>99</td>
-<tr><td>Demon affiliations streak</td><td>100</td>
-<tr><td>Elven Luck streak</td><td>101</td>
-<tr><td>Rubies gained</td><td>102</td>
-<tr><td>Rubies purchased?</td><td>103</td>
-<tr><td>Excavation resets</td><td>104</td>
-<tr><td>Ruby assistant upgrades</td><td>105</td>
-<tr><td>Ruby mana regen upgrades</td><td>106</td>
-<tr><td>Ruby max mana upgrades</td><td>107</td>
-<tr><td>Ruby gem bonus upgrades</td><td>108</td>
-<tr><td>Ruby royal exchange upgrades</td><td>109</td>
-<tr><td>Snowballs found</td><td>110</td>
-<tr><td>Gifts founds</td><td>111</td>
-<tr><td>Lightning Strike FCs</td><td>112</td>
-<tr><td>Territorial Expanse Labyrinths</td><td>113</td>
-<tr><td>Heart assistant upgrades</td><td>114</td>
-<tr><td>Heart mana regen upgrades</td><td>115</td>
-<tr><td>Heart max mana upgrades</td><td>116</td>
-<tr><td>Heart gem bonus upgrades</td><td>117</td>
-<tr><td>Heart royal exchange upgrades</td><td>118</td>
-<tr><td>Hearts found</td><td>119</td>
-<tr><td>Call to Love casts</td><td>120</td>
-<tr><td>Offline time during Valentine's event</td><td>121</td>
-<tr><td>Ruby resets</td><td>122</td>
-<tr><td>Common eggs collected</td><td>123</td>
-<tr><td>Rare eggs collected</td><td>124</td>
-<tr><td>Stats (current reincarnation)</td><td>stats, statsReset</td></tr>
-<tr><td>Coins gained</td><td>0</td>
-<tr><td>Playtime</td><td>1</td>
-<tr><td>Good playtime</td><td>2</td>
-<tr><td>Evil playtime</td><td>3</td>
-<tr><td>Clicks</td><td>4</td>
-<tr><td>Coins gained from clicks</td><td>5</td>
-<tr><td>Fairy coins gained</td><td>6</td>
-<tr><td>Elf coins gained</td><td>7</td>
-<tr><td>Angel coins gained</td><td>8</td>
-<tr><td>Goblin coins gained</td><td>9</td>
-<tr><td>Undead coins gained</td><td>10</td>
-<tr><td>Demon coins gained</td><td>11</td>
-<tr><td>Buildings, max</td><td>12</td>
-<tr><td>Upgrades, max</td><td>13</td>
-<tr><td>Trophy counter</td><td>14</td>
-<tr><td>Spells cast</td><td>15</td>
-<tr><td>Mana produced</td><td>16</td>
-<tr><td>Fairy affiliations</td><td>17</td>
-<tr><td>Elf affiliations</td><td>18</td>
-<tr><td>Angel affiliations</td><td>19</td>
-<tr><td>Goblin affiliations</td><td>20</td>
-<tr><td>Undead affiliations</td><td>21</td>
-<tr><td>Demon affiliations</td><td>22</td>
-<tr><td>Assistant squishes</td><td>23</td>
-<tr><td>Faction exchanges bought</td><td>24</td>
-<tr><td>Coins gain from assistants</td><td>25</td>
-<tr><td>Coins spent</td><td>26</td>
-<tr><td>Mana spent</td><td>27</td>
-<tr><td>Total abdications</td><td>28</td>
-<tr><td>Playtime last abdication</td><td>29</td>
-<tr><td>Gems gained last abdication</td><td>30</td>
-<tr><td>Coins, max</td><td>31</td>
-<tr><td>Titan affiliations</td><td>32</td>
-<tr><td>Druid affiliations</td><td>33</td>
-<tr><td>Faceless affiliations</td><td>34</td>
-<tr><td>Excavations</td><td>35</td>
-<tr><td>Excavation reports (?)</td><td>36</td>
-<tr><td>Lightning Strike casts</td><td>37</td>
-<tr><td>Faceless affiliation streak</td><td>38</td>
-<tr><td>Playtime, max</td><td>39</td>
-<tr><td>Spells, max</td><td>40</td>
-<tr><td>Dwarf coins gained</td><td>41</td>
-<tr><td>Drow coins gained</td><td>42</td>
-<tr><td>Dwarf affiliations</td><td>43</td>
-<tr><td>Drow affiliations</td><td>44</td>
-<tr><td>Offline playtime</td><td>45</td>
-<tr><td>Offline time, max</td><td>46</td>
-<tr><td>Diamond Pickaxe FCs</td><td>47</td>
-<tr><td>Honor Among Killers FCs</td><td>48</td>
-<tr><td>Mercenary affiliations</td><td>49</td>
-<tr><td>Fairy Playtime</td><td>50</td>
-<tr><td>Elf playtime</td><td>51</td>
-<tr><td>Angel playtime</td><td>52</td>
-<tr><td>Goblin playtime</td><td>53</td>
-<tr><td>Undead playtime</td><td>54</td>
-<tr><td>Demon playtime</td><td>55</td>
-<tr><td>Titan playtime</td><td>56</td>
-<tr><td>Druid playtime</td><td>57</td>
-<tr><td>Faceless playtime</td><td>58</td>
-<tr><td>Dwarf playtime</td><td>59</td>
-<tr><td>Drow playtime</td><td>60</td>
-<tr><td>Mercenary playtime</td><td>61</td>
-<tr><td>Unaffiliated playtime</td><td>62</td>
-<tr><td>Automatic clicks</td><td>63</td>
-<tr><td>Goblin's Greed streak</td><td>64</td>
-<tr><td>Pay upkeep (unused)</td><td>65</td>
-<tr><td>Fairy upgrades bought</td><td>66</td>
-<tr><td>Elf upgrades bought</td><td>67</td>
-<tr><td>Angel upgrades bought</td><td>68</td>
-<tr><td>Goblin upgrades bought</td><td>69</td>
-<tr><td>Undead upgrades bought</td><td>70</td>
-<tr><td>Demon upgrades bought</td><td>71</td>
-<tr><td>Titan upgrades bought</td><td>72</td>
-<tr><td>Druid upgrades bought</td><td>73</td>
-<tr><td>Faceless upgrades bought</td><td>74</td>
-<tr><td>Dwarf upgrades bought</td><td>75</td>
-<tr><td>Drow upgrades bought</td><td>76</td>
-<tr><td>Mercenary upgrades bought</td><td>77</td>
-<tr><td>Max FCs at once</td><td>78</td>
-<tr><td>Fairy coins gained, max</td><td>79</td>
-<tr><td>Elf coins gained, max</td><td>80</td>
-<tr><td>Angel coins gained, max</td><td>81</td>
-<tr><td>Goblin coins gained, max</td><td>82</td>
-<tr><td>Undead coins gained, max</td><td>83</td>
-<tr><td>Demon coins gained, max</td><td>84</td>
-<tr><td>Dwarf coins gained, max</td><td>85</td>
-<tr><td>Drow coins gained, max</td><td>86</td>
-<tr><td>Treasure clicks, max</td><td>87</td>
-<tr><td>Assistant squishes, max</td><td>88</td>
-<tr><td>Automatic clicks, max</td><td>89</td>
-<tr><td>Spellcraft research level</td><td>90</td>
-<tr><td>Craftsmanship research level</td><td>91</td>
-<tr><td>Divine research level</td><td>92</td>
-<tr><td>Economics research level</td><td>93</td>
-<tr><td>Alchemy research level</td><td>94</td>
-<tr><td>Warfare research level</td><td>95</td>
-<tr><td>Base assistants, max</td><td>96</td>
-<tr><td>Time with at least one spell active</td><td>97</td>
-<tr><td>Excavations, max</td><td>98</td>
-<tr><td>Angel affiliations streak</td><td>99</td>
-<tr><td>Demon affiliations streak</td><td>100</td>
-<tr><td>Elven Luck streak</td><td>101</td>
-<tr><td>Rubies gained</td><td>102</td>
-<tr><td>Rubies purchased?</td><td>103</td>
-<tr><td>Excavation resets</td><td>104</td>
-<tr><td>Ruby assistant upgrades</td><td>105</td>
-<tr><td>Ruby mana regen upgrades</td><td>106</td>
-<tr><td>Ruby max mana upgrades</td><td>107</td>
-<tr><td>Ruby gem bonus upgrades</td><td>108</td>
-<tr><td>Ruby royal exchange upgrades</td><td>109</td>
-<tr><td>Snowballs found</td><td>110</td>
-<tr><td>Gifts founds</td><td>111</td>
-<tr><td>Lightning Strike FCs</td><td>112</td>
-<tr><td>Territorial Expanse Labyrinths</td><td>113</td>
-<tr><td>Heart assistant upgrades</td><td>114</td>
-<tr><td>Heart mana regen upgrades</td><td>115</td>
-<tr><td>Heart max mana upgrades</td><td>116</td>
-<tr><td>Heart gem bonus upgrades</td><td>117</td>
-<tr><td>Heart royal exchange upgrades</td><td>118</td>
-<tr><td>Hearts found</td><td>119</td>
-<tr><td>Call to Love casts</td><td>120</td>
-<tr><td>Offline time during Valentine's event</td><td>121</td>
-<tr><td>Ruby resets</td><td>122</td>
-<tr><td>Common eggs collected</td><td>123</td>
-<tr><td>Rare eggs collected</td><td>124</td>
-<tr><td>Stats (all reincarnations)</td><td>stats, statsRei</td></tr>
-<tr><td>Coins gained</td><td>0</td>
-<tr><td>Playtime</td><td>1</td>
-<tr><td>Good playtime</td><td>2</td>
-<tr><td>Evil playtime</td><td>3</td>
-<tr><td>Clicks</td><td>4</td>
-<tr><td>Coins gained from clicks</td><td>5</td>
-<tr><td>Fairy coins gained</td><td>6</td>
-<tr><td>Elf coins gained</td><td>7</td>
-<tr><td>Angel coins gained</td><td>8</td>
-<tr><td>Goblin coins gained</td><td>9</td>
-<tr><td>Undead coins gained</td><td>10</td>
-<tr><td>Demon coins gained</td><td>11</td>
-<tr><td>Buildings, max</td><td>12</td>
-<tr><td>Upgrades, max</td><td>13</td>
-<tr><td>Trophy counter</td><td>14</td>
-<tr><td>Spells cast</td><td>15</td>
-<tr><td>Mana produced</td><td>16</td>
-<tr><td>Fairy affiliations</td><td>17</td>
-<tr><td>Elf affiliations</td><td>18</td>
-<tr><td>Angel affiliations</td><td>19</td>
-<tr><td>Goblin affiliations</td><td>20</td>
-<tr><td>Undead affiliations</td><td>21</td>
-<tr><td>Demon affiliations</td><td>22</td>
-<tr><td>Assistant squishes</td><td>23</td>
-<tr><td>Faction exchanges bought</td><td>24</td>
-<tr><td>Coins gain from assistants</td><td>25</td>
-<tr><td>Coins spent</td><td>26</td>
-<tr><td>Mana spent</td><td>27</td>
-<tr><td>Total abdications</td><td>28</td>
-<tr><td>Playtime last abdication</td><td>29</td>
-<tr><td>Gems gained last abdication</td><td>30</td>
-<tr><td>Coins, max</td><td>31</td>
-<tr><td>Titan affiliations</td><td>32</td>
-<tr><td>Druid affiliations</td><td>33</td>
-<tr><td>Faceless affiliations</td><td>34</td>
-<tr><td>Excavations</td><td>35</td>
-<tr><td>Excavation reports (?)</td><td>36</td>
-<tr><td>Lightning Strike casts</td><td>37</td>
-<tr><td>Faceless affiliation streak</td><td>38</td>
-<tr><td>Playtime, max</td><td>39</td>
-<tr><td>Spells, max</td><td>40</td>
-<tr><td>Dwarf coins gained</td><td>41</td>
-<tr><td>Drow coins gained</td><td>42</td>
-<tr><td>Dwarf affiliations</td><td>43</td>
-<tr><td>Drow affiliations</td><td>44</td>
-<tr><td>Offline playtime</td><td>45</td>
-<tr><td>Offline time, max</td><td>46</td>
-<tr><td>Diamond Pickaxe FCs</td><td>47</td>
-<tr><td>Honor Among Killers FCs</td><td>48</td>
-<tr><td>Mercenary affiliations</td><td>49</td>
-<tr><td>Fairy Playtime</td><td>50</td>
-<tr><td>Elf playtime</td><td>51</td>
-<tr><td>Angel playtime</td><td>52</td>
-<tr><td>Goblin playtime</td><td>53</td>
-<tr><td>Undead playtime</td><td>54</td>
-<tr><td>Demon playtime</td><td>55</td>
-<tr><td>Titan playtime</td><td>56</td>
-<tr><td>Druid playtime</td><td>57</td>
-<tr><td>Faceless playtime</td><td>58</td>
-<tr><td>Dwarf playtime</td><td>59</td>
-<tr><td>Drow playtime</td><td>60</td>
-<tr><td>Mercenary playtime</td><td>61</td>
-<tr><td>Unaffiliated playtime</td><td>62</td>
-<tr><td>Automatic clicks</td><td>63</td>
-<tr><td>Goblin's Greed streak</td><td>64</td>
-<tr><td>Pay upkeep (unused)</td><td>65</td>
-<tr><td>Fairy upgrades bought</td><td>66</td>
-<tr><td>Elf upgrades bought</td><td>67</td>
-<tr><td>Angel upgrades bought</td><td>68</td>
-<tr><td>Goblin upgrades bought</td><td>69</td>
-<tr><td>Undead upgrades bought</td><td>70</td>
-<tr><td>Demon upgrades bought</td><td>71</td>
-<tr><td>Titan upgrades bought</td><td>72</td>
-<tr><td>Druid upgrades bought</td><td>73</td>
-<tr><td>Faceless upgrades bought</td><td>74</td>
-<tr><td>Dwarf upgrades bought</td><td>75</td>
-<tr><td>Drow upgrades bought</td><td>76</td>
-<tr><td>Mercenary upgrades bought</td><td>77</td>
-<tr><td>Max FCs at once</td><td>78</td>
-<tr><td>Fairy coins gained, max</td><td>79</td>
-<tr><td>Elf coins gained, max</td><td>80</td>
-<tr><td>Angel coins gained, max</td><td>81</td>
-<tr><td>Goblin coins gained, max</td><td>82</td>
-<tr><td>Undead coins gained, max</td><td>83</td>
-<tr><td>Demon coins gained, max</td><td>84</td>
-<tr><td>Dwarf coins gained, max</td><td>85</td>
-<tr><td>Drow coins gained, max</td><td>86</td>
-<tr><td>Treasure clicks, max</td><td>87</td>
-<tr><td>Assistant squishes, max</td><td>88</td>
-<tr><td>Automatic clicks, max</td><td>89</td>
-<tr><td>Spellcraft research level</td><td>90</td>
-<tr><td>Craftsmanship research level</td><td>91</td>
-<tr><td>Divine research level</td><td>92</td>
-<tr><td>Economics research level</td><td>93</td>
-<tr><td>Alchemy research level</td><td>94</td>
-<tr><td>Warfare research level</td><td>95</td>
-<tr><td>Base assistants, max</td><td>96</td>
-<tr><td>Time with at least one spell active</td><td>97</td>
-<tr><td>Excavations, max</td><td>98</td>
-<tr><td>Angel affiliations streak</td><td>99</td>
-<tr><td>Demon affiliations streak</td><td>100</td>
-<tr><td>Elven Luck streak</td><td>101</td>
-<tr><td>Rubies gained</td><td>102</td>
-<tr><td>Rubies purchased?</td><td>103</td>
-<tr><td>Excavation resets</td><td>104</td>
-<tr><td>Ruby assistant upgrades</td><td>105</td>
-<tr><td>Ruby mana regen upgrades</td><td>106</td>
-<tr><td>Ruby max mana upgrades</td><td>107</td>
-<tr><td>Ruby gem bonus upgrades</td><td>108</td>
-<tr><td>Ruby royal exchange upgrades</td><td>109</td>
-<tr><td>Snowballs found</td><td>110</td>
-<tr><td>Gifts founds</td><td>111</td>
-<tr><td>Lightning Strike FCs</td><td>112</td>
-<tr><td>Territorial Expanse Labyrinths</td><td>113</td>
-<tr><td>Heart assistant upgrades</td><td>114</td>
-<tr><td>Heart mana regen upgrades</td><td>115</td>
-<tr><td>Heart max mana upgrades</td><td>116</td>
-<tr><td>Heart gem bonus upgrades</td><td>117</td>
-<tr><td>Heart royal exchange upgrades</td><td>118</td>
-<tr><td>Hearts found</td><td>119</td>
-<tr><td>Call to Love casts</td><td>120</td>
-<tr><td>Offline time during Valentine's event</td><td>121</td>
-<tr><td>Ruby resets</td><td>122</td>
-<tr><td>Common eggs collected</td><td>123</td>
-<tr><td>Rare eggs collected</td><td>124</td>
-<tr><td>Buildings</td><td>build</td></tr>
-<tr><td>Farm</td><td>9</td></tr>
-<tr><td>Inn</td><td>13</td></tr>
-<tr><td>Blacksmith</td><td>3</td></tr>
-<tr><td>Warrior Barracks</td><td>23</td></tr>
-<tr><td>Knights Joust</td><td>15</td></tr>
-<tr><td>Wizard Tower</td><td>25</td></tr>
-<tr><td>Cathedral</td><td>4</td></tr>
-<tr><td>Citadel</td><td>5</td></tr>
-<tr><td>Royal Castle</td><td>20</td></tr>
-<tr><td>Heaven's Gate</td><td>11</td></tr>
-<tr><td>Slave Pen</td><td>21</td></tr>
-<tr><td>Orcish Arena</td><td>19</td></tr>
-<tr><td>With Conclave</td><td>24</td></tr>
-<tr><td>Dark Temple</td><td>6</td></tr>
-<tr><td>Necropolis</td><td>18</td></tr>
-<tr><td>Evil Fortress</td><td>8</td></tr>
-<tr><td>Hell Portal</td><td>12</td></tr>
-<tr><td>Deep Mine</td><td>7</td></tr>
-<tr><td>Stone Pillars</td><td>22</td></tr>
-<tr><td>Alchemist Lab</td><td>1</td></tr>
-<tr><td>Monastery</td><td>17</td></tr>
-<tr><td>Labyrinth</td><td>16</td></tr>
-<tr><td>Iron Stronghold</td><td>14</td></tr>
-<tr><td>Ancient Pyramid</td><td>2</td></tr>
-<tr><td>Hall of Legends</td><td>10</td></tr>
-<tr><td>Upgrades</td><td>upgrade</td></tr>
-<tr><td>Reincarnation Power</td><td>36</td></tr>
-<tr><td>Proof of Good Deed</td><td>224</td></tr>
-<tr><td>Proof of Evil Deed</td><td>178</td></tr>
-<tr><td>Proof of Neutrality</td><td>388</td></tr>
-<tr><td>Fairy Exchange</td><td>196</td></tr>
-<tr><td>Elven Exchange</td><td>168</td></tr>
-<tr><td>Angelic Exchange</td><td>46</td></tr>
-<tr><td>Goblin Exchange</td><td>215</td></tr>
-<tr><td>Undead Exchange</td><td>397</td></tr>
-<tr><td>Demonic Exchange</td><td>107</td></tr>
-<tr><td>Dwarven Exchange</td><td>151</td></tr>
-<tr><td>Drow Exchange</td><td>121</td></tr>
-<tr><td>Spellweavery</td><td>294</td></tr>
-<tr><td>Carpentry</td><td>291</td></tr>
-<tr><td>Pantheon</td><td>292</td></tr>
-<tr><td>Exchequer</td><td>293</td></tr>
-<tr><td>Laboratory</td><td>290</td></tr>
-<tr><td>Strategy Room</td><td>296</td></tr>
-<tr><td>Secrets of the Ancients</td><td>470</td></tr>
-<tr><td>Secrets of the Underworld</td><td>549</td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td>Trophies</td><td>trophy</td></tr>
-<tr><td>Spells</td><td>spell</td></tr>
-<tr><td>Artifact RNG value</td><td>artifactRngState</td></tr>
-<tr><td>Alignment</td><td>alignment</td></tr>
-<tr><td>Faction</td><td>faction</td></tr>
-<tr><td>Prestige Faction</td><td>prestigeFaction</td></tr>
-<tr><td>Bloodstream bonus based<br>on this faction</td><td>bFaction</td></tr>
-<tr><td>Excavations</td><td>excavations</td></tr>
-<tr><td>FCs and REs</td><td>factionCoins</td></tr>
-<tr><td>Gems</td><td>gems</td></tr>
-<tr><td>Gold</td><td>coins</td></tr>
-<tr><td>Rubies</td><td>rubies</td></tr>
-<tr><td>Reincarnation</td><td>reincarnation</td></tr>
-<tr><td>Ascension</td><td>ascension</td></tr>
-<tr><td>Last save time</td><td>lastsave</td></tr>
-<tr><td>Time since starting<br>Angelline bonus</td><td>sTimer</td></tr>
-<tr><td>Current mana</td><td>mana</td></tr>
-<tr><td>Contingency bar</td><td>contingency</td></tr>
-<tr><td>Contingency level</td><td>contingencyValue</td></tr>
-<tr><td>Current LS target</td><td>strikeTier</td></tr>
-<tr><td>Current Miracle target</td><td>miracleTier</td></tr>
-<tr><td>Time left on Miracle</td><td>miracleTimer</td></tr>
-<tr><td>Time left on Titan<br>charged effects</td><td>chargedTimer</td></tr>
-<tr><td>Combo Strike streak</td><td>comboStrikeCont</td></tr>
-<tr><td>Time since Green<br>Fingers bonus</td><td>goblinTimer</td></tr>
-<tr><td>Time since last<br>Storm of Wealth</td><td>wealthStorm</td></tr>
-<tr><td>Mercenary spell 1</td><td>mercSpell1</td></tr>
-<tr><td>Mercenary spell 2</td><td>mercSpell2</td></tr>
-<tr><td>Time since last click</td><td>cTimer</td></tr>
-<tr><td>Time since last keypress</td><td>kcTimer</td></tr>
-<tr><td>Time since last<br>mouse motion</td><td>mTimer</td></tr>
-<tr><td>Scry production timer</td><td>oTimer</td></tr>
-<tr><td>Scry mana timer</td><td>oTimer2</td></tr>
-<tr><td>Scry event timer</td><td>oTimer3</td></tr>
-<tr><td>Event season</td><td>season</td></tr>
-<tr><td>Event resources</td><td>eventResources</td></tr>
-<tr><td>Snowball scrys</td><td>snowballScryUses</td></tr>
-<tr><td>Snowball size</td><td>snowballSize</td></tr>
-<tr><td>Last Christmas gift</td><td>lastGiftDate</td></tr>
-<tr><td>Egg RNG value</td><td>eggRngState</td></tr>
-<tr><td>Egg stack size</td><td>eggStackSize</td></tr>
-<tr><td>CtA faction casts</td><td>ctaFactionCasts</td></tr>
+<template v-if="version >= 1">
+<table align="center" border="2" width="100%">
+<tr><th><center>+/-</center></th><th>Field</th><th>JS key</th><th>Current value</th><th>New value</th></tr>
+<tr><td align="center"><button v-on:click="toggleStatsAb">+/-</button></td><td>Stats (current abdication)</td><td>stats, stats</td></tr>
+<template v-if="showStatsAb == 'True'">
+<tr><td></td><td>--Coins gained</td><td>0</td>
+<tr><td></td><td>--Playtime</td><td>1</td>
+<tr><td></td><td>--Good playtime</td><td>2</td>
+<tr><td></td><td>--Evil playtime</td><td>3</td>
+<tr><td></td><td>--Clicks</td><td>4</td>
+<tr><td></td><td>--Coins gained from clicks</td><td>5</td>
+<tr><td></td><td>--Fairy coins gained</td><td>6</td>
+<tr><td></td><td>--Elf coins gained</td><td>7</td>
+<tr><td></td><td>--Angel coins gained</td><td>8</td>
+<tr><td></td><td>--Goblin coins gained</td><td>9</td>
+<tr><td></td><td>--Undead coins gained</td><td>10</td>
+<tr><td></td><td>--Demon coins gained</td><td>11</td>
+<tr><td></td><td>--Buildings, max</td><td>12</td>
+<tr><td></td><td>--Upgrades, max</td><td>13</td>
+<tr><td></td><td>--Trophy counter</td><td>14</td>
+<tr><td></td><td>--Spells cast</td><td>15</td>
+<tr><td></td><td>--Mana produced</td><td>16</td>
+<tr><td></td><td>--Fairy affiliations</td><td>17</td>
+<tr><td></td><td>--Elf affiliations</td><td>18</td>
+<tr><td></td><td>--Angel affiliations</td><td>19</td>
+<tr><td></td><td>--Goblin affiliations</td><td>20</td>
+<tr><td></td><td>--Undead affiliations</td><td>21</td>
+<tr><td></td><td>--Demon affiliations</td><td>22</td>
+<tr><td></td><td>--Assistant squishes</td><td>23</td>
+<tr><td></td><td>--Faction exchanges bought</td><td>24</td>
+<tr><td></td><td>--Coins gain from assistants</td><td>25</td>
+<tr><td></td><td>--Coins spent</td><td>26</td>
+<tr><td></td><td>--Mana spent</td><td>27</td>
+<tr><td></td><td>--Total abdications</td><td>28</td>
+<tr><td></td><td>--Playtime last abdication</td><td>29</td>
+<tr><td></td><td>--Gems gained last abdication</td><td>30</td>
+<tr><td></td><td>--Coins, max</td><td>31</td>
+<tr><td></td><td>--Titan affiliations</td><td>32</td>
+<tr><td></td><td>--Druid affiliations</td><td>33</td>
+<tr><td></td><td>--Faceless affiliations</td><td>34</td>
+<tr><td></td><td>--Excavations</td><td>35</td>
+<tr><td></td><td>--Excavation reports (?)</td><td>36</td>
+<tr><td></td><td>--Lightning Strike casts</td><td>37</td>
+<tr><td></td><td>--Faceless affiliation streak</td><td>38</td>
+<tr><td></td><td>--Playtime, max</td><td>39</td>
+<tr><td></td><td>--Spells, max</td><td>40</td>
+<tr><td></td><td>--Dwarf coins gained</td><td>41</td>
+<tr><td></td><td>--Drow coins gained</td><td>42</td>
+<tr><td></td><td>--Dwarf affiliations</td><td>43</td>
+<tr><td></td><td>--Drow affiliations</td><td>44</td>
+<tr><td></td><td>--Offline playtime</td><td>45</td>
+<tr><td></td><td>--Offline time, max</td><td>46</td>
+<tr><td></td><td>--Diamond Pickaxe FCs</td><td>47</td>
+<tr><td></td><td>--Honor Among Killers FCs</td><td>48</td>
+<tr><td></td><td>--Mercenary affiliations</td><td>49</td>
+<tr><td></td><td>--Fairy Playtime</td><td>50</td>
+<tr><td></td><td>--Elf playtime</td><td>51</td>
+<tr><td></td><td>--Angel playtime</td><td>52</td>
+<tr><td></td><td>--Goblin playtime</td><td>53</td>
+<tr><td></td><td>--Undead playtime</td><td>54</td>
+<tr><td></td><td>--Demon playtime</td><td>55</td>
+<tr><td></td><td>--Titan playtime</td><td>56</td>
+<tr><td></td><td>--Druid playtime</td><td>57</td>
+<tr><td></td><td>--Faceless playtime</td><td>58</td>
+<tr><td></td><td>--Dwarf playtime</td><td>59</td>
+<tr><td></td><td>--Drow playtime</td><td>60</td>
+<tr><td></td><td>--Mercenary playtime</td><td>61</td>
+<tr><td></td><td>--Unaffiliated playtime</td><td>62</td>
+<tr><td></td><td>--Automatic clicks</td><td>63</td>
+<tr><td></td><td>--Goblin's Greed streak</td><td>64</td>
+<tr><td></td><td>--Pay upkeep (unused)</td><td>65</td><td></td><td></td></tr>
+<tr><td></td><td>--Fairy upgrades bought</td><td>66</td>
+<tr><td></td><td>--Elf upgrades bought</td><td>67</td>
+<tr><td></td><td>--Angel upgrades bought</td><td>68</td>
+<tr><td></td><td>--Goblin upgrades bought</td><td>69</td>
+<tr><td></td><td>--Undead upgrades bought</td><td>70</td>
+<tr><td></td><td>--Demon upgrades bought</td><td>71</td>
+<tr><td></td><td>--Titan upgrades bought</td><td>72</td>
+<tr><td></td><td>--Druid upgrades bought</td><td>73</td>
+<tr><td></td><td>--Faceless upgrades bought</td><td>74</td>
+<tr><td></td><td>--Dwarf upgrades bought</td><td>75</td>
+<tr><td></td><td>--Drow upgrades bought</td><td>76</td>
+<tr><td></td><td>--Mercenary upgrades bought</td><td>77</td>
+<tr><td></td><td>--Max FCs at once</td><td>78</td>
+<tr><td></td><td>--Fairy coins gained, max</td><td>79</td>
+<tr><td></td><td>--Elf coins gained, max</td><td>80</td>
+<tr><td></td><td>--Angel coins gained, max</td><td>81</td>
+<tr><td></td><td>--Goblin coins gained, max</td><td>82</td>
+<tr><td></td><td>--Undead coins gained, max</td><td>83</td>
+<tr><td></td><td>--Demon coins gained, max</td><td>84</td>
+<tr><td></td><td>--Dwarf coins gained, max</td><td>85</td>
+<tr><td></td><td>--Drow coins gained, max</td><td>86</td>
+<tr><td></td><td>--Treasure clicks, max</td><td>87</td>
+<tr><td></td><td>--Assistant squishes, max</td><td>88</td>
+<tr><td></td><td>--Automatic clicks, max</td><td>89</td>
+<tr><td></td><td>--Spellcraft research level</td><td>90</td>
+<tr><td></td><td>--Craftsmanship research level</td><td>91</td>
+<tr><td></td><td>--Divine research level</td><td>92</td>
+<tr><td></td><td>--Economics research level</td><td>93</td>
+<tr><td></td><td>--Alchemy research level</td><td>94</td>
+<tr><td></td><td>--Warfare research level</td><td>95</td>
+<tr><td></td><td>--Base assistants, max</td><td>96</td>
+<tr><td></td><td>--Time with at least one spell active</td><td>97</td>
+<tr><td></td><td>--Excavations, max</td><td>98</td>
+<tr><td></td><td>--Angel affiliations streak</td><td>99</td>
+<tr><td></td><td>--Demon affiliations streak</td><td>100</td>
+<tr><td></td><td>--Elven Luck streak</td><td>101</td>
+<tr><td></td><td>--Rubies gained</td><td>102</td>
+<tr><td></td><td>--Rubies purchased?</td><td>103</td>
+<tr><td></td><td>--Excavation resets</td><td>104</td>
+<tr><td></td><td>--Ruby assistant upgrades</td><td>105</td>
+<tr><td></td><td>--Ruby mana regen upgrades</td><td>106</td>
+<tr><td></td><td>--Ruby max mana upgrades</td><td>107</td>
+<tr><td></td><td>--Ruby gem bonus upgrades</td><td>108</td>
+<tr><td></td><td>--Ruby royal exchange upgrades</td><td>109</td>
+<tr><td></td><td>--Snowballs found</td><td>110</td>
+<tr><td></td><td>--Gifts founds</td><td>111</td>
+<tr><td></td><td>--Lightning Strike FCs</td><td>112</td>
+<tr><td></td><td>--Territorial Expanse Labyrinths</td><td>113</td>
+<tr><td></td><td>--Heart assistant upgrades</td><td>114</td>
+<tr><td></td><td>--Heart mana regen upgrades</td><td>115</td>
+<tr><td></td><td>--Heart max mana upgrades</td><td>116</td>
+<tr><td></td><td>--Heart gem bonus upgrades</td><td>117</td>
+<tr><td></td><td>--Heart royal exchange upgrades</td><td>118</td>
+<tr><td></td><td>--Hearts found</td><td>119</td>
+<tr><td></td><td>--Call to Love casts</td><td>120</td>
+<tr><td></td><td>--Offline time during Valentine's event</td><td>121</td>
+<tr><td></td><td>--Ruby resets</td><td>122</td>
+<tr><td></td><td>--Common eggs collected</td><td>123</td>
+<tr><td></td><td>--Rare eggs collected</td><td>124</td>
+</template>
+<tr><td align="center"><button v-on:click="toggleStatsReinc">+/-</button></td><td>Stats (current reincarnation)</td><td>stats, statsReset</td></tr>
+<template v-if="showStatsReinc == 'True'">
+<tr><td></td><td>--Coins gained</td><td>0</td>
+<tr><td></td><td>--Playtime</td><td>1</td>
+<tr><td></td><td>--Good playtime</td><td>2</td>
+<tr><td></td><td>--Evil playtime</td><td>3</td>
+<tr><td></td><td>--Clicks</td><td>4</td>
+<tr><td></td><td>--Coins gained from clicks</td><td>5</td>
+<tr><td></td><td>--Fairy coins gained</td><td>6</td>
+<tr><td></td><td>--Elf coins gained</td><td>7</td>
+<tr><td></td><td>--Angel coins gained</td><td>8</td>
+<tr><td></td><td>--Goblin coins gained</td><td>9</td>
+<tr><td></td><td>--Undead coins gained</td><td>10</td>
+<tr><td></td><td>--Demon coins gained</td><td>11</td>
+<tr><td></td><td>--Buildings, max</td><td>12</td>
+<tr><td></td><td>--Upgrades, max</td><td>13</td>
+<tr><td></td><td>--Trophy counter</td><td>14</td>
+<tr><td></td><td>--Spells cast</td><td>15</td>
+<tr><td></td><td>--Mana produced</td><td>16</td>
+<tr><td></td><td>--Fairy affiliations</td><td>17</td>
+<tr><td></td><td>--Elf affiliations</td><td>18</td>
+<tr><td></td><td>--Angel affiliations</td><td>19</td>
+<tr><td></td><td>--Goblin affiliations</td><td>20</td>
+<tr><td></td><td>--Undead affiliations</td><td>21</td>
+<tr><td></td><td>--Demon affiliations</td><td>22</td>
+<tr><td></td><td>--Assistant squishes</td><td>23</td>
+<tr><td></td><td>--Faction exchanges bought</td><td>24</td>
+<tr><td></td><td>--Coins gain from assistants</td><td>25</td>
+<tr><td></td><td>--Coins spent</td><td>26</td>
+<tr><td></td><td>--Mana spent</td><td>27</td>
+<tr><td></td><td>--Total abdications</td><td>28</td>
+<tr><td></td><td>--Playtime last abdication</td><td>29</td>
+<tr><td></td><td>--Gems gained last abdication</td><td>30</td>
+<tr><td></td><td>--Coins, max</td><td>31</td>
+<tr><td></td><td>--Titan affiliations</td><td>32</td>
+<tr><td></td><td>--Druid affiliations</td><td>33</td>
+<tr><td></td><td>--Faceless affiliations</td><td>34</td>
+<tr><td></td><td>--Excavations</td><td>35</td>
+<tr><td></td><td>--Excavation reports (?)</td><td>36</td>
+<tr><td></td><td>--Lightning Strike casts</td><td>37</td>
+<tr><td></td><td>--Faceless affiliation streak</td><td>38</td>
+<tr><td></td><td>--Playtime, max</td><td>39</td>
+<tr><td></td><td>--Spells, max</td><td>40</td>
+<tr><td></td><td>--Dwarf coins gained</td><td>41</td>
+<tr><td></td><td>--Drow coins gained</td><td>42</td>
+<tr><td></td><td>--Dwarf affiliations</td><td>43</td>
+<tr><td></td><td>--Drow affiliations</td><td>44</td>
+<tr><td></td><td>--Offline playtime</td><td>45</td>
+<tr><td></td><td>--Offline time, max</td><td>46</td>
+<tr><td></td><td>--Diamond Pickaxe FCs</td><td>47</td>
+<tr><td></td><td>--Honor Among Killers FCs</td><td>48</td>
+<tr><td></td><td>--Mercenary affiliations</td><td>49</td>
+<tr><td></td><td>--Fairy Playtime</td><td>50</td>
+<tr><td></td><td>--Elf playtime</td><td>51</td>
+<tr><td></td><td>--Angel playtime</td><td>52</td>
+<tr><td></td><td>--Goblin playtime</td><td>53</td>
+<tr><td></td><td>--Undead playtime</td><td>54</td>
+<tr><td></td><td>--Demon playtime</td><td>55</td>
+<tr><td></td><td>--Titan playtime</td><td>56</td>
+<tr><td></td><td>--Druid playtime</td><td>57</td>
+<tr><td></td><td>--Faceless playtime</td><td>58</td>
+<tr><td></td><td>--Dwarf playtime</td><td>59</td>
+<tr><td></td><td>--Drow playtime</td><td>60</td>
+<tr><td></td><td>--Mercenary playtime</td><td>61</td>
+<tr><td></td><td>--Unaffiliated playtime</td><td>62</td>
+<tr><td></td><td>--Automatic clicks</td><td>63</td>
+<tr><td></td><td>--Goblin's Greed streak</td><td>64</td>
+<tr><td></td><td>--Pay upkeep (unused)</td><td>65</td><td></td><td></td></tr>
+<tr><td></td><td>--Fairy upgrades bought</td><td>66</td>
+<tr><td></td><td>--Elf upgrades bought</td><td>67</td>
+<tr><td></td><td>--Angel upgrades bought</td><td>68</td>
+<tr><td></td><td>--Goblin upgrades bought</td><td>69</td>
+<tr><td></td><td>--Undead upgrades bought</td><td>70</td>
+<tr><td></td><td>--Demon upgrades bought</td><td>71</td>
+<tr><td></td><td>--Titan upgrades bought</td><td>72</td>
+<tr><td></td><td>--Druid upgrades bought</td><td>73</td>
+<tr><td></td><td>--Faceless upgrades bought</td><td>74</td>
+<tr><td></td><td>--Dwarf upgrades bought</td><td>75</td>
+<tr><td></td><td>--Drow upgrades bought</td><td>76</td>
+<tr><td></td><td>--Mercenary upgrades bought</td><td>77</td>
+<tr><td></td><td>--Max FCs at once</td><td>78</td>
+<tr><td></td><td>--Fairy coins gained, max</td><td>79</td>
+<tr><td></td><td>--Elf coins gained, max</td><td>80</td>
+<tr><td></td><td>--Angel coins gained, max</td><td>81</td>
+<tr><td></td><td>--Goblin coins gained, max</td><td>82</td>
+<tr><td></td><td>--Undead coins gained, max</td><td>83</td>
+<tr><td></td><td>--Demon coins gained, max</td><td>84</td>
+<tr><td></td><td>--Dwarf coins gained, max</td><td>85</td>
+<tr><td></td><td>--Drow coins gained, max</td><td>86</td>
+<tr><td></td><td>--Treasure clicks, max</td><td>87</td>
+<tr><td></td><td>--Assistant squishes, max</td><td>88</td>
+<tr><td></td><td>--Automatic clicks, max</td><td>89</td>
+<tr><td></td><td>--Spellcraft research level</td><td>90</td>
+<tr><td></td><td>--Craftsmanship research level</td><td>91</td>
+<tr><td></td><td>--Divine research level</td><td>92</td>
+<tr><td></td><td>--Economics research level</td><td>93</td>
+<tr><td></td><td>--Alchemy research level</td><td>94</td>
+<tr><td></td><td>--Warfare research level</td><td>95</td>
+<tr><td></td><td>--Base assistants, max</td><td>96</td>
+<tr><td></td><td>--Time with at least one spell active</td><td>97</td>
+<tr><td></td><td>--Excavations, max</td><td>98</td>
+<tr><td></td><td>--Angel affiliations streak</td><td>99</td>
+<tr><td></td><td>--Demon affiliations streak</td><td>100</td>
+<tr><td></td><td>--Elven Luck streak</td><td>101</td>
+<tr><td></td><td>--Rubies gained</td><td>102</td>
+<tr><td></td><td>--Rubies purchased?</td><td>103</td>
+<tr><td></td><td>--Excavation resets</td><td>104</td>
+<tr><td></td><td>--Ruby assistant upgrades</td><td>105</td>
+<tr><td></td><td>--Ruby mana regen upgrades</td><td>106</td>
+<tr><td></td><td>--Ruby max mana upgrades</td><td>107</td>
+<tr><td></td><td>--Ruby gem bonus upgrades</td><td>108</td>
+<tr><td></td><td>--Ruby royal exchange upgrades</td><td>109</td>
+<tr><td></td><td>--Snowballs found</td><td>110</td>
+<tr><td></td><td>--Gifts founds</td><td>111</td>
+<tr><td></td><td>--Lightning Strike FCs</td><td>112</td>
+<tr><td></td><td>--Territorial Expanse Labyrinths</td><td>113</td>
+<tr><td></td><td>--Heart assistant upgrades</td><td>114</td>
+<tr><td></td><td>--Heart mana regen upgrades</td><td>115</td>
+<tr><td></td><td>--Heart max mana upgrades</td><td>116</td>
+<tr><td></td><td>--Heart gem bonus upgrades</td><td>117</td>
+<tr><td></td><td>--Heart royal exchange upgrades</td><td>118</td>
+<tr><td></td><td>--Hearts found</td><td>119</td>
+<tr><td></td><td>--Call to Love casts</td><td>120</td>
+<tr><td></td><td>--Offline time during Valentine's event</td><td>121</td>
+<tr><td></td><td>--Ruby resets</td><td>122</td>
+<tr><td></td><td>--Common eggs collected</td><td>123</td>
+<tr><td></td><td>--Rare eggs collected</td><td>124</td>
+</template>
+<tr><td align="center"><button v-on:click="toggleStatsAll">+/-</button></td><td>Stats (all time)</td><td>stats, statsRei</td></tr>
+<template v-if="showStatsAll == 'True'">
+<tr><td></td><td>--Coins gained</td><td>0</td>
+<tr><td></td><td>--Playtime</td><td>1</td>
+<tr><td></td><td>--Good playtime</td><td>2</td>
+<tr><td></td><td>--Evil playtime</td><td>3</td>
+<tr><td></td><td>--Clicks</td><td>4</td>
+<tr><td></td><td>--Coins gained from clicks</td><td>5</td>
+<tr><td></td><td>--Fairy coins gained</td><td>6</td>
+<tr><td></td><td>--Elf coins gained</td><td>7</td>
+<tr><td></td><td>--Angel coins gained</td><td>8</td>
+<tr><td></td><td>--Goblin coins gained</td><td>9</td>
+<tr><td></td><td>--Undead coins gained</td><td>10</td>
+<tr><td></td><td>--Demon coins gained</td><td>11</td>
+<tr><td></td><td>--Buildings, max</td><td>12</td>
+<tr><td></td><td>--Upgrades, max</td><td>13</td>
+<tr><td></td><td>--Trophy counter</td><td>14</td>
+<tr><td></td><td>--Spells cast</td><td>15</td>
+<tr><td></td><td>--Mana produced</td><td>16</td>
+<tr><td></td><td>--Fairy affiliations</td><td>17</td>
+<tr><td></td><td>--Elf affiliations</td><td>18</td>
+<tr><td></td><td>--Angel affiliations</td><td>19</td>
+<tr><td></td><td>--Goblin affiliations</td><td>20</td>
+<tr><td></td><td>--Undead affiliations</td><td>21</td>
+<tr><td></td><td>--Demon affiliations</td><td>22</td>
+<tr><td></td><td>--Assistant squishes</td><td>23</td>
+<tr><td></td><td>--Faction exchanges bought</td><td>24</td>
+<tr><td></td><td>--Coins gain from assistants</td><td>25</td>
+<tr><td></td><td>--Coins spent</td><td>26</td>
+<tr><td></td><td>--Mana spent</td><td>27</td>
+<tr><td></td><td>--Total abdications</td><td>28</td>
+<tr><td></td><td>--Playtime last abdication</td><td>29</td>
+<tr><td></td><td>--Gems gained last abdication</td><td>30</td>
+<tr><td></td><td>--Coins, max</td><td>31</td>
+<tr><td></td><td>--Titan affiliations</td><td>32</td>
+<tr><td></td><td>--Druid affiliations</td><td>33</td>
+<tr><td></td><td>--Faceless affiliations</td><td>34</td>
+<tr><td></td><td>--Excavations</td><td>35</td>
+<tr><td></td><td>--Excavation reports (?)</td><td>36</td>
+<tr><td></td><td>--Lightning Strike casts</td><td>37</td>
+<tr><td></td><td>--Faceless affiliation streak</td><td>38</td>
+<tr><td></td><td>--Playtime, max</td><td>39</td>
+<tr><td></td><td>--Spells, max</td><td>40</td>
+<tr><td></td><td>--Dwarf coins gained</td><td>41</td>
+<tr><td></td><td>--Drow coins gained</td><td>42</td>
+<tr><td></td><td>--Dwarf affiliations</td><td>43</td>
+<tr><td></td><td>--Drow affiliations</td><td>44</td>
+<tr><td></td><td>--Offline playtime</td><td>45</td>
+<tr><td></td><td>--Offline time, max</td><td>46</td>
+<tr><td></td><td>--Diamond Pickaxe FCs</td><td>47</td>
+<tr><td></td><td>--Honor Among Killers FCs</td><td>48</td>
+<tr><td></td><td>--Mercenary affiliations</td><td>49</td>
+<tr><td></td><td>--Fairy Playtime</td><td>50</td>
+<tr><td></td><td>--Elf playtime</td><td>51</td>
+<tr><td></td><td>--Angel playtime</td><td>52</td>
+<tr><td></td><td>--Goblin playtime</td><td>53</td>
+<tr><td></td><td>--Undead playtime</td><td>54</td>
+<tr><td></td><td>--Demon playtime</td><td>55</td>
+<tr><td></td><td>--Titan playtime</td><td>56</td>
+<tr><td></td><td>--Druid playtime</td><td>57</td>
+<tr><td></td><td>--Faceless playtime</td><td>58</td>
+<tr><td></td><td>--Dwarf playtime</td><td>59</td>
+<tr><td></td><td>--Drow playtime</td><td>60</td>
+<tr><td></td><td>--Mercenary playtime</td><td>61</td>
+<tr><td></td><td>--Unaffiliated playtime</td><td>62</td>
+<tr><td></td><td>--Automatic clicks</td><td>63</td>
+<tr><td></td><td>--Goblin's Greed streak</td><td>64</td>
+<tr><td></td><td>--Pay upkeep (unused)</td><td>65</td><td></td><td></td></tr>
+<tr><td></td><td>--Fairy upgrades bought</td><td>66</td>
+<tr><td></td><td>--Elf upgrades bought</td><td>67</td>
+<tr><td></td><td>--Angel upgrades bought</td><td>68</td>
+<tr><td></td><td>--Goblin upgrades bought</td><td>69</td>
+<tr><td></td><td>--Undead upgrades bought</td><td>70</td>
+<tr><td></td><td>--Demon upgrades bought</td><td>71</td>
+<tr><td></td><td>--Titan upgrades bought</td><td>72</td>
+<tr><td></td><td>--Druid upgrades bought</td><td>73</td>
+<tr><td></td><td>--Faceless upgrades bought</td><td>74</td>
+<tr><td></td><td>--Dwarf upgrades bought</td><td>75</td>
+<tr><td></td><td>--Drow upgrades bought</td><td>76</td>
+<tr><td></td><td>--Mercenary upgrades bought</td><td>77</td>
+<tr><td></td><td>--Max FCs at once</td><td>78</td>
+<tr><td></td><td>--Fairy coins gained, max</td><td>79</td>
+<tr><td></td><td>--Elf coins gained, max</td><td>80</td>
+<tr><td></td><td>--Angel coins gained, max</td><td>81</td>
+<tr><td></td><td>--Goblin coins gained, max</td><td>82</td>
+<tr><td></td><td>--Undead coins gained, max</td><td>83</td>
+<tr><td></td><td>--Demon coins gained, max</td><td>84</td>
+<tr><td></td><td>--Dwarf coins gained, max</td><td>85</td>
+<tr><td></td><td>--Drow coins gained, max</td><td>86</td>
+<tr><td></td><td>--Treasure clicks, max</td><td>87</td>
+<tr><td></td><td>--Assistant squishes, max</td><td>88</td>
+<tr><td></td><td>--Automatic clicks, max</td><td>89</td>
+<tr><td></td><td>--Spellcraft research level</td><td>90</td>
+<tr><td></td><td>--Craftsmanship research level</td><td>91</td>
+<tr><td></td><td>--Divine research level</td><td>92</td>
+<tr><td></td><td>--Economics research level</td><td>93</td>
+<tr><td></td><td>--Alchemy research level</td><td>94</td>
+<tr><td></td><td>--Warfare research level</td><td>95</td>
+<tr><td></td><td>--Base assistants, max</td><td>96</td>
+<tr><td></td><td>--Time with at least one spell active</td><td>97</td>
+<tr><td></td><td>--Excavations, max</td><td>98</td>
+<tr><td></td><td>--Angel affiliations streak</td><td>99</td>
+<tr><td></td><td>--Demon affiliations streak</td><td>100</td>
+<tr><td></td><td>--Elven Luck streak</td><td>101</td>
+<tr><td></td><td>--Rubies gained</td><td>102</td>
+<tr><td></td><td>--Rubies purchased?</td><td>103</td>
+<tr><td></td><td>--Excavation resets</td><td>104</td>
+<tr><td></td><td>--Ruby assistant upgrades</td><td>105</td>
+<tr><td></td><td>--Ruby mana regen upgrades</td><td>106</td>
+<tr><td></td><td>--Ruby max mana upgrades</td><td>107</td>
+<tr><td></td><td>--Ruby gem bonus upgrades</td><td>108</td>
+<tr><td></td><td>--Ruby royal exchange upgrades</td><td>109</td>
+<tr><td></td><td>--Snowballs found</td><td>110</td>
+<tr><td></td><td>--Gifts founds</td><td>111</td>
+<tr><td></td><td>--Lightning Strike FCs</td><td>112</td>
+<tr><td></td><td>--Territorial Expanse Labyrinths</td><td>113</td>
+<tr><td></td><td>--Heart assistant upgrades</td><td>114</td>
+<tr><td></td><td>--Heart mana regen upgrades</td><td>115</td>
+<tr><td></td><td>--Heart max mana upgrades</td><td>116</td>
+<tr><td></td><td>--Heart gem bonus upgrades</td><td>117</td>
+<tr><td></td><td>--Heart royal exchange upgrades</td><td>118</td>
+<tr><td></td><td>--Hearts found</td><td>119</td>
+<tr><td></td><td>--Call to Love casts</td><td>120</td>
+<tr><td></td><td>--Offline time during Valentine's event</td><td>121</td>
+<tr><td></td><td>--Ruby resets</td><td>122</td>
+<tr><td></td><td>--Common eggs collected</td><td>123</td>
+<tr><td></td><td>--Rare eggs collected</td><td>124</td>
+</template>
+<tr><td align="center"><button v-on:click="toggleBuildings">+/-</button></td><td>Buildings</td><td>build</td></tr>
+<template v-if="showBuildings == 'True'">
+<tr><td></td><td>--Farm</td><td>9</td></tr>
+<tr><td></td><td>--Inn</td><td>13</td></tr>
+<tr><td></td><td>--Blacksmith</td><td>3</td></tr>
+<tr><td></td><td>--Warrior Barracks</td><td>23</td></tr>
+<tr><td></td><td>--Knights Joust</td><td>15</td></tr>
+<tr><td></td><td>--Wizard Tower</td><td>25</td></tr>
+<tr><td></td><td>--Cathedral</td><td>4</td></tr>
+<tr><td></td><td>--Citadel</td><td>5</td></tr>
+<tr><td></td><td>--Royal Castle</td><td>20</td></tr>
+<tr><td></td><td>--Heaven's Gate</td><td>11</td></tr>
+<tr><td></td><td>--Slave Pen</td><td>21</td></tr>
+<tr><td></td><td>--Orcish Arena</td><td>19</td></tr>
+<tr><td></td><td>--With Conclave</td><td>24</td></tr>
+<tr><td></td><td>--Dark Temple</td><td>6</td></tr>
+<tr><td></td><td>--Necropolis</td><td>18</td></tr>
+<tr><td></td><td>--Evil Fortress</td><td>8</td></tr>
+<tr><td></td><td>--Hell Portal</td><td>12</td></tr>
+<tr><td></td><td>--Deep Mine</td><td>7</td></tr>
+<tr><td></td><td>--Stone Pillars</td><td>22</td></tr>
+<tr><td></td><td>--Alchemist Lab</td><td>1</td></tr>
+<tr><td></td><td>--Monastery</td><td>17</td></tr>
+<tr><td></td><td>--Labyrinth</td><td>16</td></tr>
+<tr><td></td><td>--Iron Stronghold</td><td>14</td></tr>
+<tr><td></td><td>--Ancient Pyramid</td><td>2</td></tr>
+<tr><td></td><td>--Hall of Legends</td><td>10</td></tr>
+</template>
+<tr><td align="center"><button v-on:click="toggleUpgrades">+/-</button></td><td>Upgrades</td><td>upgrade</td></tr>
+<template v-if="showUpgrades == 'True'">
+<tr><td></td><td>--Reincarnation Power</td><td>36</td></tr>
+<tr><td></td><td>--Proof of Good Deed</td><td>224</td></tr>
+<tr><td></td><td>--Proof of Evil Deed</td><td>178</td></tr>
+<tr><td></td><td>--Proof of Neutrality</td><td>388</td></tr>
+<tr><td></td><td>--Fairy Exchange</td><td>196</td></tr>
+<tr><td></td><td>--Elven Exchange</td><td>168</td></tr>
+<tr><td></td><td>--Angelic Exchange</td><td>46</td></tr>
+<tr><td></td><td>--Goblin Exchange</td><td>215</td></tr>
+<tr><td></td><td>--Undead Exchange</td><td>397</td></tr>
+<tr><td></td><td>--Demonic Exchange</td><td>107</td></tr>
+<tr><td></td><td>--Dwarven Exchange</td><td>151</td></tr>
+<tr><td></td><td>--Drow Exchange</td><td>121</td></tr>
+<tr><td></td><td>--Spellweavery</td><td>294</td></tr>
+<tr><td></td><td>--Carpentry</td><td>291</td></tr>
+<tr><td></td><td>--Pantheon</td><td>292</td></tr>
+<tr><td></td><td>--Exchequer</td><td>293</td></tr>
+<tr><td></td><td>--Laboratory</td><td>290</td></tr>
+<tr><td></td><td>--Strategy Room</td><td>296</td></tr>
+<tr><td></td><td>--Secrets of the Ancients</td><td>470</td></tr>
+<tr><td></td><td>--Secrets of the Underworld</td><td>549</td></tr>
+<tr><td></td><td>--</td><td></td></tr>
+<tr><td></td><td>--</td><td></td></tr>
+<tr><td></td><td>--</td><td></td></tr>
+<tr><td></td><td>--</td><td></td></tr>
+<tr><td></td><td>--</td><td></td></tr>
+<tr><td></td><td>--</td><td></td></tr>
+<tr><td></td><td>--</td><td></td></tr>
+<tr><td></td><td>--</td><td></td></tr>
+</template>
+<tr><td></td><td>Trophies</td><td>trophy</td></tr>
+<tr><td></td><td>Spells</td><td>spell</td></tr>
+<tr><td></td><td>Artifact RNG value</td><td>artifactRngState</td></tr>
+<tr><td></td><td>Alignment</td><td>alignment</td></tr>
+<tr><td></td><td>Faction</td><td>faction</td></tr>
+<tr><td></td><td>Prestige Faction</td><td>prestigeFaction</td></tr>
+<tr><td></td><td>Bloodstream bonus based<br>on this faction</td><td>bFaction</td></tr>
+<tr><td></td><td>Excavations</td><td>excavations</td></tr>
+<tr><td></td><td>FCs and REs</td><td>factionCoins</td></tr>
+<tr><td></td><td>Gems</td><td>gems</td></tr>
+<tr><td></td><td>Gold</td><td>coins</td></tr>
+<tr><td></td><td>Rubies</td><td>rubies</td></tr>
+<tr><td></td><td>Reincarnation</td><td>reincarnation</td></tr>
+<tr><td></td><td>Ascension</td><td>ascension</td></tr>
+<tr><td></td><td>Last save time</td><td>lastsave</td></tr>
+<tr><td></td><td>Time since starting<br>Angelline bonus</td><td>sTimer</td></tr>
+<tr><td></td><td>Current mana</td><td>mana</td></tr>
+<tr><td></td><td>Contingency bar</td><td>contingency</td></tr>
+<tr><td></td><td>Contingency level</td><td>contingencyValue</td></tr>
+<tr><td></td><td>Current LS target</td><td>strikeTier</td></tr>
+<tr><td></td><td>Current Miracle target</td><td>miracleTier</td></tr>
+<tr><td></td><td>Time left on Miracle</td><td>miracleTimer</td></tr>
+<tr><td></td><td>Time left on Titan<br>charged effects</td><td>chargedTimer</td></tr>
+<tr><td></td><td>Combo Strike streak</td><td>comboStrikeCont</td></tr>
+<tr><td></td><td>Time since Green<br>Fingers bonus</td><td>goblinTimer</td></tr>
+<tr><td></td><td>Time since last<br>Storm of Wealth</td><td>wealthStorm</td></tr>
+<tr><td></td><td>Mercenary spell 1</td><td>mercSpell1</td></tr>
+<tr><td></td><td>Mercenary spell 2</td><td>mercSpell2</td></tr>
+<tr><td></td><td>Time since last click</td><td>cTimer</td></tr>
+<tr><td></td><td>Time since last keypress</td><td>kcTimer</td></tr>
+<tr><td></td><td>Time since last<br>mouse motion</td><td>mTimer</td></tr>
+<tr><td></td><td>Scry production timer</td><td>oTimer</td></tr>
+<tr><td></td><td>Scry mana timer</td><td>oTimer2</td></tr>
+<tr><td></td><td>Scry event timer</td><td>oTimer3</td></tr>
+<tr><td></td><td>Event season</td><td>season</td></tr>
+<tr><td></td><td>Event resources</td><td>eventResources</td></tr>
+<tr><td></td><td>Snowball scrys</td><td>snowballScryUses</td></tr>
+<tr><td></td><td>Snowball size</td><td>snowballSize</td></tr>
+<tr><td></td><td>Last Christmas gift</td><td>lastGiftDate</td></tr>
+<tr><td></td><td>Egg RNG value</td><td>eggRngState</td></tr>
+<tr><td></td><td>Egg stack size</td><td>eggStackSize</td></tr>
+<tr><td></td><td>CtA faction casts</td><td>ctaFactionCasts</td></tr>
 </table>
 </template>
 </div>
-<script type="text/javascript">
-var savedata = {}
-var myViewModel = new Vue({
-  el: '#app',
-  data: {
-    datainput: '',
-    editdata: 'empty',
-    version: ''
-  },
-  watch: {
-    datainput: function(data){
-      this.version = ''
-      try {
-        savedata = SaveHandler.Decode(this.datainput);
-        console.log('Decoded save:', savedata);
-        this.editdata = 'Decoded. No edits made';
-        this.version = savedata.saveVersion
-      } catch(err) {
-          this.editdata = 'Invalid data';
-          console.log(err);
-      }
-    }
-  }
-});
-</script>
-
+<script src="index.js"></script>
