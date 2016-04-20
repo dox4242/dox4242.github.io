@@ -21,7 +21,7 @@
 <tr><td>Edited save:</td><td><input type="text" v-model="editdata"></td></tr>
 <tr></tr>
 </table><br>
-<template v-if="version >= 1">
+<template v-if="save.saveVersion >= 1">
 <table align="center" border="2" width="100%">
 <tr><th><center>+/-</center></th><th>Field</th><th>JS key</th><th>Current value</th><th>New value</th></tr>
 <tr><td align="center"><button v-on:click="toggleStatsAb">+/-</button></td><td>Stats (current abdication)</td><td>stats, stats</td></tr>
@@ -469,20 +469,20 @@
 </template>
 <tr><td></td><td>Trophies</td><td>trophy</td></tr>
 <tr><td></td><td>Spells</td><td>spell</td></tr>
-<tr><td></td><td>Artifact RNG value</td><td>artifactRngState</td><td>{{ artifactRngState }}</tr>
-<tr><td></td><td>Alignment</td><td>alignment</td></tr>
-<tr><td></td><td>Faction</td><td>faction</td></tr>
-<tr><td></td><td>Prestige Faction</td><td>prestigeFaction</td></tr>
-<tr><td></td><td>Bloodstream bonus based<br>on this faction</td><td>bFaction</td></tr>
-<tr><td></td><td>Excavations</td><td>excavations</td></tr>
+<tr><td></td><td>Artifact RNG value</td><td>artifactRngState</td><td>{{ save.artifactRngState }}</tr>
+<tr><td></td><td>Alignment</td><td>alignment</td><td>{{ save.alignment }}</td></tr>
+<tr><td></td><td>Faction</td><td>faction</td><td>{{ save.faction }}</td></tr>
+<tr><td></td><td>Prestige Faction</td><td>prestigeFaction</td><td>{{ save.prestigeFaction }}</td></tr>
+<tr><td></td><td>Bloodstream bonus based<br>on this faction</td><td>bFaction</td><td>{{ save.bFaction }}</td></tr>
+<tr><td></td><td>Excavations</td><td>excavations</td><td>{{ save.excavations }}</td></tr>
 <tr><td></td><td>FCs and REs</td><td>factionCoins</td></tr>
-<tr><td></td><td>Gems</td><td>gems</td></tr>
-<tr><td></td><td>Gold</td><td>coins</td></tr>
-<tr><td></td><td>Rubies</td><td>rubies</td></tr>
-<tr><td></td><td>Reincarnation</td><td>reincarnation</td></tr>
-<tr><td></td><td>Ascension</td><td>ascension</td></tr>
-<tr><td></td><td>Last save time</td><td>lastsave</td></tr>
-<tr><td></td><td>Time since starting<br>Angelline bonus</td><td>sTimer</td></tr>
+<tr><td></td><td>Gems</td><td>gems</td><td>{{ save.gems }}</td></tr>
+<tr><td></td><td>Gold</td><td>coins</td><td>{{ save.coins }}</td></tr>
+<tr><td></td><td>Rubies</td><td>rubies</td><td>{{ save.rubies }}</td></tr>
+<tr><td></td><td>Reincarnation</td><td>reincarnation</td><td>{{ save.reincarnation }}</td></tr>
+<tr><td></td><td>Ascension</td><td>ascension</td><td>{{ save.ascension }}</td></tr>
+<tr><td></td><td>Last save time</td><td>lastsave</td><td>{{ save.lastsave }}</td></tr>
+<tr><td></td><td>Time since starting<br>Angelline bonus</td><td>sTimer</td><td>{{ save.sTimer }}</td></tr>
 <tr><td></td><td>Current mana</td><td>mana</td></tr>
 <tr><td></td><td>Contingency bar</td><td>contingency</td></tr>
 <tr><td></td><td>Contingency level</td><td>contingencyValue</td></tr>
