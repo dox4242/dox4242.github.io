@@ -4,8 +4,6 @@ var myViewModel = new Vue({
     datainput: '',
     save: {},
     editdata: 'empty',
-    version: '',
-    artifactRngState: '',
     showStatsAb: 'False',
     showStatsReinc: 'False',
     showStatsAll: 'False',
@@ -19,8 +17,6 @@ var myViewModel = new Vue({
         this.save = SaveHandler.Decode(this.datainput)
         console.log('Decoded save:', this.save)
         this.editdata = 'Decoded. No edits made'
-        this.version = this.save.saveVersion
-        this.artifactRngState = this.save.artifactRngState
       } catch(err) {
           this.editdata = 'Invalid data'
           console.log(err)
