@@ -22,7 +22,7 @@
 <tr></tr>
 </table><br>
 <template v-if="save.saveVersion >= 1">
-<table align="center" border="2" width="1000">
+<table border="2" width="1000">
 <tr><th><center>+/-</center></th><th>Field</th><th>key</th><th>Current value</th><th>New value</th></tr>
 <tr><td align="center"><button v-on:click="toggleStatsAb">+/-</button></td><td>Stats (current abdication)</td><td>stats, stats</td></tr>
 <template v-if="showStatsAb == 'True'">
@@ -408,41 +408,216 @@
 <tr><td></td><td>--Common eggs collected</td><td>123</td><td>{{ save.stats[123].statsRei }}</td></tr>
 <tr><td></td><td>--Rare eggs collected</td><td>124</td><td>{{ save.stats[124].statsRei }}</td></tr>
 </template>
-<tr><td align="center"><button v-on:click="toggleBuildings">+/-</button></td><td>Buildings</td><td>build</td></tr>
+<tr><td align="center"><button v-on:click="toggleBuildings">+/-</button></td><td>Buildings</td><td>buildings</td></tr>
 <template v-if="showBuildings == 'True'">
-<tr><td></td><td>--Farm</td><td>9</td></tr>
-<tr><td></td><td>--Inn</td><td>13</td></tr>
-<tr><td></td><td>--Blacksmith</td><td>3</td></tr>
+<tr><td align="center"><button v-on:click="toggleFarms">+/-</button></td><td>--Farm</td><td>0</td></tr>
+<template v-if="showFarms == 'True'">
+<tr><td></td><td>Quantity</td><td>q</td><td>{{ save.buildings[0].q }}</td><td></td></tr>
+<tr><td></td><td>Total this R</td><td>t</td><td>{{ save.buildings[0].t }}</td><td></td></tr>
+<tr><td></td><td>Max this R</td><td>m</td><td>{{ save.buildings[0].m }}</td><td></td></tr>
+<tr><td></td><td>Total prev Rs</td><td>r</td><td>{{ save.buildings[0].r }}</td><td></td></tr>
+<tr><td></td><td>Max prev Rs</td><td>e</td><td>{{ save.buildings[0].e }}</td><td></td></tr>
+</template>
+<tr><td align="center"><button v-on:click="toggleInns">+/-</button></td><td>--Inn</td><td>13</td></tr>
+<template v-if="showInns == 'True'">
+<tr><td></td><td>Quantity</td><td>q</td><td>{{ save.buildings[1].q }}</td><td></td></tr>
+<tr><td></td><td>Total this R</td><td>t</td><td>{{ save.buildings[1].t }}</td><td></td></tr>
+<tr><td></td><td>Max this R</td><td>m</td><td>{{ save.buildings[1].m }}</td><td></td></tr>
+<tr><td></td><td>Total prev Rs</td><td>r</td><td>{{ save.buildings[1].r }}</td><td></td></tr>
+<tr><td></td><td>Max prev Rs</td><td>e</td><td>{{ save.buildings[1].e }}</td><td></td></tr>
+</template>
+<tr><td align="center"><button v-on:click="toggleBlacksmiths">+/-</button></td><td>--Blacksmith</td><td>3</td></tr>
+<template v-if="showBlacksmiths == 'True'">
+<tr><td></td><td>Quantity</td><td>q</td><td>{{ save.buildings[2].q }}</td><td></td></tr>
+<tr><td></td><td>Total this R</td><td>t</td><td>{{ save.buildings[2].t }}</td><td></td></tr>
+<tr><td></td><td>Max this R</td><td>m</td><td>{{ save.buildings[2].m }}</td><td></td></tr>
+<tr><td></td><td>Total prev Rs</td><td>r</td><td>{{ save.buildings[2].r }}</td><td></td></tr>
+<tr><td></td><td>Max prev Rs</td><td>e</td><td>{{ save.buildings[2].e }}</td><td></td></tr>
+</template>
 </template>
 <template v-if="showGoodBuildings == 'True'">
-<tr><td></td><td>--Warrior Barracks</td><td>23</td></tr>
-<tr><td></td><td>--Knights Joust</td><td>15</td></tr>
-<tr><td></td><td>--Wizard Tower</td><td>25</td></tr>
-<tr><td></td><td>--Cathedral</td><td>4</td></tr>
-<tr><td></td><td>--Citadel</td><td>5</td></tr>
-<tr><td></td><td>--Royal Castle</td><td>20</td></tr>
-<tr><td></td><td>--Heaven's Gate</td><td>11</td></tr>
+<tr><td align="center"><button v-on:click="toggleWarriors">+/-</button></td><td>--Warrior Barracks</td><td>23</td></tr>
+<template v-if="showWarriors == 'True'">
+<tr><td></td><td>Quantity</td><td>q</td><td>{{ save.buildings[3].q }}</td><td></td></tr>
+<tr><td></td><td>Total this R</td><td>t</td><td>{{ save.buildings[3].t }}</td><td></td></tr>
+<tr><td></td><td>Max this R</td><td>m</td><td>{{ save.buildings[3].m }}</td><td></td></tr>
+<tr><td></td><td>Total prev Rs</td><td>r</td><td>{{ save.buildings[3].r }}</td><td></td></tr>
+<tr><td></td><td>Max prev Rs</td><td>e</td><td>{{ save.buildings[3].e }}</td><td></td></tr>
+</template>
+<tr><td align="center"><button v-on:click="toggleKnights">+/-</button></td><td>--Knights Joust</td><td>15</td></tr>
+<template v-if="showKnights == 'True'">
+<tr><td></td><td>Quantity</td><td>q</td><td>{{ save.buildings[4].q }}</td><td></td></tr>
+<tr><td></td><td>Total this R</td><td>t</td><td>{{ save.buildings[4].t }}</td><td></td></tr>
+<tr><td></td><td>Max this R</td><td>m</td><td>{{ save.buildings[4].m }}</td><td></td></tr>
+<tr><td></td><td>Total prev Rs</td><td>r</td><td>{{ save.buildings[4].r }}</td><td></td></tr>
+<tr><td></td><td>Max prev Rs</td><td>e</td><td>{{ save.buildings[4].e }}</td><td></td></tr>
+</template>
+<tr><td align="center"><button v-on:click="toggleWizards">+/-</button></td><td>--Wizard Tower</td><td>25</td></tr>
+<template v-if="showWizards == 'True'">
+<tr><td></td><td>Quantity</td><td>q</td><td>{{ save.buildings[5].q }}</td><td></td></tr>
+<tr><td></td><td>Total this R</td><td>t</td><td>{{ save.buildings[5].t }}</td><td></td></tr>
+<tr><td></td><td>Max this R</td><td>m</td><td>{{ save.buildings[5].m }}</td><td></td></tr>
+<tr><td></td><td>Total prev Rs</td><td>r</td><td>{{ save.buildings[5].r }}</td><td></td></tr>
+<tr><td></td><td>Max prev Rs</td><td>e</td><td>{{ save.buildings[5].e }}</td><td></td></tr>
+</template>
+<tr><td align="center"><button v-on:click="toggleCathedrals">+/-</button></td><td>--Cathedral</td><td>4</td></tr>
+<template v-if="showCathedrals == 'True'">
+<tr><td></td><td>Quantity</td><td>q</td><td>{{ save.buildings[6].q }}</td><td></td></tr>
+<tr><td></td><td>Total this R</td><td>t</td><td>{{ save.buildings[6].t }}</td><td></td></tr>
+<tr><td></td><td>Max this R</td><td>m</td><td>{{ save.buildings[6].m }}</td><td></td></tr>
+<tr><td></td><td>Total prev Rs</td><td>r</td><td>{{ save.buildings[6].r }}</td><td></td></tr>
+<tr><td></td><td>Max prev Rs</td><td>e</td><td>{{ save.buildings[6].e }}</td><td></td></tr>
+</template>
+<tr><td align="center"><button v-on:click="toggleCitadels">+/-</button></td><td>--Citadel</td><td>5</td></tr>
+<template v-if="show == 'True'">
+<tr><td></td><td>Quantity</td><td>q</td><td>{{ save.buildings[7].q }}</td><td></td></tr>
+<tr><td></td><td>Total this R</td><td>t</td><td>{{ save.buildings[7].t }}</td><td></td></tr>
+<tr><td></td><td>Max this R</td><td>m</td><td>{{ save.buildings[7].m }}</td><td></td></tr>
+<tr><td></td><td>Total prev Rs</td><td>r</td><td>{{ save.buildings[7].r }}</td><td></td></tr>
+<tr><td></td><td>Max prev Rs</td><td>e</td><td>{{ save.buildings[7].e }}</td><td></td></tr>
+</template>
+<tr><td align="center"><button v-on:click="toggleCastles">+/-</button></td><td>--Royal Castle</td><td>20</td></tr>
+<template v-if="show == 'True'">
+<tr><td></td><td>Quantity</td><td>q</td><td>{{ save.buildings[8].q }}</td><td></td></tr>
+<tr><td></td><td>Total this R</td><td>t</td><td>{{ save.buildings[8].t }}</td><td></td></tr>
+<tr><td></td><td>Max this R</td><td>m</td><td>{{ save.buildings[8].m }}</td><td></td></tr>
+<tr><td></td><td>Total prev Rs</td><td>r</td><td>{{ save.buildings[8].r }}</td><td></td></tr>
+<tr><td></td><td>Max prev Rs</td><td>e</td><td>{{ save.buildings[8].e }}</td><td></td></tr>
+</template>
+<tr><td align="center"><button v-on:click="toggleGates">+/-</button></td><td>--Heaven's Gate</td><td>11</td></tr>
+<template v-if="show == 'True'">
+<tr><td></td><td>Quantity</td><td>q</td><td>{{ save.buildings[9].q }}</td><td></td></tr>
+<tr><td></td><td>Total this R</td><td>t</td><td>{{ save.buildings[9].t }}</td><td></td></tr>
+<tr><td></td><td>Max this R</td><td>m</td><td>{{ save.buildings[9].m }}</td><td></td></tr>
+<tr><td></td><td>Total prev Rs</td><td>r</td><td>{{ save.buildings[9].r }}</td><td></td></tr>
+<tr><td></td><td>Max prev Rs</td><td>e</td><td>{{ save.buildings[9].e }}</td><td></td></tr>
+</template>
 </template>
 <template v-if="showEvilBuildings == 'True'">
-<tr><td></td><td>--Slave Pen</td><td>21</td></tr>
-<tr><td></td><td>--Orcish Arena</td><td>19</td></tr>
-<tr><td></td><td>--With Conclave</td><td>24</td></tr>
-<tr><td></td><td>--Dark Temple</td><td>6</td></tr>
-<tr><td></td><td>--Necropolis</td><td>18</td></tr>
-<tr><td></td><td>--Evil Fortress</td><td>8</td></tr>
-<tr><td></td><td>--Hell Portal</td><td>12</td></tr>
+<tr><td align="center"><button v-on:click="toggleSlaves">+/-</button></td><td>--Slave Pen</td><td>21</td></tr>
+<template v-if="show == 'True'">
+<tr><td></td><td>Quantity</td><td>q</td><td>{{ save.buildings[10].q }}</td><td></td></tr>
+<tr><td></td><td>Total this R</td><td>t</td><td>{{ save.buildings[10].t }}</td><td></td></tr>
+<tr><td></td><td>Max this R</td><td>m</td><td>{{ save.buildings[10].m }}</td><td></td></tr>
+<tr><td></td><td>Total prev Rs</td><td>r</td><td>{{ save.buildings[10].r }}</td><td></td></tr>
+<tr><td></td><td>Max prev Rs</td><td>e</td><td>{{ save.buildings[10].e }}</td><td></td></tr>
+</template>
+<tr><td align="center"><button v-on:click="toggleOrcs">+/-</button></td><td>--Orcish Arena</td><td>19</td></tr>
+<template v-if="show == 'True'">
+<tr><td></td><td>Quantity</td><td>q</td><td>{{ save.buildings[11].q }}</td><td></td></tr>
+<tr><td></td><td>Total this R</td><td>t</td><td>{{ save.buildings[11].t }}</td><td></td></tr>
+<tr><td></td><td>Max this R</td><td>m</td><td>{{ save.buildings[11].m }}</td><td></td></tr>
+<tr><td></td><td>Total prev Rs</td><td>r</td><td>{{ save.buildings[11].r }}</td><td></td></tr>
+<tr><td></td><td>Max prev Rs</td><td>e</td><td>{{ save.buildings[11].e }}</td><td></td></tr>
+</template>
+<tr><td align="center"><button v-on:click="toggleWitches">+/-</button></td><td>--Witch Conclave</td><td>24</td></tr>
+<template v-if="show == 'True'">
+<tr><td></td><td>Quantity</td><td>q</td><td>{{ save.buildings[12].q }}</td><td></td></tr>
+<tr><td></td><td>Total this R</td><td>t</td><td>{{ save.buildings[12].t }}</td><td></td></tr>
+<tr><td></td><td>Max this R</td><td>m</td><td>{{ save.buildings[12].m }}</td><td></td></tr>
+<tr><td></td><td>Total prev Rs</td><td>r</td><td>{{ save.buildings[12].r }}</td><td></td></tr>
+<tr><td></td><td>Max prev Rs</td><td>e</td><td>{{ save.buildings[12].e }}</td><td></td></tr>
+</template>
+<tr><td align="center"><button v-on:click="toggleTemples">+/-</button></td><td>--Dark Temple</td><td>6</td></tr>
+<template v-if="show == 'True'">
+<tr><td></td><td>Quantity</td><td>q</td><td>{{ save.buildings[13].q }}</td><td></td></tr>
+<tr><td></td><td>Total this R</td><td>t</td><td>{{ save.buildings[13].t }}</td><td></td></tr>
+<tr><td></td><td>Max this R</td><td>m</td><td>{{ save.buildings[13].m }}</td><td></td></tr>
+<tr><td></td><td>Total prev Rs</td><td>r</td><td>{{ save.buildings[13].r }}</td><td></td></tr>
+<tr><td></td><td>Max prev Rs</td><td>e</td><td>{{ save.buildings[13].e }}</td><td></td></tr>
+</template>
+<tr><td align="center"><button v-on:click="toggleNecros">+/-</button></td><td>--Necropolis</td><td>18</td></tr>
+<template v-if="show == 'True'">
+<tr><td></td><td>Quantity</td><td>q</td><td>{{ save.buildings[14].q }}</td><td></td></tr>
+<tr><td></td><td>Total this R</td><td>t</td><td>{{ save.buildings[14].t }}</td><td></td></tr>
+<tr><td></td><td>Max this R</td><td>m</td><td>{{ save.buildings[14].m }}</td><td></td></tr>
+<tr><td></td><td>Total prev Rs</td><td>r</td><td>{{ save.buildings[14].r }}</td><td></td></tr>
+<tr><td></td><td>Max prev Rs</td><td>e</td><td>{{ save.buildings[14].e }}</td><td></td></tr>
+</template>
+<tr><td align="center"><button v-on:click="toggleForts">+/-</button></td><td>--Evil Fortress</td><td>8</td></tr>
+<template v-if="show == 'True'">
+<tr><td></td><td>Quantity</td><td>q</td><td>{{ save.buildings[15].q }}</td><td></td></tr>
+<tr><td></td><td>Total this R</td><td>t</td><td>{{ save.buildings[15].t }}</td><td></td></tr>
+<tr><td></td><td>Max this R</td><td>m</td><td>{{ save.buildings[15].m }}</td><td></td></tr>
+<tr><td></td><td>Total prev Rs</td><td>r</td><td>{{ save.buildings[15].r }}</td><td></td></tr>
+<tr><td></td><td>Max prev Rs</td><td>e</td><td>{{ save.buildings[15].e }}</td><td></td></tr>
+</template>
+<tr><td align="center"><button v-on:click="togglePortals">+/-</button></td><td>--Hell Portal</td><td>12</td></tr>
+<template v-if="show == 'True'">
+<tr><td></td><td>Quantity</td><td>q</td><td>{{ save.buildings[16].q }}</td><td></td></tr>
+<tr><td></td><td>Total this R</td><td>t</td><td>{{ save.buildings[16].t }}</td><td></td></tr>
+<tr><td></td><td>Max this R</td><td>m</td><td>{{ save.buildings[16].m }}</td><td></td></tr>
+<tr><td></td><td>Total prev Rs</td><td>r</td><td>{{ save.buildings[16].r }}</td><td></td></tr>
+<tr><td></td><td>Max prev Rs</td><td>e</td><td>{{ save.buildings[16].e }}</td><td></td></tr>
+</template>
 </template>
 <template v-if="showNeutralBuildings == 'True'">
-<tr><td></td><td>--Deep Mine</td><td>7</td></tr>
-<tr><td></td><td>--Stone Pillars</td><td>22</td></tr>
-<tr><td></td><td>--Alchemist Lab</td><td>1</td></tr>
-<tr><td></td><td>--Monastery</td><td>17</td></tr>
-<tr><td></td><td>--Labyrinth</td><td>16</td></tr>
-<tr><td></td><td>--Iron Stronghold</td><td>14</td></tr>
-<tr><td></td><td>--Ancient Pyramid</td><td>2</td></tr>
+<tr><td align="center"><button v-on:click="toggleMines">+/-</button></td><td>--Deep Mine</td><td>7</td></tr>
+<template v-if="showMines == 'True'">
+<tr><td></td><td>Quantity</td><td>q</td><td>{{ save.buildings[17].q }}</td><td></td></tr>
+<tr><td></td><td>Total this R</td><td>t</td><td>{{ save.buildings[17].t }}</td><td></td></tr>
+<tr><td></td><td>Max this R</td><td>m</td><td>{{ save.buildings[17].m }}</td><td></td></tr>
+<tr><td></td><td>Total prev Rs</td><td>r</td><td>{{ save.buildings[17].r }}</td><td></td></tr>
+<tr><td></td><td>Max prev Rs</td><td>e</td><td>{{ save.buildings[17].e }}</td><td></td></tr>
+</template>
+<tr><td align="center"><button v-on:click="togglePillars">+/-</button></td><td>--Stone Pillars</td><td>22</td></tr>
+<template v-if="showPillars == 'True'">
+<tr><td></td><td>Quantity</td><td>q</td><td>{{ save.buildings[18].q }}</td><td></td></tr>
+<tr><td></td><td>Total this R</td><td>t</td><td>{{ save.buildings[18].t }}</td><td></td></tr>
+<tr><td></td><td>Max this R</td><td>m</td><td>{{ save.buildings[18].m }}</td><td></td></tr>
+<tr><td></td><td>Total prev Rs</td><td>r</td><td>{{ save.buildings[18].r }}</td><td></td></tr>
+<tr><td></td><td>Max prev Rs</td><td>e</td><td>{{ save.buildings[18].e }}</td><td></td></tr>
+</template>
+<tr><td align="center"><button v-on:click="toggleLabs">+/-</button></td><td>--Alchemist Lab</td><td>1</td></tr>
+<template v-if="showLabs == 'True'">
+<tr><td></td><td>Quantity</td><td>q</td><td>{{ save.buildings[19].q }}</td><td></td></tr>
+<tr><td></td><td>Total this R</td><td>t</td><td>{{ save.buildings[19].t }}</td><td></td></tr>
+<tr><td></td><td>Max this R</td><td>m</td><td>{{ save.buildings[19].m }}</td><td></td></tr>
+<tr><td></td><td>Total prev Rs</td><td>r</td><td>{{ save.buildings[19].r }}</td><td></td></tr>
+<tr><td></td><td>Max prev Rs</td><td>e</td><td>{{ save.buildings[19].e }}</td><td></td></tr>
+</template>
+<tr><td align="center"><button v-on:click="toggleMonas">+/-</button></td><td>--Monastery</td><td>17</td></tr>
+<template v-if="showMonas == 'True'">
+<tr><td></td><td>Quantity</td><td>q</td><td>{{ save.buildings[20].q }}</td><td></td></tr>
+<tr><td></td><td>Total this R</td><td>t</td><td>{{ save.buildings[20].t }}</td><td></td></tr>
+<tr><td></td><td>Max this R</td><td>m</td><td>{{ save.buildings[20].m }}</td><td></td></tr>
+<tr><td></td><td>Total prev Rs</td><td>r</td><td>{{ save.buildings[20].r }}</td><td></td></tr>
+<tr><td></td><td>Max prev Rs</td><td>e</td><td>{{ save.buildings[20].e }}</td><td></td></tr>
+</template>
+<tr><td align="center"><button v-on:click="toggleLabys">+/-</button></td><td>--Labyrinth</td><td>16</td></tr>
+<template v-if="showLabys == 'True'">
+<tr><td></td><td>Quantity</td><td>q</td><td>{{ save.buildings[21].q }}</td><td></td></tr>
+<tr><td></td><td>Total this R</td><td>t</td><td>{{ save.buildings[21].t }}</td><td></td></tr>
+<tr><td></td><td>Max this R</td><td>m</td><td>{{ save.buildings[21].m }}</td><td></td></tr>
+<tr><td></td><td>Total prev Rs</td><td>r</td><td>{{ save.buildings[21].r }}</td><td></td></tr>
+<tr><td></td><td>Max prev Rs</td><td>e</td><td>{{ save.buildings[21].e }}</td><td></td></tr>
+</template>
+<tr><td align="center"><button v-on:click="toggleIrons">+/-</button></td><td>--Iron Stronghold</td><td>14</td></tr>
+<template v-if="showIrons == 'True'">
+<tr><td></td><td>Quantity</td><td>q</td><td>{{ save.buildings[22].q }}</td><td></td></tr>
+<tr><td></td><td>Total this R</td><td>t</td><td>{{ save.buildings[22].t }}</td><td></td></tr>
+<tr><td></td><td>Max this R</td><td>m</td><td>{{ save.buildings[22].m }}</td><td></td></tr>
+<tr><td></td><td>Total prev Rs</td><td>r</td><td>{{ save.buildings[22].r }}</td><td></td></tr>
+<tr><td></td><td>Max prev Rs</td><td>e</td><td>{{ save.buildings[22].e }}</td><td></td></tr>
+</template>
+<tr><td align="center"><button v-on:click="togglePyramids">+/-</button></td><td>--Ancient Pyramid</td><td>2</td></tr>
+<template v-if="showPyramids == 'True'">
+<tr><td></td><td>Quantity</td><td>q</td><td>{{ save.buildings[23].q }}</td><td></td></tr>
+<tr><td></td><td>Total this R</td><td>t</td><td>{{ save.buildings[23].t }}</td><td></td></tr>
+<tr><td></td><td>Max this R</td><td>m</td><td>{{ save.buildings[23].m }}</td><td></td></tr>
+<tr><td></td><td>Total prev Rs</td><td>r</td><td>{{ save.buildings[23].r }}</td><td></td></tr>
+<tr><td></td><td>Max prev Rs</td><td>e</td><td>{{ save.buildings[23].e }}</td><td></td></tr>
+</template>
 </template>
 <template v-if="showHallsBuilding == 'True'">
-<tr><td></td><td>--Hall of Legends</td><td>10</td></tr>
+<tr><td align="center"><button v-on:click="toggleHalls">+/-</button></td><td>--Hall of Legends</td><td>10</td></tr>
+<template v-if="showHalls == 'True'">
+<tr><td></td><td>Quantity</td><td>q</td><td>{{ save.buildings[24].q }}</td><td></td></tr>
+<tr><td></td><td>Total this R</td><td>t</td><td>{{ save.buildings[24].t }}</td><td></td></tr>
+<tr><td></td><td>Max this R</td><td>m</td><td>{{ save.buildings[24].m }}</td><td></td></tr>
+<tr><td></td><td>Total prev Rs</td><td>r</td><td>{{ save.buildings[24].r }}</td><td></td></tr>
+<tr><td></td><td>Max prev Rs</td><td>e</td><td>{{ save.buildings[24].e }}</td><td></td></tr>
+</template>
 </template>
 <tr><td align="center"><button v-on:click="toggleUpgrades">+/-</button></td><td>Upgrades</td><td>upgrade</td></tr>
 <template v-if="showUpgrades == 'True'">
@@ -489,7 +664,7 @@
 <tr><td></td><td>--Blood Frenzy</td><td>1</td><td></td></tr>
 <tr><td></td><td>--Goblin's Greed</td><td>8</td><td></td></tr>
 <tr><td></td><td>--Night Time</td><td>15</td><td></td></tr>
-<tr><td></td><td>--Hellfire Blast</td><td>11</td></tr>
+<tr><td></td><td>--Hellfire Blast</td><td>11</td><td></td></tr>
 <tr><td></td><td>--Gem Grinder</td><td>7</td><td></td></tr>
 <tr><td></td><td>--Lightning Strike</td><td>13</td><td></td></tr>
 <tr><td></td><td>--Grand Balance</td><td>10</td><td></td></tr>
