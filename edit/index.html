@@ -15,17 +15,18 @@
 <script src="../lib/pmprng.js"></script>
 <script src="../lib/util.js"></script>
 Please direct errors, questions, complaints to: dox4242(robots_can)=gmail(eat_my)+com(spam). ;)
+<br>...still under construction.
 <br><br>
 <div id="app">
-(triple-click to select save data) (still under construction)
+(triple-click to select save data)
 <table>
 <tr><td>Enter save:</td><td><input type="text" v-model="datainput"></td><td>(note: refresh page before pasting new data)</tr>
-<tr><td>Edited save:</td><td><input type="text" v-model="editdata"></td></tr>
+<tr><td>Edited save:</td><td><input type="text" v-model="editdata"></td><td><button v-on:click="encodeData">Encode</button>(no refresh needed to re-encode)</td></tr>
 <tr></tr>
 </table><br>
 <template v-if="save.saveVersion >= 1">
 <table border="2" width="1000">
-<tr><th><center>+/-</center></th><th>Field</th><th>Current value</th><th>New value (not yet working)</th></tr>
+<tr><th><center>+/-</center></th><th>Field</th><th>Current value</th><th>New value (mostly not working)</th><th>Notes</th></tr>
 <tr><td align="center"><button v-on:click="toggleStatsAb">+/-</button></td><td>Stats (current abdication)</td></tr>
 <template v-if="showStatsAb == 'True'">
 <tr><td></td><td>--Coins gained</td><td>{{ save.stats[0].stats }}</td></tr>
@@ -691,41 +692,45 @@ Please direct errors, questions, complaints to: dox4242(robots_can)=gmail(eat_my
 <tr><td></td><td>--Pay Upkeep</td></tr>
 <tr><td></td><td>--Spiritual Surge</td></tr>
 </template>
-<tr><td></td><td>Artifact RNG value</td><td>{{ save.artifactRngState }}</tr>
-<tr><td></td><td>Alignment</td><td>{{ save.alignment }}</td></tr>
-<tr><td></td><td>Faction</td><td>{{ save.faction }}</td></tr>
-<tr><td></td><td>Prestige Faction</td><td>{{ save.prestigeFaction }}</td></tr>
-<tr><td></td><td>Bloodstream bonus based<br>on this faction</td><td>{{ save.bFaction }}</td></tr>
-<tr><td></td><td>Excavations</td><td>{{ save.excavations }}</td></tr>
+<tr><td></td><td>Artifact RNG value</td><td>{{ save.artifactRngState }}</td><td><input v-model="artifactRngState">
+<tr><td></td><td>Alignment</td><td>{{ save.alignment }}</td><td><select v-model="alignment">
+<option>None</option>
+<option>Good</option>
+<option>Evil</option>
+<option>Neutral</option></select></td><td>Working</td></tr>
+<tr><td></td><td>Faction</td><td>{{ save.faction }}</td><td><input v-model="faction"></td></tr>
+<tr><td></td><td>Prestige Faction</td><td>{{ save.prestigeFaction }}</td><td><input v-model="prestigeFaction"></td></tr>
+<tr><td></td><td>Bloodstream bonus based<br>on this faction</td><td>{{ save.bFaction }}</td><td><input v-model="bFaction"></td></tr>
+<tr><td></td><td>Excavations</td><td>{{ save.excavations }}</td><td><input v-model="excavations"></td></tr>
 <tr><td align="center"><button v-on:click="toggleFCs">+/-</button></td><td>FCs and REs</td></tr>
 <template v-if="showFCs == 'True'">
 </template>
-<tr><td></td><td>Gems</td><td>{{ save.gems }}</td></tr>
-<tr><td></td><td>Gold</td><td>{{ save.coins }}</td></tr>
-<tr><td></td><td>Rubies</td><td>{{ save.rubies }}</td></tr>
-<tr><td></td><td>Reincarnation</td><td>{{ save.reincarnation }}</td></tr>
-<tr><td></td><td>Ascension</td><td>{{ save.ascension }}</td></tr>
-<tr><td></td><td>Last save time</td><td>{{ save.lastsave }}</td></tr>
-<tr><td></td><td>Time since starting<br>Angelline bonus</td><td>{{ save.sTimer }}</td></tr>
-<tr><td></td><td>Current mana</td><td>{{ save.mana }}</td></tr>
-<tr><td></td><td>Contingency bar</td><td>{{ save.contingency }}</td></tr>
-<tr><td></td><td>Contingency level</td><td>{{ save.contingencyValue }}</td></tr>
-<tr><td></td><td>Current LS target</td><td>{{ save.strikeTier }}</td></tr>
-<tr><td></td><td>Current Miracle target</td><td>{{ save.miracleTier }}</td></tr>
-<tr><td></td><td>Time left on Miracle</td><td>{{ save.miracleTimer }}</td></tr>
-<tr><td></td><td>Time left on Titan<br>charged effects</td><td>{{ save.chargedTimer }}</td></tr>
-<tr><td></td><td>Combo Strike streak</td><td>{{ save.comboStrikeCont }}</td></tr>
-<tr><td></td><td>Time since Green<br>Fingers bonus</td><td>{{ save.goblinTimer }}</td></tr>
-<tr><td></td><td>Time since last<br>Storm of Wealth</td><td>{{ save.wealthStorm }}</td></tr>
-<tr><td></td><td>Mercenary spell 1</td><td>{{ save.mercSpell1 }}</td></tr>
-<tr><td></td><td>Mercenary spell 2</td><td>{{ save.mercSpell2 }}</td></tr>
-<tr><td></td><td>Time since last click</td><td>{{ save.cTimer }}</td></tr>
-<tr><td></td><td>Time since last keypress</td><td>{{ save.kcTimer }}</td></tr>
-<tr><td></td><td>Time since last<br>mouse motion</td><td>{{ save.mTimer }}</td></tr>
-<tr><td></td><td>Scry production timer</td><td>{{ save.oTimer }}</td></tr>
-<tr><td></td><td>Scry mana timer</td><td>{{ save.oTimer2 }}</td></tr>
-<tr><td></td><td>Scry event timer</td><td>{{ save.oTimer3 }}</td></tr>
-<tr><td></td><td>Event season</td><td>{{ save.season }}</td></tr>
+<tr><td></td><td>Gems</td><td>{{ save.gems }}</td><td><input v-model="gems"></td></tr>
+<tr><td></td><td>Gold</td><td>{{ save.coins }}</td><td><input v-model="coins"></td></tr>
+<tr><td></td><td>Rubies</td><td>{{ save.rubies }}</td><td><input v-model="rubies"><button v-on:click="addRubies">Add</button>{{ rubymsg }}</td><td>Working</td></tr>
+<tr><td></td><td>Reincarnation</td><td>{{ save.reincarnation }}</td><td><input v-model="reincarnation"></td></tr>
+<tr><td></td><td>Ascension</td><td>{{ save.ascension }}</td><td><input v-model="ascension"></td></tr>
+<tr><td></td><td>Last save time</td><td>{{ save.lastsave }}</td><td><input v-model="lastsave"></td></tr>
+<tr><td></td><td>Time since starting<br>Angelline bonus</td><td>{{ save.sTimer }}</td><td><input v-model="sTimer"></td></tr>
+<tr><td></td><td>Current mana</td><td>{{ save.mana }}</td><td><input v-model="mana"></td></tr>
+<tr><td></td><td>Contingency bar</td><td>{{ save.contingency }}</td><td><input v-model="contingency"></td></tr>
+<tr><td></td><td>Contingency level</td><td>{{ save.contingencyValue }}</td><td><input v-model="contingencyValue"></td></tr>
+<tr><td></td><td>Current LS target</td><td>{{ save.strikeTier }}</td><td><input v-model="strikeTier"></td></tr>
+<tr><td></td><td>Current Miracle target</td><td>{{ save.miracleTier }}</td><td><input v-model="miracleTier"></td></tr>
+<tr><td></td><td>Time left on Miracle</td><td>{{ save.miracleTimer }}</td><td><input v-model="miracleTimer"></td></tr>
+<tr><td></td><td>Time left on Titan<br>charged effects</td><td>{{ save.chargedTimer }}</td><td><input v-model="chargedTimer"></td></tr>
+<tr><td></td><td>Combo Strike streak</td><td>{{ save.comboStrikeCont }}</td><td><input v-model="comboStrikeCont"></td></tr>
+<tr><td></td><td>Time since Green<br>Fingers bonus</td><td>{{ save.goblinTimer }}</td><td><input v-model="goblinTimer"></td></tr>
+<tr><td></td><td>Time since last<br>Storm of Wealth</td><td>{{ save.wealthStorm }}</td><td><input v-model="wealthStorm"></td></tr>
+<tr><td></td><td>Mercenary spell 1</td><td>{{ save.mercSpell1 }}</td><td><input v-model="mercSpell1"></td></tr>
+<tr><td></td><td>Mercenary spell 2</td><td>{{ save.mercSpell2 }}</td><td><input v-model="mercSpell2"></td></tr>
+<tr><td></td><td>Time since last click</td><td>{{ save.cTimer }}</td><td><input v-model="cTimer"></td></tr>
+<tr><td></td><td>Time since last keypress</td><td>{{ save.kcTimer }}</td><td><input v-model="kcTimer"></td></tr>
+<tr><td></td><td>Time since last<br>mouse motion</td><td>{{ save.mTimer }}</td><td><input v-model="mTimer"></td></tr>
+<tr><td></td><td>Scry production timer</td><td>{{ save.oTimer }}</td><td><input v-model="oTimer"></td></tr>
+<tr><td></td><td>Scry mana timer</td><td>{{ save.oTimer2 }}</td><td><input v-model="oTimer2"></td></tr>
+<tr><td></td><td>Scry event timer</td><td>{{ save.oTimer3 }}</td><td><input v-model="oTimer3"></td></tr>
+<tr><td></td><td>Event season</td><td>{{ save.season }}</td><td><input v-model="season"></td></tr>
 <tr><td align="center"><button v-on:click="toggleEventRes">+/-</button></td><td>Event resources</td></tr>
 <template v-if="showEventRes == 'True'">
 </template>
