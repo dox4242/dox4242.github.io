@@ -3,7 +3,47 @@ var myViewModel = new Vue({
   data: {
     datainput: '',
     save: {},
+    save2: {},
     editdata: 'empty',
+    artifactRngState: '',
+    alignment: '',
+    faction: '',
+    prestigeFaction: '',
+    bFaction: '',
+    excavations: '',
+    gems: '',
+    coins: '',
+    rubies: '',
+    rubymsg: '',
+    reincarnation: '',
+    ascension: '',
+    lastsave: '',
+    sTimer: '',
+    mana: '',
+    contingency: '',
+    contingencyValue: '',
+    strikeTier: '',
+    miracleTier: '',
+    miracleTimer: '',
+    chargedTimer: '',
+    comboStrikeCont: '',
+    goblinTimer: '',
+    wealthStorm: '',
+    mercSpell1: '',
+    mercSpell2: '',
+    cTimer: '',
+    kcTimer: '',
+    mTimer: '',
+    oTimer: '',
+    oTimer2: '',
+    oTimer3: '',
+    season: '',
+    snowballScryUses: '',
+    snowballSize: '',
+    lastGiftDate: '',
+    eggRngState: '',
+    eggStackSize: '',
+    ctaFactionCats: '',
     showStatsAb: 'False',
     showStatsReinc: 'False',
     showStatsAll: 'False',
@@ -42,24 +82,32 @@ var myViewModel = new Vue({
     showSpells: 'False',
     showFCs: 'False',
     showEventRes: 'False',
-    alignment: ''
   },
   watch: {
-    datainput: function(data){
+    datainput: function(data) {
       this.version = ''
       try {
-        this.save = SaveHandler.Decode(this.datainput)
-        save2 = SaveHandler.Decode(this.datainput)
-        console.log('Decoded save:', save2)
+        this.save = SaveHandler.Decode(data)
+        this.save2 = SaveHandler.Decode(data)
+        console.log('Decoded save:', this.save2)
         this.editdata = 'Decoded. No edits made'
         this.alignment = this.save.alignment
       } catch(err) {
           this.editdata = 'Invalid data'
           console.log(err)
       }
+    },
+    alignment: function(data) {
+      if (data == 'None') { this.save2.alignment = 0 }
+      if (data == 'Good') { this.save2.alignment = 1 }
+      if (data == 'Evil') { this.save2.alignment = 2 }
+      if (data == 'Neutral') { this.save2.alignment = 3 }
     }
   },
   methods: {
+    encodeData: function () {
+      this.editdata = SaveHandler.Encode(this.save2)
+    },
     toggleStatsAb: function () {
       if (this.showStatsAb == 'True') {
         this.showStatsAb = 'False'
@@ -320,6 +368,15 @@ var myViewModel = new Vue({
         this.showHalls = 'False'
       } else {
         this.showHalls = 'True'
+      }
+    },
+    addRubies: function(data) {
+      if (isNaN(this.rubies)) {
+        this.rubymsg = ' Invalid input'
+      } else {
+         this.save2.rubies += this.rubies
+         this.save2.stats[102].stats += parseInt(this.rubies)
+         this.rubymsg = ' Added ' + this.rubies + ' rubies'
       }
     }
   }
