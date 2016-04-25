@@ -6,8 +6,12 @@ var myViewModel = new Vue({
     newsave: {},
     newdata: 'empty',
     alignmentinput: '',
+    alignmentmsg: '',
     angellineinput: '',
     angellineUpgradeBought: 'False',
+    bloodlineinput: '',
+    bloodlineIDs: [194, 196, 39, 212, 396, 103, 380, 136, 183, 150, 120],
+    bloodlinemsg: '',
     rubiesinput: ''
   },
   watch: {
@@ -33,18 +37,67 @@ var myViewModel = new Vue({
       if (this.alignmentinput == 'None') {
         this.newsave.alignment = 0
         this.newdata = SaveHandler.Encode(this.newsave)
+        this.alignmentmsg = 'Saved'
       }
       if (this.alignmentinput == 'Good') {
         this.newsave.alignment = 1
         this.newdata = SaveHandler.Encode(this.newsave)
+        this.alignmentmsg = 'Saved'
       }
       if (this.alignmentinput == 'Evil') {
         this.newsave.alignment = 2
         this.newdata = SaveHandler.Encode(this.newsave)
+        this.alignmentmsg = 'Saved'
       }
       if (this.alignmentinput == 'Neutral') {
         this.newsave.alignment = 3
         this.newdata = SaveHandler.Encode(this.newsave)
+        this.alignmentmsg = 'Saved'
+      }
+    },
+    bloodlineinput: function(data) {
+      if (this.bloodlineinput == 'None') {
+        this.newsave.bFaction = 255
+        for (var i = 0; i < this.oldsave.upgrades.length; i++) {
+          if (this.oldsave.upgrades[i].id == 13) {
+            this.newsave.upgrades[i].u1 = 'False'
+          }
+          if (this.oldsave.upgrades[i].id == 327) {
+            this.newsave.upgrades[i].u1 = 'False'
+          }
+          for (var j = 0; j < this.bloodlineIDs.length; j++) {
+            if (this.oldsave.upgrades[i].id == this.bloodlineIDs[j]) {
+              if (this.oldsave.upgrades[i].u1 == true) {
+                this.newsave.upgrades[i].u1 = false
+              }
+            }
+          }
+        }
+        this.newdata = SaveHandler.Encode(this.newsave)
+        this.bloodlinemsg = 'Saved'
+        return
+      }
+      else { 
+        for (var i = 0; i < this.oldsave.upgrades.length; i++) {
+          for (var j = 0; j < this.bloodlineIDs.length; j++) {
+            if (this.oldsave.upgrades[i].id == this.bloodlineIDs[j]) {
+              if (this.bloodlineinput == 'Fairy') { this.newsave.upgrades[i].id = 194 }
+              if (this.bloodlineinput == 'Elf') { this.newsave.upgrades[i].id = 164 }
+              if (this.bloodlineinput == 'Angel') { this.newsave.upgrades[i].id = 39 }
+              if (this.bloodlineinput == 'Goblin') { this.newsave.upgrades[i].id = 212 }
+              if (this.bloodlineinput == 'Undead') { this.newsave.upgrades[i].id = 396 }
+              if (this.bloodlineinput == 'Demon') { this.newsave.upgrades[i].id = 103 }
+              if (this.bloodlineinput == 'Titan') { this.newsave.upgrades[i].id = 380 }
+              if (this.bloodlineinput == 'Druid') { this.newsave.upgrades[i].id = 136 }
+              if (this.bloodlineinput == 'Faceless') { this.newsave.upgrades[i].id = 183 }
+              if (this.bloodlineinput == 'Dwarf') { this.newsave.upgrades[i].id = 150 }
+              if (this.bloodlineinput == 'Drow') { this.newsave.upgrades[i].id = 120 }
+            }
+          }
+        }
+        this.newdata = SaveHandler.Encode(this.newsave)
+        this.bloodlinemsg = 'Saved'
+        return
       }
     }
   },
