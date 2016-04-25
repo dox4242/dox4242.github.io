@@ -20,18 +20,31 @@ Please direct errors, questions, complaints to: dox4242-at-gmail.
 <div id="app">
 (triple-click to select save data)
 <table>
-<tr><td>Enter save:</td><td><input type="text" v-model="olddata"></td><td></td></tr>
-<tr><td>Edited save:</td><td><input type="text" v-model="newdata"></td><td>(valid edits are automatically encoded here)</td></tr>
+<tr><td>Enter save:</td><td><input type="text" v-model="olddata"></td><td>(refresh page to re-populate data fields (eg, buying Angelline)</td></tr>
+<tr><td>Edited save:</td><td><input type="text" v-model="newdata"></td><td>(all valid edits are automatically encoded here, no refresh needed)</td></tr>
 </table><br>
 <template v-if="oldsave.saveVersion >= 1"><table>
 <tr><td align=right>Alignment:</td><td><select v-model="alignmentinput">
 <option>None</option>
 <option>Good</option>
 <option>Evil</option>
-<option>Neutral</option></select></td></tr>
+<option>Neutral</option></select> {{ alignmentmsg }}</td></tr>
 <tr><td align="right">Angelline start:</td><template v-if="angellineUpgradeBought == 'True'">
 <td><input v-model="angellineinput"> <button v-on:click="saveAngelline">Save</button></td><td>(1d10h5m30s notation allowed)</td>
 </template><template v-else><td>not purchased</td></template></tr>
+<tr><td align=right>Bloodline:</td><td><select v-model="bloodlineinput" debounce="500">
+<option>None</option>
+<option>Fairy</option>
+<option>Elf</option>
+<option>Angel</option>
+<option>Goblin</option>
+<option>Undead</option>
+<option>Demon</option>
+<option>Titan</option>
+<option>Druid</option>
+<option>Faceless</option>
+<option>Dwarf</option>
+<option>Druid</option></select> {{ bloodlinemsg }}</td></tr>
 <tr><td align=right>Rubies:</td><td><input v-model="rubiesinput"> <button v-on:click="saveRubies">Save</button></td></tr>
 <tr><td></td></tr>
 </table></template>
