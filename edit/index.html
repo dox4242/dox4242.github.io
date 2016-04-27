@@ -14,13 +14,13 @@
 <script src="../lib/savecodec2.js"></script>
 <script src="../lib/pmprng.js"></script>
 <script src="../lib/util.js"></script>
-Please direct errors, questions, complaints to: dox4242-at-gmail.
+Please direct errors, questions, complaints, etc. to: dox4242-at-gmail.
 <br>...still under construction.
 <br><br>
 <div id="app">
-(triple-click to select save data)
 <table>
-<tr><td>Enter save:</td><td><input type="text" v-model="olddata"></td><td></td></tr>
+<tr><td></td><td><small>(triple-click to select save data)</small></td></tr>
+<tr><td>Enter save:</td><td><input type="text" v-model="olddata"></td><td>(re-paste save data to re-populate data fields (eg, buying Angelline)</td></tr>
 <tr><td>Edited save:</td><td><input type="text" v-model="newdata"></td><td>(all valid edits are automatically encoded here, no refresh needed)</td></tr>
 </table><br>
 <template v-if="oldsave.saveVersion >= 1"><table>
@@ -32,6 +32,8 @@ Please direct errors, questions, complaints to: dox4242-at-gmail.
 <tr><td align="right">Angelline start:</td><template v-if="angellineUpgradeBought == 'True'">
 <td><input v-model="angellineinput"> <button v-on:click="saveAngelline">Save</button></td><td>(1d10h5m30s notation allowed)</td>
 </template><template v-else><td>not purchased</td></template></tr>
+<tr><td align=right>Artifact RNG:</td><td><button v-on:click="artRNGbest">Best value</button> {{ artRNGmsg }}</td></tr>
+<tr><td align=right>Ascension #:</td><td><input v-model="ascensioninput"> <button v-on:click="saveAscension">Save</button></td></tr>
 <tr><td align=right>Bloodline:</td><td><select v-model="bloodlineinput">
 <option>None</option>
 <option>Fairy</option>
@@ -45,8 +47,9 @@ Please direct errors, questions, complaints to: dox4242-at-gmail.
 <option>Faceless</option>
 <option>Dwarf</option>
 <option>Druid</option></select> {{ bloodlinemsg }}</td></tr>
+<tr><td align=right>Reincarnation #:</td><td><input v-model="reincinput"> <button v-on:click="saveReinc">Save</button></td></tr>
 <tr><td align=right>Rubies:</td><td><input v-model="rubiesinput"> <button v-on:click="saveRubies">Save</button></td></tr>
-<tr><td></td></tr>
+<tr><td align=right>Scry timers:</td><td><button v-on:click="maxScry">Max timers</button> {{ scrymsg }}</td></tr>
 </table></template>
 </div>
 <script src="index.js"></script>
