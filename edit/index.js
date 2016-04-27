@@ -9,10 +9,14 @@ var myViewModel = new Vue({
     alignmentmsg: '',
     angellineinput: '',
     angellineUpgradeBought: 'False',
+    artRNGmsg: '',
+    ascensioninput: '',
     bloodlineinput: '',
     bloodlineIDs: [194, 196, 39, 212, 396, 103, 380, 136, 183, 150, 120],
     bloodlinemsg: '',
-    rubiesinput: ''
+    reincinput: '',
+    rubiesinput: '',
+    scrymsg: ''
   },
   watch: {
     olddata: function(data) {
@@ -165,6 +169,31 @@ var myViewModel = new Vue({
         console.log(err)
       }
     },
+    artRNGbest: function() {
+      this.newsave.artifactRngState = 1407677000
+      this.newdata = SaveHandler.Encode(this.newsave)
+      this.artRNGmsg = 'RNG saved'
+    },
+    saveAscension: function() {
+      if (this.ascensioninput == '') { return }
+      if (isNaN(this.ascensioninput)) {
+        this.ascensioninput = 'Invalid input'
+      } else {
+        this.newsave.ascension = parseInt(this.ascensioninput)
+        this.newdata = SaveHandler.Encode(this.newsave)
+        this.ascensioninput = 'Saved '+ this.newsave.ascension + ' ascensions'
+      }
+    },
+    saveReinc: function() {
+      if (this.reincinput == '') { return }
+      if (isNaN(this.reincinput)) {
+        this.reincinput = 'Invalid input'
+      } else {
+        this.newsave.reincarnation = parseInt(this.reincinput)
+        this.newdata = SaveHandler.Encode(this.newsave)
+        this.reincinput = 'Saved '+ this.newsave.reincarnation + ' reincarnations'
+      }
+    },
     saveRubies: function() {
       if (this.rubiesinput == '') { return }
       if (isNaN(this.rubiesinput)) {
@@ -175,6 +204,15 @@ var myViewModel = new Vue({
         this.newdata = SaveHandler.Encode(this.newsave)
         this.rubiesinput = 'Added ' + parseInt(this.rubiesinput) + ' rubies'
       }
+    },
+    maxScry: function() {
+      this.newsave.oTimer = 14400
+      this.newsave.oTimer2 = 600
+      if (this.oldsave.season > 0) {
+        this.newsave.oTimer3 = 14400
+      }
+      this.newdata = SaveHandler.Encode(this.newsave)
+      this.scrymsg = 'Timers maxed'
     }
   }
 })
