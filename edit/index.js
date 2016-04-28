@@ -134,7 +134,10 @@ var myViewModel = new Vue({
     lsinput: function(data) {
       selIndex = this.currentbuildings.findIndex(x => x == this.lsinput)
       rodIndex = 11 - this.buildingcount
-      console.log(this.LightningRod[rodIndex][1][selIndex])
+      hits = this.LightningRod[rodIndex][0][selIndex]
+      this.newsave.spells[11].s = this.LightningRod[rodIndex][1][selIndex]
+      this.newdata = SaveHandler.Encode(this.newsave)
+      this.lsmsg = 'Hit streak = ' + hits
     }
   },
   methods: {
