@@ -150,7 +150,7 @@ var myViewModel = new Vue({
       selIndex = this.currentbuildingsM.findIndex(x => x == this.miracleinput)
       rodIndex = 11 - this.buildingcount
       hits = this.LightningRod[rodIndex][0][selIndex]
-      this.oldsave.upgrades[143719].s = this.LightningRod[rodIndex][1][selIndex]
+      this.newsave.upgrades[143719].s = this.LightningRod[rodIndex][1][selIndex]
       this.newdata = SaveHandler.Encode(this.newsave)
       this.miraclemsg = 'Hit streak = ' + hits
     }
