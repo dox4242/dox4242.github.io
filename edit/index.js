@@ -29,8 +29,12 @@ var myViewModel = new Vue({
                   [[28, 28], [1202476373, 447787816]]],
     buildingcount: 0,
     buildingnames: ['Alchemist Lab', 'Ancient Pyramid', 'Blacksmith', 'Cathedral', 'Citadel', 'Dark Temple', 'Deep Mine', 'Evil Fortress', 'Farm', 'Hall of Legends', 'Heaven\'s Gate', 'Hell Portal', 'Inn', 'Iron Stronghold', 'Knights Joust', 'Labyrinth', 'Monastery', 'Necropolis', 'Orcish Arena', 'Royal Castle', 'Slave Pen', 'Stone Pillars', 'Warrior Barracks', 'Witch Conclave', 'Wizard Tower'],
-    currentbuildings: [],
+    currentbuildingsLS: [],
+    currentbuildingsM: [],
     LSavail: 'False',
+    miracleinput: '',
+    miraclemsg: '',
+    miracleAvail: 'False',
     reincinput: '',
     rubiesinput: '',
     scrymsg: ''
@@ -44,8 +48,10 @@ var myViewModel = new Vue({
         this.ascensioninput = ''
         this.bloodlinemsg = ''
         this.lsmsg = ''
+        this.miraclemsg = ''
         this.buildingcount = 0
-        this.currentbuildings = []
+        this.currentbuildingsLS = []
+        this.currentbuildingsM = []
         this.reincinput = ''
         this.rubiesinput = ''
         this.scrymsg = ''
@@ -57,6 +63,7 @@ var myViewModel = new Vue({
 
         this.checkAngellineUpgrade()     // check state and setup page fields
         this.checkLSavail()
+        this.checkMiracleAvail()
       } catch(err) {
           this.newdata = 'Invalid data'
           console.log(err)
@@ -132,12 +139,20 @@ var myViewModel = new Vue({
       }
     },
     lsinput: function(data) {
-      selIndex = this.currentbuildings.findIndex(x => x == this.lsinput)
+      selIndex = this.currentbuildingsLS.findIndex(x => x == this.lsinput)
       rodIndex = 11 - this.buildingcount
       hits = this.LightningRod[rodIndex][0][selIndex]
       this.newsave.spells[11].s = this.LightningRod[rodIndex][1][selIndex]
       this.newdata = SaveHandler.Encode(this.newsave)
       this.lsmsg = 'Hit streak = ' + hits
+    },
+    miracleinput: function(data) {
+      selIndex = this.currentbuildingsM.findIndex(x => x == this.miracleinput)
+      rodIndex = 11 - this.buildingcount
+      hits = this.LightningRod[rodIndex][0][selIndex]
+      this.oldsave.upgrades[143719].s = this.LightningRod[rodIndex][1][selIndex]
+      this.newdata = SaveHandler.Encode(this.newsave)
+      this.miraclemsg = 'Hit streak = ' + hits
     }
   },
   methods: {
@@ -159,14 +174,28 @@ var myViewModel = new Vue({
           }
         }
       } else { this.LSavail = 'True' }
-      this.buildingcount = 0
       for (var i = 0; i < this.oldsave.buildings.length; i++) {
         if (this.oldsave.buildings[i].q > 0) {
-          this.currentbuildings.push(this.buildingnames[this.oldsave.buildings[i].id-1])
+          this.currentbuildingsLS.push(this.buildingnames[this.oldsave.buildings[i].id-1])
           this.buildingcount += 1
         }
       }
       if (this.buildingcount < 2) { this.LSavail = 'False' }
+    },
+    checkMiracleAvail: function () {
+      if (this.oldsave.upgrades[143719].u1 == true) {
+          this.miracleAvail = 'True'
+      } else {
+        this.miracleAvail = 'False'
+      }
+      this.buildingcount = 0
+      for (var i = 0; i < this.oldsave.buildings.length; i++) {
+        if (this.oldsave.buildings[i].q > 0) {
+          this.currentbuildingsM.push(this.buildingnames[this.oldsave.buildings[i].id-1])
+          this.buildingcount += 1
+        }
+      }
+      if (this.buildingcount < 2) { this.miracleAvail = 'False' }
     },
     saveAngelline: function () {
       if (this.angellineinput == '') { return }
