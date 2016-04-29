@@ -59,7 +59,7 @@ var myViewModel = new Vue({
         this.oldsave = SaveHandler.Decode(data)  // decode stuff
         this.newsave = SaveHandler.Decode(data)
         console.log('Decoded save:', SaveHandler.Decode(data))
-        this.newdata = 'Decoded v' + this.oldsave.saveVersion
+        this.newdata = 'Save v' + this.oldsave.saveVersion + ' decoded'
 
         this.checkAngellineUpgrade()     // check state and setup page fields
         this.checkLSavail()
@@ -94,43 +94,38 @@ var myViewModel = new Vue({
     bloodlineinput: function(data) {
       if (this.bloodlineinput == 'None') {
         this.newsave.bFaction = 255
-        for (var i = 0; i < this.oldsave.upgrades.length; i++) {
-          if (this.oldsave.upgrades[i].id == 13) {
-            this.newsave.upgrades[i].u1 = 'False'
-          }
-          if (this.oldsave.upgrades[i].id == 327) {
-            this.newsave.upgrades[i].u1 = 'False'
-          }
-          for (var j = 0; j < this.bloodlineIDs.length; j++) {
-            if (this.oldsave.upgrades[i].id == this.bloodlineIDs[j]) {
-              if (this.oldsave.upgrades[i].u1 == true) {
-                this.newsave.upgrades[i].u1 = false
-              }
-            }
+        this.newsave.upgrades[13].u1 = 'False'
+        this.newsave.upgrades[327].u1 = 'False'
+        for (var i = 0; i < this.bloodlineIDs.length; i++) {
+          if (this.oldsave.upgrades[this.bloodlineIDs[i]] != null) {
+            this.newsave.upgrades[this.bloodlineIDs[i]].u1 = false
           }
         }
         this.newdata = SaveHandler.Encode(this.newsave)
         this.bloodlinemsg = 'Saved'
         return
       } else { 
-        for (var i = 0; i < this.oldsave.upgrades.length; i++) {
-          for (var j = 0; j < this.bloodlineIDs.length; j++) {
-            if (this.oldsave.upgrades[i].id == this.bloodlineIDs[j]) {
-              if (this.bloodlineinput == 'Fairy') { this.newsave.upgrades[i].id = 194 }
-              if (this.bloodlineinput == 'Elf') { this.newsave.upgrades[i].id = 164 }
-              if (this.bloodlineinput == 'Angel') {
-                this.newsave.upgrades[i].id = 39
-                this.angellineUpgradeBought = 'True'
-              }
-              if (this.bloodlineinput == 'Goblin') { this.newsave.upgrades[i].id = 212 }
-              if (this.bloodlineinput == 'Undead') { this.newsave.upgrades[i].id = 396 }
-              if (this.bloodlineinput == 'Demon') { this.newsave.upgrades[i].id = 103 }
-              if (this.bloodlineinput == 'Titan') { this.newsave.upgrades[i].id = 380 }
-              if (this.bloodlineinput == 'Druid') { this.newsave.upgrades[i].id = 136 }
-              if (this.bloodlineinput == 'Faceless') { this.newsave.upgrades[i].id = 183 }
-              if (this.bloodlineinput == 'Dwarf') { this.newsave.upgrades[i].id = 150 }
-              if (this.bloodlineinput == 'Drow') { this.newsave.upgrades[i].id = 120 }
+        for (var i = 0; i < this.bloodlineIDs.length; i++) {
+          if (this.oldsave.upgrades[this.bloodlineIDs[i]] != null) {
+            this.temp = this.oldsave.upgrades[this.bloodlineIDs[i]]
+            console.log('temp: ', this.temp.id)
+            if (this.bloodlineinput == 'Fairy') { this.temp.id = 194 }
+            if (this.bloodlineinput == 'Elf') { this.temp.id = 164 }
+            if (this.bloodlineinput == 'Angel') {
+              this.temp.id = 39
+              this.angellineUpgradeBought = 'True'
+              console.log('angelline on!')
             }
+            if (this.bloodlineinput == 'Goblin') { this.temp.id = 212 }
+            if (this.bloodlineinput == 'Undead') { this.temp.id = 396 }
+            if (this.bloodlineinput == 'Demon') { this.temp.id = 103 }
+            if (this.bloodlineinput == 'Titan') { this.temp.id = 380 }
+            if (this.bloodlineinput == 'Druid') { this.temp.id = 136 }
+            if (this.bloodlineinput == 'Faceless') { this.temp.id = 183 }
+            if (this.bloodlineinput == 'Dwarf') { this.temp.id = 150 }
+            if (this.bloodlineinput == 'Drow') { this.temp.id = 120 }
+            delete this.newsave.upgrades[this.bloodlineIDs[i]]
+            this.newsave.upgrades[this.temp.id] = this.temp
           }
         }
         this.newdata = SaveHandler.Encode(this.newsave)
@@ -201,53 +196,12 @@ var myViewModel = new Vue({
       if (this.angellineinput == '') { return }
       try {
         if (isNaN(this.angellineinput)) {
-          amount = this.angellineinput
-          newamount = ''
-          days = 0
-          hours = 0
-          mins = 0
-          secs = 0
-          if ((amount.indexOf('d') + amount.indexOf('h') + amount.indexOf('m') + amount.indexOf('s')) == -4) {
+          amount = this.readDHMS(this.angellineinput)
+          if (isNaN(amount)) {
             this.angellineinput = 'Invalid input'
-            return
+          } else {
+            this.newsave.sTimer = amount*30
           }
-          dIndex = amount.indexOf('d')
-          if (dIndex >= 0) {
-            days = parseInt(amount.slice(0,dIndex))
-            amount = amount.slice(dIndex+1)
-            if (isNaN(days)) {
-              this.angellineinput = 'Invalid input'
-              return
-            }
-          }
-          hIndex = amount.indexOf('h')
-          if (hIndex >= 0) {
-            hours = parseInt(amount.slice(0,hIndex))
-            amount = amount.slice(hIndex+1)
-            if (isNaN(hours)) {
-              this.angellineinput = 'Invalid input'
-              return
-            }
-          }
-          mIndex = amount.indexOf('m')
-          if (mIndex >= 0) {
-            mins = parseInt(amount.slice(0,mIndex))
-            amount = amount.slice(mIndex+1)
-            if (isNaN(mins)) {
-              this.angellineinput = 'Invalid input'
-              return
-            }
-          }
-          sIndex = amount.indexOf('s')
-          if (sIndex >= 0) {
-            secs = parseInt(amount.slice(0,sIndex))
-            amount = amount.slice(sIndex+1)
-            if (isNaN(secs)) {
-              this.angellineinput = 'Invalid input'
-              return
-            }
-          }
-          this.newsave.sTimer = (secs + (mins*60) + (hours*60*60) + (days*60*60*24)) * 30
           this.newdata = SaveHandler.Encode(this.newsave)
           this.angellineinput = this.newsave.sTimer/30 + ' seconds on Angelline'
         } else {
@@ -304,6 +258,48 @@ var myViewModel = new Vue({
       }
       this.newdata = SaveHandler.Encode(this.newsave)
       this.scrymsg = 'Timers maxed'
+    },
+    readDHMS: function(amount) {
+      days = 0
+      hours = 0
+      mins = 0
+      secs = 0
+      if ((amount.indexOf('d') + amount.indexOf('h') + amount.indexOf('m') + amount.indexOf('s')) == -4) {
+        return 'Invalid input'
+      }
+      dIndex = amount.indexOf('d')
+      if (dIndex >= 0) {
+        days = parseInt(amount.slice(0,dIndex))
+        amount = amount.slice(dIndex+1)
+        if (isNaN(days)) {
+          return 'Invalid input'
+        }
+      }
+      hIndex = amount.indexOf('h')
+      if (hIndex >= 0) {
+        hours = parseInt(amount.slice(0,hIndex))
+        amount = amount.slice(hIndex+1)
+        if (isNaN(hours)) {
+          return 'Invalid input'
+        }
+      }
+      mIndex = amount.indexOf('m')
+      if (mIndex >= 0) {
+        mins = parseInt(amount.slice(0,mIndex))
+        amount = amount.slice(mIndex+1)
+        if (isNaN(mins)) {
+          return 'Invalid input'
+        }
+      }
+      sIndex = amount.indexOf('s')
+      if (sIndex >= 0) {
+        secs = parseInt(amount.slice(0,sIndex))
+        amount = amount.slice(sIndex+1)
+        if (isNaN(secs)) {
+          return 'Invalid input'
+        }
+      }
+      return secs + (mins*60) + (hours*60*60) + (days*60*60*24)
     }
   }
 })
