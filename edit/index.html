@@ -47,6 +47,19 @@ Please direct errors, questions, complaints, etc. to: dox4242-at-gmail.
 <option>Faceless</option>
 <option>Dwarf</option>
 <option>Druid</option></select> {{ bloodlinemsg }}</td></tr>
+<tr><td align=right>Bloodstream:&nbsp</td><td><select v-model="bloodstreaminput">
+<option>None</option>
+<option>Fairy</option>
+<option>Elf</option>
+<option>Angel</option>
+<option>Goblin</option>
+<option>Undead</option>
+<option>Demon</option>
+<option>Titan</option>
+<option>Druid</option>
+<option>Faceless</option>
+<option>Dwarf</option>
+<option>Druid</option></select> {{ bloodstreammsg }}</td></tr>
 <tr><td align="right">Lightning streak:&nbsp</td>
 <template v-if="LSavail == 'True'"><td><select v-model="lsinput">
 <option v-for="name in currentbuildingsLS">{{ name }}</option></select> {{ lsmsg }}</td></template>
@@ -55,6 +68,7 @@ Please direct errors, questions, complaints, etc. to: dox4242-at-gmail.
 <template v-if="miracleAvail == 'True'"><td><select v-model="miracleinput">
 <option v-for="name in currentbuildingsM">{{ name }}</option></select> {{ miraclemsg }}</td></template>
 <template v-else><td>not available</td></template></tr>
+<tr><td align=right>Offline time:&nbsp</td><td><input v-model="offlineinput"> <button v-on:click="saveOffline">Save</button></td></tr>
 <tr><td align=right>Reincarnation #:&nbsp</td><td><input v-model="reincinput"> <button v-on:click="saveReinc">Save</button></td></tr>
 <tr><td align=right>Rubies:&nbsp</td><td><input v-model="rubiesinput"> <button v-on:click="saveRubies">Save</button></td></tr>
 <tr><td align=right>Scry timers:&nbsp</td><td><button v-on:click="maxScry">Max timers</button> {{ scrymsg }}</td></tr>
