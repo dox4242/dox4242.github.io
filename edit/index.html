@@ -63,11 +63,11 @@ Please direct errors, questions, complaints, etc. to: dox4242-at-gmail.
 <tr><td align="right">Lightning streak:&nbsp</td>
 <template v-if="LSavail == 'True'"><td><select v-model="lsinput">
 <option v-for="name in currentbuildingsLS">{{ name }}</option></select> {{ lsmsg }}</td></template>
-<template v-else><td>not available</td></template></tr>
+<template v-else><td>spell not available or not enough targets</td></template></tr>
 <tr><td align="right">Miracle streak:&nbsp</td>
 <template v-if="miracleAvail == 'True'"><td><select v-model="miracleinput">
 <option v-for="name in currentbuildingsM">{{ name }}</option></select> {{ miraclemsg }}</td></template>
-<template v-else><td>not available</td></template></tr>
+<template v-else><td>not purchased or not enough targets</td></template></tr>
 <tr><td align=right>Offline time:&nbsp</td><td><input v-model="offlineinput"> <button v-on:click="saveOffline">Save</button> (1d10h5m30s notation allowed)</td></tr>
 <tr><td align=right>Reincarnation #:&nbsp</td><td><input v-model="reincinput"> <button v-on:click="saveReinc">Save</button></td></tr>
 <tr><td align=right>Rubies:&nbsp</td><td><input v-model="rubiesinput"> <button v-on:click="saveRubies">Save</button></td></tr>
