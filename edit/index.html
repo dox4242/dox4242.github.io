@@ -30,7 +30,7 @@ Please direct errors, questions, complaints, etc. to: dox4242-at-gmail.
 <option>Evil</option>
 <option>Neutral</option></select> {{ alignmentmsg }}</td></tr>
 <tr><td align="right">Angelline start:&nbsp</td>
-<template v-if="angellineUpgradeBought == 'True'"><td><input v-model="angellineinput"> <button v-on:click="saveAngelline">Save</button></td><td>(1d10h5m30s notation allowed)</td></template>
+<template v-if="angellineUpgradeBought == 'True'"><td><input v-model="angellineinput"> <button v-on:click="saveAngelline">Save</button> (1d10h5m30s notation allowed)</td></template>
 <template v-else><td>not purchased</td></template></tr>
 <tr><td align=right>Artifact RNG:&nbsp</td><td><button v-on:click="artRNGbest">Best value</button> {{ artRNGmsg }}</td></tr>
 <tr><td align=right>Ascension #:&nbsp</td><td><input v-model="ascensioninput"> <button v-on:click="saveAscension">Save</button></td></tr>
@@ -68,7 +68,7 @@ Please direct errors, questions, complaints, etc. to: dox4242-at-gmail.
 <template v-if="miracleAvail == 'True'"><td><select v-model="miracleinput">
 <option v-for="name in currentbuildingsM">{{ name }}</option></select> {{ miraclemsg }}</td></template>
 <template v-else><td>not available</td></template></tr>
-<tr><td align=right>Offline time:&nbsp</td><td><input v-model="offlineinput"> <button v-on:click="saveOffline">Save</button></td></tr>
+<tr><td align=right>Offline time:&nbsp</td><td><input v-model="offlineinput"> <button v-on:click="saveOffline">Save</button> (1d10h5m30s notation allowed)</td></tr>
 <tr><td align=right>Reincarnation #:&nbsp</td><td><input v-model="reincinput"> <button v-on:click="saveReinc">Save</button></td></tr>
 <tr><td align=right>Rubies:&nbsp</td><td><input v-model="rubiesinput"> <button v-on:click="saveRubies">Save</button></td></tr>
 <tr><td align=right>Scry timers:&nbsp</td><td><button v-on:click="maxScry">Max timers</button> {{ scrymsg }}</td></tr>
