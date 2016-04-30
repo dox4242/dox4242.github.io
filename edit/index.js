@@ -15,6 +15,8 @@ var myViewModel = new Vue({
     bloodlineinput: '',
     bloodlineIDs: [194, 196, 39, 212, 396, 103, 380, 136, 183, 150, 120],
     bloodlinemsg: '',
+    bloodstreaminput: '',
+    bloodstreammsg: '',
     lsinput: '',
     lsmsg: '',
     LightningRod: [[[9, 9, 8, 8, 10, 8, 10, 8, 8, 9, 9], [1348656067, 2066742637, 724761641, 1139776337, 1832831073, 2874410, 314652574, 29728603, 57855160, 80741010, 798827580]],
@@ -35,6 +37,7 @@ var myViewModel = new Vue({
     miracleinput: '',
     miraclemsg: '',
     miracleAvail: 'False',
+    offlineinput: '',
     reincinput: '',
     rubiesinput: '',
     scrymsg: ''
@@ -46,12 +49,16 @@ var myViewModel = new Vue({
         this.angellineinput = ''
         this.artRNGmsg = ''
         this.ascensioninput = ''
+        this.bloodlineinput = ''
         this.bloodlinemsg = ''
+        this.bloodstreaminput = ''
+        this.bloodstreammsg = ''
         this.lsmsg = ''
         this.miraclemsg = ''
         this.buildingcount = 0
         this.currentbuildingsLS = []
         this.currentbuildingsM = []
+        this.offlineinput = ''
         this.reincinput = ''
         this.rubiesinput = ''
         this.scrymsg = ''
@@ -94,44 +101,57 @@ var myViewModel = new Vue({
     bloodlineinput: function(data) {
       if (this.bloodlineinput == 'None') {
         this.newsave.bFaction = 255
-        this.newsave.upgrades[13].u1 = 'False'
-        this.newsave.upgrades[327].u1 = 'False'
+        if (this.oldsave.upgrades[13] != null) { delete this.newsave.upgrades[13] }
+        if (this.oldsave.upgrades[327] != null) { delete this.newsave.upgrades[327] }
         for (var i = 0; i < this.bloodlineIDs.length; i++) {
           if (this.oldsave.upgrades[this.bloodlineIDs[i]] != null) {
-            this.newsave.upgrades[this.bloodlineIDs[i]].u1 = false
+            delete this.newsave.upgrades[this.bloodlineIDs[i]]
           }
         }
-        this.newdata = SaveHandler.Encode(this.newsave)
-        this.bloodlinemsg = 'Saved'
-        return
       } else { 
         for (var i = 0; i < this.bloodlineIDs.length; i++) {
           if (this.oldsave.upgrades[this.bloodlineIDs[i]] != null) {
-            this.temp = this.oldsave.upgrades[this.bloodlineIDs[i]]
-            console.log('temp: ', this.temp.id)
-            if (this.bloodlineinput == 'Fairy') { this.temp.id = 194 }
-            if (this.bloodlineinput == 'Elf') { this.temp.id = 164 }
-            if (this.bloodlineinput == 'Angel') {
-              this.temp.id = 39
-              this.angellineUpgradeBought = 'True'
-              console.log('angelline on!')
-            }
-            if (this.bloodlineinput == 'Goblin') { this.temp.id = 212 }
-            if (this.bloodlineinput == 'Undead') { this.temp.id = 396 }
-            if (this.bloodlineinput == 'Demon') { this.temp.id = 103 }
-            if (this.bloodlineinput == 'Titan') { this.temp.id = 380 }
-            if (this.bloodlineinput == 'Druid') { this.temp.id = 136 }
-            if (this.bloodlineinput == 'Faceless') { this.temp.id = 183 }
-            if (this.bloodlineinput == 'Dwarf') { this.temp.id = 150 }
-            if (this.bloodlineinput == 'Drow') { this.temp.id = 120 }
             delete this.newsave.upgrades[this.bloodlineIDs[i]]
-            this.newsave.upgrades[this.temp.id] = this.temp
+            if (this.bloodlineinput == 'Fairy') { this.newsave.upgrades[194].id = 194 }
+            if (this.bloodlineinput == 'Elf') { this.newsave.upgrades[164].id = 164 }
+            if (this.bloodlineinput == 'Angel') {
+              this.newsave.upgrades[39].id = 39
+              this.angellineUpgradeBought = 'True'
+            }
+            if (this.bloodlineinput == 'Goblin') { this.newsave.upgrades[212].id = 212 }
+            if (this.bloodlineinput == 'Undead') { this.newsave.upgrades[396].id = 396 }
+            if (this.bloodlineinput == 'Demon') { this.newsave.upgrades[103].id = 103 }
+            if (this.bloodlineinput == 'Titan') { this.newsave.upgrades[380].id = 380 }
+            if (this.bloodlineinput == 'Druid') { this.newsave.upgrades[136].id = 136 }
+            if (this.bloodlineinput == 'Faceless') { this.newsave.upgrades[183].id = 183 }
+            if (this.bloodlineinput == 'Dwarf') { this.newsave.upgrades[150].id = 150 }
+            if (this.bloodlineinput == 'Drow') { this.newsave.upgrades[120].id = 120 }
           }
         }
-        this.newdata = SaveHandler.Encode(this.newsave)
-        this.bloodlinemsg = 'Saved'
-        return
       }
+      this.newdata = SaveHandler.Encode(this.newsave)
+      this.bloodlinemsg = 'Saved'
+    },
+    bloodstreaminput: function(data) {
+      if (this.bloodstreaminput == 'None') {
+        this.newsave.bFaction = 255
+        delete this.newsave.upgrades[327]
+      } else {
+        if (this.oldsave.upgrades[327] == null) { this.newsave.upgrades[327].id = 327 }
+      }
+      if (this.bloodstreaminput == 'Fairy') { this.newsave.bFaction = 0 }
+      if (this.bloodstreaminput == 'Elf') { this.newsave.bFaction = 1 }
+      if (this.bloodstreaminput == 'Angel') { this.newsave.bFaction = 2 }
+      if (this.bloodstreaminput == 'Goblin') { this.newsave.bFaction = 3 }
+      if (this.bloodstreaminput == 'Undead') { this.newsave.bFaction = 4 }
+      if (this.bloodstreaminput == 'Demon') { this.newsave.bFaction = 5 }
+      if (this.bloodstreaminput == 'Titan') { this.newsave.bFaction = 6 }
+      if (this.bloodstreaminput == 'Druid') { this.newsave.bFaction = 7 }
+      if (this.bloodstreaminput == 'Faceless') { this.newsave.bFaction = 8 }
+      if (this.bloodstreaminput == 'Dwarf') { this.newsave.bFaction = 9 }
+      if (this.bloodstreaminput == 'Drow') { this.newsave.bFaction = 10 }
+      this.newdata = SaveHandler.Encode(this.newsave)
+      this.bloodstreammsg = 'Saved'
     },
     lsinput: function(data) {
       selIndex = this.currentbuildingsLS.findIndex(x => x == this.lsinput)
@@ -178,10 +198,12 @@ var myViewModel = new Vue({
       if (this.buildingcount < 2) { this.LSavail = 'False' }
     },
     checkMiracleAvail: function () {
-      if (this.oldsave.upgrades[143719].u1 == true) {
-          this.miracleAvail = 'True'
-      } else {
-        this.miracleAvail = 'False'
+      if (this.oldsave.upgrades[143719] != null) {
+        if (this.oldsave.upgrades[143719].u1 == true) {
+            this.miracleAvail = 'True'
+        } else {
+          this.miracleAvail = 'False'
+        }
       }
       this.buildingcount = 0
       for (var i = 0; i < this.oldsave.buildings.length; i++) {
@@ -193,22 +215,21 @@ var myViewModel = new Vue({
       if (this.buildingcount < 2) { this.miracleAvail = 'False' }
     },
     saveAngelline: function () {
-      if (this.angellineinput == '') { return }
+      if (this.angellineinput.trim() == '') { return }
       try {
         if (isNaN(this.angellineinput)) {
           amount = this.readDHMS(this.angellineinput)
           if (isNaN(amount)) {
             this.angellineinput = 'Invalid input'
+            return
           } else {
             this.newsave.sTimer = amount*30
           }
-          this.newdata = SaveHandler.Encode(this.newsave)
-          this.angellineinput = this.newsave.sTimer/30 + ' seconds on Angelline'
         } else {
           this.newsave.sTimer = parseInt(this.angellineinput)*30
-          this.newdata = SaveHandler.Encode(this.newsave)
-          this.angellineinput = this.newsave.sTimer/30 + ' seconds on Angelline'
         }
+        this.newdata = SaveHandler.Encode(this.newsave)
+        this.angellineinput = this.newsave.sTimer/30 + ' seconds on Angelline'
       } catch(err) {
         this.angellineinput = 'Invalid input'
         console.log(err)
@@ -220,7 +241,7 @@ var myViewModel = new Vue({
       this.artRNGmsg = 'RNG saved'
     },
     saveAscension: function() {
-      if (this.ascensioninput == '') { return }
+      if (this.ascensioninput.trim() == '') { return }
       if (isNaN(this.ascensioninput)) {
         this.ascensioninput = 'Invalid input'
       } else {
@@ -229,8 +250,29 @@ var myViewModel = new Vue({
         this.ascensioninput = 'Saved '+ this.newsave.ascension + ' ascensions'
       }
     },
+    saveOffline: function() {
+      if (this.offlineinput.trim() == '') { return }
+      try {
+        if (isNaN(this.offlineinput)) {
+          amount = this.readDHMS(this.offlineinput)
+          if (isNaN(amount)) {
+            this.offlineinput= 'Invalid input'
+            return
+          } else {
+            this.newsave.lastsave -= amount
+          }
+        } else {
+          this.newsave.sTimer = parseInt(this.offlineinput)
+        }
+        this.newdata = SaveHandler.Encode(this.newsave)
+        this.offlineinput = 'Added ' + amount + ' seconds offline'
+      } catch(err) {
+        this.offlineinput = 'Invalid input'
+        console.log(err)
+      }
+    },
     saveReinc: function() {
-      if (this.reincinput == '') { return }
+      if (this.reincinput.trim() == '') { return }
       if (isNaN(this.reincinput)) {
         this.reincinput = 'Invalid input'
       } else {
@@ -240,7 +282,7 @@ var myViewModel = new Vue({
       }
     },
     saveRubies: function() {
-      if (this.rubiesinput == '') { return }
+      if (this.rubiesinput.trim() == '') { return }
       if (isNaN(this.rubiesinput)) {
         this.rubiesinput = 'Invalid input'
       } else {
