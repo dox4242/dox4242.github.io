@@ -20,11 +20,11 @@ Please direct errors, questions, complaints, etc. to: dox4242-at-gmail.
 <div id="app">
 <table>
 <tr><td></td><td><small>(triple-click to select data)</small></td></tr>
-<tr><td>Enter save:</td><td><input type="text" v-model="olddata"></td><td></td></tr>
-<tr><td>Edited save:</td><td><input type="text" v-model="newdata"></td><td>(all valid edits are automatically encoded here)</td></tr>
+<tr><td align="right">Enter save:</td><td><input type="text" v-model="olddata"></td><td></td></tr>
+<tr><td align="right">Edited save:</td><td><input type="text" v-model="newdata"></td><td>(all valid edits are automatically encoded here)</td></tr>
 </table><br>
 <template v-if="oldsave.saveVersion >= 1"><table>
-<tr><td align=right>Alignment:&nbsp</td><td><select v-model="alignmentinput">
+<tr><td align="right">Alignment:&nbsp</td><td><select v-model="alignmentinput">
 <option>None</option>
 <option>Good</option>
 <option>Evil</option>
@@ -32,9 +32,9 @@ Please direct errors, questions, complaints, etc. to: dox4242-at-gmail.
 <tr><td align="right">Angelline start:&nbsp</td>
 <template v-if="angellineUpgradeBought == 'True'"><td><input v-model="angellineinput"> <button v-on:click="saveAngelline">Save</button> (1d10h5m30s notation allowed)</td></template>
 <template v-else><td>not purchased</td></template></tr>
-<tr><td align=right>Artifact RNG:&nbsp</td><td><button v-on:click="artRNGbest">Best value</button> {{ artRNGmsg }}</td></tr>
-<tr><td align=right>Ascension #:&nbsp</td><td><input v-model="ascensioninput"> <button v-on:click="saveAscension">Save</button></td></tr>
-<tr><td align=right>Bloodline:&nbsp</td><td><select v-model="bloodlineinput">
+<tr><td align="right">Artifact RNG:&nbsp</td><td><button v-on:click="artRNGbest">Best value</button> {{ artRNGmsg }}</td></tr>
+<tr><td align="right">Ascension #:&nbsp</td><td><input v-model="ascensioninput"> <button v-on:click="saveAscension">Save</button></td></tr>
+<tr><td align="right">Bloodline:&nbsp</td><td><select v-model="bloodlineinput">
 <option>None</option>
 <option>Fairy</option>
 <option>Elf</option>
@@ -47,8 +47,7 @@ Please direct errors, questions, complaints, etc. to: dox4242-at-gmail.
 <option>Faceless</option>
 <option>Dwarf</option>
 <option>Druid</option></select> {{ bloodlinemsg }}</td></tr>
-<tr><td align=right>Bloodstream:&nbsp</td><td><select v-model="bloodstreaminput">
-<option>None</option>
+<tr><td align="right">Bloodstream:&nbsp</td><td><select v-model="bloodstreaminput">
 <option>Fairy</option>
 <option>Elf</option>
 <option>Angel</option>
@@ -60,6 +59,7 @@ Please direct errors, questions, complaints, etc. to: dox4242-at-gmail.
 <option>Faceless</option>
 <option>Dwarf</option>
 <option>Druid</option></select> {{ bloodstreammsg }}</td></tr>
+<tr><td align="right">Buildings:&nbsp</td><td></td></tr>
 <tr><td align="right">Lightning streak:&nbsp</td>
 <template v-if="LSavail == 'True'"><td><select v-model="lsinput">
 <option v-for="name in currentbuildingsLS">{{ name }}</option></select> {{ lsmsg }}</td></template>
@@ -68,10 +68,10 @@ Please direct errors, questions, complaints, etc. to: dox4242-at-gmail.
 <template v-if="miracleAvail == 'True'"><td><select v-model="miracleinput">
 <option v-for="name in currentbuildingsM">{{ name }}</option></select> {{ miraclemsg }}</td></template>
 <template v-else><td>not purchased or not enough targets</td></template></tr>
-<tr><td align=right>Offline time:&nbsp</td><td><input v-model="offlineinput"> <button v-on:click="saveOffline">Save</button> (1d10h5m30s notation allowed)</td></tr>
-<tr><td align=right>Reincarnation #:&nbsp</td><td><input v-model="reincinput"> <button v-on:click="saveReinc">Save</button></td></tr>
-<tr><td align=right>Rubies:&nbsp</td><td><input v-model="rubiesinput"> <button v-on:click="saveRubies">Save</button></td></tr>
-<tr><td align=right>Scry timers:&nbsp</td><td><button v-on:click="maxScry">Max timers</button> {{ scrymsg }}</td></tr>
+<tr><td align="right">Offline time:&nbsp</td><td><input v-model="offlineinput"> <button v-on:click="saveOffline">Save</button> (1d10h5m30s notation allowed)</td></tr>
+<tr><td align="right">Reincarnation #:&nbsp</td><td><input v-model="reincinput"> <button v-on:click="saveReinc">Save</button></td></tr>
+<tr><td align="right">Rubies:&nbsp</td><td><input v-model="rubiesinput"> <button v-on:click="saveRubies">Save</button></td></tr>
+<tr><td align="right">Scry timers:&nbsp</td><td><button v-on:click="maxScry">Max timers</button> {{ scrymsg }}</td></tr>
 </table></template>
 </div>
 <script src="index.js"></script>
