@@ -133,12 +133,6 @@ var myViewModel = new Vue({
       this.bloodlinemsg = 'Saved'
     },
     bloodstreaminput: function(data) {
-      if (this.bloodstreaminput == 'None') {
-        this.newsave.bFaction = 255
-        delete this.newsave.upgrades[327]
-      } else {
-        if (this.oldsave.upgrades[327] == null) { this.newsave.upgrades[327].id = 327 }
-      }
       if (this.bloodstreaminput == 'Fairy') { this.newsave.bFaction = 0 }
       if (this.bloodstreaminput == 'Elf') { this.newsave.bFaction = 1 }
       if (this.bloodstreaminput == 'Angel') { this.newsave.bFaction = 2 }
