@@ -301,10 +301,8 @@ var myViewModel = new Vue({
     saveRubies: function() {
       if (this.rubiesinput.trim() == '') { return }
       if (isNaN(this.rubiesinput)) {
-        console.log('NaN is true, invalid input')
         this.rubiesinput = 'Invalid input'
       } else {
-        console.log('NaN is false, add to rubies')
         if (this.rubiesinput.indexOf('e') > 0) {
           this.rubiesinput = this.readEinput(this.rubiesinput)
           if (isNaN(this.rubiesinput)) {
@@ -312,10 +310,10 @@ var myViewModel = new Vue({
             return
           }
         }
-        this.newsave.rubies += parseInt(this.rubiesinput)
-        this.newsave.stats[102].stats += parseInt(this.rubiesinput)
+        this.newsave.rubies += parseFloat(this.rubiesinput)
+        this.newsave.stats[102].stats += parseFloat(this.rubiesinput)
         this.newdata = SaveHandler.Encode(this.newsave)
-        this.rubiesinput = 'Added ' + parseInt(this.rubiesinput) + ' rubies'
+        this.rubiesinput = 'Added ' + parseFloat(this.rubiesinput) + ' rubies'
       }
     },
     maxScry: function() {
@@ -387,8 +385,8 @@ var myViewModel = new Vue({
         return 'Invalid input'
       }
       try {
-        base = parseInt(amount.slice(0,eIndex))
-        exponent = parseInt(amount.slice(eIndex+1))
+        base = parseFloat(amount.slice(0,eIndex))
+        exponent = parseFloat(amount.slice(eIndex+1))
         return base * Math.pow(10,exponent)
       } catch(err) {
         console.log(err)
