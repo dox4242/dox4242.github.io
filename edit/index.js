@@ -17,6 +17,7 @@ var myViewModel = new Vue({
     bloodlinemsg: '',
     bloodstreaminput: '',
     bloodstreammsg: '',
+    gemsinput: '',
     lsinput: '',
     lsmsg: '',
     LightningRod: [[[9, 9, 8, 8, 10, 8, 10, 8, 8, 9, 9], [1348656067, 2066742637, 724761641, 1139776337, 1832831073, 2874410, 314652574, 29728603, 57855160, 80741010, 798827580]],
@@ -40,7 +41,8 @@ var myViewModel = new Vue({
     offlineinput: '',
     reincinput: '',
     rubiesinput: '',
-    scrymsg: ''
+    scrymsg: '',
+    pageHistoryFlag: 'False'
   },
   watch: {
     olddata: function(data) {
@@ -244,6 +246,27 @@ var myViewModel = new Vue({
         this.ascensioninput = 'Saved '+ this.newsave.ascension + ' ascensions'
       }
     },
+    saveGems: function() {
+      if (this.gemsinput.trim() == '') { return }
+      try {
+        if (isNaN(this.gemsinput)) {
+          this.gemsinput = 'Invalid input'
+          return
+        } else {
+          if (this.gemsinput.indexOf('e') > 0) {
+            amount = this.readEinput(this.gemsinput)
+            this.newsave.gems = amount
+          } else {
+            this.newsave.gems = parseInt(this.gemsinput)
+          }
+        }
+        this.newdata = SaveHandler.Encode(this.newsave)
+        this.gemsinput = 'Set ' + this.newsave.gems + ' gems'
+      } catch(err) {
+        this.gemsinput = 'Invalid input'
+        console.log(err)
+      }
+    },
     saveOffline: function() {
       if (this.offlineinput.trim() == '') { return }
       try {
@@ -278,8 +301,17 @@ var myViewModel = new Vue({
     saveRubies: function() {
       if (this.rubiesinput.trim() == '') { return }
       if (isNaN(this.rubiesinput)) {
+        console.log('NaN is true, invalid input')
         this.rubiesinput = 'Invalid input'
       } else {
+        console.log('NaN is false, add to rubies')
+        if (this.rubiesinput.indexOf('e') > 0) {
+          this.rubiesinput = this.readEinput(this.rubiesinput)
+          if (isNaN(this.rubiesinput)) {
+            this.rubiesinput = 'Invalid input'
+            return
+          }
+        }
         this.newsave.rubies += parseInt(this.rubiesinput)
         this.newsave.stats[102].stats += parseInt(this.rubiesinput)
         this.newdata = SaveHandler.Encode(this.newsave)
@@ -295,6 +327,13 @@ var myViewModel = new Vue({
       this.newdata = SaveHandler.Encode(this.newsave)
       this.scrymsg = 'Timers maxed'
     },
+    togglePageHistory: function() {
+      if (this.pageHistoryFlag == 'True') {
+        this.pageHistoryFlag = 'False'
+      } else {
+        this.pageHistoryFlag = 'True'
+      }
+    },
     readDHMS: function(amount) {
       days = 0
       hours = 0
@@ -303,39 +342,58 @@ var myViewModel = new Vue({
       if ((amount.indexOf('d') + amount.indexOf('h') + amount.indexOf('m') + amount.indexOf('s')) == -4) {
         return 'Invalid input'
       }
-      dIndex = amount.indexOf('d')
-      if (dIndex >= 0) {
-        days = parseInt(amount.slice(0,dIndex))
-        amount = amount.slice(dIndex+1)
-        if (isNaN(days)) {
-          return 'Invalid input'
+      try {
+        dIndex = amount.indexOf('d')
+        if (dIndex >= 0) {
+          days = parseInt(amount.slice(0,dIndex))
+          amount = amount.slice(dIndex+1)
+          if (isNaN(days)) {
+            return 'Invalid input'
+          }
         }
-      }
-      hIndex = amount.indexOf('h')
-      if (hIndex >= 0) {
-        hours = parseInt(amount.slice(0,hIndex))
-        amount = amount.slice(hIndex+1)
-        if (isNaN(hours)) {
-          return 'Invalid input'
+        hIndex = amount.indexOf('h')
+        if (hIndex >= 0) {
+          hours = parseInt(amount.slice(0,hIndex))
+          amount = amount.slice(hIndex+1)
+          if (isNaN(hours)) {
+            return 'Invalid input'
+          }
         }
-      }
-      mIndex = amount.indexOf('m')
-      if (mIndex >= 0) {
-        mins = parseInt(amount.slice(0,mIndex))
-        amount = amount.slice(mIndex+1)
-        if (isNaN(mins)) {
-          return 'Invalid input'
+        mIndex = amount.indexOf('m')
+        if (mIndex >= 0) {
+          mins = parseInt(amount.slice(0,mIndex))
+          amount = amount.slice(mIndex+1)
+          if (isNaN(mins)) {
+            return 'Invalid input'
+          }
         }
-      }
-      sIndex = amount.indexOf('s')
-      if (sIndex >= 0) {
-        secs = parseInt(amount.slice(0,sIndex))
-        amount = amount.slice(sIndex+1)
-        if (isNaN(secs)) {
-          return 'Invalid input'
+        sIndex = amount.indexOf('s')
+        if (sIndex >= 0) {
+          secs = parseInt(amount.slice(0,sIndex))
+          amount = amount.slice(sIndex+1)
+          if (isNaN(secs)) {
+            return 'Invalid input'
+          }
         }
+      } catch(err) {
+        console.log(err)
+        return 'Invalid input'
       }
       return secs + (mins*60) + (hours*60*60) + (days*60*60*24)
+    },
+    readEinput: function(amount) {
+      eIndex = amount.indexOf('e')
+      if (eIndex == -1) {
+        return 'Invalid input'
+      }
+      try {
+        base = parseInt(amount.slice(0,eIndex))
+        exponent = parseInt(amount.slice(eIndex+1))
+        return base * Math.pow(10,exponent)
+      } catch(err) {
+        console.log(err)
+        return 'Invalid input'
+      }
     }
   }
 })
