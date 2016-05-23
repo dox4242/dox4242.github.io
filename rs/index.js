@@ -171,8 +171,8 @@
 					timestamp: util.render.timeISO(this.save.lastsave),
 					timedelta: (Date.now() - this.save.lastsave * 1000) / 1000,
 					notation: this.save.options.not != null ? this.save.options.not : (this.save.options.notation ? 1 : 0),
-					lightningState: this.save.spell['s:LightningStrike'].s,
-					greedState: this.save.spell['s:GoblinsGreed'].s,
+					lightningState: this.save.spells[13].s,
+					greedState: this.save.spells[8].s,
 					snowballs: this.save.extraResources[0].amount,
 					hearts: this.save.extraResources[2].amount
 				};
