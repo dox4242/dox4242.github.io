@@ -4,23 +4,22 @@
 		this.goodBuildings = ['b:RoyalCastle', 'b:KnightsJoust', 'b:Citadel', 'b:WarriorBarracks', 'b:HeavensGate', 'b:Cathedral', 'b:WizardTower']
 
 		this.hasUpgrade = function(id) {
-			console.log(this.save)
-			return this.save.upgrade.hasOwnProperty(id);
+			return this.save.upgrades.hasOwnProperty(id);
 		}
 		this.hasResearch = function(id) {
-			return this.hasUpgrade(id) && this.save.upgrade[id].u === 2;
+			return this.hasUpgrade(id) && this.save.upgrades[id].u === 2;
 		}
 
 		this.buildingCount = function(good) {
 			var sum = 0;
 			if (good) {
 				for (var i = 0; i < this.goodBuildings.length; i++) {
-					sum += this.save.build[[this.goodBuildings[i]]].q;    
+					sum += this.save.buildings[[this.goodBuildings[i]]].q;    
 				}
 			} else {
-				for (var k in this.save.build) {
-					if (!this.save.build.hasOwnProperty(k)) continue;
-					sum += this.save.build[k].q;
+				for (var k in this.save.buildings) {
+					if (!this.save.buildings.hasOwnProperty(k)) continue;
+					sum += this.save.buildings[k].q;
 				}
 			}
 			return sum;
@@ -28,7 +27,7 @@
 
 		this.trophyCount = function() {
 			var count = 0;
-			for (var k in this.save.trophy) {
+			for (var k in this.save.trophies) {
 				if (this.hiddenTrophies.indexOf(k) === -1) count += 1;
 			}
 			return count;
@@ -57,19 +56,19 @@
 			if (this.hasUpgrade('u:Premeditation')) {
 				maxMana += 200;
 			}
-			if (this.hasUpgrade('u:Reincarnation') && this.save.rei >= 12) {
-				maxMana += 25 * this.save.rei;
+			if (this.hasUpgrade('u:Reincarnation') && this.save.reincarnation >= 12) {
+				maxMana += 25 * this.save.reincarnation;
 			}
 
 			return maxMana;
 		}
 
 		this.getCont = function() {
-			return this.save.contv / 100 * this.maxMana;
+			return this.save.contingencyValue / 100 * this.maxMana;
 		}
 
 		this.setCont = function(level) {
-			this.save.contv = 100 * (Number(level) / this.maxMana);
+			this.save.contingencyValue = 100 * (Number(level) / this.maxMana);
 			View.updateOutput();
 		}
 
