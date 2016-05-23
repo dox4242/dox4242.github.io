@@ -173,8 +173,8 @@
 					notation: this.save.options.not != null ? this.save.options.not : (this.save.options.notation ? 1 : 0),
 					lightningState: this.save.spells[13].s,
 					greedState: this.save.spells[8].s,
-					snowballs: this.save.extraResources[0].amount,
-					hearts: this.save.extraResources[2].amount
+					snowballs: this.save.eventResources[0].amount,
+					hearts: this.save.eventResources[2].amount
 				};
 				if (this.derivedStats.notation == 3) {
 					this.derivedStats.notation = 0;
