@@ -28,13 +28,13 @@
 
 			this.sumAtom = function(stat, level) {
 				var type = statType(stat);
-				console.log('sumAtom: stat =',stat,'| type =',type,'| level =',level)
+				//console.log('sumAtom: stat =',stat,'| type =',type,'| level =',level)
 				if (type === 'main') {
 					if (this.save.hasOwnProperty('save_version')) {
 						return this.save.stats[stat][this.statMembers[level]];
 					}
 					if (level === 2 && this.save.statsRei == null) return null;
-					return this.save[this.statLists[level]][stat];
+					return this.save.stats[stat][this.statLists[level]];
 				} else if (type === 'build') {
 					if (!this.save.build[stat]) return null;
 					return this.save.build[stat][this.buildSums[level]];
