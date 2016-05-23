@@ -7,7 +7,7 @@
 				{
 					name: 'Reincarnation',
 					type: 'plain',
-					stat: 'g:rei',
+					stat: 'g:reincarnation',
 					form: 'plain'
 				}, {
 					name: 'Gems',
@@ -22,7 +22,7 @@
 				}, {
 					name: 'Gold',
 					type: 'plain',
-					stat: 'g:resource',
+					stat: 'g:coins',
 					form: 'number'
 				}, {
 					name: 'Alignment',
@@ -37,7 +37,7 @@
 				}, {
 					name: 'Prestige Faction',
 					type: 'plain',
-					stat: 'g:activeFaction',
+					stat: 'g:prestigeFaction',
 					form: 'f:faction'
 				}, {
 					name: 'Bloodline Faction',
