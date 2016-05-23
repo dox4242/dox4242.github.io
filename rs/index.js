@@ -180,9 +180,9 @@
 					this.derivedStats.notation = 0;
 				}
 				if (this.save.hasOwnProperty('save_version')) {
-					reiCoins = this.save.stats[0].abd + this.save.stats[0].rei;
+					reiCoins = this.save.stats[0].stats + this.save.stats[0].rei;
 				} else {
-					reiCoins = this.save.stats[0] + this.save.statsReset[0];
+					reiCoins = this.save.stats[0] + this.save.stats[0].statsReset;
 				}
 				this.derivedStats.gemGain = Math.max(0, Math.floor((Math.sqrt(1 + 8
 					* reiCoins / 1e12) - 1) / 2) - this.save.gems);
