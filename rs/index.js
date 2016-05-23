@@ -20,7 +20,8 @@
 
 		function controller() {
 			this.statLists = ['stats', 'statsReset', 'statsRei'];
-			this.statMembers = ['abd', 'rei', 'ttl'];
+			//this.statMembers = ['abd', 'rei', 'ttl'];
+			this.statMembers = ['stats', 'statsReset', 'statsRei'];
 			this.buildSums = ['q', 't', 'r'];
 			this.buildMaxes = ['q', 'm', 'e'];
 			this.spellSums = ['c', 'r', 'e'];
