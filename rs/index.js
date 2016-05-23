@@ -27,6 +27,7 @@
 			this.spelltimeSums = ['active0', 'active1', 'active2'];
 
 			this.sumAtom = function(stat, level) {
+				console.log('sumAtom: stat =',stat,'| level =',level)
 				var type = statType(stat);
 				if (type === 'main') {
 					if (this.save.hasOwnProperty('save_version')) {
