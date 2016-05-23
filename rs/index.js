@@ -28,7 +28,6 @@
 
 			this.sumAtom = function(stat, level) {
 				var type = statType(stat);
-				//console.log('sumAtom: stat =',stat,'| type =',type,'| level =',level)
 				if (type === 'main') {
 					if (this.save.hasOwnProperty('save_version')) {
 						return this.save.stats[stat][this.statMembers[level]];
