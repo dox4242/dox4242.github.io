@@ -74,7 +74,7 @@
 
 		this.loadSave = function(dat) {
 			try {
-				this.save = decode(dat);
+				this.save = SaveHandler.Decode(dat);
 			} catch(err) {
 				console.log(err);
 				Flavor.saveInvalid();
@@ -132,7 +132,7 @@
 			$('#mana-field').prop('value', level);
 		}
 		this.updateOutput = function() {
-			$('#save-out').prop('value', encode(Controller.save));
+			$('#save-out').prop('value', SaveHandler.Encode(Controller.save));
 		}
 	}
 
