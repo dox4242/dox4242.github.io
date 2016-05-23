@@ -78,8 +78,8 @@
 				if (type === 'main') {
 					return this.sumAtom(stat, level);
 				} else if (type === 'build') {
-				if (!this.save.build[stat]) return null;
-					return this.save.build[stat][this.buildMaxes[level]];
+				if (!this.save.buildings[stat]) return null;
+					return this.save.buildings[stat][this.buildMaxes[level]];
 				}    
 			}
 
