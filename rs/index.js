@@ -36,8 +36,8 @@
 					if (level === 2 && this.save.statsRei == null) return null;
 					return this.save.stats[stat][this.statLists[level]];
 				} else if (type === 'build') {
-					if (!this.save.build[stat]) return null;
-					return this.save.build[stat][this.buildSums[level]];
+					if (!this.save.buildings[stat]) return null;
+					return this.save.buildings[stat][this.buildSums[level]];
 				} else if (type === 'spell') {
 					if (!this.save.spell || !this.save.spell[stat]) return null;
 					return this.save.spell[stat][this.spellSums[level]];
