@@ -200,7 +200,7 @@
 
 			this.loadSave = function(dat) {
 				try {
-					this.save = SaveHandler.Decode(dat);
+					this.save = decode(dat);
 					console.log('Decoded save:', this.save);
 					if (this.save.options[0]) {
 						this.save.options = this.save.options[0];
