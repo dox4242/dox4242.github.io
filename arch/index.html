@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+<head>
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'
+		integrity='sha384-pdapHxIh7EYuwy6K7iE41uXVxGCXY0sAjBzaElYGJUrzwodck3Lx6IE2lA0rFREo'
+		crossorigin='anonymous'></link>
+	<link rel='stylesheet' href='../index.css'></link>
+	
+	<script src='https://code.jquery.com/jquery-2.1.4.min.js'
+		integrity='sha384-R4/ztc4ZlRqWjqIuvf6RX5yb/v90qNGx6fS48N0tRxiGkqveZETq72KgDVJCp2TC'
+		crossorigin='anonymous'></script>
+	<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'
+		integrity='sha384-pPttEvTHTuUJ9L2kCoMnNqCRcaMPMVMsWVO+RLaaaYDmfSP5//dP6eKRusbPcqhZ' 
+		crossorigin='anonymous'></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/0.2.8/pako.js"
+		integrity="sha384-2+IobOaTSbjKqEDmmIZdyBwCBsLf880E4AdS+CXVxRBMrGS01qZi2ZdA69kccuyt"
+		crossorigin="anonymous"></script>
+	<script src='../lib/vue.js'></script>
+	<script>window.Vue || document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js" integrity="sha384-oyil/hbn4lE/VRhQytSipUwmWiTbzVK5S3a+wzVrgexPs+UrQ+e4xRatGDd8RNNE" crossorigin="anonymous">\x3C/script>')</script>
+
+	<script src='../lib/savecodec2.js'></script>
+	<script src='../lib/pmprng.js'></script>
+	<script src='../lib/util.js'></script>
+	<script src='../lib/flavor.js'></script>
+	<script src='flavor.js'></script>
+	<script src='artifacts.js'></script>
+	<script src='index.js'></script>
+</head>
+<body>
+	<nav class='navbar navbar-inverse navbar-fixed-top'>
+		<div class='container-fluid'>
+			<div class='navbar-header'>
+				<button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#nav-collapsable-content' aria-expanded='false'>
+					<span class='sr-only'>Toggle navigation</span>
+					<span class='icon-bar'></span>
+					<span class='icon-bar'></span>
+					<span class='icon-bar'></span>
+				</button>
+				<a class='navbar-brand' href='../index.html'>Royal Advisory Board</a>
+			</div>
+			<div class='collapse navbar-collapse' id='nav-collapsable-content'>
+				<ul class='nav navbar-nav'>
+					<li><a href='../index.html'>Home</a></li>
+					<li class='dropdown'>
+						<a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Realm Grinder <span class='caret'></span></a>    
+						<ul class='dropdown-menu'>
+							<li><a href='http://www.kongregate.com/games/divinegames/realm-grinder'>Realm Grinder</a></li>
+							<li><a href='http://www.divinegames.it/'>Divine Games</a></li>
+							<li><a href='http://realm-grinder.wikia.com/wiki/Realm_Grinder_Wikia'>Realm Grinder Wiki</a></li>
+						</ul>    
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Useful Tools <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="../rws/index.html">Realm Weather Service</a></li>
+							<li><a href="../ocd/index.html">Obsessive Conjurer Disorder</a></li>
+							<li><a href="../rs/index.html">Royal Scribe</a></li>
+							<li><a href='../arch/index.html'>Lara Crypt</a></li>
+							<li><a href='../edit/edit.html'>Save Editor</a></li>
+						</ul>
+					</li>
+					<li class='dropdown'>
+						<a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Seasonal Tools <span class='caret'></span></a>
+						<ul class='dropdown-menu'>
+							<li><a href='../mri/index.html'>Meggnetic Resonance Imager</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class='container' id='app'>
+		<h2 class='page-header'><span>{{flavor.title}}</span> <small>{{flavor.tagline}}</small></h2>
+		<div class='panel panel-primary'>
+			<div class='panel-heading'>{{flavor.intro}}</div>
+			<div class='panel-body input-group panelSaveInput'>
+				<label id='saveInputLabel' class='input-group-addon' for='saveInput'>Save <a data-toggle='popover' data-trigger='hover' data-placement='bottom' data-content='Export your save from Realm Grinder and paste it in this field to view a variety of stats that are not shown in-game.'>(?)</a></label>
+				<input id='saveInput' class='form-control' type='text' name='saveInput' value=''>
+				<div class='input-group-btn'>
+					<button id='doReEnter' class='btn btn-success' type='button'>Re-Enter save</button>
+					<button id='doSaveCopy' class='btn btn-info' type='button'>Copy save</button>
+					<button id='doSaveClear' class='btn btn-danger' type='button'>Clear save</button>
+				</div>
+			</div>
+		</div>
+		<div>
+			<div class='results'>
+				<div class='resultblock'><span class='result'>Artifact RNG State: </span><span>{{result.state}}</span></div>
+				<div class='resultblock'><span class='result'>Current Excavations: </span><span>{{result.excavations}}</span></div>
+				<div class='resultblock'><span class='result'>Eligible Artifacts <a data-toggle='popover' data-trigger='hover' data-placement='bottom' data-content='This is the set of artifacts that will consume a value from the RNG when you excavate. It is possible for some artifacts to be eligible even if you cannot obtain them in your current abdication.'>(?)</a>: </span><span>{{eligible}}</span></div>
+				<div class='resultblock'><span class='result'>Unobtainable Eligible Artifacts: </span><span>{{unobtain}}</span></div>
+				<div class='resultblock'><span class='result'>Non-Random Artifacts: </span><span>{{nonrandom}}</span></div>
+				<!--<div class='resultblock'><span class='result'>Owned Artifacts: </span><span>{{owned}}</span></div>
+				<div class='resultblock'><span class='result'>Ineligible Artifacts: </span><span>{{ineligible}}</span></div>
+				<div class='resultblock'><span class='result'>Max Mana: </span><span>{{result.max_mana}}</span></div>
+				<div class='resultblock'><span class='result'>Assistants: </span><span>{{result.assistants}}</span></div>
+				<div class='resultblock'><span class='result'>RE Bonus: </span><span>{{result.re_bonus}}</span></div>-->
+				<br>
+				<div class='resultblock'><span class='result'>Upcoming Excavations: </span>
+					<ul v-for="excav in excavs", track-by="$index">
+						<li>{{excav}}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
