@@ -26,3 +26,7 @@
 	.highlight.tier8, .hover.tier8 { color: blue; }
 	.highlight.tier9, .hover.tier9 { color: teal; }
 	.highlight.tier10, .hover.tier10 { color: aqua; }
+
+	.result {
+		font-weight: bold;
+	}

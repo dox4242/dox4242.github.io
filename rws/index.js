@@ -3,13 +3,8 @@
 		'use strict';
 		
 		// A list of all building names in ID'ed order
-		var buildingNames = [
-			'Farm', 'Inn', 'Blacksmith', 
-			'Warrior Barrack', 'Knights Joust', 'Wizard Tower', 'Cathedral', 'Citadel', 'Royal Castle', 'Heaven\'s Gate', 
-			'Slave Pen', 'Orcish Arena', 'Witch Conclave', 'Dark Temple', 'Necropolis', 'Evil Fortress', 'Hell Portal', 
-			'Deep Mine', 'Stone Pillar', 'Alchemist Lab', 'Monastery', 'Labyrinth', 'Iron Stronghold', 'Ancient Pyramid', 
-			'Hall of Legends'
-		];
+		var buildingNames = util.save.building_names;
+		var buildingIds = util.save.building_ids;
 		
 		var buildingsOwned = [];
 		var buildingsHighlighted = [ [], [] ];
@@ -29,7 +24,7 @@
 			console.log('Decoded save:', save);
 			
 			// Only buildings owned by the player can be hit
-			for (var i in save.buildings)
+			for (var i of buildingIds)
 				if (save.buildings[i].q > 0)
 					buildingsOwned.push(i);
 			$('#buildings').html('<b>Buildings owned</b> <small><i>(Click a building to toggle its highlighting)</i></small><br>');
@@ -72,7 +67,8 @@
 			}
 			
 			// Create the RNG and get the initial forecast
-			lightningRNG = new PM_PRNG(save.spells[11].s);
+			lightningRNG = new PM_PRNG(save.spells[13].s);
+			lightningRNG.hasLightningRod = util.save.upgrade_owned(save, 143018);
 			$('#lightningMessage').html('<b>Lightning Strike</b><br>Your RNG state is: ' + lightningRNG.state + '.');
 			$('#lightningForecast').html('<b>Forecast</b> <small><i>(Click a building to toggle its highlighting)</i></small><br><ol></ol>')
 				.append($('<button class="btn btn-link" type="button" />').html('Give me a longer Forecast').on('click', forecastLightningMore));
@@ -86,10 +82,7 @@
 			var miracleForecast = '';
 			
 			// (TEMP) Find the Miracle research upgrade
-			var miracle;
-			for (var i in save.upgrades)
-				if (save.upgrades[i].id == 143719)
-					miracle = save.upgrades[i];
+			var miracle = save.upgrades[143719];
 			
 			// Check if the save actually has Miracles to forecast
 			if (!miracle || !miracle.u1) {
@@ -123,7 +116,11 @@
 		var forecastLightningMore = function(e) {
 			if (buildingsOwned.length > 0 && lightningRNG)
 				for (var i = 0; i < 10; i++) {
-					var tier = lightningRNG.strikeTier(buildingsOwned.length);
+					var len = buildingsOwned.length;
+					if (lightningRNG.hasLightningRod && buildingsOwned[-1] == buildingIds[-1]) {
+						len -= 1;
+					}
+					var tier = lightningRNG.strikeTier(len);
 					var hit = buildingNames[buildingsOwned[tier]];
 					var li = $('<li />').html(hit).addClass('tier' + tier).data('tier', tier);
 					$('#lightningForecast > ol').append(li);

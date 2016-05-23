@@ -17,7 +17,7 @@
 				}, {
 					name: 'Gems after Abdication',
 					type: 'sum',
-					stat: ['d:gemGain', 'g:gems'],
+					stat: 'd:gemGain',
 					form: 'number'
 				}, {
 					name: 'Gold',
@@ -127,12 +127,6 @@
 					stat: 30,
 					form: 'number',
 					levels: [1],
-					override: [null, '&ndash;', '&ndash;']
-				}, {
-					name: 'Gem Gain on Abdication',
-					type: 'plain',
-					stat: 'd:gemGain',
-					form: 'number',
 					override: [null, '&ndash;', '&ndash;']
 				}
 			]
@@ -728,7 +722,7 @@
 					form: 'number'
 				}, {
 					name: 'Max Faction Coins at Once',
-					type: 'sum',
+					type: 'max',
 					stat: 78,
 					form: 'number'
 				}, {
