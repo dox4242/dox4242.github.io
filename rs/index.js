@@ -180,22 +180,23 @@
 				if (this.derivedStats.notation == 3) {
 					this.derivedStats.notation = 0;
 				}
-				if (this.save.hasOwnProperty('save_version')) {
+				if (this.save.hasOwnProperty('saveVersion')) {
 					reiCoins = this.save.stats[0].stats + this.save.stats[0].rei;
 				} else {
-					reiCoins = this.save.stats[0] + this.save.stats[0].statsReset;
+					//reiCoins = this.save.stats[0] + this.save.stats[0].statsReset;
+					reiCoins = this.save.stats[0].statsReset;
 				}
 				this.derivedStats.gemGain = Math.max(0, Math.floor((Math.sqrt(1 + 8
 					* reiCoins / 1e12) - 1) / 2) - this.save.gems);
-				if (this.save.version_rev !== '0' && this.save.version) {
+				if (this.save.saveRevision !== '0' && this.save.saveVersion) {
 					this.derivedStats.version = 'JSON/SOL (';
-					this.derivedStats.version += this.save.version;
-					this.derivedStats.version += '.' + this.save.version_rev + ')';
+					this.derivedStats.version += this.save.saveVersion;
+					this.derivedStats.version += '.' + this.save.saveRevision + ')';
 				} else {
 					this.derivedStats.version = 'Struct v';
-					this.derivedStats.version += this.save.save_version + ' (';
-					this.derivedStats.version += this.save.game_version + 'r';
-					this.derivedStats.version += this.save.version_rev + ')';
+					this.derivedStats.version += this.save.saveVersion + ' (';
+					this.derivedStats.version += this.save.gameVersion + 'r';
+					this.derivedStats.version += this.save.saveRevision + ')';
 				}
 			}
 
@@ -239,7 +240,7 @@
 				notation: function(x) {return ['Short Scale', 'Scientific', 'Engineering'][x]},
 				currtab: function(x) {return ['Stats', 'Upgrades', 'Trophies', 'Save', 'Shop'][x]},
 				giftdate: function(x) {var s = x.toString(); return s.substr(0,4) + '/' + s.substr(4,2) + '/' + s.substr(6,2)},
-				season: function(x) {return ['None', 'Thanksgiving', 'Christmas', 'Valentine\'s'][x]}
+				season: function(x) {return ['None', 'Thanksgiving', 'Christmas', 'Valentine\'s', 'Easter'][x]}
 			};
 
 			this.renderData = function(data, form, override) {
