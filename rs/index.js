@@ -194,6 +194,7 @@
 					this.derivedStats.version += '.' + this.save.saveRevision + ')';
 				} else {
 					this.derivedStats.version = 'Struct v';
+					console.log('Derived version =',this.derivedStats.version)
 					this.derivedStats.version += this.save.saveVersion + ' (';
 					this.derivedStats.version += this.save.gameVersion + 'r';
 					this.derivedStats.version += this.save.saveRevision + ')';
