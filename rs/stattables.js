@@ -57,7 +57,7 @@
 				}, {
 					name: 'Save/Game Version',
 					type: 'plain',
-					stat: 'd:saveVersion',
+					stat: 'd:version',
 					form: 'plain'
 				}
 			]
