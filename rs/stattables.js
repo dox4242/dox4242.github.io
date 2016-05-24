@@ -137,7 +137,7 @@
 				{
 					name: 'Buildings Built',
 					type: 'sum',
-					stat: ['b:Farm', 'b:Inn', 'b:Blacksmith', 'b:DeepMine', 'b:StonePillars', 'b:AlchemistLab', 'b:Monastery', 'b:Labyrinth', 'b:IronStronghold', 'b:AncientPyramid', 'b:HallOfLegends', 'b:SlavePen', 'b:OrcishArena', 'b:WitchConclave', 'b:DarkTemple', 'b:Necropolis', 'b:EvilFortress', 'b:HellPortal', 'b:WarriorBarracks', 'b:KnightsJoust', 'b:WizardTower', 'b:Cathedral', 'b:Citadel', 'b:RoyalCastle', 'b:HeavensGate'],
+					stat: ['9', '13', '3', '7', '22', '1', '17', '16', '14', '2', '10', '21', '19', '24', '6', '18', '8', '12', '23', '15', '25', '4', '5', '20', '11'],
 					form: 'number'
 				}, {
 					name: 'Max Buildings',
@@ -147,17 +147,17 @@
 				}, {
 					name: 'Neutral Buildings Built',
 					type: 'sum',
-					stat: ['b:Farm', 'b:Inn', 'b:Blacksmith', 'b:DeepMine', 'b:StonePillars', 'b:AlchemistLab', 'b:Monastery', 'b:Labyrinth', 'b:IronStronghold', 'b:AncientPyramid', 'b:HallOfLegends'],
+					stat: ['9', '13', '3', '7', '22', '1', '17', '16', '14', '2', '10'],
 					form: 'number'
 				}, {
 					name: 'Good Buildings Built',
 					type: 'sum',
-					stat: ['b:WarriorBarracks', 'b:KnightsJoust', 'b:WizardTower', 'b:Cathedral', 'b:Citadel', 'b:RoyalCastle', 'b:HeavensGate'],
+					stat: ['23', '15', '25', '4', '5', '20', '11'],
 					form: 'number'
 				}, {
 					name: 'Evil Buildings Built',
 					type: 'sum',
-					stat: ['b:SlavePen', 'b:OrcishArena', 'b:WitchConclave', 'b:DarkTemple', 'b:Necropolis', 'b:EvilFortress', 'b:HellPortal'],
+					stat: ['21', '19', '24', '6', '18', '8', '12'],
 					form: 'number'
 				}
 				]
