@@ -7,8 +7,8 @@
 				return 'main';
 			} else if (typeve(stat) === 'string') {
 				var types = {
-					b: 'build',
-					s: 'spell',
+					b: 'buildings',
+					s: 'spells',
 					t: 'spelltime',
 					d: 'derived',
 					g: 'global',
@@ -30,22 +30,22 @@
 			this.sumAtom = function(stat, level) {
 				var type = statType(stat);
 				if (type === 'main') {
-					if (this.save.hasOwnProperty('save_version')) {
+					if (this.save.hasOwnProperty('saveVersion')) {
 						return this.save.stats[stat][this.statMembers[level]];
 					}
-					if (level === 2 && this.save.statsRei == null) return null;
+					if (level === 2 && this.save.stats[0][statsRei] == null) return null;
 					return this.save.stats[stat][this.statLists[level]];
-				} else if (type === 'build') {
+				} else if (type === 'buildings') {
 					if (!this.save.buildings[stat]) return null;
 					return this.save.buildings[stat][this.buildSums[level]];
-				} else if (type === 'spell') {
-					if (!this.save.spell || !this.save.spell[stat]) return null;
-					return this.save.spell[stat][this.spellSums[level]];
+				} else if (type === 'spells') {
+					if (!this.save.spells || !this.save.spells[stat]) return null;
+					return this.save.spells[stat][this.spellSums[level]];
 				} else if (type === 'spelltime') {
-					var spellid = 's:'+stat.substr(2,stat.length-2);
-					if (!this.save.spell || !this.save.spell[spellid]) return null;
-					console.log(spellid);
-					return this.save.spell[spellid][this.spelltimeSums[level]];
+					//var spellid = 's:'+stat.substr(2,stat.length-2);
+					var spellid = stat.substr(2,stat.length-2);
+					if (!this.save.spells || !this.save.spells[spellid]) return null;
+					return this.save.spells[spellid][this.spelltimeSums[level]];
 				} else if (type === 'global') {
 					return level === 0 ? this.save[stat.substr(2)] : 0;
 				} else if (type === 'option') {
@@ -63,7 +63,7 @@
 			this.sumStat = function(stat, level) {
 				var sum = 0;
 				for (var i = 0; i <= level; i++) {
-					if (level > 0 && i === 0 && statType(stat) === 'build') {
+					if (level > 0 && i === 0 && statType(stat) === 'buildings') {
 						continue;
 					}
 					var part = this.sumAtom(stat, i);
@@ -77,7 +77,7 @@
 				var type = statType(stat);
 				if (type === 'main') {
 					return this.sumAtom(stat, level);
-				} else if (type === 'build') {
+				} else if (type === 'buildings') {
 				if (!this.save.buildings[stat]) return null;
 					return this.save.buildings[stat][this.buildMaxes[level]];
 				}    
