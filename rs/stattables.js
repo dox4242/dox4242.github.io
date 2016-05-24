@@ -152,7 +152,8 @@
 				}, {
 					name: 'Good Buildings Built',
 					type: 'sum',
-					stat: [23, 15, 25, 4, 5, 20, 11],
+					//stat: [23, 15, 25, 4, 5, 20, 11],
+					stat: [g:buildings[23].q],
 					form: 'number'
 				}, {
 					name: 'Evil Buildings Built',
