@@ -183,7 +183,8 @@
 				if (this.save.hasOwnProperty('saveVersion')) {
 					reiCoins = this.save.stats[0].stats + this.save.stats[0].statsReset;
 				} else {
-					reiCoins = this.save.stats[0] + this.save.statsReset[0];
+					console.log('Setting reiCoins, save.hasOwnProperty(\'saveVersion\') is false')
+					//reiCoins = this.save.stats[0] + this.save.statsReset[0];
 					//reiCoins = this.save.stats[0].statsReset;
 				}
 				this.derivedStats.gemGain = Math.max(0, Math.floor((Math.sqrt(1 + 8
