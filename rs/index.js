@@ -188,7 +188,6 @@
 				}
 				this.derivedStats.gemGain = Math.max(0, Math.floor((Math.sqrt(1 + 8
 					* reiCoins / 1e12) - 1) / 2) - this.save.gems);
-				console.log('saveRev, saveVer =',this.save.saveRevision, this.save.saveVersion)
 				if (this.save.saveRevision !== 0 && this.save.saveVersion) {
 					this.derivedStats.version = 'JSON/SOL (';
 					this.derivedStats.version += this.save.saveVersion;
@@ -199,7 +198,6 @@
 					this.derivedStats.version += this.save.gameVersion + 'r';
 					this.derivedStats.version += this.save.saveRevision + ')';
 				}
-				console.log('Derived version =',this.derivedStats.version)
 			}
 
 			this.loadSave = function(dat) {
