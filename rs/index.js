@@ -7,8 +7,8 @@
 				return 'main';
 			} else if (typeve(stat) === 'string') {
 				var types = {
-					b: 'buildings',
-					s: 'spells',
+					b: 'build',
+					s: 'spell',
 					t: 'spelltime',
 					d: 'derived',
 					g: 'global',
@@ -20,8 +20,7 @@
 
 		function controller() {
 			this.statLists = ['stats', 'statsReset', 'statsRei'];
-			//this.statMembers = ['abd', 'rei', 'ttl'];
-			this.statMembers = ['stats', 'statsReset', 'statsRei'];
+			this.statMembers = ['abd', 'rei', 'ttl'];
 			this.buildSums = ['q', 't', 'r'];
 			this.buildMaxes = ['q', 'm', 'e'];
 			this.spellSums = ['c', 'r', 'e'];
@@ -30,22 +29,21 @@
 			this.sumAtom = function(stat, level) {
 				var type = statType(stat);
 				if (type === 'main') {
-					if (this.save.hasOwnProperty('saveVersion')) {
+					if (this.save.hasOwnProperty('save_version')) {
 						return this.save.stats[stat][this.statMembers[level]];
 					}
-					if (level === 2 && this.save.stats[0][statsRei] == null) return null;
-					return this.save.stats[stat][this.statLists[level]];
-				} else if (type === 'buildings') {
-					if (!this.save.buildings[stat]) return null;
-					return this.save.buildings[stat][this.buildSums[level]];
-				} else if (type === 'spells') {
-					if (!this.save.spells || !this.save.spells[stat]) return null;
-					return this.save.spells[stat][this.spellSums[level]];
+					if (level === 2 && this.save.statsRei == null) return null;
+					return this.save[this.statLists[level]][stat];
+				} else if (type === 'build') {
+					if (!this.save.build[stat]) return null;
+					return this.save.build[stat][this.buildSums[level]];
+				} else if (type === 'spell') {
+					if (!this.save.spell || !this.save.spell[stat]) return null;
+					return this.save.spell[stat][this.spellSums[level]];
 				} else if (type === 'spelltime') {
-					//var spellid = 's:'+stat.substr(2,stat.length-2);
-					var spellid = stat.substr(2,stat.length-2);
-					if (!this.save.spells || !this.save.spells[spellid]) return null;
-					return this.save.spells[spellid][this.spelltimeSums[level]];
+					var spellid = 's:'+stat.substr(2,stat.length-2);
+					if (!this.save.spell || !this.save.spell[spellid]) return null;
+					return this.save.spell[spellid][this.spelltimeSums[level]];
 				} else if (type === 'global') {
 					return level === 0 ? this.save[stat.substr(2)] : 0;
 				} else if (type === 'option') {
@@ -63,7 +61,7 @@
 			this.sumStat = function(stat, level) {
 				var sum = 0;
 				for (var i = 0; i <= level; i++) {
-					if (level > 0 && i === 0 && statType(stat) === 'buildings') {
+					if (level > 0 && i === 0 && statType(stat) === 'build') {
 						continue;
 					}
 					var part = this.sumAtom(stat, i);
@@ -77,9 +75,9 @@
 				var type = statType(stat);
 				if (type === 'main') {
 					return this.sumAtom(stat, level);
-				} else if (type === 'buildings') {
-				if (!this.save.buildings[stat]) return null;
-					return this.save.buildings[stat][this.buildMaxes[level]];
+				} else if (type === 'build') {
+				if (!this.save.build[stat]) return null;
+					return this.save.build[stat][this.buildMaxes[level]];
 				}    
 			}
 
@@ -172,37 +170,36 @@
 					timestamp: util.render.timeISO(this.save.lastsave),
 					timedelta: (Date.now() - this.save.lastsave * 1000) / 1000,
 					notation: this.save.options.not != null ? this.save.options.not : (this.save.options.notation ? 1 : 0),
-					lightningState: this.save.spells[13].s,
-					greedState: this.save.spells[8].s,
-					snowballs: this.save.eventResources[0].amount,
-					hearts: this.save.eventResources[2].amount
+					lightningState: this.save.spell['s:LightningStrike'].s,
+					greedState: this.save.spell['s:GoblinsGreed'].s,
+					snowballs: this.save.extraResources[0].amount,
+					hearts: this.save.extraResources[2].amount
 				};
 				if (this.derivedStats.notation == 3) {
 					this.derivedStats.notation = 0;
 				}
-				if (this.save.hasOwnProperty('saveVersion')) {
-					reiCoins = this.save.stats[0].stats + this.save.stats[0].statsReset;
+				if (this.save.hasOwnProperty('save_version')) {
+					reiCoins = this.save.stats[0].abd + this.save.stats[0].rei;
 				} else {
-					console.log('Setting reiCoins, save.hasOwnProperty(\'saveVersion\') is false')
-					//reiCoins = this.save.stats[0] + this.save.statsReset[0];
+					reiCoins = this.save.stats[0] + this.save.statsReset[0];
 				}
 				this.derivedStats.gemGain = Math.max(0, Math.floor((Math.sqrt(1 + 8
 					* reiCoins / 1e12) - 1) / 2) - this.save.gems);
-				if (this.save.saveRevision !== 0 && this.save.saveVersion) {
+				if (this.save.version_rev !== '0' && this.save.version) {
 					this.derivedStats.version = 'JSON/SOL (';
-					this.derivedStats.version += this.save.saveVersion;
-					this.derivedStats.version += '.' + this.save.saveRevision + ')';
+					this.derivedStats.version += this.save.version;
+					this.derivedStats.version += '.' + this.save.version_rev + ')';
 				} else {
 					this.derivedStats.version = 'Struct v';
-					this.derivedStats.version += this.save.saveVersion + ' (';
-					this.derivedStats.version += this.save.gameVersion + 'r';
-					this.derivedStats.version += this.save.saveRevision + ')';
+					this.derivedStats.version += this.save.save_version + ' (';
+					this.derivedStats.version += this.save.game_version + 'r';
+					this.derivedStats.version += this.save.version_rev + ')';
 				}
 			}
 
 			this.loadSave = function(dat) {
 				try {
-					this.save = SaveHandler.Decode(dat);
+					this.save = decode(dat);
 					console.log('Decoded save:', this.save);
 					if (this.save.options[0]) {
 						this.save.options = this.save.options[0];
@@ -240,7 +237,7 @@
 				notation: function(x) {return ['Short Scale', 'Scientific', 'Engineering'][x]},
 				currtab: function(x) {return ['Stats', 'Upgrades', 'Trophies', 'Save', 'Shop'][x]},
 				giftdate: function(x) {var s = x.toString(); return s.substr(0,4) + '/' + s.substr(4,2) + '/' + s.substr(6,2)},
-				season: function(x) {return ['None', 'Thanksgiving', 'Christmas', 'Valentine\'s', 'Easter'][x]}
+				season: function(x) {return ['None', 'Thanksgiving', 'Christmas', 'Valentine\'s'][x]}
 			};
 
 			this.renderData = function(data, form, override) {
