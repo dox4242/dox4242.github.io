@@ -4,10 +4,10 @@
 		this.goodBuildings = ['b:RoyalCastle', 'b:KnightsJoust', 'b:Citadel', 'b:WarriorBarracks', 'b:HeavensGate', 'b:Cathedral', 'b:WizardTower']
 
 		this.hasUpgrade = function(id) {
-			return this.save.upgrade.hasOwnProperty(id);
+			return this.save.upgrades.hasOwnProperty(id);
 		}
 		this.hasResearch = function(id) {
-			return this.hasUpgrade(id) && this.save.upgrade[id].u === 2;
+			return this.hasUpgrade(id) && this.save.upgrades[id].u === 2;
 		}
 
 		this.buildingCount = function(good) {
