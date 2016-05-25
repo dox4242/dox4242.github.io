@@ -132,7 +132,7 @@
 			$('#mana-field').prop('value', level);
 		}
 		this.updateOutput = function() {
-			$('#save-out').prop('value', encode(Controller.save));
+			$('#save-out').prop('value', SaveHandler.Encode(Controller.save));
 		}
 	}
 
