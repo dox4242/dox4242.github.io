@@ -74,7 +74,7 @@
 
 		this.loadSave = function(dat) {
 			try {
-				this.save = decode(dat);
+				this.save = SaveHandler.Decode(dat);
 			} catch(err) {
 				console.log(err);
 				Flavor.saveInvalid();
