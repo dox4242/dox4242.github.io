@@ -251,7 +251,6 @@
             <tr is='widget-stat-max' :stat.sync='save.stats[40]' name='Max Spells Cast'></tr>
             <tr is='widget-spell' :spell.sync='save.spells[i.id]' :name='i.name + " Cast"' v-for='i in spells'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[37]' name='Lightning Strike Casts (alt)'></tr>
-            <tr is='widget-field' :field.sync='save.comboStrike' can-edit :colspan='5' name='Combo Strike Casts (alt)'></tr>
           </table>
         </div>
       </div>
