@@ -344,25 +344,23 @@
         save: util.save.blankSave(),
         spells: util.assoc.spells,
         factions: util.assoc.faction,
-        offlinetime: 0,
-        oldlastsave: 0
+        currenttime: Math.floor(new Date().getTime()/1000)
       },
       methods: {
         genSave: function(event) {
           this.outputsave = SaveHandler.Encode(this.save);
+        },
+        updateTime: function(event) { 
+          this.currentTime = Math.floor(new Date().getTime()/1000);
         }
       },
       computed: {
-        newlastsave: {
-          get: function () {
-            console.log('oldlastsave =',this.oldlastsave)
-            if (this.save.lastsave && (this.oldlastsave == 0)) {
-              this.oldlastsave = this.save.lastsave
-            }
-            if (this.offlinetime > 0) {
-              this.save.lastsave = this.oldlastsave - this.offlinetime
-            }
-            console.log('oldlastsave, offlinetime, lastsave =',this.oldlastsave, this.offlinetime, this.save.lastsave)
+        offlinetime: {
+          get: function() {
+            return this.currenttime - this.save.lastsave;
+          },
+          set: function(x) {
+            this.save.lastsave = this.currenttime - x;
           }
         }
       }
