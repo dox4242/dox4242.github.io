@@ -478,10 +478,10 @@ var Artifacts = [
     name: 'Arachnid Figurine',
     id: 130,
     fixed: function(save) {
-      return util.save.upgrade_owned(save,469) && save.prestigeFaction == 10 && util.save.stat(save, 4, 2) >= 86400;
+      return util.save.upgrade_owned(save,469) && save.prestigeFaction == 10 && util.save.stat(save, 3, 2) >= 86400;
     },
     random: function(save) {
-      return util.save.stat(save, 4, 2) / 432000000;
+      return util.save.stat(save, 3, 2) / 432000000;
     },
     required: function(value) {
       return Math.ceil(value * 432000000);
