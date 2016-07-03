@@ -257,7 +257,11 @@
 					return util.render.time(data);
 				} else if (form === 'number') {
 					var renderers = ['short', 'sci', 'eng'];
-					return util.render[renderers[Controller.derivedStats.notation]](data);
+					renderer = renderers[Controller.derivedStats.notation];
+					if (!renderer) { 
+						renderer = renderers.default;
+					}
+					return util.render[renderer];
 				} else if (form === 'timedelta') {
 					return util.render.timedelta(data);
 				} else if (form.substr(0,2) === 'f:') {
