@@ -257,7 +257,7 @@
 					return util.render.time(data);
 				} else if (form === 'number') {
 					var renderers = ['short', 'sci', 'eng'];
-					renderer = renderers[Controller.derivedStats.notation];
+					var renderer = renderers[Controller.derivedStats.notation];
 					if (!renderer) { 
 						renderer = renderers.default;
 					}
