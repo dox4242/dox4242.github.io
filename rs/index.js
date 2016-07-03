@@ -261,7 +261,7 @@
 					if (!renderer) { 
 						renderer = renderers.default;
 					}
-					return util.render[renderer];
+					return util.render[renderer](data);
 				} else if (form === 'timedelta') {
 					return util.render.timedelta(data);
 				} else if (form.substr(0,2) === 'f:') {
