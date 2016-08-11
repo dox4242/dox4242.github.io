@@ -122,6 +122,12 @@
       <li role='presentation'>
         <a href='#tab-factions' aria-controls='Factions' role='tab' data-toggle='pill'> Factions </a>
       </li>
+      <li role='presentation'>
+        <a href='#tab-archeology' aria-controls='Archeology' role='tab' data-toggle='pill'> Archeology </a>
+      </li>
+      <li role='presentation'>
+        <a href='#tab-events' aria-controls='Events' role='tab' data-toggle='pill'> Events </a>
+      </li>
     </ul>
     <div class='tab-content'>
       <div role='tabpanel' class='tab-pane fade in active' id='tab-general'>
@@ -129,6 +135,7 @@
           <table class='table'>
             <tr is='widget-onestat-header'></tr>
             <tr is='widget-field' :field.sync='save.reincarnation' can-edit name='Reincarnation'></tr>
+            <tr is='widget-field' :field.sync='save.ascension' can-edit name='Ascension'></tr>
             <tr is='widget-field' :field.sync='save.gems' can-edit name='Gems'></tr>
             <tr is='widget-field' :field.sync='save.coins' can-edit name='Gold'></tr>
             <tr is='widget-field-dropdown' :field.sync='save.alignment' type='alignment' name='Alignment'></tr>
@@ -293,6 +300,30 @@
             <tr is='widget-stat' :stat.sync='save.stats[i.timestat]' :name='i.name + " Playtime"' v-for='i in factions | filterDef "timestat"'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[i.affilstat]' :name='i.name + " Affiliations"' v-for='i in factions | filterDef "affilstat"'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[i.upgstat]' :name='i.name + " Upgrades Bought"' v-for='i in factions | filterDef "upgstat"'></tr>
+          </table>
+        </div>
+      </div>
+      <div role='tabpanel' class='tab-pane fade' id='tab-archeology'>
+        <div class='panel panel-default'>
+          <table class='table'>
+            <tr is='widget-onestat-header'></tr>
+            <tr is='widget-field' :field.sync='save.excavations' can-edit name='Excavations made'></tr>
+            <tr is='widget-field' :field.sync='save.artifactRngState' can-edit name='Artifact RNG State (best value: 1407677000)'></tr>
+          </table>
+        </div>
+      </div>
+      <div role='tabpanel' class='tab-pane fade' id='tab-events'>
+        <div class='panel panel-default'>
+          <table class='table'>
+            <tr is='widget-onestat-header'></tr>
+            <tr is='widget-field' :field.sync='save.ctaFactionCasts' can-edit name='Call to Love, cast by Factions'></tr>
+            <tr is='widget-field' :field.sync='save.eggRngState' can-edit name='Egg RNG State (best value: 873457390)'></tr>
+            <tr is='widget-field' :field.sync='save.eggStackSize' can-edit name='Egg Stack Size'></tr>
+            <tr is='widget-field-dropdown' :field.sync='save.alignment' type='alignment' name='Alignment'></tr>
+            <tr is='widget-field-dropdown' :field.sync='save.faction' type='faction' filter='faction' name='Faction'></tr>
+            <tr is='widget-field-dropdown' :field.sync='save.prestigeFaction' type='faction' filter='prestigeFaction' hide-neutral hide-merc name='Prestige Faction'></tr>
+            <tr is='widget-field-dropdown' :field.sync='save.bFaction' type='faction' filter='bFaction' name='Bloodline Faction'></tr>
+            <tr is='widget-field' :field.sync='offlinetime' can-edit name='Offline time (seconds)'></tr>
           </table>
         </div>
       </div>
