@@ -128,6 +128,9 @@
       <li role='presentation'>
         <a href='#tab-events' aria-controls='Events' role='tab' data-toggle='pill'> Events </a>
       </li>
+      <li role='presentation'>
+        <a href='#tab-misc' aria-controls='Misc' role='tab' data-toggle='pill'> Misc </a>
+      </li>
     </ul>
     <div class='tab-content'>
       <div role='tabpanel' class='tab-pane fade in active' id='tab-general'>
@@ -300,15 +303,23 @@
             <tr is='widget-stat' :stat.sync='save.stats[i.timestat]' :name='i.name + " Playtime"' v-for='i in factions | filterDef "timestat"'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[i.affilstat]' :name='i.name + " Affiliations"' v-for='i in factions | filterDef "affilstat"'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[i.upgstat]' :name='i.name + " Upgrades Bought"' v-for='i in factions | filterDef "upgstat"'></tr>
+            <!--<tr is='widget-stat-max' :stat.sync='save.stats[13]' name='Max Upgrades Bought'></tr>-->
           </table>
         </div>
       </div>
       <div role='tabpanel' class='tab-pane fade' id='tab-archeology'>
         <div class='panel panel-default'>
           <table class='table'>
-            <tr is='widget-onestat-header'></tr>
-            <tr is='widget-field' :field.sync='save.excavations' can-edit name='Excavations made'></tr>
-            <tr is='widget-field' :field.sync='save.artifactRngState' can-edit name='Artifact RNG State (best value: 1407677000)'></tr>
+            <tr is='widget-fivestat-header'></tr>
+            <tr is='widget-field' :field.sync='save.artifactRngState' can-edit :colspan='5' name='Artifact RNG State (best value: 1407677000)'></tr>
+            <tr is='widget-field' :field.sync='save.excavations' can-edit :colspan='5' name='Current Excavations'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[35]' name='Excavations'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[36]' name='Excavation Reports?'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[98]' name='Max Excavations'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[104]' name='Excavation Resets'></tr>
+            <tr is='widget-field' :field.sync='save.rubies' can-edit :colspan='5' name='Rubies'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[102]' name='Rubies Found'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[103]' name='Rubies Purchased?'></tr>
           </table>
         </div>
       </div>
@@ -319,6 +330,16 @@
             <tr is='widget-field' :field.sync='save.ctaFactionCasts' can-edit name='Call to Love, cast by Factions'></tr>
             <tr is='widget-field' :field.sync='save.eggRngState' can-edit name='Egg RNG State (best value: 873457390)'></tr>
             <tr is='widget-field' :field.sync='save.eggStackSize' can-edit name='Egg Stack Size'></tr>
+          </table>
+        </div>
+      </div>
+      <div role='tabpanel' class='tab-pane fade' id='tab-misc'>
+        <div class='panel panel-default'>
+          <table class='table'>
+            <tr is='widget-fivestat-header'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[23]' name='Assistant Squishes'></tr>
+            <tr is='widget-stat-max' :stat.sync='save.stats[88]' name='Max Assistant Squishes'></tr>
+            <!--<tr is='widget-stat' :stat.sync='save.stats[126]' name='Hint Button Clicks'></tr>-->
           </table>
         </div>
       </div>
