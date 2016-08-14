@@ -4,7 +4,8 @@
   var dropdownFilter = {
     faction: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 11],
     prestigeFaction: [-1, 9, 10],
-    bFaction: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    bFaction: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+	spell: [18, 3, 12, 6, 14, 9, 1, 8, 15, 11, 7, 13, 10, 2, 5, 4, 17]
   };
 
   for (var i in dropdownFilter) {
