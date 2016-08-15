@@ -272,63 +272,6 @@
         }
       }
     });
-    
-    /*Vue.component('widget-field-alignid', {
-      props: {
-        'field': {},
-        'name': String
-      },
-      template: '<tr>'
-      + '<th><span class="statname">{{name}}</span></th>'
-      + '<td><select v-model="field" number>'
-      + '<option value="0">Unaligned</option>'
-      + '<option value="1">Good</option>'
-      + '<option value="2">Evil</option>'
-      + '<option value="3">Neutral</option>'
-      + '</select></td>'
-      + '</tr>'
-    });
-    
-    Vue.component('widget-field-factionid', {
-      props: {
-        'field': {},
-        'name': String,
-        hideBase: {
-          type: Boolean,
-          default: function() { return false; }
-        },
-        hideNeutral: {
-          type: Boolean,
-          default: function() { return false; }
-        },
-        hidePrestige: {
-          type: Boolean,
-          default: function() { return false; }
-        },
-        hideMerc: {
-          type: Boolean,
-          default: function() { return false; }
-        }
-      },
-      template: '<tr>'
-      + '<th><span class="statname">{{name}}</span></th>'
-      + '<td><select v-model="field" number>'
-      + '<option value="-1">Unaffiliated</option>'
-      + '<option value="0" :disabled="hideBase">Fairy</option>'
-      + '<option value="1" :disabled="hideBase">Elf</option>'
-      + '<option value="2" :disabled="hideBase">Angel</option>'
-      + '<option value="3" :disabled="hideBase">Goblin</option>'
-      + '<option value="4" :disabled="hideBase">Undead</option>'
-      + '<option value="5" :disabled="hideBase">Demon</option>'
-      + '<option value="6" :disabled="hideNeutral">Titan</option>'
-      + '<option value="7" :disabled="hideNeutral">Druid</option>'
-      + '<option value="8" :disabled="hideNeutral">Faceless</option>'
-      + '<option value="9" :disabled="hidePrestige">Dwarf</option>'
-      + '<option value="10" :disabled="hidePrestige">Drow</option>'
-      + '<option value="11" :disabled="hideMerc">Mercenary</option>'
-      + '</select></td>'
-      + '</tr>'
-    });*/
 
     Vue.config.debug = true;
 
