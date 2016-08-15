@@ -261,6 +261,13 @@
             <tr is='widget-stat' :stat.sync='save.stats[3]' name='Evil Playtime'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[45]' name='Offline Playtime'></tr>
             <tr is='widget-stat-max' :stat.sync='save.stats[46]' name='Max Offline Playtime'></tr>
+            <tr is='widget-field' :field.sync='save.cTimer' can-edit :colspan='5' name='Time Since Last Mouse Click (ticks, 30/seconds)'></tr>
+            <tr is='widget-field' :field.sync='save.kcTimer' can-edit :colspan='5' name='Time Since Last Keypress (ticks)'></tr>
+            <tr is='widget-field' :field.sync='save.mTimer' can-edit :colspan='5' name='Time Since Last Mouse Motion (ticks)'></tr>
+            <tr is='widget-field' :field.sync='save.sTimer' can-edit :colspan='5' name='Time for Angel Bloodline (ticks)'></tr>
+            <tr is='widget-field' :field.sync='save.oTimer' can-edit :colspan='5' name='Scry Production Timer (max 14400)'></tr>
+            <tr is='widget-field' :field.sync='save.oTimer2' can-edit :colspan='5' name='Scry Mana Timer (max 600)'></tr>
+            <tr is='widget-field' :field.sync='save.oTimer3' can-edit :colspan='5' name='Scry Event Timer (max 14400)'></tr>
           </table>
         </div>
       </div>
@@ -271,11 +278,16 @@
             <tr is='widget-field' :field.sync='save.mana' can-edit :colspan='5' name='Mana'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[16]' name='Mana Produced'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[27]' name='Mana Spent'></tr>
+            <tr is='widget-field' :field.sync='save.contv' can-edit :colspan='5' name='Contingency Percentage (0-100)'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[15]' name='Spells Cast'></tr>
             <tr is='widget-stat-max' :stat.sync='save.stats[40]' name='Max Spells Cast'></tr>
             <tr is='widget-spell' :spell.sync='save.spells[i.id]' :name='i.name + " Cast"' v-for='i in spells'></tr>
+            <tr is='widget-field-dropdown' :field.sync='save.strikeTier' type='bTiers' :colspan='5' name='Lightning Strike Tier'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[37]' name='Lightning Strike Casts (alt)'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[64]' hide-prevAbs hide-rei hide-prevReis hide-total name='Consecutive Goblins Greed Casts'></tr>
+            <tr is='widget-field' :field.sync='save.comboStrikeCont' can-edit :colspan='5' name='Combo Strike Streak'></tr>
+            <tr is='widget-field-dropdown' :field.sync='save.mercSpell1' type='spells' :colspan='5' name='Mercenary Spell 1'></tr>
+            <tr is='widget-field-dropdown' :field.sync='save.mercSpell2' type='spells' :colspan='5' name='Mercenary Spell 2'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[65]' name='Casts of Pay Upkeep (unused)'></tr>
           </table>
         </div>
@@ -322,6 +334,10 @@
             <tr is='widget-stat' :stat.sync='save.stats[100]' hide-ab hide-prevReis hide-total name='Consecutive Demon Affiliations'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[i.upgstat]' :name='i.name + " Upgrades Bought"' v-for='i in factions | filterDef "upgstat"'></tr>
             <tr is='widget-stat-max' :stat.sync='save.stats[13]' name='Max Upgrades Bought'></tr>
+            <tr is='widget-stat-max' :stat.sync='save.stats[101]' hide-ab name='Consecutive Elven Luck Triggers'></tr>
+            <tr is='widget-field' :field.sync='save.goblinTimer' can-edit :colspan='5' name='Time Until Green Fingers Discount'></tr>
+            <tr is='widget-field' :field.sync='save.wealthStormTimer' can-edit :colspan='5' name='Time Until Storm of Wealth'></tr>
+            <tr is='widget-field' :field.sync='save.chargedTimer' can-edit :colspan='5' name='Titan Charged Effects Timer'></tr>
           </table>
         </div>
       </div>
@@ -357,6 +373,8 @@
             <tr is='widget-stat' :stat.sync='save.stats[93]' name='Economics Level'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[94]' name='Alchemy Level'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[95]' name='Warfare Level'></tr>
+            <tr is='widget-field-dropdown' :field.sync='save.miracleTier' type='bTiers' :colspan='5' name='Current Miracle Tier Target'></tr>
+            <tr is='widget-field' :field.sync='save.miracleTimer' can-edit :colspan='5' name='Miracle Effect Timer'></tr>
          </table>
         </div>
       </div>
@@ -378,6 +396,9 @@
             <tr is='widget-stat' :stat.sync='save.stats[123]' name='Common Eggs Collected'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[124]' name='Rare Eggs Collected'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[110]' name='Snowballs Found'></tr>
+            <tr is='widget-field' :field.sync='save.snowballScryUses' can-edit :colspan='5' name='Snowball Scry Uses'></tr>
+            <tr is='widget-field' :field.sync='save.snowballSize' can-edit :colspan='5' name='Current Snowball Size'></tr>
+            <tr is='widget-field' :field.sync='save.lastGiftDate' can-edit :colspan='5' name='Last Gift Date'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[111]' name='Christmas Gifts Found'></tr>
           </table>
         </div>
@@ -389,189 +410,10 @@
             <tr is='widget-stat' :stat.sync='save.stats[23]' name='Assistant Squishes'></tr>
             <tr is='widget-stat-max' :stat.sync='save.stats[88]' hide-ab name='Max Assistant Squishes'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[125]' name='Hint Button Clicks'></tr>
-            <tr is='widget-stat-max' :stat.sync='save.stats[101]' hide-ab name='Consecutive Elven Luck Triggers'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[14]' name='Trophy Counter (Defunct)'></tr>
           </table>
         </div>
       </div>
-      <!--<div role='tabpanel' class='tab-pane fade' id='tab-allstats'>
-        <div class='panel panel-default'>
-          <table class='table'>
-            <tr is='widget-fivestat-header'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[0]' name='Coins Gained'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[1]' name='Playtime'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[2]' name='Good Playtime'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[3]' name='Evil Playtime'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[4]' name='Clicks'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[5]' name='Coins Gained by Clicking'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[6]' name='Fairy Coins Gained'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[7]' name='Elf Coins Gained'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[8]' name='Angel Coins Gained'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[9]' name='Goblin Coins Gained'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[10]' name='Undead Coins Gained'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[11]' name='Demon Coins Gained'></tr>
-            <tr is='widget-stat-max' :stat.sync='save.stats[12]' name='Max Buildings'></tr>
-            <tr is='widget-stat-max' :stat.sync='save.stats[13]' name='Max Upgrades Purchased'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[14]' name='Trophy Counter'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[15]' name='Spells Cast'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[16]' name='Mana Produced'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[17]' name='Fairy Affiliations'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[18]' name='Elf Affiliations'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[19]' name='Angel Affiliations'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[20]' name='Goblin Affiliations'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[21]' name='Undead Affiliations'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[22]' name='Demon Affiliations'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[23]' name='Assistant Squishes'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[24]' name='Exchanges Made'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[25]' name='Coins Gained by Assistants'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[26]' name='Coins Spent'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[27]' name='Mana Spent'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[28]' name='Total Abdications'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[29]' name='Playtime Last Game'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[30]' name='Gems Gained Last Abdication'></tr>
-            <tr is='widget-stat-max' :stat.sync='save.stats[31]' name='Max Coins'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[32]' name='Titan Affiliations'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[33]' name='Druid Affiliations'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[34]' name='Faceless Affiliations'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[35]' name='Excavations'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[36]' name='Excavation Reports (sorta)'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[37]' name='Lightning Strike Casts'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[38]' name='Consecutive Faceless Affiliations'></tr>
-            <tr is='widget-stat-max' :stat.sync='save.stats[39]' name='Max Playtime'></tr>
-            <tr is='widget-stat-max' :stat.sync='save.stats[40]' name='Max Spells'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[41]' name='Dwarf Coins Gained'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[42]' name='Drow Coins Gained'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[43]' name='Dwarf Affiliations'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[44]' name='Drow Affiliations'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[45]' name='Offline Playtime'></tr>
-            <tr is='widget-stat-max' :stat.sync='save.stats[46]' name='Max Offline Time'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[47]' name='Diamond Pickaxe FC'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[48]' name='Honor Among Killers FC'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[49]' name='Mercenary Affiliations'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[50]' name='Fairy Playtime'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[51]' name='Elf Playtime'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[52]' name='Angel Playtime'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[53]' name='Goblin Playtime'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[54]' name='Undead Playtime'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[55]' name='Demon Playtime'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[56]' name='Titan Playtime'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[57]' name='Druid Playtime'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[58]' name='Faceless Playtime'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[59]' name='Dwarf Playtime'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[60]' name='Drow Playtime'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[61]' name='Mercenary Playtime'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[62]' name='Time Spent Unaffiliated'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[63]' name='Automatic Clicks'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[64]' name='Consecutive Goblins Greed Casts'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[65]' name='Casts of Pay Upkeep'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[66]' name='Fairy Upgrades Bought'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[67]' name='Elf Upgrades Bought'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[68]' name='Angel Upgrades Bought'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[69]' name='Goblin Upgrades Bought'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[70]' name='Undead Upgrades Bought'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[71]' name='Demon Upgrades Bought'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[72]' name='Titan Upgrades Bought'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[73]' name='Druid Upgrades Bought'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[74]' name='Faceless Upgrades Bought'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[75]' name='Dwarf Upgrades Bought'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[76]' name='Drow Upgrades Bought'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[77]' name='Mercenary Upgrades Bought'></tr>
-            <tr is='widget-stat-max' :stat.sync='save.stats[78]' name='Max Faction Coins at once'></tr>
-            <tr is='widget-stat-max' :stat.sync='save.stats[79]' name='Fairy Coins Gained Max'></tr>
-            <tr is='widget-stat-max' :stat.sync='save.stats[80]' name='Elf Coins Gained Max'></tr>
-            <tr is='widget-stat-max' :stat.sync='save.stats[81]' name='Angel Coins Gained Max'></tr>
-            <tr is='widget-stat-max' :stat.sync='save.stats[82]' name='Goblin Coins Gained Max'></tr>
-            <tr is='widget-stat-max' :stat.sync='save.stats[83]' name='Undead Coins Gained Max'></tr>
-            <tr is='widget-stat-max' :stat.sync='save.stats[84]' name='Demon Coins Gained Max'></tr>
-            <tr is='widget-stat-max' :stat.sync='save.stats[85]' name='Dwarf Coins Gained Max'></tr>
-            <tr is='widget-stat-max' :stat.sync='save.stats[86]' name='Drow Coins Gained Max'></tr>
-            <tr is='widget-stat-max' :stat.sync='save.stats[87]' name='Max Treasure Clicks'></tr>
-            <tr is='widget-stat-max' :stat.sync='save.stats[88]' name='Max Assistant Squishes'></tr>
-            <tr is='widget-stat-max' :stat.sync='save.stats[89]' name='Max Automatic Clicks'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[90]' name='Spellcraft Level'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[91]' name='Craftsmanship Level'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[92]' name='Divine Level'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[93]' name='Economics Level'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[94]' name='Alchemy Level'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[95]' name='Warfare Level'></tr>
-            <tr is='widget-stat-max' :stat.sync='save.stats[96]' name='Max Base Assistants'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[97]' name='Time with at least one spell active'></tr>
-            <tr is='widget-stat-max' :stat.sync='save.stats[98]' name='Max Excavations'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[99]' name='Consecutive Angel Affiliations'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[100]' name='Consecutive Demon Affiliations'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[101]' name='Consecutive Elven Luck Triggers'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[102]' name='Rubies Gained'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[103]' name='Rubies Purchased?'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[104]' name='Excavation Resets'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[105]' name='Ruby Assistant Upgrades'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[106]' name='Ruby Mana Regen Upgrades'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[107]' name='Ruby Max Mana Upgrades'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[108]' name='Ruby Gem Bonus Upgrades'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[109]' name='Ruby Royal Exchange Upgrades'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[110]' name='Snowballs Found'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[111]' name='Gifts Found'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[112]' name='Lightning Strike FC'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[113]' name='Territorial Expanse Labyrinths'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[114]' name='Heart Assistant Upgrades'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[115]' name='Heart Mana Regen Upgrades'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[116]' name='Heart Max Mana Upgrades'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[117]' name='Heart Gem Bonus Upgrades'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[118]' name='Heart Royal Exchange Upgrades'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[119]' name='Hearts Found'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[120]' name='Call to Love Casts'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[121]' name='Time Spent Offline During Valentines'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[122]' name='Ruby Resets'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[123]' name='Common Eggs Collected'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[124]' name='Rare Eggs Collected'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[125]' name='Hint Button Clicks'></tr>
-          </table>
-        </div>
-      </div>
-      <div role='tabpanel' class='tab-pane fade' id='tab-allfields'>
-        <div class='panel panel-default'>
-          <table class='table'>
-            <tr is='widget-onestat-header'></tr>
-            <tr is='widget-field' :field.sync='save.eggRngState' can-edit name='Egg RNG State'></tr>
-            <tr is='widget-field' :field.sync='save.eggStackSize' can-edit name='Egg Stack Size'></tr>
-            <tr is='widget-field' :field.sync='save.ctaFactionCasts' can-edit name='Call to Love, Casts by Faction'></tr>
-            <tr is='widget-field' :field.sync='save.artifactRngState' can-edit name='Artifact RNG State'></tr>
-            <tr is='widget-field-dropdown' :field.sync='save.alignment' type='alignment' name='Alignment'></tr>
-            <tr is='widget-field-dropdown' :field.sync='save.faction' type='faction' filter='faction' name='Faction'></tr>
-            <tr is='widget-field-dropdown' :field.sync='save.prestigeFaction' type='faction' filter='prestigeFaction' hide-neutral hide-merc name='Prestige Faction'></tr>
-            <tr is='widget-field' :field.sync='save.gems' can-edit name='Gems'></tr>
-            <tr is='widget-field' :field.sync='save.reincarnation' can-edit name='Reincarnation'></tr>
-            <tr is='widget-field' :field.sync='save.ascension' can-edit name='Ascension'></tr>
-            <tr is='widget-field' :field.sync='save.lastsave' can-edit name='Last Save'></tr>
-            <tr is='widget-field' :field.sync='save.mana' can-edit name='Current Mana'></tr>
-            <tr is='widget-field' :field.sync='save.coins' can-edit name='Coins'></tr>
-            <tr is='widget-field' :field.sync='save.rubies' can-edit name='Rubies'></tr>
-            <tr is='widget-field' :field.sync='save.excavations' can-edit name='Excavations'></tr>
-            <tr is='widget-field' :field.sync='save.contingencyValue' can-edit name='Contingency Value (0-100)'></tr>
-            <tr is='widget-field-dropdown' :field.sync='save.strikeTier' type='bTiers' name='Lightning Strike Tier'></tr>
-            <tr is='widget-field-dropdown' :field.sync='save.miracleTier' type='bTiers' name='Current Miracle Tier Target'></tr>
-            <tr is='widget-field' :field.sync='save.miracleTimer' can-edit name='Time Left For Miracle Effect'></tr>
-            <tr is='widget-field' :field.sync='save.snowballScryUses' can-edit name='Snowball Scry Uses'></tr>
-            <tr is='widget-field' :field.sync='save.snowballSize' can-edit name='Current Snowball Size'></tr>
-            <tr is='widget-field' :field.sync='save.lastGiftDate' can-edit name='Last Gift Date'></tr>
-            <tr is='widget-field' :field.sync='save.chargedTimer' can-edit name='Titan Charged Effects Timer'></tr>
-            <tr is='widget-field' :field.sync='save.comboStrikeCont' can-edit name='Combo Strike Streak'></tr>
-            <tr is='widget-field' :field.sync='save.goblinTimer' can-edit name='Time Until Green Fingers Discount'></tr>
-            <tr is='widget-field' :field.sync='save.wealthStormTimer' can-edit name='Time Until Storm of Wealth'></tr>
-            <tr is='widget-field-dropdown' :field.sync='save.mercSpell1' type='spells' name='Mercenary Spell 1'></tr>
-            <tr is='widget-field-dropdown' :field.sync='save.mercSpell2' type='spells' name='Mercenary Spell 2'></tr>
-            <tr is='widget-field-dropdown' :field.sync='save.alignment' type='alignment' name='Alignment'></tr>
-            <tr is='widget-field' :field.sync='save.cTimer' can-edit name='Time Since Last Mouse Click (ticks)'></tr>
-            <tr is='widget-field' :field.sync='save.kcTimer' can-edit name='Time Since Last Keypress (ticks)'></tr>
-            <tr is='widget-field' :field.sync='save.mTimer' can-edit name='Time Since Last Mouse Motion (ticks)'></tr>
-            <tr is='widget-field' :field.sync='save.sTimer' can-edit name='Time for Angel Bloodline (ticks)'></tr>
-            <tr is='widget-field' :field.sync='save.oTimer' can-edit name='Scry Production Timer (ticks)'></tr>
-            <tr is='widget-field' :field.sync='save.oTimer2' can-edit name='Scry Mana Timer (ticks)'></tr>
-            <tr is='widget-field' :field.sync='save.oTimer3' can-edit name='Scry Event Timer (ticks)'></tr>
-            <tr is='widget-field' :field.sync='save.season' can-edit name='Season ID'></tr>
-            <tr is='widget-field-dropdown' :field.sync='save.bFaction' type='faction' filter='bFaction' name='Bloodline Faction'></tr>
-          </table>
-        </div>
-      </div>-->
       <div role='tabpanel' class='tab-pane fade' id='tab-butts'>
         <div class='panel panel-default'>
           <table class='table'>
