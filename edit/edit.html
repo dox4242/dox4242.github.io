@@ -114,6 +114,9 @@
         <a href='#tab-magic' aria-controls='Magic' role='tab' data-toggle='pill'> Magic </a>
       </li>
       <li role='presentation'>
+        <a href='#tab-magictime' aria-controls='Magic Time' role='tab' data-toggle='pill'> Magic Time </a>
+      </li>
+      <li role='presentation'>
         <a href='#tab-fc' aria-controls='Faction Coins' role='tab' data-toggle='pill'> Faction Coins </a>
       </li>
       <li role='presentation'>
@@ -134,12 +137,6 @@
       <li role='presentation'>
         <a href='#tab-misc' aria-controls='Misc' role='tab' data-toggle='pill'> Misc </a>
       </li>
-      <!--<li role='presentation'>
-        <a href='#tab-allstats' aria-controls='All Stats' role='tab' data-toggle='pill'> All Stats </a>
-      </li>
-      <li role='presentation'>
-        <a href='#tab-allfields' aria-controls='All Fields' role='tab' data-toggle='pill'> All Fields </a>
-      </li>-->
     </ul>
     <div class='tab-content'>
       <div role='tabpanel' class='tab-pane fade in active' id='tab-general'>
@@ -150,7 +147,7 @@
             <tr is='widget-field' :field.sync='save.reincarnation' can-edit :colspan='5' name='Reincarnation'></tr>
             <tr is='widget-field' :field.sync='save.ascension' can-edit :colspan='5' name='Ascension'></tr>
             <tr is='widget-field' :field.sync='save.gems' can-edit :colspan='5' name='Gems'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[30]' hide-ab hide-rei hide-prevReis hide-total name='Gems Gained Last Abdication'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[30]' hide-ab hide-rei hide-prev-reis hide-total name='Gems Gained Last Abdication'></tr>
             <tr is='widget-field' :field.sync='save.coins' can-edit :colspan='5' name='Gold'></tr>
             <tr is='widget-field-dropdown' :field.sync='save.alignment' type='alignment' :colspan='5' name='Alignment'></tr>
             <tr is='widget-field-dropdown' :field.sync='save.faction' type='faction' filter='faction' :colspan='5' name='Faction'></tr>
@@ -284,7 +281,7 @@
             <tr is='widget-spell' :spell.sync='save.spells[i.id]' :name='i.name + " Cast"' v-for='i in spells'></tr>
             <tr is='widget-field-dropdown' :field.sync='save.strikeTier' type='bTiers' :colspan='5' name='Lightning Strike Tier'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[37]' name='Lightning Strike Casts (alt)'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[64]' hide-prevAbs hide-rei hide-prevReis hide-total name='Consecutive Goblins Greed Casts'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[64]' hide-prev-abs hide-rei hide-prev-reis hide-total name='Consecutive Goblins Greed Casts'></tr>
             <tr is='widget-field' :field.sync='save.comboStrikeCont' can-edit :colspan='5' name='Combo Strike Streak'></tr>
             <tr is='widget-field-dropdown' :field.sync='save.mercSpell1' type='spells' :colspan='5' name='Mercenary Spell 1'></tr>
             <tr is='widget-field-dropdown' :field.sync='save.mercSpell2' type='spells' :colspan='5' name='Mercenary Spell 2'></tr>
@@ -298,6 +295,7 @@
             <tr is='widget-fivestat-header'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[97]' name='Active Spell Time'></tr>
             <tr is='widget-spell-time' :spell.sync='save.spells[i.id]' :name='i.name + " Time"' v-for='i in spells'></tr>
+            <tr is='widget-spell-duration' :spell.sync='save.spells[i.id]' :name='i.name + " Remaining Duration"' v-for='i in spells'></tr>
           </table>
         </div>
       </div>
@@ -329,9 +327,9 @@
             <tr is='widget-fivestat-header'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[i.timestat]' :name='i.name + " Playtime"' v-for='i in factions | filterDef "timestat"'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[i.affilstat]' :name='i.name + " Affiliations"' v-for='i in factions | filterDef "affilstat"'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[38]' hide-ab hide-prevReis hide-total name='Consecutive Faceless Affiliations'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[99]' hide-ab hide-prevReis hide-total name='Consecutive Angel Affiliations'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[100]' hide-ab hide-prevReis hide-total name='Consecutive Demon Affiliations'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[38]' hide-ab hide-prev-reis hide-total name='Consecutive Faceless Affiliations'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[99]' hide-ab hide-prev-reis hide-total name='Consecutive Angel Affiliations'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[100]' hide-ab hide-prev-reis hide-total name='Consecutive Demon Affiliations'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[i.upgstat]' :name='i.name + " Upgrades Bought"' v-for='i in factions | filterDef "upgstat"'></tr>
             <tr is='widget-stat-max' :stat.sync='save.stats[13]' name='Max Upgrades Bought'></tr>
             <tr is='widget-stat-max' :stat.sync='save.stats[101]' hide-ab name='Consecutive Elven Luck Triggers'></tr>

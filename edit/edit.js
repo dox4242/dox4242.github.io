@@ -136,6 +136,14 @@
       + '</tr>'
     });
     
+    Vue.component('widget-spell-duration', {
+      props: ['spell', 'name'],
+      template: '<tr>'
+      + '<th><span class="statname">{{name}}</span></th>'
+      + '<td><input v-model="spell.t" number></input></td>'
+      + '</tr>'
+    });
+    
     Vue.component('widget-stat', {
       props: {
         stat: Object,
