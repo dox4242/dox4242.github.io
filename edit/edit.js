@@ -5,7 +5,10 @@
     faction: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 11],
     prestigeFaction: [-1, 9, 10],
     bFaction: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-	spell: [18, 3, 12, 6, 14, 9, 1, 8, 15, 11, 7, 13, 10, 2, 5, 4, 17]
+	spell: [18, 3, 12, 6, 14, 9, 1, 8, 15, 11, 7, 13, 10, 2, 5, 4, 17],
+	goodmercspells: [6, 14, 9, 5, 8, 11, 4, 10, 2],
+	evilmercspells: [6, 14, 9, 5, 8, 15, 11, 4, 10, 2],
+	neutralmercspells: [6, 14, 9, 5, 8, 11, 4, 13, 10, 2]
   };
 
   for (var i in dropdownFilter) {
@@ -124,7 +127,15 @@
       + '</tr>'
     });
     
-    Vue.component('widget-spell-time', {
+    Vue.component('widget-spell-rng', {
+      props: ['spell', 'name'],
+      template: '<tr>'
+      + '<th><span class="statname">{{name}}</span></th>'
+      + '<td><input v-model="spell.s" number></input></td>'
+      + '</tr>'
+    });
+
+	  Vue.component('widget-spell-time', {
       props: ['spell', 'name'],
       template: '<tr>'
       + '<th><span class="statname">{{name}}</span></th>'
@@ -144,6 +155,38 @@
       + '</tr>'
     });
     
+    Vue.component('widget-spell-autocasting', {
+      props: ['spell', 'name'],
+      template: '<tr>'
+      + '<th><span class="statname">{{name}} is on Autocasting</span></th>'
+      + '<td><input v-model="spell.a" number></input></td>'
+      + '</tr>'
+	  + '<tr>'
+      + '<th><span class="statname">{{name}} Silver Autocasting Order</span></th>'
+      + '<td><input v-model="spell.n" number></input></td>'
+      + '</tr>'
+	  + '<tr>'
+      + '<th><span class="statname">{{name}} Gold Autocasting Order</span></th>'
+      + '<td><input v-model="spell.n2" number></input></td>'
+      + '</tr>'
+	  + '<tr>'
+      + '<th><span class="statname">{{name}} Bronze Autocasting Order</span></th>'
+      + '<td><input v-model="spell.n3" number></input></td>'
+      + '</tr>'
+    });
+    
+    Vue.component('widget-spell-tiers', {
+      props: ['spell', 'name'],
+      template: '<tr>'
+      + '<th><span class="statname">{{name}} Tiers Bought</span></th>'
+      + '<td><input v-model="spell.tierstat1" number></input></td>'
+      + '</tr>'
+      + '<tr>'
+      + '<th><span class="statname">{{name}} Tier Autocasting Level</span></th>'
+      + '<td><input v-model="spell.tierstat2" number></input></td>'
+      + '</tr>'
+    });
+
     Vue.component('widget-stat', {
       props: {
         stat: Object,
@@ -279,6 +322,14 @@
           return opts;
         }
       }
+    });
+
+    Vue.component('widget-eventres', {
+      props: ['spell', 'name'],
+      template: '<tr>'
+      + '<th><span class="statname">{{name}}</span></th>'
+      + '<td><input v-model="spell.s" number></input></td>'
+      + '</tr>'
     });
 
     Vue.config.debug = true;
