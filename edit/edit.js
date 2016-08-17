@@ -332,6 +332,14 @@
       + '</tr>'
     });
 
+    Vue.component('widget-upgrade', {
+      props: ['name', 'id'],
+      template: '<tr>'
+      + '<th><span class="statname">{{name}}</span></th>'
+      + '<td><input v-model="{{upgrades}}[\'id\']" number></input></td>'
+      + '</tr>',
+    });
+
     Vue.config.debug = true;
 
     // Initalize Vue
@@ -365,7 +373,15 @@
           set: function(x) {
             this.save.lastsave = this.currenttime - x;
           }
-        }
+        },
+		upgrades: {
+		  get: function() {
+		    return this.save.upgrades;
+		  },
+		  set: function(x) {
+			this.save.upgrades.append(x, True)
+		  }
+		}
       }
     });
     Vue.config.debug = true;
