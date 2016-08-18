@@ -324,20 +324,29 @@
       }
     });
 
-    Vue.component('widget-eventres', {
-      props: ['spell', 'name'],
+    Vue.component('widget-upgrade-header', {
       template: '<tr>'
-      + '<th><span class="statname">{{name}}</span></th>'
-      + '<td><input v-model="spell.s" number></input></td>'
+      + '<th><span class="statheader">Name</span></th>'
+      + '<th><span class="statheader">Owned</span></th>'
+      + '<th><span class="statheader">Inactive</span></th>'
+      + '<th><span class="statheader">Category?</span></th>'
+      + '<th><span class="statheader">RNG State</span></th>'
       + '</tr>'
     });
 
     Vue.component('widget-upgrade', {
-      props: ['name', 'id'],
+	  props: {
+	    'upgrades': Object,
+	    'name': String
+	  },
       template: '<tr>'
       + '<th><span class="statname">{{name}}</span></th>'
-      + '<td><input v-model="{{upgrades}}[\'id\']" number></input></td>'
-      + '</tr>',
+      + '<td><input v-model="upgrades" number></input></td>'
+      + '<td><input v-model="upgrades" number></input></td>'
+      + '<td><input v-model="upgrades" number></input></td>'
+      + '<td><input v-model="upgrades" number></input></td>'
+	  + '<td>{{upgrades}}</td>'
+      + '</tr>'
     });
 
     Vue.config.debug = true;
@@ -355,6 +364,7 @@
         save: util.save.blankSave(),
         spells: util.assoc.spells,
         factions: util.assoc.faction,
+		//upgrades: util.assoc.upgrades,
         currenttime: Math.floor(new Date().getTime()/1000)
       },
       methods: {
@@ -373,15 +383,7 @@
           set: function(x) {
             this.save.lastsave = this.currenttime - x;
           }
-        },
-		upgrades: {
-		  get: function() {
-		    return this.save.upgrades;
-		  },
-		  set: function(x) {
-			this.save.upgrades.append(x, True)
-		  }
-		}
+        }
       }
     });
     Vue.config.debug = true;
