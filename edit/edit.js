@@ -372,32 +372,42 @@
     });
 
     Vue.component('widget-trophy', {
-	  props: {
-	    'trophies': Object,
-	    'name': String,
-	    'id': String
-	  },
+  	  props: {
+  	    'trophies': Object,
+  	    'name': String,
+  	    'id': String
+  	  },
       template: '<tr>'
-      + '<th><span class="statname">{{name}}</span></th>'
-      + '<td><input type="checkbox" v-model="trophyU1" number></input></td>'
-      + '<td>{{haveTrophy}}</td>'
-      + '</tr>',
-	  computed: {
-		haveTrophy: function() {
-		  if (this.trophies[Number(this.id)]) { return true; }
-		  else { return false; }
-		},
-		trophyU1: {
+        + '<th><span class="statname">{{name}}</span></th>'
+        + '<td><input type="checkbox" v-model="trophyU1" number></input></td>'
+        + '<td><input type="checkbox" v-model="unlocked" number></input></td>'
+        + '</tr>',
+  	  computed: {
+    	unlocked: {
           get: function() {
-		    return this.trophies.u1
+      		if (this.trophies[Number(this.id)]) { return true; }
+      		else { return false; }
+      	  },
+          set: function() {
+            if (this.unlocked) {
+              delete this.trophies[Number(this.id)];
+            }
+            else {
+              this.trophies[Number(this.id)] = {_id: Number(this.id), u1: false};
+            }
+          }
+        },
+    	trophyU1: {
+          get: function() {
+    	    return this.unlocked && this.trophies[Number(this.id)].u1;
           },
           set: function(x) {
-            this.trophies[x] = [true];
+            if (this.unlocked)
+              this.trophies[Number(this.id)] = [x];
           }
-		}
-	  }
+    	}
+  	  }
     });
-
     Vue.config.debug = true;
 
     // Initalize Vue
