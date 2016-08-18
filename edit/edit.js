@@ -338,7 +338,7 @@
 	  props: {
 	    'upgrades': Object,
 	    'name': String,
-		'id': String
+	    'id': String
 	  },
       template: '<tr>'
       + '<th><span class="statname">{{name}}</span></th>'
@@ -346,11 +346,37 @@
       + '<td><input v-show="haveUpgrade" v-model="upgrades.u2" number></input></td>'
       + '<td><input v-show="haveUpgrade" v-model="upgrades.u3" number></input></td>'
       + '<td><input v-show="haveUpgrade" v-model="upgrades.s" number></input></td>'
-	  + '<td>{{haveUpgrade}}</td>'
+      + '<td>{{haveUpgrade}}</td>'
       + '</tr>',
 	  computed: {
 		haveUpgrade: function() {
 		  if (this.upgrades[this.id]) { return true; }
+		  else { return false; }
+		},
+	  }
+    });
+
+    Vue.component('widget-trophy-header', {
+      template: '<tr>'
+      + '<th><span class="statheader">Name</span></th>'
+      + '<th><span class="statheader">Owned</span></th>'
+      + '</tr>'
+    });
+
+    Vue.component('widget-trophy', {
+	  props: {
+	    'trophies': Object,
+	    'name': String,
+	    'id': String
+	  },
+      template: '<tr>'
+      + '<th><span class="statname">{{name}}</span></th>'
+      + '<td><input type="checkbox" v-model="trophies.u1" number></input></td>'
+      + '<td>{{haveTrophy}}</td>'
+      + '</tr>',
+	  computed: {
+		haveTrophy: function() {
+		  if (this.trophies[this.id]) { return true; }
 		  else { return false; }
 		},
 	  }
@@ -397,6 +423,14 @@
           },
           set: function(x) {
             this.save.upgrades[x] = [true];
+          }
+		},
+		trophiesArray: {
+          get: function() {
+		    return this.save.trophies
+          },
+          set: function(x) {
+            this.save.trophies[x] = [true];
           }
 		}
       }

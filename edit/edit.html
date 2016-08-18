@@ -146,6 +146,9 @@
       <li role='presentation'>
         <a href='#tab-allupgrades' aria-controls='Test' role='tab' data-toggle='pill'> Test </a>
       </li>
+      <li role='presentation'>
+        <a href='#tab-alltrophies' aria-controls='Test 2' role='tab' data-toggle='pill'> Test 2</a>
+      </li>
     </ul>
     <div class='tab-content'>
       <div role='tabpanel' class='tab-pane fade in active' id='tab-general'>
@@ -466,6 +469,20 @@
 			<tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=13 name="Bloodline"></tr>
 			<tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=12 name="Automatic Casting"></tr>
 			<tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=18 name="Contingency Autocasting"></tr>
+          </table>
+        </div>
+      </div>
+      <div role='tabpanel' class='tab-pane fade' id='tab-alltrophies'>
+        <div class='panel panel-default'>
+          <table class='table'>
+            <tr is='widget-trophy-header'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=4 name='Archeology Expedition'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=6 name='Archeology Titan Trophy'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=2 name='Archeology Druid Trophy'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=5 name='Archeology Faceless Trophy'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=7 name='Archeology Underworld Trophy'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=3 name='Archeology Dwarf Trophy'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=1 name='Archeology Drow Trophy'></tr>
           </table>
         </div>
       </div>
