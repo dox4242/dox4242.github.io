@@ -342,7 +342,7 @@
 	  },
       template: '<tr>'
       + '<th><span class="statname">{{name}}</span></th>'
-      + '<td><input type="checkbox" v-model="upgradesU1" number></input></td>'
+      + '<td><input type="checkbox" v-model="upgradeU1" number></input></td>'
       + '<td><input v-show="haveUpgrade" v-model="upgrades.u2" number></input></td>'
       + '<td><input v-show="haveUpgrade" v-model="upgrades.u3" number></input></td>'
       + '<td><input v-show="haveUpgrade" v-model="upgrades.s" number></input></td>'
