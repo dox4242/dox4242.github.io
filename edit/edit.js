@@ -338,11 +338,11 @@
 	  props: {
 	    'upgrades': Object,
 	    'name': String,
-	    'id': Number
+	    'id': String
 	  },
       template: '<tr>'
       + '<th><span class="statname">{{name}}</span></th>'
-      + '<td><input type="checkbox" v-model="upgrades.u1" number></input></td>'
+      + '<td><input type="checkbox" v-model="upgradesU1" number></input></td>'
       + '<td><input v-show="haveUpgrade" v-model="upgrades.u2" number></input></td>'
       + '<td><input v-show="haveUpgrade" v-model="upgrades.u3" number></input></td>'
       + '<td><input v-show="haveUpgrade" v-model="upgrades.s" number></input></td>'
@@ -350,8 +350,16 @@
       + '</tr>',
 	  computed: {
 		haveUpgrade: function() {
-		  if (this.upgrades[this.id]) { return true; }
+		  if (this.upgrades[Number(this.id)]) { return true; }
 		  else { return false; }
+		},
+		upgradeU1: {
+          get: function() {
+		    return this.upgrades.u1
+          },
+          set: function(x) {
+            this.upgrades[x] = [true];
+          }
 		}
 	  }
     });
@@ -367,7 +375,7 @@
 	  props: {
 	    'trophies': Object,
 	    'name': String,
-	    'id': Number
+	    'id': String
 	  },
       template: '<tr>'
       + '<th><span class="statname">{{name}}</span></th>'
@@ -376,7 +384,7 @@
       + '</tr>',
 	  computed: {
 		haveTrophy: function() {
-		  if (this.trophies[this.id]) { return true; }
+		  if (this.trophies[Number(this.id)]) { return true; }
 		  else { return false; }
 		},
 		trophyU1: {
