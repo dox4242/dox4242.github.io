@@ -359,7 +359,7 @@
     Vue.component('widget-trophy-header', {
       template: '<tr>'
       + '<th><span class="statheader">Name</span></th>'
-      + '<th><span class="statheader">Owned</span></th>'
+      + '<th><span class="statheader">Category?</span></th>'
       + '</tr>'
     });
 
