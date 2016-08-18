@@ -338,7 +338,7 @@
 	  props: {
 	    'upgrades': Object,
 	    'name': String,
-	    'id': String
+	    'id': Number
 	  },
       template: '<tr>'
       + '<th><span class="statname">{{name}}</span></th>'
@@ -367,7 +367,7 @@
 	  props: {
 	    'trophies': Object,
 	    'name': String,
-	    'id': String
+	    'id': Number
 	  },
       template: '<tr>'
       + '<th><span class="statname">{{name}}</span></th>'
