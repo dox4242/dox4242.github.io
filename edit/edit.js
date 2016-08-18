@@ -112,7 +112,7 @@
         total: function() {
           return Math.max(this.building.m, this.building.e);
         }
-      },
+      }
     });
     
     Vue.component('widget-spell', {
@@ -272,7 +272,7 @@
         total: function() {
           return Math.max(this.stat.stats, this.stat.statsReset, this.stat.statsRei);
         }
-      },
+      }
     });
     
     Vue.component('widget-field', {
@@ -337,16 +337,23 @@
     Vue.component('widget-upgrade', {
 	  props: {
 	    'upgrades': Object,
-	    'name': String
+	    'name': String,
+		'id': String
 	  },
       template: '<tr>'
       + '<th><span class="statname">{{name}}</span></th>'
-      + '<td><input v-model="upgrades" number></input></td>'
-      + '<td><input v-model="upgrades" number></input></td>'
-      + '<td><input v-model="upgrades" number></input></td>'
-      + '<td><input v-model="upgrades" number></input></td>'
-	  + '<td>{{upgrades}}</td>'
-      + '</tr>'
+      + '<td><input type="checkbox" v-model="upgrades.u1" number></input></td>'
+      + '<td><input v-show="haveUpgrade" v-model="upgrades.u2" number></input></td>'
+      + '<td><input v-show="haveUpgrade" v-model="upgrades.u3" number></input></td>'
+      + '<td><input v-show="haveUpgrade" v-model="upgrades.s" number></input></td>'
+	  + '<td>{{haveUpgrade}}</td>'
+      + '</tr>',
+	  computed: {
+		haveUpgrade: function() {
+		  if (this.upgrades[this.id]) { return true; }
+		  else { return false; }
+		}
+	  }
     });
 
     Vue.config.debug = true;
