@@ -352,7 +352,7 @@
 		haveUpgrade: function() {
 		  if (this.upgrades[this.id]) { return true; }
 		  else { return false; }
-		}
+		},
 	  }
     });
 
@@ -390,7 +390,15 @@
           set: function(x) {
             this.save.lastsave = this.currenttime - x;
           }
-        }
+        },
+		upgradesArray: {
+          get: function() {
+		    return this.save.upgrades
+          },
+          set: function(x) {
+            this.save.upgrades[x] = [true];
+          }
+		}
       }
     });
     Vue.config.debug = true;
