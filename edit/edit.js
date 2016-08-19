@@ -8,7 +8,8 @@
 	spell: [18, 3, 12, 6, 14, 9, 1, 8, 15, 11, 7, 13, 10, 2, 5, 4, 17],
 	goodmercspells: [6, 14, 9, 5, 8, 11, 4, 10, 2],
 	evilmercspells: [6, 14, 9, 5, 8, 15, 11, 4, 10, 2],
-	neutralmercspells: [6, 14, 9, 5, 8, 11, 4, 13, 10, 2]
+	neutralmercspells: [6, 14, 9, 5, 8, 11, 4, 13, 10, 2],
+	rubyTrophies: [116200, 116201, 116202, 116203]
   };
 
   for (var i in dropdownFilter) {
@@ -367,7 +368,8 @@
     Vue.component('widget-trophy-header', {
       template: '<tr>'
       + '<th><span class="statheader">Name</span></th>'
-      + '<th><span class="statheader">Category?</span></th>'
+      + '<th><span class="statheader">Owned</span></th>'
+      //+ '<th><span class="statheader">u1 Boolean</span></th>'
       + '</tr>'
     });
 
@@ -379,8 +381,8 @@
   	  },
       template: '<tr>'
         + '<th><span class="statname">{{name}}</span></th>'
-        + '<td><input type="checkbox" v-model="trophyU1" number></input></td>'
         + '<td><input type="checkbox" v-model="unlocked" number></input></td>'
+        //+ '<td><input type="checkbox" v-model="trophyU1" number></input></td>'
         + '</tr>',
   	  computed: {
     	unlocked: {
@@ -408,6 +410,60 @@
     	}
   	  }
     });
+	
+    Vue.component('widget-trophy-dropdown', {
+      props: {
+        'trophies': Object,
+        'name': String,
+		'id': String,
+        'type': String,
+        'filter': String
+      },
+      template: '<tr>'
+      + '<th><span class="statname">{{name}}</span></th>'
+      + '<td><select v-model="unlocked" number>'
+      + '<option :disabled="option.disabled" :value="option.id" v-for="option in options">{{option.name}}</option>'
+      + '</select></td>'
+      + '</tr>',
+  	  computed: {
+    	unlocked: {
+          get: function() {
+      		if (this.trophies[Number(this.id)]) { return true; }
+      		else { return false; }
+      	  },
+          set: function() {
+            if (this.unlocked) {
+              delete this.trophies[Number(this.id)];
+            }
+            else {
+              this.trophies[Number(this.id)] = {_id: Number(this.id), u1: false};
+            }
+          }
+        },
+    	trophyU1: {
+          get: function() {
+    	    return this.unlocked && this.trophies[Number(this.id)].u1;
+          },
+          set: function(x) {
+            if (this.unlocked)
+              this.trophies[Number(this.id)] = [x];
+          }
+		},
+        options: function() {
+          var opts = [];
+          for (var i of util.assoc[this.type]) {
+            if (this.filter && !dropdownFilter[this.filter][i.id]) continue;
+            opts.push({
+              id: i.id,
+              name: i.name,
+              //disabled: this.filter && !dropdownFilter[this.filter][i.id]
+            });
+          }
+          return opts;
+        }
+      }
+    });
+
     Vue.config.debug = true;
 
     // Initalize Vue
