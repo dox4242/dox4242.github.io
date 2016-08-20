@@ -9,7 +9,23 @@
 	goodmercspells: [6, 14, 9, 5, 8, 11, 4, 10, 2],
 	evilmercspells: [6, 14, 9, 5, 8, 15, 11, 4, 10, 2],
 	neutralmercspells: [6, 14, 9, 5, 8, 11, 4, 13, 10, 2],
-	rubyTrophies: [116200, 116201, 116202, 116203]
+    castSpells: [104000, 104001, 104002, 104003, 104004, 104005, 104006, 104007, 104008, 104009, 104010, 104011, 104012, 104013],
+    clickTreasure: [104100, 104101, 104102, 104103, 104104, 104105, 104106, 104107, 104108],
+    findFactionCoins: [104500, 104501, 104502, 104503, 104504, 104505, 104506, 104507, 104508, 104509, 104510, 104511, 104512, 104513, 104514],
+    gainCoins: [104600, 104601, 104602, 104603, 104604, 104605, 104606, 104607, 104608, 104609, 104610, 104611, 104612, 104613, 104614, 104615, 104616, 104617, 104618, 104619],
+    gainCoinClicking: [104700, 104701, 104702, 104703, 104704, 104705, 104706, 104707, 104708, 104709, 104710, 104711, 104712, 104713, 104714, 104715, 104716, 104717, 104718],
+    gaimGems: [104900, 104901, 104902, 104903, 104904, 104905, 104906, 104907, 104908, 104909, 104910, 104911, 104912, 104913, 104914, 104915, 104916, 104917, 104918, 104919, 104920, 104921, 104922],
+    gainReincarnate: [105000, 105001, 105002, 105003, 105004, 105005, 105006, 105007, 105008, 105009, 105010],
+    haveAssistants: [105100, 105101, 105102, 105103, 105104, 105105, 105106, 105107, 105108],
+    purchaseUpgrade: [105500, 105501, 105502, 105503, 105504, 105505, 105506, 105507, 105508, 105509, 105510],
+    spendMana: [111200, 111201, 111202, 111203, 111204, 111205, 111206],
+	gainRubies: [116200, 116201, 116202, 116203],
+	giftCollector: [116700, 116701, 116702, 116703],
+	snowpile: [116800, 116801, 116802, 116803],
+	artifacts: [117000, 117001, 117002, 117003, 117004],
+	feelTheLove: [117600, 117601, 117602],
+	eggHunter: [119500, 119501, 119502, 119503],
+	eggCollection: [119600, 119601, 119602, 119603]
   };
 
   for (var i in dropdownFilter) {
@@ -410,8 +426,57 @@
     	}
   	  }
     });
-	
+
     Vue.component('widget-trophy-dropdown', {
+      props: {
+        'trophies': Object,
+        'name': String,
+		'id': String,
+        'type': String,
+        'filter': String
+      },
+      template: '<tr>'
+      + '<th><span class="statname">{{name}}</span></th>'
+      + '<td><select v-model="unlocked" number>'
+      + '<option :disabled="option.disabled" :value="option.id" v-for="option in options">{{option.name}}</option>'
+      + '</select></td>'
+      + '</tr>',
+  	  computed: {
+    	unlocked: {
+          get: function() {
+            var id = Number(this.id);
+            for (var i = this.options.length; i >= 0; i--) {
+              if (this.trophies[id+i]) return i+id;
+            }
+            return -1;
+      	  },
+          set: function(x) {
+            var id = Number(this.id);
+            for (var i = id; i < id+this.options.length-1; i++) {
+              if (i <= x) {
+                if (!this.trophies[i]) this.trophies[i] = {_id:i, u1:false};
+              } else {
+                if (this.trophies[i]) delete this.trophies[i];
+              }
+            }
+          }
+		    },
+        options: function() {
+          var opts = [{id:-1, name:'None'}];
+          for (var i of util.assoc[this.type]) {
+            if (this.filter && !dropdownFilter[this.filter][i.id]) continue;
+            opts.push({
+              id: i.id,
+              name: i.name,
+              //disabled: this.filter && !dropdownFilter[this.filter][i.id]
+            });
+          }
+          return opts;
+        }
+      }
+    });
+	
+    /*Vue.component('widget-trophy-dropdown', {
       props: {
         'trophies': Object,
         'name': String,
@@ -462,7 +527,7 @@
           return opts;
         }
       }
-    });
+    });*/
 
     Vue.config.debug = true;
 
@@ -517,6 +582,7 @@
 		}
       }
     });
+	
     Vue.config.debug = true;
 
     // Initialize Flavor texts
