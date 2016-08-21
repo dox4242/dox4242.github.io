@@ -99,6 +99,9 @@
         <a href='#tab-production' aria-controls='Production' role='tab' data-toggle='pill'> Production </a>
       </li>
       <li role='presentation'>
+        <a href='#tab-time' aria-controls='Time' role='tab' data-toggle='pill'> Time </a>
+      </li>
+      <li role='presentation'>
         <a href='#tab-goodbuildings' aria-controls='Good Buildings' role='tab' data-toggle='pill'> Good Buildings </a>
       </li>
       <li role='presentation'>
@@ -106,9 +109,6 @@
       </li>
       <li role='presentation'>
         <a href='#tab-neutralbuildings' aria-controls='Neutral Buildings' role='tab' data-toggle='pill'> Neutral Buildings </a>
-      </li>
-      <li role='presentation'>
-        <a href='#tab-time' aria-controls='Time' role='tab' data-toggle='pill'> Time </a>
       </li>
       <li role='presentation'>
         <a href='#tab-magic' aria-controls='Magic' role='tab' data-toggle='pill'> Magic </a>
@@ -120,13 +120,16 @@
         <a href='#tab-autocasting' aria-controls='Autocasting' role='tab' data-toggle='pill'> Autocasting </a>
       </li>
       <li role='presentation'>
+        <a href='#tab-factions' aria-controls='Factions' role='tab' data-toggle='pill'> Factions </a>
+      </li>
+      <li role='presentation'>
         <a href='#tab-fc' aria-controls='Faction Coins' role='tab' data-toggle='pill'> Faction Coins </a>
       </li>
       <li role='presentation'>
         <a href='#tab-fcstats' aria-controls='Faction Coin Stats' role='tab' data-toggle='pill'> Faction Coin Stats </a>
       </li>
       <li role='presentation'>
-        <a href='#tab-factions' aria-controls='Factions' role='tab' data-toggle='pill'> Factions </a>
+        <a href='#tab-secretTrophies' aria-controls='Secret Trophies' role='tab' data-toggle='pill'> Secret Trophies </a>
       </li>
       <li role='presentation'>
         <a href='#tab-archeology' aria-controls='Archeology' role='tab' data-toggle='pill'> Archeology </a>
@@ -146,9 +149,6 @@
       <li role='presentation'>
         <a href='#tab-allupgrades' aria-controls='Test' role='tab' data-toggle='pill'> Upgrades Test </a>
       </li>
-      <li role='presentation'>
-        <a href='#tab-alltrophies' aria-controls='Test 2' role='tab' data-toggle='pill'> Trophies Test </a>
-      </li>
     </ul>
     <div class='tab-content'>
       <div role='tabpanel' class='tab-pane fade in active' id='tab-general'>
@@ -157,10 +157,13 @@
             <tr is='widget-fivestat-header'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[28]' hide-ab name='Total Abdications'></tr>
             <tr is='widget-field' :field.sync='save.reincarnation' can-edit :colspan='5' name='Reincarnation'></tr>
+            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='gainReincarnate' id=105000 :colspan='5' name='Reincarnate X Times Trophy Series'></tr>
             <tr is='widget-field' :field.sync='save.ascension' can-edit :colspan='5' name='Ascension'></tr>
             <tr is='widget-field' :field.sync='save.gems' can-edit :colspan='5' name='Gems'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[30]' hide-ab hide-rei hide-prev-reis hide-total name='Gems Gained Last Abdication'></tr>
+            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='gainGems' id=104900 :colspan='5' name='Gain X Gems Trophy Series'></tr>
             <tr is='widget-field' :field.sync='save.coins' can-edit :colspan='5' name='Gold'></tr>
+            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='gainCoins' id=104600 :colspan='5' name='Gain X Coins Trophy Series'></tr>
             <tr is='widget-field-dropdown' :field.sync='save.alignment' type='alignment' :colspan='5' name='Alignment'></tr>
             <tr is='widget-field-dropdown' :field.sync='save.faction' type='faction' filter='faction' :colspan='5' name='Faction'></tr>
             <tr is='widget-field-dropdown' :field.sync='save.prestigeFaction' type='faction' filter='prestigeFaction' hide-neutral hide-merc :colspan='5' name='Prestige Faction'></tr>
@@ -176,14 +179,39 @@
             <tr is='widget-stat-max' :stat.sync='save.stats[12]' name='Max Buildings'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[4]' name='Clicks'></tr>
             <tr is='widget-stat-max' :stat.sync='save.stats[87]' hide-ab name='Max Clicks'></tr>
+            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='clickTreasure' id=104100 :colspan='5' name='Click Treasure X Times Trophy Series'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[63]' name='Auto Clicks'></tr>
             <tr is='widget-stat-max' :stat.sync='save.stats[89]' hide-ab name='Max Auto Clicks'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[0]' name='Gold Earned'></tr>
             <tr is='widget-stat-max' :stat.sync='save.stats[31]' name='Max Gold'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[5]' name='Gold Earned by Clicking'></tr>
+            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='gainCoinClicking' id=104700 :colspan='5' name='Gain X Coins by Clicking Trophy Series'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[25]' name='Gold Earned by Assistants'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[26]' name='Gold Spent'></tr>
             <tr is='widget-stat-max' :stat.sync='save.stats[96]' name='Max Base Assistants'></tr>
+            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='haveAssistants' id=105100 :colspan='5' name='Have X Assistants Trophy Series'></tr>
+          </table>
+        </div>
+      </div>
+      <div role='tabpanel' class='tab-pane fade' id='tab-time'>
+        <div class='panel panel-default'>
+          <table class='table'>
+            <tr is='widget-fivestat-header'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[1]' name='Playtime'></tr>
+            <tr is='widget-field' :field.sync='save.stats[29].statsReset' can-edit :colspan='5' name='Playtime Last Game'></tr>
+            <tr is='widget-stat-max' :stat.sync='save.stats[39]' hide-ab name='Max Playtime'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[2]' name='Good Playtime'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[3]' name='Evil Playtime'></tr>
+			<tr is='widget-neutraltime'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[45]' name='Offline Playtime'></tr>
+            <tr is='widget-stat-max' :stat.sync='save.stats[46]' name='Max Offline Playtime'></tr>
+            <tr is='widget-field' :field.sync='save.cTimer' can-edit :colspan='5' name='Time Since Last Mouse Click (ticks, 30/seconds)'></tr>
+            <tr is='widget-field' :field.sync='save.kcTimer' can-edit :colspan='5' name='Time Since Last Keypress (ticks)'></tr>
+            <tr is='widget-field' :field.sync='save.mTimer' can-edit :colspan='5' name='Time Since Last Mouse Motion (ticks)'></tr>
+            <tr is='widget-field' :field.sync='save.sTimer' can-edit :colspan='5' name='Time for Angel Bloodline (ticks)'></tr>
+            <tr is='widget-field' :field.sync='save.oTimer' can-edit :colspan='5' name='Scry Production Timer (max 14400)'></tr>
+            <tr is='widget-field' :field.sync='save.oTimer2' can-edit :colspan='5' name='Scry Mana Timer (max 600)'></tr>
+            <tr is='widget-field' :field.sync='save.oTimer3' can-edit :colspan='5' name='Scry Event Timer (max 14400)'></tr>
           </table>
         </div>
       </div>
@@ -259,27 +287,6 @@
           </table>
         </div>
       </div>
-      <div role='tabpanel' class='tab-pane fade' id='tab-time'>
-        <div class='panel panel-default'>
-          <table class='table'>
-            <tr is='widget-fivestat-header'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[1]' name='Playtime'></tr>
-            <tr is='widget-field' :field.sync='save.stats[29].statsReset' can-edit :colspan='5' name='Playtime Last Game'></tr>
-            <tr is='widget-stat-max' :stat.sync='save.stats[39]' hide-ab name='Max Playtime'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[2]' name='Good Playtime'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[3]' name='Evil Playtime'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[45]' name='Offline Playtime'></tr>
-            <tr is='widget-stat-max' :stat.sync='save.stats[46]' name='Max Offline Playtime'></tr>
-            <tr is='widget-field' :field.sync='save.cTimer' can-edit :colspan='5' name='Time Since Last Mouse Click (ticks, 30/seconds)'></tr>
-            <tr is='widget-field' :field.sync='save.kcTimer' can-edit :colspan='5' name='Time Since Last Keypress (ticks)'></tr>
-            <tr is='widget-field' :field.sync='save.mTimer' can-edit :colspan='5' name='Time Since Last Mouse Motion (ticks)'></tr>
-            <tr is='widget-field' :field.sync='save.sTimer' can-edit :colspan='5' name='Time for Angel Bloodline (ticks)'></tr>
-            <tr is='widget-field' :field.sync='save.oTimer' can-edit :colspan='5' name='Scry Production Timer (max 14400)'></tr>
-            <tr is='widget-field' :field.sync='save.oTimer2' can-edit :colspan='5' name='Scry Mana Timer (max 600)'></tr>
-            <tr is='widget-field' :field.sync='save.oTimer3' can-edit :colspan='5' name='Scry Event Timer (max 14400)'></tr>
-          </table>
-        </div>
-      </div>
       <div role='tabpanel' class='tab-pane fade' id='tab-magic'>
         <div class='panel panel-default'>
           <table class='table'>
@@ -287,9 +294,11 @@
             <tr is='widget-field' :field.sync='save.mana' can-edit :colspan='5' name='Mana'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[16]' name='Mana Produced'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[27]' name='Mana Spent'></tr>
+            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='spendMana' id=111200 :colspan='5' name='Produce X Mana Trophy Series'></tr>
             <tr is='widget-field' :field.sync='save.contingencyValue' can-edit :colspan='5' name='Contingency Percentage (0-100)'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[15]' name='Spells Cast'></tr>
             <tr is='widget-stat-max' :stat.sync='save.stats[40]' name='Max Spells Cast'></tr>
+			<tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='castSpells' id=104000 :colspan='5' name='Cast X Spells Trophy Series'></tr>
             <tr is='widget-spell' :spell.sync='save.spells[i.id]' :name='i.name + " Cast"' v-for='i in spells'></tr>
             <tr is='widget-spell-rng' :spell.sync='save.spells[i.id]' :name='i.name + " RNG State"' v-for='i in spells'></tr>
             <tr is='widget-field-dropdown' :field.sync='save.strikeTier' type='bTiers' :colspan='5' name='Lightning Strike Tier'></tr>
@@ -321,8 +330,51 @@
       <div role='tabpanel' class='tab-pane fade' id='tab-autocasting'>
         <div class='panel panel-default'>
           <table class='table'>
+            <tr is='widget-trophy-header'></tr>
+			<tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='autocastSeries' id=8 :colspan='5' name='Autocasting Trophy Series'></tr>
             <tr is='widget-onestat-header'></tr>
             <tr is='widget-spell-autocasting' :spell.sync='save.spells[i.id]' :name='i.name' v-for='i in spells'></tr>
+          </table>
+        </div>
+      </div>
+      <div role='tabpanel' class='tab-pane fade' id='tab-factions'>
+        <div class='panel panel-default'>
+          <table class='table'>
+            <tr is='widget-fivestat-header'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[i.timestat]' :name='i.name + " Playtime"' v-for='i in factions | filterDef "timestat"'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[i.affilstat]' :name='i.name + " Affiliations"' v-for='i in factions | filterDef "affilstat"'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[38]' hide-ab hide-prev-reis hide-total name='Consecutive Faceless Affiliations'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[99]' hide-ab hide-prev-reis hide-total name='Consecutive Angel Affiliations'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[100]' hide-ab hide-prev-reis hide-total name='Consecutive Demon Affiliations'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[i.upgstat]' :name='i.name + " Upgrades Bought"' v-for='i in factions | filterDef "upgstat"'></tr>
+            <tr is='widget-stat-max' :stat.sync='save.stats[13]' name='Max Upgrades Bought'></tr>
+            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='purchaseUpgrade' id=105500 :colspan='5' name='Purchase X Upgrades Trophy Series'></tr>
+            <tr is='widget-stat-max' :stat.sync='save.stats[101]' hide-ab name='Consecutive Elven Luck Triggers'></tr>
+            <tr is='widget-field' :field.sync='save.goblinTimer' can-edit :colspan='5' name='Time Until Green Fingers Discount'></tr>
+            <tr is='widget-field' :field.sync='save.wealthStormTimer' can-edit :colspan='5' name='Time Until Storm of Wealth'></tr>
+            <tr is='widget-field' :field.sync='save.chargedTimer' can-edit :colspan='5' name='Titan Charged Effects Timer'></tr>
+            <tr is='widget-trophy-header'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105400 name='Fairy Champion Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105401 name='Elven Champion Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105402 name='Angel Champion Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105403 name='Goblin Champion Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105404 name='Undead Champion Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105405 name='Demon Champion Trophy'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=6 :colspan='5' name='Titan Unlock Trophy'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=2 :colspan='5' name='Druid Unlock Trophy'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=5 :colspan='5' name='Faceless Unlock Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105406 name='Titan Champion Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105407 name='Druid Champion Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105408 name='Faceless Champion Trophy'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=7 :colspan='5' name='Underworld Unlock Trophy'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=44 :colspan='5' name='Dwarven Invitation Unlock Trophy'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=43 :colspan='5' name='Drow Invitation Unlock Trophy'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=3 :colspan='5' name='Dwarf Unlock Trophy'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=1 :colspan='5' name=' Drow Unlock Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105409 name='Dwarven Champion Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105410 name='Drow Champion Trophy'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=53 :colspan='5' name='Mercenary Oath Unlock Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105411 name='Mercenary Champion Trophy'></tr>
           </table>
         </div>
       </div>
@@ -340,29 +392,12 @@
             <tr is='widget-fivestat-header'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[24]' name='Exchanges Made'></tr>
             <tr is='widget-stat-max' :stat.sync='save.stats[78]' name='Max Faction Coins'></tr>
+            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='findFactionCoins' id=104500 :colspan='5' name='Find X Faction Coins Trophy Series'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[47]' name='Diamond Pickaxe FC'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[48]' name='Honor Among Killers FC'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[112]' name='Lightning Strike FC'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[i.fcstat]' :name='i.name + " Coins Gained"' v-for='i in factions | filterDef "fc"'></tr>
             <tr is='widget-stat-max' :stat.sync='save.stats[i.fcmaxstat]' :name='"Max " + i.name + " Coins Gained"' v-for='i in factions | filterDef "fc"'></tr>
-          </table>
-        </div>
-      </div>
-      <div role='tabpanel' class='tab-pane fade' id='tab-factions'>
-        <div class='panel panel-default'>
-          <table class='table'>
-            <tr is='widget-fivestat-header'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[i.timestat]' :name='i.name + " Playtime"' v-for='i in factions | filterDef "timestat"'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[i.affilstat]' :name='i.name + " Affiliations"' v-for='i in factions | filterDef "affilstat"'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[38]' hide-ab hide-prev-reis hide-total name='Consecutive Faceless Affiliations'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[99]' hide-ab hide-prev-reis hide-total name='Consecutive Angel Affiliations'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[100]' hide-ab hide-prev-reis hide-total name='Consecutive Demon Affiliations'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[i.upgstat]' :name='i.name + " Upgrades Bought"' v-for='i in factions | filterDef "upgstat"'></tr>
-            <tr is='widget-stat-max' :stat.sync='save.stats[13]' name='Max Upgrades Bought'></tr>
-            <tr is='widget-stat-max' :stat.sync='save.stats[101]' hide-ab name='Consecutive Elven Luck Triggers'></tr>
-            <tr is='widget-field' :field.sync='save.goblinTimer' can-edit :colspan='5' name='Time Until Green Fingers Discount'></tr>
-            <tr is='widget-field' :field.sync='save.wealthStormTimer' can-edit :colspan='5' name='Time Until Storm of Wealth'></tr>
-            <tr is='widget-field' :field.sync='save.chargedTimer' can-edit :colspan='5' name='Titan Charged Effects Timer'></tr>
           </table>
         </div>
       </div>
@@ -378,6 +413,7 @@
             <tr is='widget-stat' :stat.sync='save.stats[104]' name='Excavation Resets'></tr>
             <tr is='widget-field' :field.sync='save.rubies' can-edit :colspan='5' name='Rubies'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[102]' name='Rubies Found'></tr>
+            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='gainRubies' id=116200 :colspan='5' name='Gain X Rubies Trophy Series'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[103]' name='Rubies Purchased'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[122]' name='Ruby Resets'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[105]' name='Ruby Assistant Upgrades'></tr>
@@ -385,12 +421,70 @@
             <tr is='widget-stat' :stat.sync='save.stats[107]' name='Ruby Max Mana Upgrades'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[108]' name='Ruby Gem Bonus Upgrades'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[109]' name='Ruby Royal Exchange Upgrades'></tr>
+            <tr is='widget-trophy-header'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=123 name='Ancient Stoneslab 1 Quest Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=124 name='Ancient Stoneslab 2 Quest Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=125 name='Bone Fragment 1 Quest Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=126 name='Bone Fragment 2 Quest Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=127 name='Fossilized Piece of Bark 1 Quest Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=128 name='Fossilized Piece of Bark 2 Quest Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=160 name='Ancient Device Quest Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=161 name='Key to the Lost City Quest Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=184 name='Earth Core Quest Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=185 name='Flame of Bondelnar Quest Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=186 name='Horn of the Kings Quest Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=129 name='Ancient Coin Piece Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=130 name='Arachnid Figurine Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=131 name='Black Sword Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=132 name='Bottled Voice Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=133 name='Ceremonial Dagger Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=120 name='Chocolate Cookie Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=140 name='Demon Horn Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=134 name='Demonic Figurine Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=135 name='Divine Sword Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=136 name='Dwarven Bow Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=137 name='Fossilized Rodent Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=138 name='Glyph Table Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=139 name='Goblin Purse Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=141 name='Huge Titan Statue Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=142 name='Jaw Bone Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=178 name='Know Your Enemy, Part I Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=143 name='Lucky Clover Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=144 name='Mini-treasure Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=145 name='Octopus-shaped Helmet Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=146 name='Pillar Fragment Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=147 name='Pink Carrot Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=148 name='Power Orb Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=150 name='Rotten Organ Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=151 name='Rough Stone Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=119 name='Scarab of Fortune Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=152 name='Steel Plate Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=153 name='Stone of Balance Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=154 name='Stone Tankard Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=155 name='Titan Shield Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=156 name='Translucent Goo Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=179 name='Vanilla Flavor Juice Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=187 name='Voodoo Doll Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=177 name='Wall Fragment Lore Artifact'></tr>
+            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='artifacts' id=117000 :colspan='5' name='Artifacts Trophy Series'></tr>
           </table>
         </div>
       </div>
       <div role='tabpanel' class='tab-pane fade' id='tab-research'>
         <div class='panel panel-default'>
           <table class='table'>
+            <tr is='widget-trophy-header'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=59 :colspan='5' name='Fairy Unique Building Unlock Trophy'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=58 :colspan='5' name='Elven Unique Building Unlock Trophy'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=56 :colspan='5' name='Angel Unique Building Unlock Trophy'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=60 :colspan='5' name='Goblin Unique Building Unlock Trophy'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=61 :colspan='5' name='Undead Unique Building Unlock Trophy'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=57 :colspan='5' name='Demon Unique Building Unlock Trophy'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=118 :colspan='5' name='Titan Unique Building Unlock Trophy'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=116 :colspan='5' name='Druid Unique Building Unlock Trophy'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=117 :colspan='5' name='Faceless Unique Building Unlock Trophy'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=183 :colspan='5' name='Dwarven Unique Building Unlock Trophy'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=182 :colspan='5' name='Drow Unique Building Unlock Trophy'></tr>
             <tr is='widget-fivestat-header'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[90]' name='Spellcraft Level'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[91]' name='Craftsmanship Level'></tr>
@@ -416,6 +510,7 @@
           <table class='table'>
             <tr is='widget-fivestat-header'></tr>
             <tr is='widget-field' :field.sync='save.ctaFactionCasts' can-edit :colspan='5' name='Valentines Call to Love, cast by Factions (bit array)'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=175 name='I Love You in Every Language Event Feat'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[114]' name='Heart Assistant Upgrades'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[115]' name='Heart Mana Regen Upgrades'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[116]' name='Heart Max Mana Upgrades'></tr>
@@ -423,24 +518,39 @@
             <tr is='widget-stat' :stat.sync='save.stats[118]' name='Heart Royal Exchange Upgrades'></tr>
 			<tr is='widget-field' :field.sync='save.eventResources[2].res' can-edit :colspan='5' name='Hearts'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[119]' name='Hearts Found'></tr>
+            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='feelTheLove' id=117600 :colspan='5' name='Feel the Love Trophy Series'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=174 name='Feel the Love Event Feat'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[120]' name='Call to Love Casts'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[121]' name='Offline Time During Valentines'></tr>
             <tr is='widget-field' :field.sync='save.eggRngState' can-edit :colspan='5' name='Easter Egg RNG State (best value: 873457390)'></tr>
             <tr is='widget-field' :field.sync='save.eggStackSize' can-edit :colspan='5' name='Easter Egg Stack Size'></tr>
 			<tr is='widget-field' :field.sync='save.eventResources[4].res' can-edit :colspan='5' name='Common Eggs'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[123]' name='Common Eggs Collected'></tr>
+            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='eggHunter' id=119500 :colspan='5' name='Egg Hunter Trophy Series'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=191 name='Egg Hunter Event Feat'></tr>
 			<tr is='widget-field' :field.sync='save.eventResources[5].res' can-edit :colspan='5' name='Rare Eggs'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[124]' name='Rare Eggs Collected'></tr>
+            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='eggCollection' id=119600 :colspan='5' name='Egg Collection Trophy Series'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=194 name='Egg Collection Event Feat'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=192 name='Golden Chicken Event Feat'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=193 name='Grey Easter Event Feat'></tr>
 			<tr is='widget-field' :field.sync='save.eventResources[7].res' can-edit :colspan='5' name='April Fools Minutes'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=115 name='Thanksgiving Event Feat'></tr>
 			<tr is='widget-field' :field.sync='save.eventResources[0].res' can-edit :colspan='5' name='Snowballs'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[110]' name='Snowballs Found'></tr>
+            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='snowpile' id=116800 :colspan='5' name='Snowpile Trophy Series'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=165 name='Snowpile Event Feat'></tr>
             <tr is='widget-field' :field.sync='save.snowballScryUses' can-edit :colspan='5' name='Snowball Scry Uses'></tr>
             <tr is='widget-field' :field.sync='save.snowballSize' can-edit :colspan='5' name='Current Snowball Size'></tr>
             <tr is='widget-field' :field.sync='save.lastGiftDate' can-edit :colspan='5' name='Last Gift Date'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[111]' name='Christmas Gifts Found'></tr>
-			<tr is='widget-field' :field.sync='save.eventResources[1].res' can-edit :colspan='5' name='Unused Field'></tr>
-			<tr is='widget-field' :field.sync='save.eventResources[3].res' can-edit :colspan='5' name='Unused Field'></tr>
-			<tr is='widget-field' :field.sync='save.eventResources[6].res' can-edit :colspan='5' name='Unused Field'></tr>
+            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='giftCollector' id=116700 :colspan='5' name='Gift Collector Trophy Series'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=163 name='Gift Collector Event Feat'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=164 name='Santas Helpers Event Feat'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=166 name='Unholidays Event Feat'></tr>
+			<tr is='widget-field' :field.sync='save.eventResources[1].res' can-edit :colspan='5' name='Unused Event Save Field (1)'></tr>
+			<tr is='widget-field' :field.sync='save.eventResources[3].res' can-edit :colspan='5' name='Unused Event Save Field (2)'></tr>
+			<tr is='widget-field' :field.sync='save.eventResources[6].res' can-edit :colspan='5' name='Unused Event Save Field (3)'></tr>
           </table>
         </div>
       </div>
@@ -472,33 +582,13 @@
           </table>
         </div>
       </div>
-      <div role='tabpanel' class='tab-pane fade' id='tab-alltrophies'>
+      <div role='tabpanel' class='tab-pane fade' id='tab-secretTrophies'>
         <div class='panel panel-default'>
           <table class='table'>
             <tr is='widget-trophy-header'></tr>
 			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=4 name='Archeology Expedition Secret Trophy'></tr>
-			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=6 name='Titan Unlock Trophy'></tr>
-			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=2 name='Druid Unlock Trophy'></tr>
-			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=5 name='Faceless Unlock Trophy'></tr>
-			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=7 name='Underworld Unlock Trophy'></tr>
-			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=3 name='Dwarf Unlock Trophy'></tr>
-			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=1 name=' Drow Unlock Trophy'></tr>
 			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=42 name='Clouded Secret Trophy'></tr>
-			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=43 name='Drow Invitation Unlock Trophy'></tr>
-			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=44 name='Dwarven Invitation Unlock Trophy'></tr>
 			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=52 name='Mercenary Oath Secret Trophy'></tr>
-			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=53 name='Mercenary Oath Unlock Trophy'></tr>
-			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=59 name='Fairy Unique Building Unlock Trophy'></tr>
-			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=58 name='Elven Unique Building Unlock Trophy'></tr>
-			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=56 name='Angel Unique Building Unlock Trophy'></tr>
-			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=60 name='Goblin Unique Building Unlock Trophy'></tr>
-			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=61 name='Undead Unique Building Unlock Trophy'></tr>
-			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=57 name='Demon Unique Building Unlock Trophy'></tr>
-			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=118 name='Titan Unique Building Unlock Trophy'></tr>
-			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=116 name='Druid Unique Building Unlock Trophy'></tr>
-			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=117 name='Faceless Unique Building Unlock Trophy'></tr>
-			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=183 name='Dwarven Unique Building Unlock Trophy'></tr>
-			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=182 name='Drow Unique Building Unlock Trophy'></tr>
 			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=62 name='Assistant Squasher Secret Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=63 name='Beard Carpet Secret Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=64 name='Bloodstream Secret Trophy'></tr>
@@ -562,91 +652,6 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=188 name='Expert Researcher Secret Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=189 name='Underworld Researcher Secret Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=190 name='Stoic Resistance Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=115 name='Thanksgiving Event Feat'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=163 name='Gift Collector Event Feat'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=164 name='Santas Helpers Event Feat'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=165 name='Snowpile Event Feat'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=166 name='Unholidays Event Feat'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=174 name='Feel the Love Event Feat'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=175 name='I Love You in Every Language Event Feat'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=191 name='Egg Hunter Event Feat'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=192 name='Golden Chicken Event Feat'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=193 name='Grey Easter Event Feat'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=194 name='Egg Collection Event Feat'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=123 name='Ancient Stoneslab 1 Quest Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=124 name='Ancient Stoneslab 2 Quest Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=125 name='Bone Fragment 1 Quest Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=126 name='Bone Fragment 2 Quest Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=127 name='Fossilized Piece of Bark 1 Quest Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=128 name='Fossilized Piece of Bark 2 Quest Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=160 name='Ancient Device Quest Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=161 name='Key to the Lost City Quest Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=184 name='Earth Core Quest Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=185 name='Flame of Bondelnar Quest Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=186 name='Horn of the Kings Quest Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=119 name='Scarab of Fortune Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=120 name='Chocolate Cookie Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=129 name='Ancient Coin Piece Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=130 name='Arachnid Figurine Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=131 name='Black Sword Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=132 name='Bottled Voice Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=133 name='Ceremonial Dagger Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=134 name='Demonic Figurine Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=135 name='Divine Sword Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=136 name='Dwarven Bow Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=137 name='Fossilized Rodent Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=138 name='Glyph Table Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=139 name='Goblin Purse Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=140 name='Demon Horn Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=141 name='Huge Titan Statue Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=142 name='Jaw Bone Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=143 name='Lucky Clover Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=144 name='Mini-treasure Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=145 name='Octopus-shaped Helmet Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=146 name='Pillar Fragment Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=147 name='Pink Carrot Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=148 name='Power Orb Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=150 name='Rotten Organ Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=151 name='Rough Stone Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=152 name='Steel Plate Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=153 name='Stone of Balance Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=154 name='Stone Tankard Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=155 name='Titan Shield Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=156 name='Translucent Goo Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=177 name='Wall Fragment Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=178 name='Know Your Enemy, Part I Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=179 name='Vanilla Flavor Juice Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=187 name='Voodoo Doll Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105400 name='Fairy Champion Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105401 name='Elven Champion Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105402 name='Angel Champion Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105403 name='Goblin Champion Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105404 name='Undead Champion Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105405 name='Demon Champion Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105406 name='Titan Champion Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105407 name='Druid Champion Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105408 name='Faceless Champion Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105409 name='Dwarven Champion Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105410 name='Drow Champion Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105411 name='Mercenary Champion Trophy'></tr>
-			<tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='autocastSeries' id=8 :colspan='5' name='Autocasting Series'></tr>
-			<tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='castSpells' id=104000 :colspan='5' name='Cast X Spells Series'></tr>
-            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='clickTreasure' id=104100 :colspan='5' name='Click Treasure X Times Series'></tr>
-            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='findFactionCoins' id=104500 :colspan='5' name='Find X Faction Coins Series'></tr>
-            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='gainCoins' id=104600 :colspan='5' name='Gain X Coins Series'></tr>
-            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='gainCoinClicking' id=104700 :colspan='5' name='Gain X Coins by Clicking Series'></tr>
-            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='gainGems' id=104900 :colspan='5' name='Gain X Gems Series'></tr>
-            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='gainReincarnate' id=105000 :colspan='5' name='Reincarnate X Times Series'></tr>
-            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='haveAssistants' id=105100 :colspan='5' name='Have X Assistants Series'></tr>
-            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='purchaseUpgrade' id=105500 :colspan='5' name='Purchase X Upgrades Series'></tr>
-            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='spendMana' id=111200 :colspan='5' name='Spend X Mana Series'></tr>
-            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='gainRubies' id=116200 :colspan='5' name='Gain X Rubies Series'></tr>
-            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='giftCollector' id=116700 :colspan='5' name='Gift Collector Series'></tr>
-            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='snowpile' id=116800 :colspan='5' name='Snowpile Series'></tr>
-            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='artifacts' id=117000 :colspan='5' name='Artifacts Series'></tr>
-            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='feelTheLove' id=117600 :colspan='5' name='Feel the Love Series'></tr>
-            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='eggHunter' id=119500 :colspan='5' name='Egg Hunter Series'></tr>
-            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='eggCollection' id=119600 :colspan='5' name='Egg Collection Series'></tr>
           </table>
         </div>
       </div>

@@ -9,17 +9,17 @@
 	goodmercspells: [6, 14, 9, 5, 8, 11, 4, 10, 2],
 	evilmercspells: [6, 14, 9, 5, 8, 15, 11, 4, 10, 2],
 	neutralmercspells: [6, 14, 9, 5, 8, 11, 4, 13, 10, 2],
-	autocastSeries: [8, 9, 10, 11, 12, 13, 159],
+	autocastSeries: [8, 9, 10, 11, 12, 13, 159, 200],
     castSpells: [104000, 104001, 104002, 104003, 104004, 104005, 104006, 104007, 104008, 104009, 104010, 104011, 104012, 104013],
     clickTreasure: [104100, 104101, 104102, 104103, 104104, 104105, 104106, 104107, 104108],
-    findFactionCoins: [104500, 104501, 104502, 104503, 104504, 104505, 104506, 104507, 104508, 104509, 104510, 104511, 104512, 104513, 104514],
+    findFactionCoins: [104500, 104501, 104502, 104503, 104504, 104505, 104506, 104507, 104508, 104509, 104510, 104511, 104512, 104513, 104514, 104515],
     gainCoins: [104600, 104601, 104602, 104603, 104604, 104605, 104606, 104607, 104608, 104609, 104610, 104611, 104612, 104613, 104614, 104615, 104616, 104617, 104618, 104619],
     gainCoinClicking: [104700, 104701, 104702, 104703, 104704, 104705, 104706, 104707, 104708, 104709, 104710, 104711, 104712, 104713, 104714, 104715, 104716, 104717, 104718],
     gainGems: [104900, 104901, 104902, 104903, 104904, 104905, 104906, 104907, 104908, 104909, 104910, 104911, 104912, 104913, 104914, 104915, 104916, 104917, 104918, 104919, 104920, 104921, 104922],
-    gainReincarnate: [105000, 105001, 105002, 105003, 105004, 105005, 105006, 105007, 105008, 105009, 105010],
-    haveAssistants: [105100, 105101, 105102, 105103, 105104, 105105, 105106, 105107, 105108],
+    gainReincarnate: [105000, 105001, 105002, 105003, 105004, 105005, 105006, 105007, 105008, 105009, 105010, 105011, 105012],
+    haveAssistants: [105100, 105101, 105102, 105103, 105104, 105105, 105106, 105107, 105108, 105109],
     purchaseUpgrade: [105500, 105501, 105502, 105503, 105504, 105505, 105506, 105507, 105508, 105509, 105510],
-    spendMana: [111200, 111201, 111202, 111203, 111204, 111205, 111206],
+    spendMana: [111200, 111201, 111202, 111203, 111204, 111205, 111206, 111207, 111208, 111209],
 	gainRubies: [116200, 116201, 116202, 116203],
 	giftCollector: [116700, 116701, 116702, 116703],
 	snowpile: [116800, 116801, 116802, 116803],
@@ -68,6 +68,11 @@
       }
       return filtered;
     });
+	
+	Vue.component('widget-neutraltime', {
+	  template: '<tr>'
+	  + '<th>Neutral playtime is not saved; it is calculated in-game.</th>'
+	});
 
     Vue.component('widget-fivestat-header', {
       template: '<tr>'
@@ -346,13 +351,14 @@
       template: '<tr>'
       + '<th><span class="statheader">Name</span></th>'
       + '<th><span class="statheader">Owned</span></th>'
+      + '<th><span class="statheader">u1 Boolean</span></th>'
       + '<th><span class="statheader">Inactive</span></th>'
-      + '<th><span class="statheader">Category?</span></th>'
+      + '<th><span class="statheader">u3 Boolean</span></th>'
       + '<th><span class="statheader">RNG State</span></th>'
       + '</tr>'
     });
 
-    Vue.component('widget-upgrade', {
+    /*Vue.component('widget-upgrade', {
 	  props: {
 	    'upgrades': Object,
 	    'name': String,
@@ -380,6 +386,74 @@
           }
 		}
 	  }
+    });*/
+	
+    Vue.component('widget-upgrade', {
+  	  props: {
+  	    'upgrades': Object,
+  	    'name': String,
+  	    'id': String
+  	  },
+      template: '<tr>'
+        + '<th><span class="statname">{{name}}</span></th>'
+        + '<td><input type="checkbox" v-model="owned" number></input></td>'
+        + '<td><input type="checkbox" v-model="upgradeU1" number></input></td>'
+        + '<td><input type="checkbox" v-model="upgradeU2" number></input></td>'
+        + '<td><input type="checkbox" v-model="upgradeU3" number></input></td>'
+        + '<td><input v-model="upgradeRNGstate" number></input></td>'
+        + '</tr>',
+  	  computed: {
+    	owned: {
+          get: function() {
+      		if (this.upgrades[Number(this.id)]) { return true; }
+      		else { return false; }
+      	  },
+          set: function() {
+            if (this.owned) {
+              delete this.upgades[Number(this.id)];
+            }
+            else {
+              this.upgrades[Number(this.id)] = {_id: Number(this.id), u1: false, u2: false, u3: false, s: 0};
+            }
+          }
+        },
+    	upgradeU1: {
+          get: function() {
+    	    return this.unlocked && this.upgrades[Number(this.id)].u1;
+          },
+          set: function(x) {
+            if (this.unlocked)
+              this.upgrades[Number(this.id)] = [x];
+          }
+    	},
+    	upgradeU2: {
+          get: function() {
+    	    return this.unlocked && this.upgrades[Number(this.id)].u1;
+          },
+          set: function(x) {
+            if (this.unlocked)
+              this.upgrades[Number(this.id)] = [x];
+          }
+    	},
+    	upgradeU3: {
+          get: function() {
+    	    return this.unlocked && this.upgrades[Number(this.id)].u3;
+          },
+          set: function(x) {
+            if (this.unlocked)
+              this.upgrades[Number(this.id)] = [x];
+          }
+    	},
+    	upgradeRNGstate: {
+          get: function() {
+    	    return this.unlocked && this.upgrades[Number(this.id)].s;
+          },
+          set: function(x) {
+            if (this.unlocked)
+              this.upgrades[Number(this.id)] = [x];
+          }
+    	}
+  	  }
     });
 
     Vue.component('widget-trophy-header', {
@@ -477,59 +551,6 @@
       }
     });
 	
-    /*Vue.component('widget-trophy-dropdown', {
-      props: {
-        'trophies': Object,
-        'name': String,
-		'id': String,
-        'type': String,
-        'filter': String
-      },
-      template: '<tr>'
-      + '<th><span class="statname">{{name}}</span></th>'
-      + '<td><select v-model="unlocked" number>'
-      + '<option :disabled="option.disabled" :value="option.id" v-for="option in options">{{option.name}}</option>'
-      + '</select></td>'
-      + '</tr>',
-  	  computed: {
-    	unlocked: {
-          get: function() {
-      		if (this.trophies[Number(this.id)]) { return true; }
-      		else { return false; }
-      	  },
-          set: function() {
-            if (this.unlocked) {
-              delete this.trophies[Number(this.id)];
-            }
-            else {
-              this.trophies[Number(this.id)] = {_id: Number(this.id), u1: false};
-            }
-          }
-        },
-    	trophyU1: {
-          get: function() {
-    	    return this.unlocked && this.trophies[Number(this.id)].u1;
-          },
-          set: function(x) {
-            if (this.unlocked)
-              this.trophies[Number(this.id)] = [x];
-          }
-		},
-        options: function() {
-          var opts = [];
-          for (var i of util.assoc[this.type]) {
-            if (this.filter && !dropdownFilter[this.filter][i.id]) continue;
-            opts.push({
-              id: i.id,
-              name: i.name,
-              //disabled: this.filter && !dropdownFilter[this.filter][i.id]
-            });
-          }
-          return opts;
-        }
-      }
-    });*/
-
     Vue.config.debug = true;
 
     // Initalize Vue
