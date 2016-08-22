@@ -352,6 +352,16 @@
       + '<th><span class="statheader">Name</span></th>'
       + '<th><span class="statheader">Owned</span></th>'
       + '<th><span class="statheader">u1 Boolean</span></th>'
+      + '<th><span class="statheader">u3 Boolean</span></th>'
+      + '<th><span class="statheader">RNG State</span></th>'
+      + '</tr>'
+    });
+
+    Vue.component('widget-challenge-header', {
+      template: '<tr>'
+      + '<th><span class="statheader">Name</span></th>'
+      + '<th><span class="statheader">Owned</span></th>'
+      + '<th><span class="statheader">u1 Boolean</span></th>'
       + '<th><span class="statheader">Inactive</span></th>'
       + '<th><span class="statheader">u3 Boolean</span></th>'
       + '<th><span class="statheader">RNG State</span></th>'
@@ -389,6 +399,63 @@
     });*/
 	
     Vue.component('widget-upgrade', {
+  	  props: {
+  	    'upgrades': Object,
+  	    'name': String,
+  	    'id': String
+  	  },
+      template: '<tr>'
+        + '<th><span class="statname">{{name}}</span></th>'
+        + '<td><input type="checkbox" v-model="owned" number></input></td>'
+        + '<td><input type="checkbox" v-model="upgradeU1" number></input></td>'
+        + '<td><input type="checkbox" v-model="upgradeU3" number></input></td>'
+        + '<td><input v-model="upgradeRNGstate" number></input></td>'
+        + '</tr>',
+  	  computed: {
+    	owned: {
+          get: function() {
+      		if (this.upgrades[Number(this.id)]) { return true; }
+      		else { return false; }
+      	  },
+          set: function() {
+            if (this.owned) {
+              delete this.upgades[Number(this.id)];
+            }
+            else {
+              this.upgrades[Number(this.id)] = {_id: Number(this.id), u1: false, u2: false, u3: false, s: 0};
+            }
+          }
+        },
+    	upgradeU1: {
+          get: function() {
+    	    return this.unlocked && this.upgrades[Number(this.id)].u1;
+          },
+          set: function(x) {
+            if (this.unlocked)
+              this.upgrades[Number(this.id)] = [x];
+          }
+    	},
+    	upgradeU3: {
+          get: function() {
+    	    return this.unlocked && this.upgrades[Number(this.id)].u3;
+          },
+          set: function(x) {
+            if (this.unlocked)
+              this.upgrades[Number(this.id)] = [x];
+          }
+    	},
+    	upgradeRNGstate: {
+          get: function() {
+    	    return this.unlocked && this.upgrades[Number(this.id)].s;
+          },
+          set: function(x) {
+            if (this.unlocked)
+              this.upgrades[Number(this.id)] = [x];
+          }
+    	}
+  	  }
+    });
+    Vue.component('widget-challenge', {
   	  props: {
   	    'upgrades': Object,
   	    'name': String,

@@ -129,10 +129,10 @@
         <a href='#tab-fcstats' aria-controls='Faction Coin Stats' role='tab' data-toggle='pill'> Faction Coin Stats </a>
       </li>
       <li role='presentation'>
-        <a href='#tab-secretTrophies' aria-controls='Secret Trophies' role='tab' data-toggle='pill'> Secret Trophies </a>
+        <a href='#tab-archeology' aria-controls='Archeology' role='tab' data-toggle='pill'> Archeology </a>
       </li>
       <li role='presentation'>
-        <a href='#tab-archeology' aria-controls='Archeology' role='tab' data-toggle='pill'> Archeology </a>
+        <a href='#tab-challenges' aria-controls='Challenges' role='tab' data-toggle='pill'> Challenges </a>
       </li>
       <li role='presentation'>
         <a href='#tab-research' aria-controls='Research' role='tab' data-toggle='pill'> Research </a>
@@ -212,6 +212,11 @@
             <tr is='widget-field' :field.sync='save.oTimer' can-edit :colspan='5' name='Scry Production Timer (max 14400)'></tr>
             <tr is='widget-field' :field.sync='save.oTimer2' can-edit :colspan='5' name='Scry Mana Timer (max 600)'></tr>
             <tr is='widget-field' :field.sync='save.oTimer3' can-edit :colspan='5' name='Scry Event Timer (max 14400)'></tr>
+            <tr is='widget-trophy-header'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=85 name='Lucky Neutral Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=93 name='Perfectly Good Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=67 name='Diabolical Evil Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=68 name='Equality Secret Trophy'></tr>
           </table>
         </div>
       </div>
@@ -314,6 +319,23 @@
             <tr v-show='save.alignment == 3' is='widget-field-dropdown' :field.sync='save.mercSpell1' type='spells' filter='neutralmercspells' :colspan='5' name='Mercenary Spell 1'></tr>
             <tr v-show='save.alignment == 3' is='widget-field-dropdown' :field.sync='save.mercSpell2' type='spells' filter='neutralmercspells' :colspan='5' name='Mercenary Spell 2'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[65]' name='Casts of Pay Upkeep (unused)'></tr>
+            <tr is='widget-trophy-header'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=66 name='Coin Pillage Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=73 name='Fairy Choir Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=107 name='Sun Blessing Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=76 name='Gods Rest Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=78 name='Greed Drive Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=108 name='True Night Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=81 name='Hell Rush Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=83 name='Lightning Storm Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=79 name='Halls of Balance Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=71 name='Faceless Overmind Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=89 name='Minedwarf Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=92 name='Perfect Combo Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=106 name='Spellfury Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=110 name='Unlimited Mana Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=173 name='Mana Matrix Secret Trophy'></tr>
+
           </table>
         </div>
       </div>
@@ -360,6 +382,8 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105403 name='Goblin Champion Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105404 name='Undead Champion Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105405 name='Demon Champion Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=77 name='Grand Diplomat Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=72 name='Faction Grinder Secret Trophy'></tr>
 			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=6 :colspan='5' name='Titan Unlock Trophy'></tr>
 			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=2 :colspan='5' name='Druid Unlock Trophy'></tr>
 			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=5 :colspan='5' name='Faceless Unlock Trophy'></tr>
@@ -373,8 +397,15 @@
 			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=1 :colspan='5' name=' Drow Unlock Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105409 name='Dwarven Champion Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105410 name='Drow Champion Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=63 name='Beard Carpet Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=94 name='Premeditation Secret Trophy'></tr>
 			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=53 :colspan='5' name='Mercenary Oath Unlock Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105411 name='Mercenary Champion Trophy'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=52 name='Mercenary Oath Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=80 name='Harlequin Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=84 name='Lucifer Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=88 name='Mercenary Spirit Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=157 name='No Recruiting Secret Trophy'></tr>
           </table>
         </div>
       </div>
@@ -383,6 +414,10 @@
           <table class='table'>
             <tr is='widget-factioncoin-header'></tr>
             <tr is='widget-factioncoin' :fc.sync='save.factionCoins[i.id]' :name='i.name' v-for='i in factions | filterDef "fc"'></tr>
+            <tr is='widget-trophy-header'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=70 name='Exchange Master Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=69 name='Exchange Lord Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=114 name='Faction Run Secret Trophy'></tr>
           </table>
         </div>
       </div>
@@ -422,6 +457,10 @@
             <tr is='widget-stat' :stat.sync='save.stats[108]' name='Ruby Gem Bonus Upgrades'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[109]' name='Ruby Royal Exchange Upgrades'></tr>
             <tr is='widget-trophy-header'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=4 name='Archeology Expedition Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=86 name='Master Archeologist Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=95 name='Realm Digger Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=158 name='That Excavated Quickly Secret Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=123 name='Ancient Stoneslab 1 Quest Artifact'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=124 name='Ancient Stoneslab 2 Quest Artifact'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=125 name='Bone Fragment 1 Quest Artifact'></tr>
@@ -470,6 +509,17 @@
           </table>
         </div>
       </div>
+      <div role='tabpanel' class='tab-pane fade' id='tab-challenges'>
+        <div class='panel panel-default'>
+          <table class='table'>
+            <tr is='widget-challenge-header'></tr>
+            <tr is='widget-trophy-header'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=113 name='Vanilla Challenger Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=169 name='Neutral Challenger Secret Trophy'></tr>
+          </table>
+        </div>
+      </div>
+	  
       <div role='tabpanel' class='tab-pane fade' id='tab-research'>
         <div class='panel panel-default'>
           <table class='table'>
@@ -485,6 +535,19 @@
 			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=117 :colspan='5' name='Faceless Unique Building Unlock Trophy'></tr>
 			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=183 :colspan='5' name='Dwarven Unique Building Unlock Trophy'></tr>
 			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=182 :colspan='5' name='Drow Unique Building Unlock Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=75 name='For Science! Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=91 name='Novice Researcher Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=101 name='Magician Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=97 name='Artisan Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=100 name='Demigod Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=99 name='Businessman Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=96 name='Apothecary Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=102 name='Warlord Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=111 name='Vanilla Researcher Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=122 name='Intermediate Researcher Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=121 name='Ancient Researcher Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=188 name='Expert Researcher Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=189 name='Underworld Researcher Secret Trophy'></tr>
             <tr is='widget-fivestat-header'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[90]' name='Spellcraft Level'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[91]' name='Craftsmanship Level'></tr>
@@ -562,6 +625,28 @@
             <tr is='widget-stat-max' :stat.sync='save.stats[88]' hide-ab name='Max Assistant Squishes'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[125]' name='Hint Button Clicks'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[14]' name='Trophy Counter (Defunct)'></tr>
+            <tr is='widget-trophy-header'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=42 name='Clouded Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=82 name='Leet Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=109 name='Unitary Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=65 name='Building Hater Secret Trophy'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=62 name='Assistant Squasher Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=103 name='Rewind Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105 name='Speed Run Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=74 name='Fast Forward Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=90 name='Need a Head Start? Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=87 name='Mathematician Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=64 name='Bloodstream Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=171 name='glho kohhl snod Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=172 name='Suggestion Master Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=181 name='Rule dis Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=180 name='Because I Like to Grind Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=190 name='Stoic Resistance Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=199 name='Van!shment Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=198 name='Iron Rush Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=202 name='Colorful Autocasting Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=203 name='Spell Cataclysm Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=201 name='Advisor Insight Secret Trophy'></tr>
           </table>
         </div>
       </div>
@@ -579,79 +664,6 @@
 			<tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=13 name="Bloodline"></tr>
 			<tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=12 name="Automatic Casting"></tr>
 			<tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=18 name="Contingency Autocasting"></tr>
-          </table>
-        </div>
-      </div>
-      <div role='tabpanel' class='tab-pane fade' id='tab-secretTrophies'>
-        <div class='panel panel-default'>
-          <table class='table'>
-            <tr is='widget-trophy-header'></tr>
-			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=4 name='Archeology Expedition Secret Trophy'></tr>
-			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=42 name='Clouded Secret Trophy'></tr>
-			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=52 name='Mercenary Oath Secret Trophy'></tr>
-			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=62 name='Assistant Squasher Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=63 name='Beard Carpet Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=64 name='Bloodstream Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=65 name='Building Hater Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=66 name='Coin Pillage Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=67 name='Diabolical Evil Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=68 name='Equality Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=69 name='Exchange Lord Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=70 name='Exchange Master Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=71 name='Faceless Overmind Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=72 name='Faction Grinder Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=73 name='Fairy Choir Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=74 name='Fast Forward Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=75 name='For Science! Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=76 name='Gods Rest Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=77 name='Grand Diplomat Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=78 name='Greed Drive Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=79 name='Halls of Balance Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=80 name='Harlequin Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=81 name='Hell Rush Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=82 name='Leet Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=83 name='Lightning Storm Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=84 name='Lucifer Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=85 name='Lucky Neutral Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=86 name='Master Archeologist Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=87 name='Mathematician Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=88 name='Mercenary Spirit Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=89 name='Minedwarf Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=90 name='Need a Head Start? Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=91 name='Novice Researcher Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=92 name='Perfect Combo Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=93 name='Perfectly Good Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=94 name='Premeditation Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=95 name='Realm Digger Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=96 name='Apothecary Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=97 name='Artisan Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=99 name='Businessman Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=100 name='Demigod Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=101 name='Magician Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=102 name='Warlord Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=103 name='Rewind Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105 name='Speed Run Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=106 name='Spellfury Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=107 name='Sun Blessing Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=108 name='True Night Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=109 name='Unitary Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=110 name='Unlimited Mana Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=111 name='Vanilla Researcher Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=113 name='Vanilla Challenger Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=114 name='Faction Run Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=121 name='Ancient Researcher Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=122 name='Intermediate Researcher Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=157 name='No Recruiting Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=158 name='That Excavated Quickly Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=169 name='Neutral Challenger Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=171 name='glho kohhl snod Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=172 name='Suggestion Master Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=173 name='Mana Matrix Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=180 name='Because I Like to Grind Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=181 name='Rule dis Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=188 name='Expert Researcher Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=189 name='Underworld Researcher Secret Trophy'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=190 name='Stoic Resistance Secret Trophy'></tr>
           </table>
         </div>
       </div>
