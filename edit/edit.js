@@ -214,7 +214,7 @@
       props: ['spell', 'name'],
       template: '<tr>'
       + '<th><span class="statname">{{name}} is on Autocasting</span></th>'
-      + '<td><input v-model="spell.a" number></input></td>'
+      + '<td><input type="checkbox" v-model="spell.a" number></input></td>'
       + '</tr>'
 	  + '<tr>'
       + '<th><span class="statname">{{name}} Silver Autocasting Order</span></th>'
@@ -228,7 +228,7 @@
       + '<th><span class="statname">{{name}} Bronze Autocasting Order</span></th>'
       + '<td><input v-model="spell.n3" number></input></td>'
       + '</tr>'
-    });
+	  });
     
     Vue.component('widget-spell-tiers', {
       props: ['spell', 'name'],
