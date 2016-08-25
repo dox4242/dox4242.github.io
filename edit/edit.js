@@ -8,7 +8,10 @@
 	spell: [18, 3, 12, 6, 14, 9, 1, 8, 15, 11, 7, 13, 10, 2, 5, 4, 17],
 	goodmercspells: [6, 14, 9, 5, 8, 11, 4, 10, 2],
 	evilmercspells: [6, 14, 9, 5, 8, 15, 11, 4, 10, 2],
-	neutralmercspells: [6, 14, 9, 5, 8, 11, 4, 13, 10, 2],
+	neutralmercspells: [6, 14, 9, 5, 8, 11, 4, 13, 10, 2]
+  };
+  
+  var trophyIDs = {
 	autocastSeries: [8, 9, 10, 11, 12, 13, 159, 200],
     castSpells: [104000, 104001, 104002, 104003, 104004, 104005, 104006, 104007, 104008, 104009, 104010, 104011, 104012, 104013],
     clickTreasure: [104100, 104101, 104102, 104103, 104104, 104105, 104106, 104107, 104108],
@@ -53,6 +56,10 @@
 	buildAncientPyramidsTrophies: [101500, 101501, 101502, 101503, 101504, 101505, 101506, 101507, 101508, 101509, 101510, 101511, 101512, 101513, 101514, 101515, 101516, 101517, 101518],
 	buildHallsOfLegendsTrophies: [102400, 102401, 102402, 102403, 102404, 102405, 102406, 102407, 102408, 102409, 102410, 102411, 102412, 102413, 102414, 102415, 102416, 102417, 102418]
   };
+  
+  for (var x in trophyIDs) {
+	dropdownFilter[x] = trophyIDs[x];
+  }
 
   for (var i in dropdownFilter) {
     var obj = {};
@@ -393,36 +400,6 @@
       + '</tr>'
     });
 
-    /*Vue.component('widget-upgrade', {
-	  props: {
-	    'upgrades': Object,
-	    'name': String,
-	    'id': String
-	  },
-      template: '<tr>'
-      + '<th><span class="statname">{{name}}</span></th>'
-      + '<td><input type="checkbox" v-model="upgradeU1" number></input></td>'
-      + '<td><input v-show="haveUpgrade" v-model="upgrades.u2" number></input></td>'
-      + '<td><input v-show="haveUpgrade" v-model="upgrades.u3" number></input></td>'
-      + '<td><input v-show="haveUpgrade" v-model="upgrades.s" number></input></td>'
-      + '<td>{{haveUpgrade}}</td>'
-      + '</tr>',
-	  computed: {
-		haveUpgrade: function() {
-		  if (this.upgrades[Number(this.id)]) { return true; }
-		  else { return false; }
-		},
-		upgradeU1: {
-          get: function() {
-		    return this.upgrades.u1
-          },
-          set: function(x) {
-            this.upgrades[x] = [true];
-          }
-		}
-	  }
-    });*/
-	
     Vue.component('widget-upgrade', {
   	  props: {
   	    'upgrades': Object,
@@ -598,7 +575,6 @@
       props: {
         'trophies': Object,
         'name': String,
-		'id': String,
         'type': String,
         'filter': String
       },
@@ -611,20 +587,21 @@
   	  computed: {
     	unlocked: {
           get: function() {
-            var id = Number(this.id);
-            for (var i = this.options.length; i >= 0; i--) {
-              if (this.trophies[id+i]) return i+id;
-            }
-            return -1;
+		    for (var i = this.options.length-2; i >= 0; i--) {
+			  if (this.trophies[trophyIDs[this.filter][i]]) {
+				return trophyIDs[this.filter][i]
+			  }
+		    }
+           return -1;
       	  },
           set: function(x) {
-            var id = Number(this.id);
-            for (var i = id; i < id+this.options.length-1; i++) {
-              if (i <= x) {
-                if (!this.trophies[i]) this.trophies[i] = {_id:i, u1:false};
+			for (var i = 0; i < this.options.length-1; i++) {
+			  var tid = trophyIDs[this.filter][i];
+              if (!this.trophies[tid]) {
+				this.trophies[tid] = {_id:tid, u1:false};
               } else {
-                if (this.trophies[i]) delete this.trophies[i];
-              }
+                if (this.trophies[tid]) delete this.trophies[tid];
+			  }
             }
           }
 		    },
