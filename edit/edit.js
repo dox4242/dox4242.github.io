@@ -497,7 +497,7 @@
     	},
     	upgradeU2: {
           get: function() {
-    	    return this.unlocked && this.upgrades[Number(this.id)].u1;
+    	    return this.unlocked && this.upgrades[Number(this.id)].u2;
           },
           set: function(x) {
             if (this.unlocked)
