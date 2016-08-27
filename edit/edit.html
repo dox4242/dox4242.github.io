@@ -147,9 +147,6 @@
       <li role='presentation'>
         <a href='#tab-misc' aria-controls='Misc' role='tab' data-toggle='pill'> Misc </a>
       </li>
-      <li role='presentation'>
-        <a href='#tab-allupgrades' aria-controls='Test' role='tab' data-toggle='pill'> Upgrades Test </a>
-      </li>
     </ul>
     <div class='tab-content'>
       <div role='tabpanel' class='tab-pane fade in active' id='tab-general'>
@@ -643,6 +640,7 @@
         <div class='panel panel-default'>
           <table class='table'>
             <tr is='widget-fivestat-header'></tr>
+			<tr><td colspan='5' align='center'>Valentines Event</td></tr>
             <tr is='widget-field' :field.sync='save.ctaFactionCasts' can-edit :colspan='5' name='Valentines Call to Love, cast by Factions (bit array)'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=175 name='I Love You in Every Language Event Feat'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[114]' name='Heart Assistant Upgrades'></tr>
@@ -656,6 +654,7 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=174 name='Feel the Love Event Feat'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[120]' name='Call to Love Casts'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[121]' name='Offline Time During Valentines'></tr>
+			<tr><td colspan='5' align='center'>Easter Event</td></tr>
             <tr is='widget-field' :field.sync='save.eggRngState' can-edit :colspan='5' name='Easter Egg RNG State (best value: 873457390)'></tr>
             <tr is='widget-field' :field.sync='save.eggStackSize' can-edit :colspan='5' name='Easter Egg Stack Size'></tr>
 			<tr is='widget-field' :field.sync='save.eventResources[4].res' can-edit :colspan='5' name='Common Eggs'></tr>
@@ -668,8 +667,11 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=194 name='Egg Collection Event Feat'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=192 name='Golden Chicken Event Feat'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=193 name='Grey Easter Event Feat'></tr>
+			<tr><td colspan='5' align='center'>April Fools Event</td></tr>
 			<tr is='widget-field' :field.sync='save.eventResources[7].res' can-edit :colspan='5' name='April Fools Minutes'></tr>
+			<tr><td colspan='5' align='center'>Thanksgiving Event</td></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=115 name='Thanksgiving Event Feat'></tr>
+			<tr><td colspan='5' align='center'>Christmas Event</td></tr>
 			<tr is='widget-field' :field.sync='save.eventResources[0].res' can-edit :colspan='5' name='Snowballs'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[110]' name='Snowballs Found'></tr>
             <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='snowpile' :colspan='5' name='Snowpile Trophy Series'></tr>
@@ -718,23 +720,6 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=202 name='Colorful Autocasting Secret Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=203 name='Spell Cataclysm Secret Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=201 name='Advisor Insight Secret Trophy'></tr>
-          </table>
-        </div>
-      </div>
-      <div role='tabpanel' class='tab-pane fade' id='tab-allupgrades'>
-        <div class='panel panel-default'>
-          <table class='table'>
-            <tr is='widget-upgrade-header'></tr>
-			<tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=2 name='Archeology'></tr>
-			<tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=7 name='Fragment of a Titan Statue'></tr>
-			<tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=4 name='Druidic Runestone'></tr>
-			<tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=6 name='Octopus Shaped Spine'></tr>
-			<tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=8 name='Passage to the Underworld'></tr>
-			<tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=5 name="Sturdy Bearded Man's Quest"></tr>
-			<tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=3 name="Cloaked Shady Figure's Quest"></tr>
-			<tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=13 name="Bloodline"></tr>
-			<tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=12 name="Automatic Casting"></tr>
-			<tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=18 name="Contingency Autocasting"></tr>
           </table>
         </div>
       </div>
