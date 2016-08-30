@@ -451,10 +451,6 @@
       template: '<tr>'
       + '<th><span class="statheader">Name</span></th>'
       + '<th><span class="statheader">Owned</span></th>'
-      /*+ '<th><span class="statheader">u1 Boolean</span></th>'
-      + '<th><span class="statheader">Inactive</span></th>'
-      + '<th><span class="statheader">u3 Boolean</span></th>'
-      + '<th><span class="statheader">RNG State</span></th>'*/
       + '</tr>'
     });
 
@@ -467,10 +463,6 @@
       template: '<tr>'
         + '<th><span class="statname">{{name}}</span></th>'
         + '<td><input type="checkbox" v-model="unlocked" number></input></td>'
-        /*+ '<td><input type="checkbox" v-model="upgradeU1" number></input></td>'
-        + '<td><input type="checkbox" v-model="upgradeU2" number></input></td>'
-        + '<td><input type="checkbox" v-model="upgradeU3" number></input></td>'
-        + '<td><input v-model="upgradeRNGstate" number></input></td>'*/
         + '</tr>',
   	  computed: {
     	unlocked: {
@@ -486,44 +478,8 @@
               this.upgrades[Number(this.id)] = {_id: Number(this.id), u1: false, u2: false, u3: false, s: 0};
             }
           }
-        }/*,
-    	upgradeU1: {
-          get: function() {
-    	    return this.unlocked && this.upgrades[Number(this.id)].u1;
-          },
-          set: function(x) {
-            if (this.unlocked)
-              this.upgrades[Number(this.id)] = [x];
-          }
-    	},
-    	upgradeU2: {
-          get: function() {
-    	    return this.unlocked && this.upgrades[Number(this.id)].u2;
-          },
-          set: function(x) {
-            if (this.unlocked)
-              this.upgrades[Number(this.id)] = [x];
-          }
-    	},
-    	upgradeU3: {
-          get: function() {
-    	    return this.unlocked && this.upgrades[Number(this.id)].u3;
-          },
-          set: function(x) {
-            if (this.unlocked)
-              this.upgrades[Number(this.id)] = [x];
-          }
-    	},
-    	upgradeRNGstate: {
-          get: function() {
-    	    return this.unlocked && this.upgrades[Number(this.id)].s;
-          },
-          set: function(x) {
-            if (this.unlocked)
-              this.upgrades[Number(this.id)] = [x];
-          }
-    	}*/
-  	  }
+        }
+      }
     });
 
     Vue.component('widget-research-upgrades-header', {
@@ -540,8 +496,6 @@
     Vue.component('widget-research-upgrades', {
   	  props: {
   	    'upgrades': Object,
-  	    //'name': String,
-  	    //'id': String
   	  },
       template: '<tr>'
         + '<td>S1 <input type="checkbox" v-model="S1" number></input></td>'
@@ -3107,7 +3061,6 @@
         save: util.save.blankSave(),
         spells: util.assoc.spells,
         factions: util.assoc.faction,
-		//upgrades: util.assoc.upgrades,
         currenttime: Math.floor(new Date().getTime()/1000)
       },
       methods: {
