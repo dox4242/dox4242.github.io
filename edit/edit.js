@@ -926,16 +926,16 @@
         },
         S30: {
           get: function() {
-            if (this.upgrades[130002]) { return this.upgrades[130002].u1; }
+            if (this.upgrades[130903]) { return this.upgrades[130903].u1; }
       	       else { return false; }
       	   },
           set: function() {
-            if (this.upgrades[130002]) {
-	       if (this.upgrades[130002].u1) { this.upgrades[130002].u1 = false; }
-	       else { this.upgrades[130002].u1 = true; }
+            if (this.upgrades[130903]) {
+	       if (this.upgrades[130903].u1) { this.upgrades[130903].u1 = false; }
+	       else { this.upgrades[130903].u1 = true; }
             }
             else {
-              this.upgrades[130002] = {_id: 130002, u1: true, u2: false, u3: false, s: 0};
+              this.upgrades[130903] = {_id: 130903, u1: true, u2: false, u3: false, s: 0};
             }
           }
         },
@@ -986,16 +986,16 @@
         },
         A25: {
           get: function() {
-            if (this.upgrades[124002]) { return this.upgrades[124002].u1; }
+            if (this.upgrades[123903]) { return this.upgrades[123903].u1; }
       	       else { return false; }
       	   },
           set: function() {
-            if (this.upgrades[124002]) {
-	       if (this.upgrades[124002].u1) { this.upgrades[124002].u1 = false; }
-	       else { this.upgrades[124002].u1 = true; }
+            if (this.upgrades[123903]) {
+	       if (this.upgrades[123903].u1) { this.upgrades[123903].u1 = false; }
+	       else { this.upgrades[123903].u1 = true; }
             }
             else {
-              this.upgrades[124002] = {_id: 124002, u1: true, u2: false, u3: false, s: 0};
+              this.upgrades[123903] = {_id: 123903, u1: true, u2: false, u3: false, s: 0};
             }
           }
         },
@@ -1016,16 +1016,16 @@
         },
         S50: {
           get: function() {
-            if (this.upgrades[130903]) { return this.upgrades[130903].u1; }
+            if (this.upgrades[130002]) { return this.upgrades[130002].u1; }
       	       else { return false; }
       	   },
           set: function() {
-            if (this.upgrades[130903]) {
-	       if (this.upgrades[130903].u1) { this.upgrades[130903].u1 = false; }
-	       else { this.upgrades[130903].u1 = true; }
+            if (this.upgrades[130002]) {
+	       if (this.upgrades[130002].u1) { this.upgrades[130002].u1 = false; }
+	       else { this.upgrades[130002].u1 = true; }
             }
             else {
-              this.upgrades[130903] = {_id: 130903, u1: true, u2: false, u3: false, s: 0};
+              this.upgrades[130002] = {_id: 130002, u1: true, u2: false, u3: false, s: 0};
             }
           }
         },
@@ -1076,16 +1076,16 @@
         },
         A30: {
           get: function() {
-            if (this.upgrades[123903]) { return this.upgrades[123903].u1; }
+            if (this.upgrades[124002]) { return this.upgrades[124002].u1; }
       	       else { return false; }
       	   },
           set: function() {
-            if (this.upgrades[123903]) {
-	       if (this.upgrades[123903].u1) { this.upgrades[123903].u1 = false; }
-	       else { this.upgrades[123903].u1 = true; }
+            if (this.upgrades[124002]) {
+	       if (this.upgrades[124002].u1) { this.upgrades[124002].u1 = false; }
+	       else { this.upgrades[124002].u1 = true; }
             }
             else {
-              this.upgrades[123903] = {_id: 123903, u1: true, u2: false, u3: false, s: 0};
+              this.upgrades[124002] = {_id: 124002, u1: true, u2: false, u3: false, s: 0};
             }
           }
         },
@@ -1331,16 +1331,16 @@
         },
         E135: {
           get: function() {
-            if (this.upgrades[128806]) { return this.upgrades[128806].u1; }
+            if (this.upgrades[127907]) { return this.upgrades[127907].u1; }
       	       else { return false; }
       	   },
           set: function() {
-            if (this.upgrades[128806]) {
-	       if (this.upgrades[128806].u1) { this.upgrades[128806].u1 = false; }
-	       else { this.upgrades[128806].u1 = true; }
+            if (this.upgrades[127907]) {
+	       if (this.upgrades[127907].u1) { this.upgrades[127907].u1 = false; }
+	       else { this.upgrades[127907].u1 = true; }
             }
             else {
-              this.upgrades[128806] = {_id: 128806, u1: true, u2: false, u3: false, s: 0};
+              this.upgrades[127907] = {_id: 127907, u1: true, u2: false, u3: false, s: 0};
             }
           }
         },
@@ -1361,31 +1361,31 @@
         },
         W150: {
           get: function() {
-            if (this.upgrades[131706]) { return this.upgrades[131706].u1; }
+            if (this.upgrades[131810]) { return this.upgrades[131810].u1; }
       	       else { return false; }
       	   },
           set: function() {
-            if (this.upgrades[131706]) {
-	       if (this.upgrades[131706].u1) { this.upgrades[131706].u1 = false; }
-	       else { this.upgrades[131706].u1 = true; }
+            if (this.upgrades[131810]) {
+	       if (this.upgrades[131810].u1) { this.upgrades[131810].u1 = false; }
+	       else { this.upgrades[131810].u1 = true; }
             }
             else {
-              this.upgrades[131706] = {_id: 131706, u1: true, u2: false, u3: false, s: 0};
+              this.upgrades[131810] = {_id: 131810, u1: true, u2: false, u3: false, s: 0};
             }
           }
         },
         S175: {
           get: function() {
-            if (this.upgrades[130407]) { return this.upgrades[130407].u1; }
+            if (this.upgrades[130208]) { return this.upgrades[130208].u1; }
       	       else { return false; }
       	   },
           set: function() {
-            if (this.upgrades[130407]) {
-	       if (this.upgrades[130407].u1) { this.upgrades[130407].u1 = false; }
-	       else { this.upgrades[130407].u1 = true; }
+            if (this.upgrades[130208]) {
+	       if (this.upgrades[130208].u1) { this.upgrades[130208].u1 = false; }
+	       else { this.upgrades[130208].u1 = true; }
             }
             else {
-              this.upgrades[130407] = {_id: 130407, u1: true, u2: false, u3: false, s: 0};
+              this.upgrades[130208] = {_id: 130208, u1: true, u2: false, u3: false, s: 0};
             }
           }
         },
@@ -1406,31 +1406,31 @@
         },
         D175: {
           get: function() {
-            if (this.upgrades[126507]) { return this.upgrades[126507].u1; }
+            if (this.upgrades[127108]) { return this.upgrades[127108].u1; }
       	       else { return false; }
       	   },
           set: function() {
-            if (this.upgrades[126507]) {
-	       if (this.upgrades[126507].u1) { this.upgrades[126507].u1 = false; }
-	       else { this.upgrades[126507].u1 = true; }
+            if (this.upgrades[127108]) {
+	       if (this.upgrades[127108].u1) { this.upgrades[127108].u1 = false; }
+	       else { this.upgrades[127108].u1 = true; }
             }
             else {
-              this.upgrades[126507] = {_id: 126507, u1: true, u2: false, u3: false, s: 0};
+              this.upgrades[127108] = {_id: 127108, u1: true, u2: false, u3: false, s: 0};
             }
           }
         },
         E145: {
           get: function() {
-            if (this.upgrades[127907]) { return this.upgrades[127907].u1; }
+            if (this.upgrades[128806]) { return this.upgrades[128806].u1; }
       	       else { return false; }
       	   },
           set: function() {
-            if (this.upgrades[127907]) {
-	       if (this.upgrades[127907].u1) { this.upgrades[127907].u1 = false; }
-	       else { this.upgrades[127907].u1 = true; }
+            if (this.upgrades[128806]) {
+	       if (this.upgrades[128806].u1) { this.upgrades[128806].u1 = false; }
+	       else { this.upgrades[128806].u1 = true; }
             }
             else {
-              this.upgrades[127907] = {_id: 127907, u1: true, u2: false, u3: false, s: 0};
+              this.upgrades[128806] = {_id: 128806, u1: true, u2: false, u3: false, s: 0};
             }
           }
         },
@@ -1451,31 +1451,31 @@
         },
         W175: {
           get: function() {
-            if (this.upgrades[131407]) { return this.upgrades[131407].u1; }
+            if (this.upgrades[131909]) { return this.upgrades[131909].u1; }
       	       else { return false; }
       	   },
           set: function() {
-            if (this.upgrades[131407]) {
-	       if (this.upgrades[131407].u1) { this.upgrades[131407].u1 = false; }
-	       else { this.upgrades[131407].u1 = true; }
+            if (this.upgrades[131909]) {
+	       if (this.upgrades[131909].u1) { this.upgrades[131909].u1 = false; }
+	       else { this.upgrades[131909].u1 = true; }
             }
             else {
-              this.upgrades[131407] = {_id: 131407, u1: true, u2: false, u3: false, s: 0};
+              this.upgrades[131909] = {_id: 131909, u1: true, u2: false, u3: false, s: 0};
             }
           }
         },
         S180: {
           get: function() {
-            if (this.upgrades[130208]) { return this.upgrades[130208].u1; }
+            if (this.upgrades[130407]) { return this.upgrades[130407].u1; }
       	       else { return false; }
       	   },
           set: function() {
-            if (this.upgrades[130208]) {
-	       if (this.upgrades[130208].u1) { this.upgrades[130208].u1 = false; }
-	       else { this.upgrades[130208].u1 = true; }
+            if (this.upgrades[130407]) {
+	       if (this.upgrades[130407].u1) { this.upgrades[130407].u1 = false; }
+	       else { this.upgrades[130407].u1 = true; }
             }
             else {
-              this.upgrades[130208] = {_id: 130208, u1: true, u2: false, u3: false, s: 0};
+              this.upgrades[130407] = {_id: 130407, u1: true, u2: false, u3: false, s: 0};
             }
           }
         },
@@ -1496,16 +1496,16 @@
         },
         D200: {
           get: function() {
-            if (this.upgrades[127108]) { return this.upgrades[127108].u1; }
+            if (this.upgrades[127409]) { return this.upgrades[127409].u1; }
       	       else { return false; }
       	   },
           set: function() {
-            if (this.upgrades[127108]) {
-	       if (this.upgrades[127108].u1) { this.upgrades[127108].u1 = false; }
-	       else { this.upgrades[127108].u1 = true; }
+            if (this.upgrades[127409]) {
+	       if (this.upgrades[127409].u1) { this.upgrades[127409].u1 = false; }
+	       else { this.upgrades[127409].u1 = true; }
             }
             else {
-              this.upgrades[127108] = {_id: 127108, u1: true, u2: false, u3: false, s: 0};
+              this.upgrades[127409] = {_id: 127409, u1: true, u2: false, u3: false, s: 0};
             }
           }
         },
@@ -1541,31 +1541,31 @@
         },
         W180: {
           get: function() {
-            if (this.upgrades[131108]) { return this.upgrades[131108].u1; }
+            if (this.upgrades[131706]) { return this.upgrades[131706].u1; }
       	       else { return false; }
       	   },
           set: function() {
-            if (this.upgrades[131108]) {
-	       if (this.upgrades[131108].u1) { this.upgrades[131108].u1 = false; }
-	       else { this.upgrades[131108].u1 = true; }
+            if (this.upgrades[131706]) {
+	       if (this.upgrades[131706].u1) { this.upgrades[131706].u1 = false; }
+	       else { this.upgrades[131706].u1 = true; }
             }
             else {
-              this.upgrades[131108] = {_id: 131108, u1: true, u2: false, u3: false, s: 0};
+              this.upgrades[131706] = {_id: 131706, u1: true, u2: false, u3: false, s: 0};
             }
           }
         },
         S200: {
           get: function() {
-            if (this.upgrades[130709]) { return this.upgrades[130709].u1; }
+            if (this.upgrades[130110]) { return this.upgrades[130110].u1; }
       	       else { return false; }
       	   },
           set: function() {
-            if (this.upgrades[130709]) {
-	       if (this.upgrades[130709].u1) { this.upgrades[130709].u1 = false; }
-	       else { this.upgrades[130709].u1 = true; }
+            if (this.upgrades[130110]) {
+	       if (this.upgrades[130110].u1) { this.upgrades[130110].u1 = false; }
+	       else { this.upgrades[130110].u1 = true; }
             }
             else {
-              this.upgrades[130709] = {_id: 130709, u1: true, u2: false, u3: false, s: 0};
+              this.upgrades[130110] = {_id: 130110, u1: true, u2: false, u3: false, s: 0};
             }
           }
         },
@@ -1586,16 +1586,16 @@
         },
         D205: {
           get: function() {
-            if (this.upgrades[127409]) { return this.upgrades[127409].u1; }
+            if (this.upgrades[126507]) { return this.upgrades[126507].u1; }
       	       else { return false; }
       	   },
           set: function() {
-            if (this.upgrades[127409]) {
-	       if (this.upgrades[127409].u1) { this.upgrades[127409].u1 = false; }
-	       else { this.upgrades[127409].u1 = true; }
+            if (this.upgrades[126507]) {
+	       if (this.upgrades[126507].u1) { this.upgrades[126507].u1 = false; }
+	       else { this.upgrades[126507].u1 = true; }
             }
             else {
-              this.upgrades[127409] = {_id: 127409, u1: true, u2: false, u3: false, s: 0};
+              this.upgrades[126507] = {_id: 126507, u1: true, u2: false, u3: false, s: 0};
             }
           }
         },
@@ -1631,31 +1631,31 @@
         },
         W200: {
           get: function() {
-            if (this.upgrades[131909]) { return this.upgrades[131909].u1; }
+            if (this.upgrades[131407]) { return this.upgrades[131407].u1; }
       	       else { return false; }
       	   },
           set: function() {
-            if (this.upgrades[131909]) {
-	       if (this.upgrades[131909].u1) { this.upgrades[131909].u1 = false; }
-	       else { this.upgrades[131909].u1 = true; }
+            if (this.upgrades[131407]) {
+	       if (this.upgrades[131407].u1) { this.upgrades[131407].u1 = false; }
+	       else { this.upgrades[131407].u1 = true; }
             }
             else {
-              this.upgrades[131909] = {_id: 131909, u1: true, u2: false, u3: false, s: 0};
+              this.upgrades[131407] = {_id: 131407, u1: true, u2: false, u3: false, s: 0};
             }
           }
         },
         S215: {
           get: function() {
-            if (this.upgrades[130110]) { return this.upgrades[130110].u1; }
+            if (this.upgrades[130709]) { return this.upgrades[130709].u1; }
       	       else { return false; }
       	   },
           set: function() {
-            if (this.upgrades[130110]) {
-	       if (this.upgrades[130110].u1) { this.upgrades[130110].u1 = false; }
-	       else { this.upgrades[130110].u1 = true; }
+            if (this.upgrades[130709]) {
+	       if (this.upgrades[130709].u1) { this.upgrades[130709].u1 = false; }
+	       else { this.upgrades[130709].u1 = true; }
             }
             else {
-              this.upgrades[130110] = {_id: 130110, u1: true, u2: false, u3: false, s: 0};
+              this.upgrades[130709] = {_id: 130709, u1: true, u2: false, u3: false, s: 0};
             }
           }
         },
@@ -1721,16 +1721,16 @@
         },
         W205: {
           get: function() {
-            if (this.upgrades[131810]) { return this.upgrades[131810].u1; }
+            if (this.upgrades[131108]) { return this.upgrades[131108].u1; }
       	       else { return false; }
       	   },
           set: function() {
-            if (this.upgrades[131810]) {
-	       if (this.upgrades[131810].u1) { this.upgrades[131810].u1 = false; }
-	       else { this.upgrades[131810].u1 = true; }
+            if (this.upgrades[131108]) {
+	       if (this.upgrades[131108].u1) { this.upgrades[131108].u1 = false; }
+	       else { this.upgrades[131108].u1 = true; }
             }
             else {
-              this.upgrades[131810] = {_id: 131810, u1: true, u2: false, u3: false, s: 0};
+              this.upgrades[131108] = {_id: 131108, u1: true, u2: false, u3: false, s: 0};
             }
           }
         },
