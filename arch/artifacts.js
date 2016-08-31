@@ -494,7 +494,7 @@ var Artifacts = [
     name: 'Steel Plate',
     id: 152,
     fixed: function(save) {
-      return util.save.upgrade_owned(save,469) && save.prestigeFaction == 11 && save.reincarnation >= 5;
+      return util.save.upgrade_owned(save,469) && save.faction == 11 && save.reincarnation >= 5;
     },
     random: function(save) {
       return save.reincarnation / 5000;
@@ -504,7 +504,7 @@ var Artifacts = [
     name: 'Black Sword',
     id: 131,
     fixed: function(save) {
-      return util.save.upgrade_owned(save,469) && save.prestigeFaction == 11 && util.save.stat(save, 49, 2) >= 100;
+      return util.save.upgrade_owned(save,469) && save.faction == 11 && util.save.stat(save, 49, 2) >= 100;
     },
     random: function(save) {
       return util.save.stat(save, 61, 2) / 6000000;
@@ -533,7 +533,7 @@ var Artifacts = [
       for (i = 0; i <= 10; i++) {
         if (!util.save.bloodline_upgrades(save, i)) return false;
       }
-      return util.save.upgrade_owned(save,469) && save.prestigeFaction == 11 && save.reincarnation >= 12;
+      return util.save.upgrade_owned(save,469) && save.faction == 11 && save.reincarnation >= 12;
     },
     random: function(save) {
       return 0.1
