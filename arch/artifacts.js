@@ -197,7 +197,7 @@ var Artifacts = [
       return Math.ceil(value * 2) + 1;
     },
     display: function(value) {
-      return r + ' Consecutive Elven Luck' + (r>1?'s':'');
+      return value + ' Consecutive Elven Luck' + (value>1?'s':'');
     }
   },
   {
