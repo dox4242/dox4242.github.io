@@ -71,7 +71,7 @@
       var unobtain = {};
       for (var i of this.unobtain) unobtain[i] = true;
       var canignore = -this.unobtain.length;
-      for (var i of eligible) if (i.random == 0) canignore += 1;
+      //for (var i of eligible) if (i.random == 0) canignore += 1;
       var events = [];
       var num = util.save.stat(this.save, 35);
       while (remaining > 0) {
@@ -108,7 +108,7 @@
         if (excavation.length > 2) {
           events.push(excavation);
         }
-        if ((excav + this.save.excavations) > 50000 || remaining <= canignore) {
+        if ((excav + this.save.excavations) > 20000 || remaining <= canignore) {
           break;
         }
       }
