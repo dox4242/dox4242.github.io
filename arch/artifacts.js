@@ -97,6 +97,9 @@ var Artifacts = [
   {
     name: 'Scarab of Fortune',
     id: 119,
+    fixed: function(save) {
+      return util.save.upgrade_owned(save,469);
+    },
     notry: function(save) {
       return save.alignment != 3;
     },
@@ -566,6 +569,27 @@ var Artifacts = [
     },
     random: function(save) {
       return 0.1
+    }
+  },
+  {
+    name: 'Spiky Rough Egg',
+    id: 211,
+    fixed: function(save) {
+      return save.reincarnation >= 46;
+    },
+    excav: 1500,
+    random: function(save) {
+      return 0.02;
+    }
+  },
+  {
+    name: 'Fortune Teller Machine',
+    id: 215,
+    fixed: function(save) {
+      return util.save.upgrade_owned(save,469) && save.faction == -1 && save.prestigeFaction == -1;
+    },
+    random: function(save) {
+      return 0.001;
     }
   }
 ];
