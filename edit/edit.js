@@ -685,6 +685,30 @@
       + '<td>E590 <input type="checkbox" v-model="E590" number></input></td>'
       + '<td>A590 <input type="checkbox" v-model="A590" number></input></td>'
       + '<td>W590 <input type="checkbox" v-model="W590" number></input></td>'
+      + '</tr>'
+      + '<tr>'
+      + '<td>S1275 <input type="checkbox" v-model="S1275" number></input></td>'
+      + '<td>C1300 <input type="checkbox" v-model="C1300" number></input></td>'
+      + '<td>D1125 <input type="checkbox" v-model="D1125" number></input></td>'
+      + '<td>E1225 <input type="checkbox" v-model="E1225" number></input></td>'
+      + '<td>A1200 <input type="checkbox" v-model="A1200" number></input></td>'
+      + '<td>W1275 <input type="checkbox" v-model="W1275" number></input></td>'
+      + '</tr>'
+      + '<tr>'
+      + '<td>S1450 <input type="checkbox" v-model="S1450" number></input></td>'
+      + '<td>C1325 <input type="checkbox" v-model="C1325" number></input></td>'
+      + '<td>D1275 <input type="checkbox" v-model="D1275" number></input></td>'
+      + '<td>E1325 <input type="checkbox" v-model="E1325" number></input></td>'
+      + '<td>A1325 <input type="checkbox" v-model="A1325" number></input></td>'
+      + '<td>W1375 <input type="checkbox" v-model="W1375" number></input></td>'
+      + '</tr>'
+      + '<tr>'
+      + '<td>S1500 <input type="checkbox" v-model="S1500" number></input></td>'
+      + '<td>C1500 <input type="checkbox" v-model="C1500" number></input></td>'
+      + '<td>D1375 <input type="checkbox" v-model="D1375" number></input></td>'
+      + '<td>E1425 <input type="checkbox" v-model="E1425" number></input></td>'
+      + '<td>A1500 <input type="checkbox" v-model="A1500" number></input></td>'
+      + '<td>W1400 <input type="checkbox" v-model="W1400" number></input></td>'
       + '</tr>',
       computed: {
         S1: {
@@ -2932,6 +2956,276 @@
             }
             else {
               this.upgrades[154524] = {_id: 154524, u1: true, u2: false, u3: false, s: 0};
+            }
+          }
+        },
+        S1275: {
+          get: function() {
+            if (this.upgrades[162925]) { return this.upgrades[162925].u1; }
+      	       else { return false; }
+      	   },
+          set: function() {
+            if (this.upgrades[162925]) {
+	       if (this.upgrades[162925].u1) { this.upgrades[162925].u1 = false; }
+	       else { this.upgrades[162925].u1 = true; }
+            }
+            else {
+              this.upgrades[162925] = {_id: 162925, u1: true, u2: false, u3: false, s: 0};
+            }
+          }
+        },
+        C1300: {
+          get: function() {
+            if (this.upgrades[162125]) { return this.upgrades[162125].u1; }
+      	       else { return false; }
+      	   },
+          set: function() {
+            if (this.upgrades[162125]) {
+	       if (this.upgrades[162125].u1) { this.upgrades[162125].u1 = false; }
+	       else { this.upgrades[162125].u1 = true; }
+            }
+            else {
+              this.upgrades[162125] = {_id: 162125, u1: true, u2: false, u3: false, s: 0};
+            }
+          }
+        },
+        D1125: {
+          get: function() {
+            if (this.upgrades[162225]) { return this.upgrades[162225].u1; }
+      	       else { return false; }
+      	   },
+          set: function() {
+            if (this.upgrades[162225]) {
+	       if (this.upgrades[162225].u1) { this.upgrades[162225].u1 = false; }
+	       else { this.upgrades[162225].u1 = true; }
+            }
+            else {
+              this.upgrades[162225] = {_id: 162225, u1: true, u2: false, u3: false, s: 0};
+            }
+          }
+        },
+        E1225: {
+          get: function() {
+            if (this.upgrades[162525]) { return this.upgrades[162525].u1; }
+      	       else { return false; }
+      	   },
+          set: function() {
+            if (this.upgrades[162525]) {
+	       if (this.upgrades[162525].u1) { this.upgrades[162525].u1 = false; }
+	       else { this.upgrades[162525].u1 = true; }
+            }
+            else {
+              this.upgrades[162525] = {_id: 162525, u1: true, u2: false, u3: false, s: 0};
+            }
+          }
+        },
+        A1200: {
+          get: function() {
+            if (this.upgrades[161725]) { return this.upgrades[161725].u1; }
+      	       else { return false; }
+      	   },
+          set: function() {
+            if (this.upgrades[161725]) {
+	       if (this.upgrades[161725].u1) { this.upgrades[161725].u1 = false; }
+	       else { this.upgrades[161725].u1 = true; }
+            }
+            else {
+              this.upgrades[161725] = {_id: 161725, u1: true, u2: false, u3: false, s: 0};
+            }
+          }
+        },
+        W1275: {
+          get: function() {
+            if (this.upgrades[163125]) { return this.upgrades[163125].u1; }
+      	       else { return false; }
+      	   },
+          set: function() {
+            if (this.upgrades[163125]) {
+	       if (this.upgrades[163125].u1) { this.upgrades[163125].u1 = false; }
+	       else { this.upgrades[163125].u1 = true; }
+            }
+            else {
+              this.upgrades[163125] = {_id: 163125, u1: true, u2: false, u3: false, s: 0};
+            }
+          }
+        },
+        S1450: {
+          get: function() {
+            if (this.upgrades[163026]) { return this.upgrades[163026].u1; }
+      	       else { return false; }
+      	   },
+          set: function() {
+            if (this.upgrades[163026]) {
+	       if (this.upgrades[163026].u1) { this.upgrades[163026].u1 = false; }
+	       else { this.upgrades[163026].u1 = true; }
+            }
+            else {
+              this.upgrades[163026] = {_id: 163026, u1: true, u2: false, u3: false, s: 0};
+            }
+          }
+        },
+        C1325: {
+          get: function() {
+            if (this.upgrades[162026]) { return this.upgrades[162026].u1; }
+      	       else { return false; }
+      	   },
+          set: function() {
+            if (this.upgrades[162026]) {
+	       if (this.upgrades[162026].u1) { this.upgrades[162026].u1 = false; }
+	       else { this.upgrades[162026].u1 = true; }
+            }
+            else {
+              this.upgrades[162026] = {_id: 162026, u1: true, u2: false, u3: false, s: 0};
+            }
+          }
+        },
+        D1275: {
+          get: function() {
+            if (this.upgrades[162426]) { return this.upgrades[162426].u1; }
+      	       else { return false; }
+      	   },
+          set: function() {
+            if (this.upgrades[162426]) {
+	       if (this.upgrades[162426].u1) { this.upgrades[162426].u1 = false; }
+	       else { this.upgrades[162426].u1 = true; }
+            }
+            else {
+              this.upgrades[162426] = {_id: 162426, u1: true, u2: false, u3: false, s: 0};
+            }
+          }
+        },
+        E1325: {
+          get: function() {
+            if (this.upgrades[162626]) { return this.upgrades[162626].u1; }
+      	       else { return false; }
+      	   },
+          set: function() {
+            if (this.upgrades[162626]) {
+	       if (this.upgrades[162626].u1) { this.upgrades[162626].u1 = false; }
+	       else { this.upgrades[162626].u1 = true; }
+            }
+            else {
+              this.upgrades[162626] = {_id: 162626, u1: true, u2: false, u3: false, s: 0};
+            }
+          }
+        },
+        A1325: {
+          get: function() {
+            if (this.upgrades[161626]) { return this.upgrades[161626].u1; }
+      	       else { return false; }
+      	   },
+          set: function() {
+            if (this.upgrades[161626]) {
+	       if (this.upgrades[161626].u1) { this.upgrades[161626].u1 = false; }
+	       else { this.upgrades[161626].u1 = true; }
+            }
+            else {
+              this.upgrades[161626] = {_id: 161626, u1: true, u2: false, u3: false, s: 0};
+            }
+          }
+        },
+        W1375: {
+          get: function() {
+            if (this.upgrades[163326]) { return this.upgrades[163326].u1; }
+      	       else { return false; }
+      	   },
+          set: function() {
+            if (this.upgrades[163326]) {
+	       if (this.upgrades[163326].u1) { this.upgrades[163326].u1 = false; }
+	       else { this.upgrades[163326].u1 = true; }
+            }
+            else {
+              this.upgrades[163326] = {_id: 163326, u1: true, u2: false, u3: false, s: 0};
+            }
+          }
+        },
+        S1500: {
+          get: function() {
+            if (this.upgrades[162827]) { return this.upgrades[162827].u1; }
+      	       else { return false; }
+      	   },
+          set: function() {
+            if (this.upgrades[162827]) {
+	       if (this.upgrades[162827].u1) { this.upgrades[162827].u1 = false; }
+	       else { this.upgrades[162827].u1 = true; }
+            }
+            else {
+              this.upgrades[162827] = {_id: 162827, u1: true, u2: false, u3: false, s: 0};
+            }
+          }
+        },
+        C1500: {
+          get: function() {
+            if (this.upgrades[161927]) { return this.upgrades[161927].u1; }
+      	       else { return false; }
+      	   },
+          set: function() {
+            if (this.upgrades[161927]) {
+	       if (this.upgrades[161927].u1) { this.upgrades[161927].u1 = false; }
+	       else { this.upgrades[161927].u1 = true; }
+            }
+            else {
+              this.upgrades[161927] = {_id: 161927, u1: true, u2: false, u3: false, s: 0};
+            }
+          }
+        },
+        D1375: {
+          get: function() {
+            if (this.upgrades[162327]) { return this.upgrades[162327].u1; }
+      	       else { return false; }
+      	   },
+          set: function() {
+            if (this.upgrades[162327]) {
+	       if (this.upgrades[162327].u1) { this.upgrades[162327].u1 = false; }
+	       else { this.upgrades[162327].u1 = true; }
+            }
+            else {
+              this.upgrades[162327] = {_id: 162327, u1: true, u2: false, u3: false, s: 0};
+            }
+          }
+        },
+        E1425: {
+          get: function() {
+            if (this.upgrades[162727]) { return this.upgrades[162727].u1; }
+      	       else { return false; }
+      	   },
+          set: function() {
+            if (this.upgrades[162727]) {
+	       if (this.upgrades[162727].u1) { this.upgrades[162727].u1 = false; }
+	       else { this.upgrades[162727].u1 = true; }
+            }
+            else {
+              this.upgrades[162727] = {_id: 162727, u1: true, u2: false, u3: false, s: 0};
+            }
+          }
+        },
+        A1500: {
+          get: function() {
+            if (this.upgrades[161827]) { return this.upgrades[161827].u1; }
+      	       else { return false; }
+      	   },
+          set: function() {
+            if (this.upgrades[161827]) {
+	       if (this.upgrades[161827].u1) { this.upgrades[161827].u1 = false; }
+	       else { this.upgrades[161827].u1 = true; }
+            }
+            else {
+              this.upgrades[161827] = {_id: 161827, u1: true, u2: false, u3: false, s: 0};
+            }
+          }
+        },
+        W1400: {
+          get: function() {
+            if (this.upgrades[163227]) { return this.upgrades[163227].u1; }
+      	       else { return false; }
+      	   },
+          set: function() {
+            if (this.upgrades[163227]) {
+	       if (this.upgrades[163227].u1) { this.upgrades[163227].u1 = false; }
+	       else { this.upgrades[163227].u1 = true; }
+            }
+            else {
+              this.upgrades[163227] = {_id: 163227, u1: true, u2: false, u3: false, s: 0};
             }
           }
         }
