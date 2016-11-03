@@ -2975,7 +2975,8 @@
           set: function(x) {
             if (this.unlocked) { this.trophies[Number(this.id)] = [x]; }
           }
-       }
+        }
+      }
     });
 
     Vue.component('widget-trophy-dropdown', {
