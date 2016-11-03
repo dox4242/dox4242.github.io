@@ -5,14 +5,14 @@
     faction: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 11],
     prestigeFaction: [-1, 9, 10],
     bFaction: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-	spell: [18, 3, 12, 6, 14, 9, 1, 8, 15, 11, 7, 13, 10, 2, 5, 4, 17],
-	goodmercspells: [6, 14, 9, 5, 8, 11, 4, 10, 2],
-	evilmercspells: [6, 14, 9, 5, 8, 15, 11, 4, 10, 2],
-	neutralmercspells: [6, 14, 9, 5, 8, 11, 4, 13, 10, 2]
+    spell: [18, 3, 12, 6, 14, 9, 1, 8, 15, 11, 7, 13, 10, 2, 5, 4, 17],
+    goodmercspells: [6, 14, 9, 5, 8, 11, 4, 10, 2],
+    evilmercspells: [6, 14, 9, 5, 8, 15, 11, 4, 10, 2],
+    neutralmercspells: [6, 14, 9, 5, 8, 11, 4, 13, 10, 2]
   };
   
   var trophyIDs = {
-	autocastSeries: [8, 9, 10, 11, 12, 13, 159, 200],
+    autocastSeries: [8, 9, 10, 11, 12, 13, 159, 200],
     castSpells: [104000, 104001, 104002, 104003, 104004, 104005, 104006, 104007, 104008, 104009, 104010, 104011, 104012, 104013],
     clickTreasure: [104100, 104101, 104102, 104103, 104104, 104105, 104106, 104107, 104108],
     findFactionCoins: [104500, 104501, 104502, 104503, 104504, 104505, 104506, 104507, 104508, 104509, 104510, 104511, 104512, 104513, 104514, 104515],
@@ -23,42 +23,42 @@
     haveAssistants: [105100, 105101, 105102, 105103, 105104, 105105, 105106, 105107, 105108, 105109],
     purchaseUpgrade: [105500, 105501, 105502, 105503, 105504, 105505, 105506, 105507, 105508, 105509, 105510],
     spendMana: [111200, 111201, 111202, 111203, 111204, 111205, 111206, 111207, 111208, 111209],
-	gainRubies: [116200, 116201, 116202, 116203],
-	giftCollector: [116700, 116701, 116702, 116703],
-	snowpile: [116800, 116801, 116802, 116803],
-	artifacts: [117000, 117001, 117002, 117003, 117004],
-	feelTheLove: [117600, 117601, 117602],
-	eggHunter: [119500, 119501, 119502, 119503],
-	eggCollection: [119600, 119601, 119602, 119603],
-	buildFarmsTrophies: [102300, 102301, 102302, 102303, 102304, 102305, 102306, 102307, 102308, 102309, 102310, 102311, 102312, 102313, 102314, 102315, 102316, 102317, 102318],
-	buildInnsTrophies: [102700, 102701, 102702, 102703, 102704, 102705, 102706, 102707, 102708, 102709, 102710, 102711, 102712, 102713, 102714, 102715, 102716, 102717, 102718],
-	buildBlacksmithsTrophies: [101600, 101601, 101602, 101603, 101604, 101605, 101606, 101607, 101608, 101609, 101610, 101611, 101612, 101613, 101614, 101615, 101616, 101617, 101618],
-	buildWarriorBarracksTrophies: [103700, 103701, 103702, 103703, 103704, 103705, 103706, 103707, 103708, 103709, 103710, 103711, 103712, 103713, 103714, 103715, 103716, 103717, 103718],
-	buildKnightsJoustsTrophies: [102900, 102901, 102902, 102903, 102904, 102905, 102906, 102907, 102908, 102909, 102910, 102911, 102912, 102913, 102914, 102915, 102916, 102917, 102918],
-	buildWizardTowersTrophies: [103900, 103901, 103902, 103903, 103904, 103905, 103906, 103907, 103908, 103909, 103910, 103911, 103912, 103913, 103914, 103915, 103916, 103917, 103918],
-	buildCathedralsTrophies: [101800, 101801, 101802, 101803, 101804, 101805, 101806, 101807, 101808, 101809, 101810, 101811, 101812, 101813, 101814, 101815, 101816, 101817, 101818],
-	buildCitadelsTrophies: [101900, 101901, 101902, 101903, 101904, 101905, 101906, 101907, 101908, 101909, 101910, 101911, 101912, 101913, 101914, 101915, 101916, 101917, 101918],
-	buildRoyalCastlesTrophies: [103400, 103401, 103402, 103403, 103404, 103405, 103406, 103407, 103408, 103409, 103410, 103411, 103412, 103413, 103414, 103415, 103416, 103417, 103418],
-	buildHeavensGatesTrophies: [102500, 102501, 102502, 102503, 102504, 102505, 102506, 102507, 102508, 102509, 102510, 102511, 102512, 102513, 102514, 102515, 102516, 102517, 102518],
-	buildSlavePensTrophies: [103500, 103501, 103502, 103503, 103504, 103505, 103506, 103507, 103508, 103509, 103510, 103511, 103512, 103513, 103514, 103515, 103516, 103517, 103518],
-	buildOrcishArenasTrophies: [103300, 103301, 103302, 103303, 103304, 103305, 103306, 103307, 103308, 103309, 103310, 103311, 103312, 103313, 103314, 103315, 103316, 103317, 103318],
-	buildWitchConclavesTrophies: [103800, 103801, 103802, 103803, 103804, 103805, 103806, 103807, 103808, 103809, 103810, 103811, 103812, 103813, 103814, 103815, 103816, 103817, 103818],
-	buildDarkTemplesTrophies: [102000, 102001, 102002, 102003, 102004, 102005, 102006, 102007, 102008, 102009, 102010, 102011, 102012, 102013, 102014, 102015, 102016, 102017, 102018],
-	buildNecropolisesTrophies: [103200, 103201, 103202, 103203, 103204, 103205, 103206, 103207, 103208, 103209, 103210, 103211, 103212, 103213, 103214, 103215, 103216, 103217, 103218],
-	buildEvilFortressesTrophies: [102200, 102201, 102202, 102203, 102204, 102205, 102206, 102207, 102208, 102209, 102210, 102211, 102212, 102213, 102214, 102215, 102216, 102217, 102218],
-	buildHellPortalsTrophies: [102600, 102601, 102602, 102603, 102604, 102605, 102606, 102607, 102608, 102609, 102610, 102611, 102612, 102613, 102614, 102615, 102616, 102617, 102618],
-	buildDeepMinesTrophies: [102100, 102101, 102102, 102103, 102104, 102105, 102106, 102107, 102108, 102109, 102110, 102111, 102112, 102113, 102114, 102115, 102116, 102117, 102118],
-	buildStonePillarsTrophies: [103600, 103601, 103602, 103603, 103604, 103605, 103606, 103607, 103608, 103609, 103610, 103611, 103612, 103613, 103614, 103615, 103616, 103617, 103618],
-	buildAlchemistLabsTrophies: [101400, 101401, 101402, 101403, 101404, 101405, 101406, 101407, 101408, 101409, 101410, 101411, 101412, 101413, 101414, 101415, 101416, 101417, 101418],
-	buildMonasteriesTrophies: [103100, 103101, 103102, 103103, 103104, 103105, 103106, 103107, 103108, 103109, 103110, 103111, 103112, 103113, 103114, 103115, 103116, 103117, 103118],
-	buildLabyrinthsTrophies: [103000, 103001, 103002, 103003, 103004, 103005, 103006, 103007, 103008, 103009, 103010, 103011, 103012, 103013, 103014, 103015, 103016, 103017, 103018],
-	buildIronStrongholdsTrophies: [102800, 102801, 102802, 102803, 102804, 102805, 102806, 102807, 102808, 102809, 102810, 102811, 102812, 102813, 102814, 102815, 102816, 102817, 102818],
-	buildAncientPyramidsTrophies: [101500, 101501, 101502, 101503, 101504, 101505, 101506, 101507, 101508, 101509, 101510, 101511, 101512, 101513, 101514, 101515, 101516, 101517, 101518],
-	buildHallsOfLegendsTrophies: [102400, 102401, 102402, 102403, 102404, 102405, 102406, 102407, 102408, 102409, 102410, 102411, 102412, 102413, 102414, 102415, 102416, 102417, 102418]
+    gainRubies: [116200, 116201, 116202, 116203],
+    giftCollector: [116700, 116701, 116702, 116703],
+    snowpile: [116800, 116801, 116802, 116803],
+    artifacts: [117000, 117001, 117002, 117003, 117004],
+    feelTheLove: [117600, 117601, 117602],
+    eggHunter: [119500, 119501, 119502, 119503],
+    eggCollection: [119600, 119601, 119602, 119603],
+    buildFarmsTrophies: [102300, 102301, 102302, 102303, 102304, 102305, 102306, 102307, 102308, 102309, 102310, 102311, 102312, 102313, 102314, 102315, 102316, 102317, 102318],
+    buildInnsTrophies: [102700, 102701, 102702, 102703, 102704, 102705, 102706, 102707, 102708, 102709, 102710, 102711, 102712, 102713, 102714, 102715, 102716, 102717, 102718],
+    buildBlacksmithsTrophies: [101600, 101601, 101602, 101603, 101604, 101605, 101606, 101607, 101608, 101609, 101610, 101611, 101612, 101613, 101614, 101615, 101616, 101617, 101618],
+    buildWarriorBarracksTrophies: [103700, 103701, 103702, 103703, 103704, 103705, 103706, 103707, 103708, 103709, 103710, 103711, 103712, 103713, 103714, 103715, 103716, 103717, 103718],
+    buildKnightsJoustsTrophies: [102900, 102901, 102902, 102903, 102904, 102905, 102906, 102907, 102908, 102909, 102910, 102911, 102912, 102913, 102914, 102915, 102916, 102917, 102918],
+    buildWizardTowersTrophies: [103900, 103901, 103902, 103903, 103904, 103905, 103906, 103907, 103908, 103909, 103910, 103911, 103912, 103913, 103914, 103915, 103916, 103917, 103918],
+    buildCathedralsTrophies: [101800, 101801, 101802, 101803, 101804, 101805, 101806, 101807, 101808, 101809, 101810, 101811, 101812, 101813, 101814, 101815, 101816, 101817, 101818],
+    buildCitadelsTrophies: [101900, 101901, 101902, 101903, 101904, 101905, 101906, 101907, 101908, 101909, 101910, 101911, 101912, 101913, 101914, 101915, 101916, 101917, 101918],
+    buildRoyalCastlesTrophies: [103400, 103401, 103402, 103403, 103404, 103405, 103406, 103407, 103408, 103409, 103410, 103411, 103412, 103413, 103414, 103415, 103416, 103417, 103418],
+    buildHeavensGatesTrophies: [102500, 102501, 102502, 102503, 102504, 102505, 102506, 102507, 102508, 102509, 102510, 102511, 102512, 102513, 102514, 102515, 102516, 102517, 102518],
+    buildSlavePensTrophies: [103500, 103501, 103502, 103503, 103504, 103505, 103506, 103507, 103508, 103509, 103510, 103511, 103512, 103513, 103514, 103515, 103516, 103517, 103518],
+    buildOrcishArenasTrophies: [103300, 103301, 103302, 103303, 103304, 103305, 103306, 103307, 103308, 103309, 103310, 103311, 103312, 103313, 103314, 103315, 103316, 103317, 103318],
+    buildWitchConclavesTrophies: [103800, 103801, 103802, 103803, 103804, 103805, 103806, 103807, 103808, 103809, 103810, 103811, 103812, 103813, 103814, 103815, 103816, 103817, 103818],
+    buildDarkTemplesTrophies: [102000, 102001, 102002, 102003, 102004, 102005, 102006, 102007, 102008, 102009, 102010, 102011, 102012, 102013, 102014, 102015, 102016, 102017, 102018],
+    buildNecropolisesTrophies: [103200, 103201, 103202, 103203, 103204, 103205, 103206, 103207, 103208, 103209, 103210, 103211, 103212, 103213, 103214, 103215, 103216, 103217, 103218],
+    buildEvilFortressesTrophies: [102200, 102201, 102202, 102203, 102204, 102205, 102206, 102207, 102208, 102209, 102210, 102211, 102212, 102213, 102214, 102215, 102216, 102217, 102218],
+    buildHellPortalsTrophies: [102600, 102601, 102602, 102603, 102604, 102605, 102606, 102607, 102608, 102609, 102610, 102611, 102612, 102613, 102614, 102615, 102616, 102617, 102618],
+    buildDeepMinesTrophies: [102100, 102101, 102102, 102103, 102104, 102105, 102106, 102107, 102108, 102109, 102110, 102111, 102112, 102113, 102114, 102115, 102116, 102117, 102118],
+    buildStonePillarsTrophies: [103600, 103601, 103602, 103603, 103604, 103605, 103606, 103607, 103608, 103609, 103610, 103611, 103612, 103613, 103614, 103615, 103616, 103617, 103618],
+    buildAlchemistLabsTrophies: [101400, 101401, 101402, 101403, 101404, 101405, 101406, 101407, 101408, 101409, 101410, 101411, 101412, 101413, 101414, 101415, 101416, 101417, 101418],
+    buildMonasteriesTrophies: [103100, 103101, 103102, 103103, 103104, 103105, 103106, 103107, 103108, 103109, 103110, 103111, 103112, 103113, 103114, 103115, 103116, 103117, 103118],
+    buildLabyrinthsTrophies: [103000, 103001, 103002, 103003, 103004, 103005, 103006, 103007, 103008, 103009, 103010, 103011, 103012, 103013, 103014, 103015, 103016, 103017, 103018],
+    buildIronStrongholdsTrophies: [102800, 102801, 102802, 102803, 102804, 102805, 102806, 102807, 102808, 102809, 102810, 102811, 102812, 102813, 102814, 102815, 102816, 102817, 102818],
+    buildAncientPyramidsTrophies: [101500, 101501, 101502, 101503, 101504, 101505, 101506, 101507, 101508, 101509, 101510, 101511, 101512, 101513, 101514, 101515, 101516, 101517, 101518],
+    buildHallsOfLegendsTrophies: [102400, 102401, 102402, 102403, 102404, 102405, 102406, 102407, 102408, 102409, 102410, 102411, 102412, 102413, 102414, 102415, 102416, 102417, 102418]
   };
   
   for (var x in trophyIDs) {
-	dropdownFilter[x] = trophyIDs[x];
+    dropdownFilter[x] = trophyIDs[x];
   }
 
   for (var i in dropdownFilter) {
@@ -101,10 +101,10 @@
       return filtered;
     });
 	
-	Vue.component('widget-neutraltime', {
-	  template: '<tr>'
-	  + '<th>Neutral playtime is not saved; it is calculated in-game.</th>'
-	});
+    Vue.component('widget-neutraltime', {
+      template: '<tr>'
+      + '<th>Neutral playtime is not saved; it is calculated in-game.</th>'
+    });
 
     Vue.component('widget-fivestat-header', {
       template: '<tr>'
@@ -190,7 +190,7 @@
       + '</tr>'
     });
 
-	  Vue.component('widget-spell-time', {
+    Vue.component('widget-spell-time', {
       props: ['spell', 'name'],
       template: '<tr>'
       + '<th><span class="statname">{{name}}</span></th>'
@@ -216,19 +216,19 @@
       + '<th><span class="statname">{{name}} is on Autocasting</span></th>'
       + '<td><input type="checkbox" v-model="spell.a" number></input></td>'
       + '</tr>'
-	  + '<tr>'
+      + '<tr>'
       + '<th><span class="statname">{{name}} Silver Autocasting Order</span></th>'
       + '<td><input v-model="spell.n" number></input></td>'
       + '</tr>'
-	  + '<tr>'
+      + '<tr>'
       + '<th><span class="statname">{{name}} Gold Autocasting Order</span></th>'
       + '<td><input v-model="spell.n2" number></input></td>'
       + '</tr>'
-	  + '<tr>'
+      + '<tr>'
       + '<th><span class="statname">{{name}} Bronze Autocasting Order</span></th>'
       + '<td><input v-model="spell.n3" number></input></td>'
       + '</tr>'
-	  });
+    });
     
     Vue.component('widget-spell-tiers', {
       props: ['spell', 'name'],
@@ -390,31 +390,27 @@
     });
 
     Vue.component('widget-upgrade', {
-  	  props: {
-  	    'upgrades': Object,
-  	    'name': String,
-  	    'id': String
-  	  },
+      props: {
+        'upgrades': Object,
+        'name': String,
+        'id': String
+      },
       template: '<tr>'
-        + '<th><span class="statname">{{name}}</span></th>'
-        + '<td><input type="checkbox" v-model="owned" number></input></td>'
-        + '<td><input type="checkbox" v-model="upgradeU1" number></input></td>'
-        + '<td><input type="checkbox" v-model="upgradeU3" number></input></td>'
-        + '<td><input v-model="upgradeRNGstate" number></input></td>'
-        + '</tr>',
-  	  computed: {
+      + '<th><span class="statname">{{name}}</span></th>'
+      + '<td><input type="checkbox" v-model="owned" number></input></td>'
+      + '<td><input type="checkbox" v-model="upgradeU1" number></input></td>'
+      + '<td><input type="checkbox" v-model="upgradeU3" number></input></td>'
+      + '<td><input v-model="upgradeRNGstate" number></input></td>'
+      + '</tr>',
+      computed: {
     	owned: {
           get: function() {
-      		if (this.upgrades[Number(this.id)]) { return true; }
-      		else { return false; }
+            if (this.upgrades[Number(this.id)]) { return true; }
+            else { return false; }
       	  },
           set: function() {
-            if (this.owned) {
-              delete this.upgades[Number(this.id)];
-            }
-            else {
-              this.upgrades[Number(this.id)] = {_id: Number(this.id), u1: false, u2: false, u3: false, s: 0};
-            }
+            if (this.owned) { delete this.upgades[Number(this.id)]; }
+            else { this.upgrades[Number(this.id)] = {_id: Number(this.id), u1: false, u2: false, u3: false, s: 0}; }
           }
         },
     	upgradeU1: {
@@ -422,8 +418,7 @@
     	    return this.unlocked && this.upgrades[Number(this.id)].u1;
           },
           set: function(x) {
-            if (this.unlocked)
-              this.upgrades[Number(this.id)] = [x];
+            if (this.unlocked) { this.upgrades[Number(this.id)] = [x]; }
           }
     	},
     	upgradeU3: {
@@ -431,8 +426,7 @@
     	    return this.unlocked && this.upgrades[Number(this.id)].u3;
           },
           set: function(x) {
-            if (this.unlocked)
-              this.upgrades[Number(this.id)] = [x];
+            if (this.unlocked) { this.upgrades[Number(this.id)] = [x]; }
           }
     	},
     	upgradeRNGstate: {
@@ -440,11 +434,10 @@
     	    return this.unlocked && this.upgrades[Number(this.id)].s;
           },
           set: function(x) {
-            if (this.unlocked)
-              this.upgrades[Number(this.id)] = [x];
+            if (this.unlocked) { this.upgrades[Number(this.id)] = [x]; }
           }
     	}
-  	  }
+      }
     });
 
     Vue.component('widget-challenge-header', {
@@ -455,28 +448,24 @@
     });
 
     Vue.component('widget-challenge', {
-  	  props: {
-  	    'upgrades': Object,
-  	    'name': String,
-  	    'id': String
-  	  },
+      props: {
+        'upgrades': Object,
+        'name': String,
+        'id': String
+      },
       template: '<tr>'
-        + '<th><span class="statname">{{name}}</span></th>'
-        + '<td><input type="checkbox" v-model="unlocked" number></input></td>'
-        + '</tr>',
-  	  computed: {
+      + '<th><span class="statname">{{name}}</span></th>'
+      + '<td><input type="checkbox" v-model="unlocked" number></input></td>'
+      + '</tr>',
+      computed: {
     	unlocked: {
           get: function() {
-      		if (this.upgrades[Number(this.id)]) { return true; }
-      		else { return false; }
+            if (this.upgrades[Number(this.id)]) { return true; }
+            else { return false; }
       	  },
           set: function() {
-            if (this.unlocked) {
-              delete this.upgades[Number(this.id)];
-            }
-            else {
-              this.upgrades[Number(this.id)] = {_id: Number(this.id), u1: false, u2: false, u3: false, s: 0};
-            }
+            if (this.unlocked) { delete this.upgades[Number(this.id)]; }
+            else { this.upgrades[Number(this.id)] = {_id: Number(this.id), u1: false, u2: false, u3: false, s: 0}; }
           }
         }
       }
@@ -494,223 +483,221 @@
     });
 
     Vue.component('widget-research-upgrades', {
-  	  props: {
-  	    'upgrades': Object,
-  	  },
+      props: {
+        'upgrades': Object,
+      },
       template: '<tr>'
-        + '<td>S1 <input type="checkbox" v-model="S1" number></input></td>'
-        + '<td>C1 <input type="checkbox" v-model="C1" number></input></td>'
-        + '<td>D1 <input type="checkbox" v-model="D1" number></input></td>'
-        + '<td>E1 <input type="checkbox" v-model="E1" number></input></td>'
-        + '<td>A1 <input type="checkbox" v-model="A1" number></input></td>'
-        + '<td>W1 <input type="checkbox" v-model="W1" number></input></td>'
-        + '</tr>'
-        + '<tr>'
-        + '<td>S10 <input type="checkbox" v-model="S10" number></input></td>'
-        + '<td>C10 <input type="checkbox" v-model="C10" number></input></td>'
-        + '<td>D10 <input type="checkbox" v-model="D10" number></input></td>'
-        + '<td>E10 <input type="checkbox" v-model="E10" number></input></td>'
-        + '<td>A10 <input type="checkbox" v-model="A10" number></input></td>'
-        + '<td>W10 <input type="checkbox" v-model="W10" number></input></td>'
-        + '</tr>'
-        + '<tr>'
-        + '<td>S30 <input type="checkbox" v-model="S30" number></input></td>'
-        + '<td>C25 <input type="checkbox" v-model="C25" number></input></td>'
-        + '<td>D25 <input type="checkbox" v-model="D25" number></input></td>'
-        + '<td>E25 <input type="checkbox" v-model="E25" number></input></td>'
-        + '<td>A25 <input type="checkbox" v-model="A25" number></input></td>'
-        + '<td>W25 <input type="checkbox" v-model="W25" number></input></td>'
-        + '</tr>'
-        + '<tr>'
-        + '<td>S50 <input type="checkbox" v-model="S50" number></input></td>'
-        + '<td>C50 <input type="checkbox" v-model="C50" number></input></td>'
-        + '<td>D50 <input type="checkbox" v-model="D50" number></input></td>'
-        + '<td>E30 <input type="checkbox" v-model="E30" number></input></td>'
-        + '<td>A30 <input type="checkbox" v-model="A30" number></input></td>'
-        + '<td>W50 <input type="checkbox" v-model="W50" number></input></td>'
-        + '</tr>'
-        + '<tr>'
-        + '<td>S105 <input type="checkbox" v-model="S105" number></input></td>'
-        + '<td>C80 <input type="checkbox" v-model="C80" number></input></td>'
-        + '<td>D55 <input type="checkbox" v-model="D55" number></input></td>'
-        + '<td>E50 <input type="checkbox" v-model="E50" number></input></td>'
-        + '<td>A50 <input type="checkbox" v-model="A50" number></input></td>'
-        + '<td>W120 <input type="checkbox" v-model="W120" number></input></td>'
-        + '</tr>'
-        + '<tr>'
-        + '<td>S135 <input type="checkbox" v-model="S135" number></input></td>'
-        + '<td>C105 <input type="checkbox" v-model="C105" number></input></td>'
-        + '<td>D135 <input type="checkbox" v-model="D135" number></input></td>'
-        + '<td>E80 <input type="checkbox" v-model="E80" number></input></td>'
-        + '<td>A55 <input type="checkbox" v-model="A55" number></input></td>'
-        + '<td>W135 <input type="checkbox" v-model="W135" number></input></td>'
-        + '</tr>'
-        + '<tr>'
-        + '<td>S150 <input type="checkbox" v-model="S150" number></input></td>'
-        + '<td>C120 <input type="checkbox" v-model="C120" number></input></td>'
-        + '<td>D150 <input type="checkbox" v-model="D150" number></input></td>'
-        + '<td>E135 <input type="checkbox" v-model="E135" number></input></td>'
-        + '<td>A105 <input type="checkbox" v-model="A105" number></input></td>'
-        + '<td>W150 <input type="checkbox" v-model="W150" number></input></td>'
-        + '</tr>'
-        + '<tr>'
-        + '<td>S175 <input type="checkbox" v-model="S175" number></input></td>'
-        + '<td>C135 <input type="checkbox" v-model="C135" number></input></td>'
-        + '<td>D175 <input type="checkbox" v-model="D175" number></input></td>'
-        + '<td>E145 <input type="checkbox" v-model="E145" number></input></td>'
-        + '<td>A120 <input type="checkbox" v-model="A120" number></input></td>'
-        + '<td>W175 <input type="checkbox" v-model="W175" number></input></td>'
-        + '</tr>'
-        + '<tr>'
-        + '<td>S180 <input type="checkbox" v-model="S180" number></input></td>'
-        + '<td>C150 <input type="checkbox" v-model="C150" number></input></td>'
-        + '<td>D200 <input type="checkbox" v-model="D200" number></input></td>'
-        + '<td>E150 <input type="checkbox" v-model="E150" number></input></td>'
-        + '<td>A135 <input type="checkbox" v-model="A135" number></input></td>'
-        + '<td>W180 <input type="checkbox" v-model="W180" number></input></td>'
-        + '</tr>'
-        + '<tr>'
-        + '<td>S200 <input type="checkbox" v-model="S200" number></input></td>'
-        + '<td>C175 <input type="checkbox" v-model="C175" number></input></td>'
-        + '<td>D205 <input type="checkbox" v-model="D205" number></input></td>'
-        + '<td>E200 <input type="checkbox" v-model="E200" number></input></td>'
-        + '<td>A150 <input type="checkbox" v-model="A150" number></input></td>'
-        + '<td>W200 <input type="checkbox" v-model="W200" number></input></td>'
-        + '</tr>'
-        + '<tr>'
-        + '<td>S215 <input type="checkbox" v-model="S215" number></input></td>'
-        + '<td>C200 <input type="checkbox" v-model="C200" number></input></td>'
-        + '<td>D225 <input type="checkbox" v-model="D225" number></input></td>'
-        + '<td>E225 <input type="checkbox" v-model="E225" number></input></td>'
-        + '<td>A175 <input type="checkbox" v-model="A175" number></input></td>'
-        + '<td>W205 <input type="checkbox" v-model="W205" number></input></td>'
-        + '</tr>'
-        + '<tr>'
-        + '<td>S225 <input type="checkbox" v-model="S225" number></input></td>'
-        + '<td>C225 <input type="checkbox" v-model="C225" number></input></td>'
-        + '<td>D245 <input type="checkbox" v-model="D245" number></input></td>'
-        + '<td>E230 <input type="checkbox" v-model="E230" number></input></td>'
-        + '<td>A200 <input type="checkbox" v-model="A200" number></input></td>'
-        + '<td>W225 <input type="checkbox" v-model="W225" number></input></td>'
-        + '</tr>'
-        + '<tr>'
-        + '<td>S250 <input type="checkbox" v-model="S250" number></input></td>'
-        + '<td>C250 <input type="checkbox" v-model="C250" number></input></td>'
-        + '<td>D250 <input type="checkbox" v-model="D250" number></input></td>'
-        + '<td>E250 <input type="checkbox" v-model="E250" number></input></td>'
-        + '<td>A250 <input type="checkbox" v-model="A250" number></input></td>'
-        + '<td>W250 <input type="checkbox" v-model="W250" number></input></td>'
-        + '</tr>'
-        + '<tr>'
-        + '<td>S251 <input type="checkbox" v-model="S251" number></input></td>'
-        + '<td>C251 <input type="checkbox" v-model="C251" number></input></td>'
-        + '<td>D260 <input type="checkbox" v-model="D260" number></input></td>'
-        + '<td>E260 <input type="checkbox" v-model="E260" number></input></td>'
-        + '<td>A251 <input type="checkbox" v-model="A251" number></input></td>'
-        + '<td>W260 <input type="checkbox" v-model="W260" number></input></td>'
-        + '</tr>'
-        + '<tr>'
-        + '<td>S270 <input type="checkbox" v-model="S270" number></input></td>'
-        + '<td>C300 <input type="checkbox" v-model="C300" number></input></td>'
-        + '<td>D275 <input type="checkbox" v-model="D275" number></input></td>'
-        + '<td>E275 <input type="checkbox" v-model="E275" number></input></td>'
-        + '<td>A270 <input type="checkbox" v-model="A270" number></input></td>'
-        + '<td>W275 <input type="checkbox" v-model="W275" number></input></td>'
-        + '</tr>'
-        + '<tr>'
-        + '<td>S300 <input type="checkbox" v-model="S300" number></input></td>'
-        + '<td>C305 <input type="checkbox" v-model="C305" number></input></td>'
-        + '<td>D290 <input type="checkbox" v-model="D290" number></input></td>'
-        + '<td>E290 <input type="checkbox" v-model="E290" number></input></td>'
-        + '<td>A300 <input type="checkbox" v-model="A300" number></input></td>'
-        + '<td>W290 <input type="checkbox" v-model="W290" number></input></td>'
-        + '</tr>'
-        + '<tr>'
-        + '<td>S305 <input type="checkbox" v-model="S305" number></input></td>'
-        + '<td>C330 <input type="checkbox" v-model="C330" number></input></td>'
-        + '<td>D320 <input type="checkbox" v-model="D320" number></input></td>'
-        + '<td>E320 <input type="checkbox" v-model="E320" number></input></td>'
-        + '<td>A305 <input type="checkbox" v-model="A305" number></input></td>'
-        + '<td>W320 <input type="checkbox" v-model="W320" number></input></td>'
-        + '</tr>'
-        + '<tr>'
-        + '<td>S330 <input type="checkbox" v-model="S330" number></input></td>'
-        + '<td>C340 <input type="checkbox" v-model="C340" number></input></td>'
-        + '<td>D330 <input type="checkbox" v-model="D330" number></input></td>'
-        + '<td>E330 <input type="checkbox" v-model="E330" number></input></td>'
-        + '<td>A330 <input type="checkbox" v-model="A330" number></input></td>'
-        + '<td>W330 <input type="checkbox" v-model="W330" number></input></td>'
-        + '</tr>'
-        + '<tr>'
-        + '<td>S375 <input type="checkbox" v-model="S375" number></input></td>'
-        + '<td>C375 <input type="checkbox" v-model="C375" number></input></td>'
-        + '<td>D350 <input type="checkbox" v-model="D350" number></input></td>'
-        + '<td>E350 <input type="checkbox" v-model="E350" number></input></td>'
-        + '<td>A375 <input type="checkbox" v-model="A375" number></input></td>'
-        + '<td>W350 <input type="checkbox" v-model="W350" number></input></td>'
-        + '</tr>'
-        + '<tr>'
-        + '<td>S400 <input type="checkbox" v-model="S400" number></input></td>'
-        + '<td>C400 <input type="checkbox" v-model="C400" number></input></td>'
-        + '<td>D400 <input type="checkbox" v-model="D400" number></input></td>'
-        + '<td>E400 <input type="checkbox" v-model="E400" number></input></td>'
-        + '<td>A400 <input type="checkbox" v-model="A400" number></input></td>'
-        + '<td>W400 <input type="checkbox" v-model="W400" number></input></td>'
-        + '</tr>'
-        + '<tr>'
-        + '<td>S435 <input type="checkbox" v-model="S435" number></input></td>'
-        + '<td>C405 <input type="checkbox" v-model="C405" number></input></td>'
-        + '<td>D435 <input type="checkbox" v-model="D435" number></input></td>'
-        + '<td>E410 <input type="checkbox" v-model="E410" number></input></td>'
-        + '<td>A410 <input type="checkbox" v-model="A410" number></input></td>'
-        + '<td>W405 <input type="checkbox" v-model="W405" number></input></td>'
-        + '</tr>'
-        + '<tr>'
-        + '<td>S460 <input type="checkbox" v-model="S460" number></input></td>'
-        + '<td>C460 <input type="checkbox" v-model="C460" number></input></td>'
-        + '<td>D480 <input type="checkbox" v-model="D480" number></input></td>'
-        + '<td>E460 <input type="checkbox" v-model="E460" number></input></td>'
-        + '<td>A480 <input type="checkbox" v-model="A480" number></input></td>'
-        + '<td>W520 <input type="checkbox" v-model="W520" number></input></td>'
-        + '</tr>'
-        + '<tr>'
-        + '<td>S500 <input type="checkbox" v-model="S500" number></input></td>'
-        + '<td>C500 <input type="checkbox" v-model="C500" number></input></td>'
-        + '<td>D525 <input type="checkbox" v-model="D525" number></input></td>'
-        + '<td>E480 <input type="checkbox" v-model="E480" number></input></td>'
-        + '<td>A495 <input type="checkbox" v-model="A495" number></input></td>'
-        + '<td>W525 <input type="checkbox" v-model="W525" number></input></td>'
-        + '</tr>'
-        + '<tr>'
-        + '<td>S545 <input type="checkbox" v-model="S545" number></input></td>'
-        + '<td>C520 <input type="checkbox" v-model="C520" number></input></td>'
-        + '<td>D560 <input type="checkbox" v-model="D560" number></input></td>'
-        + '<td>E495 <input type="checkbox" v-model="E495" number></input></td>'
-        + '<td>A545 <input type="checkbox" v-model="A545" number></input></td>'
-        + '<td>W560 <input type="checkbox" v-model="W560" number></input></td>'
-        + '</tr>'
-        + '<tr>'
-        + '<td>S590 <input type="checkbox" v-model="S590" number></input></td>'
-        + '<td>C590 <input type="checkbox" v-model="C590" number></input></td>'
-        + '<td>D590 <input type="checkbox" v-model="D590" number></input></td>'
-        + '<td>E590 <input type="checkbox" v-model="E590" number></input></td>'
-        + '<td>A590 <input type="checkbox" v-model="A590" number></input></td>'
-        + '<td>W590 <input type="checkbox" v-model="W590" number></input></td>'
-        + '</tr>',
+      + '<td>S1 <input type="checkbox" v-model="S1" number></input></td>'
+      + '<td>C1 <input type="checkbox" v-model="C1" number></input></td>'
+      + '<td>D1 <input type="checkbox" v-model="D1" number></input></td>'
+      + '<td>E1 <input type="checkbox" v-model="E1" number></input></td>'
+      + '<td>A1 <input type="checkbox" v-model="A1" number></input></td>'
+      + '<td>W1 <input type="checkbox" v-model="W1" number></input></td>'
+      + '</tr>'
+      + '<tr>'
+      + '<td>S10 <input type="checkbox" v-model="S10" number></input></td>'
+      + '<td>C10 <input type="checkbox" v-model="C10" number></input></td>'
+      + '<td>D10 <input type="checkbox" v-model="D10" number></input></td>'
+      + '<td>E10 <input type="checkbox" v-model="E10" number></input></td>'
+      + '<td>A10 <input type="checkbox" v-model="A10" number></input></td>'
+      + '<td>W10 <input type="checkbox" v-model="W10" number></input></td>'
+      + '</tr>'
+      + '<tr>'
+      + '<td>S30 <input type="checkbox" v-model="S30" number></input></td>'
+      + '<td>C25 <input type="checkbox" v-model="C25" number></input></td>'
+      + '<td>D25 <input type="checkbox" v-model="D25" number></input></td>'
+      + '<td>E25 <input type="checkbox" v-model="E25" number></input></td>'
+      + '<td>A25 <input type="checkbox" v-model="A25" number></input></td>'
+      + '<td>W25 <input type="checkbox" v-model="W25" number></input></td>'
+      + '</tr>'
+      + '<tr>'
+      + '<td>S50 <input type="checkbox" v-model="S50" number></input></td>'
+      + '<td>C50 <input type="checkbox" v-model="C50" number></input></td>'
+      + '<td>D50 <input type="checkbox" v-model="D50" number></input></td>'
+      + '<td>E30 <input type="checkbox" v-model="E30" number></input></td>'
+      + '<td>A30 <input type="checkbox" v-model="A30" number></input></td>'
+      + '<td>W50 <input type="checkbox" v-model="W50" number></input></td>'
+      + '</tr>'
+      + '<tr>'
+      + '<td>S105 <input type="checkbox" v-model="S105" number></input></td>'
+      + '<td>C80 <input type="checkbox" v-model="C80" number></input></td>'
+      + '<td>D55 <input type="checkbox" v-model="D55" number></input></td>'
+      + '<td>E50 <input type="checkbox" v-model="E50" number></input></td>'
+      + '<td>A50 <input type="checkbox" v-model="A50" number></input></td>'
+      + '<td>W120 <input type="checkbox" v-model="W120" number></input></td>'
+      + '</tr>'
+      + '<tr>'
+      + '<td>S135 <input type="checkbox" v-model="S135" number></input></td>'
+      + '<td>C105 <input type="checkbox" v-model="C105" number></input></td>'
+      + '<td>D135 <input type="checkbox" v-model="D135" number></input></td>'
+      + '<td>E80 <input type="checkbox" v-model="E80" number></input></td>'
+      + '<td>A55 <input type="checkbox" v-model="A55" number></input></td>'
+      + '<td>W135 <input type="checkbox" v-model="W135" number></input></td>'
+      + '</tr>'
+      + '<tr>'
+      + '<td>S150 <input type="checkbox" v-model="S150" number></input></td>'
+      + '<td>C120 <input type="checkbox" v-model="C120" number></input></td>'
+      + '<td>D150 <input type="checkbox" v-model="D150" number></input></td>'
+      + '<td>E135 <input type="checkbox" v-model="E135" number></input></td>'
+      + '<td>A105 <input type="checkbox" v-model="A105" number></input></td>'
+      + '<td>W150 <input type="checkbox" v-model="W150" number></input></td>'
+      + '</tr>'
+      + '<tr>'
+      + '<td>S175 <input type="checkbox" v-model="S175" number></input></td>'
+      + '<td>C135 <input type="checkbox" v-model="C135" number></input></td>'
+      + '<td>D175 <input type="checkbox" v-model="D175" number></input></td>'
+      + '<td>E145 <input type="checkbox" v-model="E145" number></input></td>'
+      + '<td>A120 <input type="checkbox" v-model="A120" number></input></td>'
+      + '<td>W175 <input type="checkbox" v-model="W175" number></input></td>'
+      + '</tr>'
+      + '<tr>'
+      + '<td>S180 <input type="checkbox" v-model="S180" number></input></td>'
+      + '<td>C150 <input type="checkbox" v-model="C150" number></input></td>'
+      + '<td>D200 <input type="checkbox" v-model="D200" number></input></td>'
+      + '<td>E150 <input type="checkbox" v-model="E150" number></input></td>'
+      + '<td>A135 <input type="checkbox" v-model="A135" number></input></td>'
+      + '<td>W180 <input type="checkbox" v-model="W180" number></input></td>'
+      + '</tr>'
+      + '<tr>'
+      + '<td>S200 <input type="checkbox" v-model="S200" number></input></td>'
+      + '<td>C175 <input type="checkbox" v-model="C175" number></input></td>'
+      + '<td>D205 <input type="checkbox" v-model="D205" number></input></td>'
+      + '<td>E200 <input type="checkbox" v-model="E200" number></input></td>'
+      + '<td>A150 <input type="checkbox" v-model="A150" number></input></td>'
+      + '<td>W200 <input type="checkbox" v-model="W200" number></input></td>'
+      + '</tr>'
+      + '<tr>'
+      + '<td>S215 <input type="checkbox" v-model="S215" number></input></td>'
+      + '<td>C200 <input type="checkbox" v-model="C200" number></input></td>'
+      + '<td>D225 <input type="checkbox" v-model="D225" number></input></td>'
+      + '<td>E225 <input type="checkbox" v-model="E225" number></input></td>'
+      + '<td>A175 <input type="checkbox" v-model="A175" number></input></td>'
+      + '<td>W205 <input type="checkbox" v-model="W205" number></input></td>'
+      + '</tr>'
+      + '<tr>'
+      + '<td>S225 <input type="checkbox" v-model="S225" number></input></td>'
+      + '<td>C225 <input type="checkbox" v-model="C225" number></input></td>'
+      + '<td>D245 <input type="checkbox" v-model="D245" number></input></td>'
+      + '<td>E230 <input type="checkbox" v-model="E230" number></input></td>'
+      + '<td>A200 <input type="checkbox" v-model="A200" number></input></td>'
+      + '<td>W225 <input type="checkbox" v-model="W225" number></input></td>'
+      + '</tr>'
+      + '<tr>'
+      + '<td>S250 <input type="checkbox" v-model="S250" number></input></td>'
+      + '<td>C250 <input type="checkbox" v-model="C250" number></input></td>'
+      + '<td>D250 <input type="checkbox" v-model="D250" number></input></td>'
+      + '<td>E250 <input type="checkbox" v-model="E250" number></input></td>'
+      + '<td>A250 <input type="checkbox" v-model="A250" number></input></td>'
+      + '<td>W250 <input type="checkbox" v-model="W250" number></input></td>'
+      + '</tr>'
+      + '<tr>'
+      + '<td>S251 <input type="checkbox" v-model="S251" number></input></td>'
+      + '<td>C251 <input type="checkbox" v-model="C251" number></input></td>'
+      + '<td>D260 <input type="checkbox" v-model="D260" number></input></td>'
+      + '<td>E260 <input type="checkbox" v-model="E260" number></input></td>'
+      + '<td>A251 <input type="checkbox" v-model="A251" number></input></td>'
+      + '<td>W260 <input type="checkbox" v-model="W260" number></input></td>'
+      + '</tr>'
+      + '<tr>'
+      + '<td>S270 <input type="checkbox" v-model="S270" number></input></td>'
+      + '<td>C300 <input type="checkbox" v-model="C300" number></input></td>'
+      + '<td>D275 <input type="checkbox" v-model="D275" number></input></td>'
+      + '<td>E275 <input type="checkbox" v-model="E275" number></input></td>'
+      + '<td>A270 <input type="checkbox" v-model="A270" number></input></td>'
+      + '<td>W275 <input type="checkbox" v-model="W275" number></input></td>'
+      + '</tr>'
+      + '<tr>'
+      + '<td>S300 <input type="checkbox" v-model="S300" number></input></td>'
+      + '<td>C305 <input type="checkbox" v-model="C305" number></input></td>'
+      + '<td>D290 <input type="checkbox" v-model="D290" number></input></td>'
+      + '<td>E290 <input type="checkbox" v-model="E290" number></input></td>'
+      + '<td>A300 <input type="checkbox" v-model="A300" number></input></td>'
+      + '<td>W290 <input type="checkbox" v-model="W290" number></input></td>'
+      + '</tr>'
+      + '<tr>'
+      + '<td>S305 <input type="checkbox" v-model="S305" number></input></td>'
+      + '<td>C330 <input type="checkbox" v-model="C330" number></input></td>'
+      + '<td>D320 <input type="checkbox" v-model="D320" number></input></td>'
+      + '<td>E320 <input type="checkbox" v-model="E320" number></input></td>'
+      + '<td>A305 <input type="checkbox" v-model="A305" number></input></td>'
+      + '<td>W320 <input type="checkbox" v-model="W320" number></input></td>'
+      + '</tr>'
+      + '<tr>'
+      + '<td>S330 <input type="checkbox" v-model="S330" number></input></td>'
+      + '<td>C340 <input type="checkbox" v-model="C340" number></input></td>'
+      + '<td>D330 <input type="checkbox" v-model="D330" number></input></td>'
+      + '<td>E330 <input type="checkbox" v-model="E330" number></input></td>'
+      + '<td>A330 <input type="checkbox" v-model="A330" number></input></td>'
+      + '<td>W330 <input type="checkbox" v-model="W330" number></input></td>'
+      + '</tr>'
+      + '<tr>'
+      + '<td>S375 <input type="checkbox" v-model="S375" number></input></td>'
+      + '<td>C375 <input type="checkbox" v-model="C375" number></input></td>'
+      + '<td>D350 <input type="checkbox" v-model="D350" number></input></td>'
+      + '<td>E350 <input type="checkbox" v-model="E350" number></input></td>'
+      + '<td>A375 <input type="checkbox" v-model="A375" number></input></td>'
+      + '<td>W350 <input type="checkbox" v-model="W350" number></input></td>'
+      + '</tr>'
+      + '<tr>'
+      + '<td>S400 <input type="checkbox" v-model="S400" number></input></td>'
+      + '<td>C400 <input type="checkbox" v-model="C400" number></input></td>'
+      + '<td>D400 <input type="checkbox" v-model="D400" number></input></td>'
+      + '<td>E400 <input type="checkbox" v-model="E400" number></input></td>'
+      + '<td>A400 <input type="checkbox" v-model="A400" number></input></td>'
+      + '<td>W400 <input type="checkbox" v-model="W400" number></input></td>'
+      + '</tr>'
+      + '<tr>'
+      + '<td>S435 <input type="checkbox" v-model="S435" number></input></td>'
+      + '<td>C405 <input type="checkbox" v-model="C405" number></input></td>'
+      + '<td>D435 <input type="checkbox" v-model="D435" number></input></td>'
+      + '<td>E410 <input type="checkbox" v-model="E410" number></input></td>'
+      + '<td>A410 <input type="checkbox" v-model="A410" number></input></td>'
+      + '<td>W405 <input type="checkbox" v-model="W405" number></input></td>'
+      + '</tr>'
+      + '<tr>'
+      + '<td>S460 <input type="checkbox" v-model="S460" number></input></td>'
+      + '<td>C460 <input type="checkbox" v-model="C460" number></input></td>'
+      + '<td>D480 <input type="checkbox" v-model="D480" number></input></td>'
+      + '<td>E460 <input type="checkbox" v-model="E460" number></input></td>'
+      + '<td>A480 <input type="checkbox" v-model="A480" number></input></td>'
+      + '<td>W520 <input type="checkbox" v-model="W520" number></input></td>'
+      + '</tr>'
+      + '<tr>'
+      + '<td>S500 <input type="checkbox" v-model="S500" number></input></td>'
+      + '<td>C500 <input type="checkbox" v-model="C500" number></input></td>'
+      + '<td>D525 <input type="checkbox" v-model="D525" number></input></td>'
+      + '<td>E480 <input type="checkbox" v-model="E480" number></input></td>'
+      + '<td>A495 <input type="checkbox" v-model="A495" number></input></td>'
+      + '<td>W525 <input type="checkbox" v-model="W525" number></input></td>'
+      + '</tr>'
+      + '<tr>'
+      + '<td>S545 <input type="checkbox" v-model="S545" number></input></td>'
+      + '<td>C520 <input type="checkbox" v-model="C520" number></input></td>'
+      + '<td>D560 <input type="checkbox" v-model="D560" number></input></td>'
+      + '<td>E495 <input type="checkbox" v-model="E495" number></input></td>'
+      + '<td>A545 <input type="checkbox" v-model="A545" number></input></td>'
+      + '<td>W560 <input type="checkbox" v-model="W560" number></input></td>'
+      + '</tr>'
+      + '<tr>'
+      + '<td>S590 <input type="checkbox" v-model="S590" number></input></td>'
+      + '<td>C590 <input type="checkbox" v-model="C590" number></input></td>'
+      + '<td>D590 <input type="checkbox" v-model="D590" number></input></td>'
+      + '<td>E590 <input type="checkbox" v-model="E590" number></input></td>'
+      + '<td>A590 <input type="checkbox" v-model="A590" number></input></td>'
+      + '<td>W590 <input type="checkbox" v-model="W590" number></input></td>'
+      + '</tr>',
       computed: {
         S1: {
           get: function() {
             if (this.upgrades[130300]) { return this.upgrades[130300].u1; }
-      	       else { return false; }
+            else { return false; }
       	   },
           set: function() {
             if (this.upgrades[130300]) {
 	       if (this.upgrades[130300].u1) { this.upgrades[130300].u1 = false; }
 	       else { this.upgrades[130300].u1 = true; }
             }
-            else {
-              this.upgrades[130300] = {_id: 130300, u1: true, u2: false, u3: false, s: 0};
-            }
+            else { this.upgrades[130300] = {_id: 130300, u1: true, u2: false, u3: false, s: 0}; }
           }
         },
         C1: {
@@ -2936,12 +2923,12 @@
         W590: {
           get: function() {
             if (this.upgrades[154524]) { return this.upgrades[154524].u1; }
-      	       else { return false; }
-      	   },
+              else { return false; }
+          },
           set: function() {
             if (this.upgrades[154524]) {
-	       if (this.upgrades[154524].u1) { this.upgrades[154524].u1 = false; }
-	       else { this.upgrades[154524].u1 = true; }
+              if (this.upgrades[154524].u1) { this.upgrades[154524].u1 = false; }
+              else { this.upgrades[154524].u1 = true; }
             }
             else {
               this.upgrades[154524] = {_id: 154524, u1: true, u2: false, u3: false, s: 0};
@@ -2960,41 +2947,35 @@
     });
 
     Vue.component('widget-trophy', {
-  	  props: {
-  	    'trophies': Object,
-  	    'name': String,
-  	    'id': String
-  	  },
+      props: {
+        'trophies': Object,
+        'name': String,
+        'id': String
+      },
       template: '<tr>'
-        + '<th><span class="statname">{{name}}</span></th>'
-        + '<td><input type="checkbox" v-model="unlocked" number></input></td>'
-        //+ '<td><input type="checkbox" v-model="trophyU1" number></input></td>'
-        + '</tr>',
-  	  computed: {
-    	unlocked: {
+      + '<th><span class="statname">{{name}}</span></th>'
+      + '<td><input type="checkbox" v-model="unlocked" number></input></td>'
+      //+ '<td><input type="checkbox" v-model="trophyU1" number></input></td>'
+      + '</tr>',
+      computed: {
+        unlocked: {
           get: function() {
-      		if (this.trophies[Number(this.id)]) { return true; }
-      		else { return false; }
-      	  },
+            if (this.trophies[Number(this.id)]) { return true; }
+            else { return false; }
+          },
           set: function() {
-            if (this.unlocked) {
-              delete this.trophies[Number(this.id)];
-            }
-            else {
-              this.trophies[Number(this.id)] = {_id: Number(this.id), u1: false};
-            }
+            if (this.unlocked) { delete this.trophies[Number(this.id)]; }
+            else { this.trophies[Number(this.id)] = {_id: Number(this.id), u1: false}; }
           }
         },
-    	trophyU1: {
+        trophyU1: {
           get: function() {
-    	    return this.unlocked && this.trophies[Number(this.id)].u1;
+            return this.unlocked && this.trophies[Number(this.id)].u1;
           },
           set: function(x) {
-            if (this.unlocked)
-              this.trophies[Number(this.id)] = [x];
+            if (this.unlocked) { this.trophies[Number(this.id)] = [x]; }
           }
-    	}
-  	  }
+       }
     });
 
     Vue.component('widget-trophy-dropdown', {
@@ -3010,27 +2991,25 @@
       + '<option :disabled="option.disabled" :value="option.id" v-for="option in options">{{option.name}}</option>'
       + '</select></td>'
       + '</tr>',
-  	  computed: {
-    	unlocked: {
+      computed: {
+        unlocked: {
           get: function() {
-		    for (var i = this.options.length-2; i >= 0; i--) {
-			  if (this.trophies[trophyIDs[this.filter][i]]) {
-				return trophyIDs[this.filter][i]
-			  }
-		    }
-           return -1;
-      	  },
+            for (var i = this.options.length-2; i >= 0; i--) {
+              if (this.trophies[trophyIDs[this.filter][i]]) { return trophyIDs[this.filter][i]; }
+            }
+            return -1;
+          },
           set: function(x) {
-			for (var i = 0; i < this.options.length-1; i++) {
-			  var tid = trophyIDs[this.filter][i];
+            for (var i = 0; i < this.options.length-1; i++) {
+              var tid = trophyIDs[this.filter][i];
               if (!this.trophies[tid]) {
-				this.trophies[tid] = {_id:tid, u1:false};
+                this.trophies[tid] = {_id:tid, u1:false};
               } else {
                 if (this.trophies[tid]) delete this.trophies[tid];
-			  }
+              }
             }
           }
-		    },
+        },
         options: function() {
           var opts = [{id:-1, name:'None'}];
           for (var i of util.assoc[this.type]) {
@@ -3080,22 +3059,22 @@
             this.save.lastsave = this.currenttime - x;
           }
         },
-		upgradesArray: {
+        upgradesArray: {
           get: function() {
-		    return this.save.upgrades
+            return this.save.upgrades
           },
           set: function(x) {
             this.save.upgrades[x] = [true];
           }
-		},
-		trophiesArray: {
+        },
+        trophiesArray: {
           get: function() {
-		    return this.save.trophies
+            return this.save.trophies
           },
           set: function(x) {
             this.save.trophies[x] = [true];
           }
-		}
+        }
       }
     });
 	
