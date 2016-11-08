@@ -6,9 +6,9 @@
     prestigeFaction: [-1, 9, 10, 12],
     bFaction: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12],
     spell: [18, 3, 12, 6, 14, 9, 1, 8, 15, 11, 7, 13, 10, 2, 5, 4, 21, 17],
-    goodmercspells: [6, 14, 9, 5, 8, 11, 4, 10, 2],
-    evilmercspells: [6, 14, 9, 5, 8, 15, 11, 4, 10, 2],
-    neutralmercspells: [6, 14, 9, 5, 8, 11, 4, 13, 10, 2]
+    goodmercspells: [6, 14, 9, 5, 8, 11, 4, 10, 2, 21],
+    evilmercspells: [6, 14, 9, 5, 8, 15, 11, 4, 10, 2, 21],
+    neutralmercspells: [6, 14, 9, 5, 8, 11, 4, 13, 10, 2, 21]
   };
   
   var trophyIDs = {
