@@ -3348,10 +3348,11 @@
       computed: {
         offlinetime: {
           get: function() {
-            return this.currenttime - this.save.lastsave;
+            this.offlineoffset = this.currenttime - this.save.lastsave
+            return 0;
           },
           set: function(x) {
-            this.save.lastsave = this.currenttime - x;
+            this.save.lastsave = this.currenttime - x - this.offlineoffset;
           }
         },
         upgradesArray: {
