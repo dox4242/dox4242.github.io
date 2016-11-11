@@ -3352,7 +3352,7 @@
             return 0;
           },
           set: function(x) {
-            this.save.lastsave = this.currenttime - x - this.offlineoffset;
+            this.save.lastsave = this.currenttime - x + this.offlineoffset;
           }
         },
         upgradesArray: {
