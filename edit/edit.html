@@ -166,7 +166,7 @@
             <tr is='widget-field-dropdown' :field.sync='save.faction' type='faction' filter='faction' :colspan='5' name='Faction'></tr>
             <tr is='widget-field-dropdown' :field.sync='save.prestigeFaction' type='faction' filter='prestigeFaction' hide-neutral hide-merc :colspan='5' name='Prestige Faction'></tr>
             <tr is='widget-field-dropdown' :field.sync='save.bFaction' type='faction' filter='bFaction' :colspan='5' name='Bloodline Faction'></tr>
-            <tr is='widget-field' :field.sync='offlinetime' can-edit name='Save age (seconds)'></tr>
+            <tr is='widget-field' :field.sync='offlinetime' can-edit name='Save age (seconds, max 2592000)'></tr>
           </table>
         </div>
       </div>
@@ -201,7 +201,7 @@
             <tr is='widget-stat' :stat.sync='save.stats[2]' name='Good Playtime'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[3]' name='Evil Playtime'></tr>
             <tr is='widget-neutraltime'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[45]' name='Offline Playtime (max 2592000)'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[45]' name='Offline Playtime'></tr>
             <tr is='widget-stat-max' :stat.sync='save.stats[46]' name='Max Offline Playtime'></tr>
             <tr is='widget-field' :field.sync='save.cTimer' can-edit :colspan='5' name='Time Since Last Mouse Click (ticks, 30/seconds)'></tr>
             <tr is='widget-field' :field.sync='save.kcTimer' can-edit :colspan='5' name='Time Since Last Keypress (ticks)'></tr>
