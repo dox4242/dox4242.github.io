@@ -18,7 +18,9 @@
 		{
 			rule: 'rand',
 			payloads: [
-				'It Edits Saves'
+				'It Edits Saves',
+				'It Does What It\'s Named',
+				'This IS What It Looks Like'
 			]
 		}
 	];
