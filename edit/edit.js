@@ -3362,7 +3362,7 @@
       watch: {
         lsinput: function(data) {
           var selIndex = this.currentbuildingsLS.findIndex(x => x == this.lsinput)
-          var rodIndex = 11 - this.buildingcount    // miracle Id 143018
+          var rodIndex = 11 - this.buildingcount
           var hits = this.LightningRod[rodIndex][0][selIndex]
           var seed = this.LightningRod[rodIndex][1][selIndex]
           this.save.spells[13].s = seed
