@@ -737,6 +737,14 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=202 name='Colorful Autocasting Secret Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=203 name='Spell Cataclysm Secret Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=201 name='Advisor Insight Secret Trophy'></tr>
+            <tr><td><b>Lightning streak</b></td>
+            <template v-if="LSavail == 'True'"><td><select v-model="lsinput">
+            <option v-for="name in currentbuildingsLS">{{ name }}</option></select> {{ lsmsg }}</td></template>
+            <template v-else><td>spell not available or not enough targets</td></template></tr>
+            <tr><td><b>Miracle streak</b></td>
+            <template v-if="miracleAvail == 'True'"><td><select v-model="miracleinput">
+            <option v-for="name in currentbuildingsM">{{ name }}</option></select> {{ miraclemsg }}</td></template>
+            <template v-else><td>D400 not purchased or not enough targets</td></template></tr>
           </table>
         </div>
       </div>
