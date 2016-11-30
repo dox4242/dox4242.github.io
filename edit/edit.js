@@ -3362,14 +3362,11 @@
       watch: {
         lsinput: function(data) {
           var selIndex = this.currentbuildingsLS.findIndex(x => x == this.lsinput)
-          var rodIndex = 11 - this.buildingcount
+          var rodIndex = 11 - this.buildingcount    // miracle Id 143018
           var hits = this.LightningRod[rodIndex][0][selIndex]
           var seed = this.LightningRod[rodIndex][1][selIndex]
-          console.log('buildingcount =',this.buildingcount)
-          console.log('seed =',seed)
-          this.save.spells[11].s = seed
+          this.save.spells[13].s = seed
           this.lsmsg = 'Hit streak = ' + hits
-          console.log('save.seed =',this.save.spells[11].s)
         },
         miracleinput: function(data) {
           var selIndex = this.currentbuildingsM.findIndex(x => x == this.miracleinput)
@@ -3395,12 +3392,11 @@
               }
             }
           } else { this.LSavail = 'True' }
-          //for (var i = 0; i < 25; i++) {
           for (var i of [9,13,3,23,15,25,4,5,20,11,21,19,24,6,18,8,12,7,22,1,17,16,14,2,10]) {
-            console.log('i =',i)
-            console.log('this.save.buildings[i].q =',this.save.buildings[i].q)
             if (this.save.buildings[i].q > 0) {
-              console.log('building name =',this.buildingnames[this.save.buildings[i].id-1])
+              if ((i ==10) && (this.save.upgrades[143018].u1 == true)) {
+                continue
+              }
               this.currentbuildingsLS.push(this.buildingnames[this.save.buildings[i].id-1])
               this.buildingcount += 1
             }
@@ -3416,9 +3412,9 @@
             }
           }
           this.buildingcount = 0
-          for (var i = 0; i < 25; i++) {
-            if (this.save.buildings[i+1].q > 0) {
-              this.currentbuildingsM.push(this.buildingnames[this.save.buildings[i+1].id-1])
+          for (var i of [9,13,3,23,15,25,4,5,20,11,21,19,24,6,18,8,12,7,22,1,17,16,14,2,10]) {
+            if (this.save.buildings[i].q > 0) {
+              this.currentbuildingsM.push(this.buildingnames[this.save.buildings[i].id-1])
               this.buildingcount += 1
             }
           }

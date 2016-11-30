@@ -332,6 +332,10 @@
             <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='castSpells' :colspan='5' name='Cast X Spells Trophy Series'></tr>
             <tr is='widget-spell' :spell.sync='save.spells[i.id]' :name='i.name + " Cast"' v-for='i in spells'></tr>
             <tr is='widget-spell-rng' :spell.sync='save.spells[i.id]' :name='i.name + " RNG State"' v-for='i in spells'></tr>
+            <tr><td><b>Lightning streak</b></td>
+            <template v-if="LSavail == 'True'"><td><select v-model="lsinput">
+            <option v-for="name in currentbuildingsLS">{{ name }}</option></select> {{ lsmsg }}</td></template>
+            <template v-else><td>LS spell not available or not enough targets</td></template></tr>
             <tr is='widget-field-dropdown' :field.sync='save.strikeTier' type='bTiers' :colspan='5' name='Lightning Strike Tier'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[37]' name='Lightning Strike Casts (alt)'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[64]' hide-prev-abs hide-rei hide-prev-reis hide-total name='Consecutive Goblins Greed Casts'></tr>
@@ -619,6 +623,10 @@
             <tr is='widget-stat' :stat.sync='save.stats[93]' name='Economics Level'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[94]' name='Alchemy Level'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[95]' name='Warfare Level'></tr>
+            <tr><td><b>Miracle streak</b></td>
+            <template v-if="miracleAvail == 'True'"><td><select v-model="miracleinput">
+            <option v-for="name in currentbuildingsM">{{ name }}</option></select> {{ miraclemsg }}</td></template>
+            <template v-else><td>D400 not purchased or not enough targets</td></template></tr>
             <tr is='widget-field-dropdown' :field.sync='save.miracleTier' type='bTiers' :colspan='5' name='Current Miracle Tier Target'></tr>
             <tr is='widget-field' :field.sync='save.miracleTimer' can-edit :colspan='5' name='Miracle Effect Timer (max 120)'></tr>
             <tr is='widget-research-upgrades-header'></tr>
@@ -737,14 +745,6 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=202 name='Colorful Autocasting Secret Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=203 name='Spell Cataclysm Secret Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=201 name='Advisor Insight Secret Trophy'></tr>
-            <tr><td><b>Lightning streak</b></td>
-            <template v-if="LSavail == 'True'"><td><select v-model="lsinput">
-            <option v-for="name in currentbuildingsLS">{{ name }}</option></select> {{ lsmsg }}</td></template>
-            <template v-else><td>spell not available or not enough targets</td></template></tr>
-            <tr><td><b>Miracle streak</b></td>
-            <template v-if="miracleAvail == 'True'"><td><select v-model="miracleinput">
-            <option v-for="name in currentbuildingsM">{{ name }}</option></select> {{ miraclemsg }}</td></template>
-            <template v-else><td>D400 not purchased or not enough targets</td></template></tr>
           </table>
         </div>
       </div>
