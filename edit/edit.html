@@ -331,7 +331,7 @@
             <tr is='widget-stat-max' :stat.sync='save.stats[40]' name='Max Spells Cast'></tr>
             <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='castSpells' :colspan='5' name='Cast X Spells Trophy Series'></tr>
             <tr is='widget-spell' :spell.sync='save.spells[i.id]' :name='i.name + " Cast"' v-for='i in spells'></tr>
-            <tr is='widget-spell-rng' :spell.sync='save.spells[i.id]' :name='i.name + " RNG State"' v-for='i in spells'></tr>
+            <tr is='widget-spell-rng' :spell.sync='save.spells[i.id]' :name='i.name + " RNG State"' v-for='i in spellsRNG'></tr>
             <tr><td><b>Lightning streak</b></td>
             <template v-if="LSavail == 'True'"><td><select v-model="lsinput">
             <option v-for="name in currentbuildingsLS">{{ name }}</option></select> {{ lsmsg }}</td></template>
