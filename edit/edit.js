@@ -3336,15 +3336,15 @@
         lsinput: '',
         lsmsg: '',
         LightningRod: [[[9, 9, 8, 8, 10, 8, 10, 8, 8, 9, 9], [1348656067, 2066742637, 724761641, 1139776337, 1832831073, 2874410, 314652574, 29728603, 57855160, 80741010, 798827580]],
-                      [[9, 8, 10, 10, 9, 9, 10, 10, 8, 9], [1348656067, 195509834, 1092747531, 1369388690, 124895406, 1889967370, 778094957, 1054736116, 145769791, 798827580]],
-                      [[10, 9, 9, 10, 9, 10, 9, 9, 10], [1019766806, 1010581720, 293919951, 1832831073, 274387307, 314652574, 233911564, 571758769, 1127716841]],
-                      [[10, 10, 9, 10, 10, 9, 10, 10], [1019766806, 72980725, 44627026, 1267687915, 314652574, 142176518, 965174051, 1127716841]],
-                      [[10, 10, 10, 10, 10, 10, 10], [454623648, 54592755, 260059819, 404214639, 462244724, 255012428, 442091522]],
-                      [[12, 12, 12, 12, 12, 12], [770473881, 821234634, 250490584, 1896993063, 643171274, 89562065]],
-                      [[14, 13, 12, 13, 14], [770473881, 419517449, 527131743, 819876890, 1377009766]],
-                      [[15, 15, 15, 15], [1408849714, 355243782, 951868488, 738633933]],
-                      [[18, 17, 18], [918066031, 129106684, 1050527706]],
-                      [[28, 28], [1202476373, 447787816]]],
+                       [[9, 8, 10, 10, 9, 9, 10, 10, 8, 9], [1348656067, 195509834, 1092747531, 1369388690, 124895406, 1889967370, 778094957, 1054736116, 145769791, 798827580]],
+                       [[10, 9, 9, 10, 9, 10, 9, 9, 10], [1019766806, 1010581720, 293919951, 1832831073, 274387307, 314652574, 233911564, 571758769, 1127716841]],
+                       [[10, 10, 9, 10, 10, 9, 10, 10], [1019766806, 72980725, 44627026, 1267687915, 314652574, 142176518, 965174051, 1127716841]],
+                       [[10, 10, 10, 10, 10, 10, 10], [454623648, 54592755, 260059819, 404214639, 462244724, 255012428, 442091522]],
+                       [[12, 12, 12, 12, 12, 12], [770473881, 821234634, 250490584, 1896993063, 643171274, 89562065]],
+                       [[14, 13, 12, 13, 14], [770473881, 419517449, 527131743, 819876890, 1377009766]],
+                       [[15, 15, 15, 15], [1408849714, 355243782, 951868488, 738633933]],
+                       [[18, 17, 18], [918066031, 129106684, 1050527706]],
+                       [[28, 28], [1202476373, 447787816]]],
         buildingcount: 0,
         buildingnames: ['Alchemist Lab', 'Ancient Pyramid', 'Blacksmith', 'Cathedral', 'Citadel', 'Dark Temple', 'Deep Mine', 'Evil Fortress', 'Farm', 'Hall of Legends', 'Heaven\'s Gate', 'Hell Portal', 'Inn', 'Iron Stronghold', 'Knights Joust', 'Labyrinth', 'Monastery', 'Necropolis', 'Orcish Arena', 'Royal Castle', 'Slave Pen', 'Stone Pillars', 'Warrior Barracks', 'Witch Conclave', 'Wizard Tower'],
         currentbuildingsLS: [],
@@ -3364,14 +3364,19 @@
           var selIndex = this.currentbuildingsLS.findIndex(x => x == this.lsinput)
           var rodIndex = 11 - this.buildingcount
           var hits = this.LightningRod[rodIndex][0][selIndex]
-          this.save.spells[11].s = this.LightningRod[rodIndex][1][selIndex]
+          var seed = this.LightningRod[rodIndex][1][selIndex]
+          console.log('buildingcount =',this.buildingcount)
+          console.log('seed =',seed)
+          this.save.spells[11].s = seed
           this.lsmsg = 'Hit streak = ' + hits
+          console.log('save.seed =',this.save.spells[11].s)
         },
         miracleinput: function(data) {
           var selIndex = this.currentbuildingsM.findIndex(x => x == this.miracleinput)
           var rodIndex = 11 - this.buildingcount
           var hits = this.LightningRod[rodIndex][0][selIndex]
-          this.save.upgrades[143719].s = this.LightningRod[rodIndex][1][selIndex]
+          var seed = this.LightningRod[rodIndex][1][selIndex]
+          this.save.upgrades[143719].s = seed
           this.miraclemsg = 'Hit streak = ' + hits
         }
       },
@@ -3390,8 +3395,12 @@
               }
             }
           } else { this.LSavail = 'True' }
-          for (var i = 1; i < 26; i++) {
+          //for (var i = 0; i < 25; i++) {
+          for (var i of [9,13,3,23,15,25,4,5,20,11,21,19,24,6,18,8,12,7,22,1,17,16,14,2,10]) {
+            console.log('i =',i)
+            console.log('this.save.buildings[i].q =',this.save.buildings[i].q)
             if (this.save.buildings[i].q > 0) {
+              console.log('building name =',this.buildingnames[this.save.buildings[i].id-1])
               this.currentbuildingsLS.push(this.buildingnames[this.save.buildings[i].id-1])
               this.buildingcount += 1
             }
@@ -3407,9 +3416,9 @@
             }
           }
           this.buildingcount = 0
-          for (var i = 1; i < 26; i++) {
-            if (this.save.buildings[i].q > 0) {
-              this.currentbuildingsM.push(this.buildingnames[this.save.buildings[i].id-1])
+          for (var i = 0; i < 25; i++) {
+            if (this.save.buildings[i+1].q > 0) {
+              this.currentbuildingsM.push(this.buildingnames[this.save.buildings[i+1].id-1])
               this.buildingcount += 1
             }
           }
