@@ -3356,6 +3356,7 @@
         outputsave: null,
         save: util.save.blankSave(),
         spells: util.assoc.spells,
+        spellsRNG: util.assoc.spellsRNG,
         factions: util.assoc.faction,
         currenttime: Math.floor(new Date().getTime()/1000)
       },
