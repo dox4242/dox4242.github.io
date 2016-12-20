@@ -104,7 +104,7 @@ var Artifacts = [
       return save.alignment != 3;
     },
     random: function(save) {
-      return save.buildings[2].q / 100000;
+      return util.save.building_count(save, 2) / 100000;
     },
     required: function(value) {
       return Math.ceil(value * 100000);
@@ -162,7 +162,7 @@ var Artifacts = [
       return util.save.upgrade_owned(save,469) && save.faction == 0 && save.prestigeFaction == -1;
     },
     random: function(save) {
-      return save.buildings[9].q / 500000;
+      return util.save.building_count(save, 9) / 500000;
     },
     required: function(value) {
       return Math.ceil(value * 500000);
@@ -226,7 +226,7 @@ var Artifacts = [
       return util.save.upgrade_owned(save,469) && save.faction == 2 && save.prestigeFaction == -1;
     },
     random: function(save) {
-      return (save.buildings[11].q) / 375000;
+      return (util.save.building_count(save, 11)) / 375000;
     },
     required: function(value) {
       return Math.ceil(value * 375000);
@@ -426,7 +426,7 @@ var Artifacts = [
       return util.save.upgrade_owned(save,469) && save.faction == 8 && save.prestigeFaction == -1;
     },
     random: function(save) {
-      return (save.buildings[11].q) / 200000;
+      return (util.save.building_count(save, 11)) / 200000;
     },
     required: function(value) {
       return Math.ceil(value * 200000);
@@ -458,7 +458,7 @@ var Artifacts = [
       return util.save.upgrade_owned(save,469) && save.prestigeFaction == 9;
     },
     random: function(save) {
-      return (save.buildings[13].q) / 2500000;
+      return (util.save.building_count(save, 13)) / 2500000;
     },
     required: function(value) {
       return Math.ceil(value * 2500000);
@@ -520,6 +520,28 @@ var Artifacts = [
     }
   },
   {
+    name: 'Dragon Fang',
+    id: 229,
+    fixed: function(save) {
+      var h = new Date().getHours();
+      return save.reincarnation >= 50 && save.prestigeFaction == 12 && util.save.upgrade_owned(save,469);
+    }
+    random: function(save) {
+      return util.save.building_count(save, 14) / 40000000;
+    }
+  },
+  {
+    name: 'Dragon Soul',
+    id: 230,
+    fixed: function(save) {
+      var h = new Date().getHours();
+      return save.reincarnation >= 50 && save.prestigeFaction == 12 && util.save.upgrade_owned(save,469) && save.spells[21].activeTiers >= 4;
+    }
+    random: function(save) {
+      return save.spells[21].c / 20000000;
+    }
+  },
+  {
     name: 'Vanilla Flavor Juice',
     id: 179,
     fixed: function(save) {
@@ -552,7 +574,7 @@ var Artifacts = [
       return save.alignment != 2;
     },
     random: function(save) {
-      return save.buildings[24].q / 1000000;
+      return util.save.building_count(save, 24) / 1000000;
     },
     required: function(value) {
       return Math.ceil(value * 1000000);
@@ -590,6 +612,28 @@ var Artifacts = [
     },
     random: function(save) {
       return 0.001;
+    }
+  },
+  {
+    name: 'Dawnstone',
+    id: 233,
+    fixed: function(save) {
+      var h = new Date().getHours();
+      return save.reincarnation >= 50 && save.prestigeFaction == 12 && h >= 5 && h <= 7;
+    }
+    random: function(save) {
+      return save.excavations / 1000000;
+    }
+  },
+  {
+    name: 'Duskstone',
+    id: 234,
+    fixed: function(save) {
+      var h = new Date().getHours();
+      return save.reincarnation >= 50 && save.prestigeFaction == 12 && h >= 18 && h <= 20;
+    }
+    random: function(save) {
+      return save.excavations / 1000000;
     }
   }
 ];
