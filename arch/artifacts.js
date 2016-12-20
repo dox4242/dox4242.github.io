@@ -526,8 +526,14 @@ var Artifacts = [
       var h = new Date().getHours();
       return save.reincarnation >= 50 && save.prestigeFaction == 12 && util.save.upgrade_owned(save,469);
     },
+    required: function(value) {
+      return Math.ceil(value * 40000000);
+    },
     random: function(save) {
       return util.save.building_count(save, 14) / 40000000;
+    },
+    display: function(value) {
+      return value + ' Iron Stronghold' + (value > 1 ? 's' : '');
     }
   },
   {
@@ -537,8 +543,14 @@ var Artifacts = [
       var h = new Date().getHours();
       return save.reincarnation >= 50 && save.prestigeFaction == 12 && util.save.upgrade_owned(save,469) && save.spells[21].activeTiers >= 4;
     },
+    required: function(value) {
+      return Math.ceil(value * 20000000);
+    },
     random: function(save) {
       return save.spells[21].c / 20000000;
+    },
+    display: function(value) {
+      return value + ' Dragon\'s Breath Cast' + (value>1?'s':'');;
     }
   },
   {
