@@ -525,7 +525,7 @@ var Artifacts = [
     fixed: function(save) {
       var h = new Date().getHours();
       return save.reincarnation >= 50 && save.prestigeFaction == 12 && util.save.upgrade_owned(save,469);
-    }
+    },
     random: function(save) {
       return util.save.building_count(save, 14) / 40000000;
     }
@@ -536,7 +536,7 @@ var Artifacts = [
     fixed: function(save) {
       var h = new Date().getHours();
       return save.reincarnation >= 50 && save.prestigeFaction == 12 && util.save.upgrade_owned(save,469) && save.spells[21].activeTiers >= 4;
-    }
+    },
     random: function(save) {
       return save.spells[21].c / 20000000;
     }
@@ -620,7 +620,7 @@ var Artifacts = [
     fixed: function(save) {
       var h = new Date().getHours();
       return save.reincarnation >= 50 && save.prestigeFaction == 12 && h >= 5 && h <= 7;
-    }
+    },
     random: function(save) {
       return save.excavations / 1000000;
     }
@@ -631,7 +631,7 @@ var Artifacts = [
     fixed: function(save) {
       var h = new Date().getHours();
       return save.reincarnation >= 50 && save.prestigeFaction == 12 && h >= 18 && h <= 20;
-    }
+    },
     random: function(save) {
       return save.excavations / 1000000;
     }
