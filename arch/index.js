@@ -91,7 +91,7 @@
             eligible[i].finished = true;
             remaining -= 1;
           } else if (eligible[i].required) {
-            var req = eligible[i].required(val);
+            var req = eligible[i].required(val, this.save);
             if (eligible[i].lastreq == null || req < eligible[i].lastreq) {
               eligible[i].lastreq = req;
               excavation.push(['improve', req, eligible[i]]);

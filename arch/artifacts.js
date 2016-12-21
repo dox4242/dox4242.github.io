@@ -106,8 +106,8 @@ var Artifacts = [
     random: function(save) {
       return util.save.building_count(save, 2) / 100000;
     },
-    required: function(value) {
-      return Math.ceil(value * 100000);
+    required: function(value, save) {
+      return util.save.building_requirement(save, 2, Math.ceil(value * 100000));
     },
     display: function(value) {
       return value + ' Ancient Pyramid' + (value>1?'s':'');
@@ -164,8 +164,8 @@ var Artifacts = [
     random: function(save) {
       return util.save.building_count(save, 9) / 500000;
     },
-    required: function(value) {
-      return Math.ceil(value * 500000);
+    required: function(value, save) {
+      return util.save.building_requirement(save, 9, Math.ceil(value * 500000));
     },
     display: function(value) {
       return value + ' Farm' + (value>1?'s':'');;
@@ -228,8 +228,8 @@ var Artifacts = [
     random: function(save) {
       return (util.save.building_count(save, 11)) / 375000;
     },
-    required: function(value) {
-      return Math.ceil(value * 375000);
+    required: function(value, save) {
+      return util.save.building_requirement(save, 11, Math.ceil(value * 375000));
     },
     display: function(value) {
       return value + ' Heaven\'s Gate' + (value>1?'s':'');
@@ -426,10 +426,10 @@ var Artifacts = [
       return util.save.upgrade_owned(save,469) && save.faction == 8 && save.prestigeFaction == -1;
     },
     random: function(save) {
-      return (util.save.building_count(save, 11)) / 200000;
+      return (util.save.building_count(save, 16)) / 200000;
     },
-    required: function(value) {
-      return Math.ceil(value * 200000);
+    required: function(value, save) {
+      return util.save.building_requirement(save, 16, Math.ceil(value * 200000));
     },
     display: function(value) {
       return value + ' Labyrinth' + (value>1?'s':'');
@@ -460,8 +460,8 @@ var Artifacts = [
     random: function(save) {
       return (util.save.building_count(save, 13)) / 2500000;
     },
-    required: function(value) {
-      return Math.ceil(value * 2500000);
+    required: function(value, save) {
+      return util.save.building_requirement(save, 13, Math.ceil(value * 2500000));
     },
     display: function(value) {
       return value + ' Inn' + (value>1?'s':'');
@@ -526,11 +526,11 @@ var Artifacts = [
       var h = new Date().getHours();
       return save.reincarnation >= 50 && save.prestigeFaction == 12 && util.save.upgrade_owned(save,469);
     },
-    required: function(value) {
-      return Math.ceil(value * 40000000);
-    },
     random: function(save) {
       return util.save.building_count(save, 14) / 40000000;
+    },
+    required: function(value, save) {
+      return util.save.building_requirement(save, 14, Math.ceil(value * 40000000));
     },
     display: function(value) {
       return value + ' Iron Stronghold' + (value > 1 ? 's' : '');
@@ -587,8 +587,8 @@ var Artifacts = [
     random: function(save) {
       return util.save.building_count(save, 24) / 1000000;
     },
-    required: function(value) {
-      return Math.ceil(value * 1000000);
+    required: function(value, save) {
+      return util.save.building_requirement(save, 24, Math.ceil(value * 1000000));
     },
     display: function(value) {
       return value + ' Witch Conclave' + (value>1?'s':'');
