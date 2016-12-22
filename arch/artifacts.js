@@ -657,7 +657,6 @@ var Artifacts = [
     },
     nocache: true,
     random: function(save, e) {
-      console.log(e);
       e = !e?save.excavations:e;
       return e / 1000000;
     }/*,
