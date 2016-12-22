@@ -60,61 +60,13 @@
       for (var excav of results.events) {
         View.excavs.push(renderExcav(excav));
       }
-      if (this.chart) {
-        this.chart.destroy();
-      }
-      this.chart = Chart.Line($('#chartcontainer'), {
-        data: {
-          datasets: [{
-            label: 'Value',
-            data: results.smalls,
-            pointBackgroundColor: 'rgba(91, 110, 225, 0.7)',
-            pointStrokeColor: 'rgba(63, 63, 116, 1)'
-          }]
-        },
-        options: {
-          showLines: false,
-          title: {
-            display: true,
-            text: 'Small RNG Values',
-            fontSize: 16
-          },
-          legend: {
-            display: false
-          },
-          scales: {
-            xAxes: [{
-              type: 'linear',
-              position: 'bottom',
-              scaleLabel: {
-                display: true,
-                labelString: 'Number of RNG Values Ahead',
-                fontSize: 14,
-                fontStyle: 'bold'
-              }
-            }],
-            yAxes: [{
-              scaleLabel: {
-                display: true,
-                labelString: 'RNG Value',
-                fontSize: 14,
-                fontStyle: 'bold'
-              }
-            }]
-          },
-          tooltips: {
-            displayColors: false
-          }
-        }
-      });
+      this.small_values = results.smalls;
+      this.chart_rendered = false;
       if ($("div.tab-pane.active").attr('id') == 'tab-raw') {
-        this.chart.render();
-        this.chart_rendered = true;
-      }
-      else {
-        this.chart_rendered = false;
+        this.renderChart();
       }
     }
+
     this.forecastArtifacts = function() {
       var state = this.save.artifactRngState;
       var rng = new PM_PRNG(state);
@@ -172,6 +124,7 @@
         }
       }
       while (raw_values < 10000) {
+        var val = rng.nextDouble();
         raw_values += 1;
         if (val < 0.01) smalls.push({x: raw_values, y: val});
       }
@@ -217,6 +170,58 @@
           View.raw.ineligible.push(artifact.name);
         }
       }
+    }
+
+    this.renderChart = function() {
+      if (this.chart) {
+        this.chart.destroy();
+      }
+      this.chart = Chart.Line($('#chartcontainer'), {
+        data: {
+          datasets: [{
+            label: 'Value',
+            data: this.small_values,
+            pointBackgroundColor: 'rgba(91, 110, 225, 0.7)',
+            pointStrokeColor: 'rgba(63, 63, 116, 1)'
+          }]
+        },
+        options: {
+          showLines: false,
+          title: {
+            display: true,
+            text: 'Small RNG Values',
+            fontSize: 16
+          },
+          legend: {
+            display: false
+          },
+          scales: {
+            xAxes: [{
+              type: 'linear',
+              position: 'bottom',
+              scaleLabel: {
+                display: true,
+                labelString: 'Number of RNG Values Ahead',
+                fontSize: 14,
+                fontStyle: 'bold'
+              }
+            }],
+            yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'RNG Value',
+                fontSize: 14,
+                fontStyle: 'bold'
+              }
+            }]
+          },
+          tooltips: {
+            displayColors: false
+          }
+        }
+      });
+      this.chart.render();
+      this.chart_rendered = true;
     }
   }
 
@@ -312,9 +317,8 @@
 
     $('a[data-toggle="pill"]').on('shown.bs.tab', function (e) {
       var target = $(e.target).attr("href"); // activated tab
-      if (Controller.chart && !Controller.chart_rendered) {
-        Controller.chart.render();
-        Controller.chart_rendered = true;
+      if (Controller.small_values && !Controller.chart_rendered && target == '#tab-raw') {
+        Controller.renderChart();
       }
     });
   });
