@@ -60,7 +60,54 @@
       for (var excav of results.events) {
         View.excavs.push(renderExcav(excav));
       }
-      this.chart = new CanvasJS.Chart('chartcontainer', {
+      if (this.chart) {
+        this.chart.destroy();
+      }
+      this.chart = Chart.Line($('#chartcontainer'), {
+        data: {
+          datasets: [{
+            label: 'Value',
+            data: results.smalls,
+            pointBackgroundColor: 'rgba(91, 110, 225, 0.7)',
+            pointStrokeColor: 'rgba(63, 63, 116, 1)'
+          }]
+        },
+        options: {
+          showLines: false,
+          title: {
+            display: true,
+            text: 'Small RNG Values',
+            fontSize: 16
+          },
+          legend: {
+            display: false
+          },
+          scales: {
+            xAxes: [{
+              type: 'linear',
+              position: 'bottom',
+              scaleLabel: {
+                display: true,
+                labelString: 'Number of RNG Values Ahead',
+                fontSize: 14,
+                fontStyle: 'bold'
+              }
+            }],
+            yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'RNG Value',
+                fontSize: 14,
+                fontStyle: 'bold'
+              }
+            }]
+          },
+          tooltips: {
+            displayColors: false
+          }
+        }
+      });
+      /*this.chart = new CanvasJS.Chart('chartcontainer', {
         title: {text: 'Upcoming Small RNG Values'},
         axisX: {
           title: 'Number of Values Away',
@@ -76,7 +123,7 @@
           type: 'scatter',
           dataPoints: results.smalls
         }]
-      });
+      });*/
       if ($("div.tab-pane.active").attr('id') == 'tab-raw') {
         this.chart.render();
         this.chart_rendered = true;
