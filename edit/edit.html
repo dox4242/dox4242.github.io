@@ -471,6 +471,7 @@
           <table class='table'>
             <tr is='widget-fivestat-header'></tr>
             <tr is='widget-field' :field.sync='save.artifactRngState' can-edit :colspan='5' name='Artifact RNG State (best value: 1407677000)'></tr>
+            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='artifacts' :colspan='5' name='Artifacts Trophy Series'></tr>
             <tr is='widget-field' :field.sync='save.excavations' can-edit :colspan='5' name='Current Excavations'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[35]' name='Excavations'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[36]' name='Excavation Reports?'></tr>
@@ -535,7 +536,6 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=179 name='Vanilla Flavor Juice Lore Artifact'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=187 name='Voodoo Doll Lore Artifact'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=177 name='Wall Fragment Lore Artifact'></tr>
-            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='artifacts' :colspan='5' name='Artifacts Trophy Series'></tr>
           </table>
         </div>
       </div>
@@ -639,6 +639,7 @@
         <div class='panel panel-default'>
           <table class='table'>
             <tr is='widget-onestat-header'></tr>
+            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='spellTiers' :colspan='5' name='Spell Tiers Series'></tr>
             <tr is='widget-spell-tiers' :spell.sync='save.spells[i.id]' :name='i.name' v-for='i in spells'></tr>
          </table>
         </div>
