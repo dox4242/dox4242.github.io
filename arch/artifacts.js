@@ -638,7 +638,15 @@ var Artifacts = [
     random: function(save, e) {
       e = !e?save.excavations:e;
       return e / 1000000;
-    }
+    }/*,
+    required: function(value, save, n) {
+      if (Math.ceil(value * 1000000) < n + save.excavations)
+      console.log(value, Math.ceil(value * 1000000), n);
+      return Math.max(1, Math.ceil(value * 1000000) - n) + save.excavations;
+    },
+    display: function(value) {
+      return value + ' Excavation' + (value>1?'s':'') + ' (must excavate to this point with no eligible artifacts)';
+    }*/
   },
   {
     name: 'Duskstone',
