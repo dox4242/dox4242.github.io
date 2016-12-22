@@ -1,1 +1,1 @@
-It's a save editor.
+It edits things.
