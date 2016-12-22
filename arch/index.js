@@ -107,23 +107,6 @@
           }
         }
       });
-      /*this.chart = new CanvasJS.Chart('chartcontainer', {
-        title: {text: 'Upcoming Small RNG Values'},
-        axisX: {
-          title: 'Number of Values Away',
-          minimum: 0,
-          maximum: 10000
-        },
-        axisY: {
-          title: 'RNG Value',
-          minimum: 0,
-          maximum: 0.01
-        },
-        data: [{
-          type: 'scatter',
-          dataPoints: results.smalls
-        }]
-      });*/
       if ($("div.tab-pane.active").attr('id') == 'tab-raw') {
         this.chart.render();
         this.chart_rendered = true;
