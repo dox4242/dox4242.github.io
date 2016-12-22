@@ -3254,7 +3254,7 @@
       + '<th><span class="statname">{{name}}</span></th>'
       + '<td><input type="checkbox" v-model="unlocked" number></input></td>'
       + '<td><input type="checkbox" v-model="trophyU1" number></input></td>'
-      + '<td><input type="checkbox" v-model="trophyU2" number></input></td>'
+      + '<td><input v-model="trophyU2" number></input></td>'
       + '</tr>',
       computed: {
         unlocked: {
