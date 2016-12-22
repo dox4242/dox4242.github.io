@@ -18,6 +18,7 @@
 		crossorigin="anonymous"></script>
 	<script src='../lib/vue.js'></script>
 	<script>window.Vue || document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js" integrity="sha384-oyil/hbn4lE/VRhQytSipUwmWiTbzVK5S3a+wzVrgexPs+UrQ+e4xRatGDd8RNNE" crossorigin="anonymous">\x3C/script>')</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js" integrity="sha384-n0coGvWsD/djLiolh8NacrXbdjGodGbH6kuQLcwWZkPXicsUBF+5kp1qpH+TEAUg" crossorigin="anonymous"></script>
 
 	<script src='../lib/savecodec2.js'></script>
 	<script src='../lib/pmprng.js'></script>
@@ -84,27 +85,37 @@
 				</div>
 			</div>
 		</div>
-		<div class="alert alert-warning">
-			Note that some artifacts may be forecasted inaccurately after updates due to the complexity of their conditions. The most likely artifacts to be affected by this are the Demonic Figurine, Rotten Organ, Power Orb, and Glyph Table.</div>
-		<div>
-			<div class='results'>
-				<div class='resultblock'><span class='result'>Artifact RNG State: </span><span>{{result.state}}</span></div>
-				<div class='resultblock'><span class='result'>Current Excavations: </span><span>{{result.excavations}}</span></div>
-				<div class='resultblock'><span class='result'>Eligible Artifacts <a data-toggle='popover' data-trigger='hover' data-placement='bottom' data-content='This is the set of artifacts that will consume a value from the RNG when you excavate. It is possible for some artifacts to be eligible even if you cannot obtain them in your current abdication.'>(?)</a>: </span><span>{{eligible}}</span></div>
-				<div class='resultblock'><span class='result'>Unobtainable Eligible Artifacts: </span><span>{{unobtain}}</span></div>
-				<div class='resultblock'><span class='result'>Non-Random Artifacts: </span><span>{{nonrandom}}</span></div>
-				<!--<div class='resultblock'><span class='result'>Owned Artifacts: </span><span>{{owned}}</span></div>
-				<div class='resultblock'><span class='result'>Ineligible Artifacts: </span><span>{{ineligible}}</span></div>
-				<div class='resultblock'><span class='result'>Max Mana: </span><span>{{result.max_mana}}</span></div>
-				<div class='resultblock'><span class='result'>Assistants: </span><span>{{result.assistants}}</span></div>
-				<div class='resultblock'><span class='result'>RE Bonus: </span><span>{{result.re_bonus}}</span></div>-->
-				<br>
-				<div class='resultblock'><span class='result'>Upcoming Excavations: </span>
-					<ul v-for="excav in excavs", track-by="$index">
-						<li>{{excav}}</li>
-					</ul>
+    <ul class='nav nav-pills' role='tablist'>
+      <li class='active' role='presentation'>
+        <a href='#tab-artifact' aria-controls='Artifact Forecast' role='tab' data-toggle='pill'> Artifact Forecast </a>
+      </li>
+      <li role='presentation'>
+        <a href='#tab-raw' aria-controls='Small Values' role='tab' data-toggle='pill'> Small Values </a>
+      </li>
+    </ul>
+    <div class='tab-content'>
+    	<div role='tabpanel' class='tab-pane fade in active' id='tab-artifact'>
+				<div class="alert alert-warning">
+					Note that some artifacts may be forecasted inaccurately after updates due to the complexity of their conditions. The most likely artifacts to be affected by this are the Demonic Figurine, Rotten Organ, Power Orb, and Glyph Table.</div>
+				<div>
+					<div class='results'>
+						<div class='resultblock'><span class='result'>Artifact RNG State: </span><span>{{result.state}}</span></div>
+						<div class='resultblock'><span class='result'>Current Excavations: </span><span>{{result.excavations}}</span></div>
+						<div class='resultblock'><span class='result'>Eligible Artifacts <a data-toggle='popover' data-trigger='hover' data-placement='bottom' data-content='This is the set of artifacts that will consume a value from the RNG when you excavate. It is possible for some artifacts to be eligible even if you cannot obtain them in your current abdication.'>(?)</a>: </span><span>{{eligible}}</span></div>
+						<div class='resultblock'><span class='result'>Unobtainable Eligible Artifacts: </span><span>{{unobtain}}</span></div>
+						<div class='resultblock'><span class='result'>Non-Random Artifacts: </span><span>{{nonrandom}}</span></div>
+						<br>
+						<div class='resultblock'><span class='result'>Upcoming Excavations: </span>
+							<ul>
+								<li v-for="excav in excavs", track-by="$index">{{excav}}</li>
+							</ul>
+						</div>
+					</div>
 				</div>
 			</div>
+    	<div role='tabpanel' class='tab-pane fade in' id='tab-raw'>
+    		<div id='chartcontainer' style='width:100%'></div>
+    	</div>
 		</div>
 	</div>
 </body>

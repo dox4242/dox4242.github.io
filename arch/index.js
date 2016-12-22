@@ -56,9 +56,33 @@
 
       this.classifyArtifacts();
       View.excavs = [];
-      var excavs = this.forecastArtifacts();
-      for (var excav of excavs) {
+      var results = this.forecastArtifacts();
+      for (var excav of results.events) {
         View.excavs.push(renderExcav(excav));
+      }
+      this.chart = new CanvasJS.Chart('chartcontainer', {
+        title: {text: 'Upcoming Small RNG Values'},
+        axisX: {
+          title: 'Number of Values Away',
+          minimum: 0,
+          maximum: 10000
+        },
+        axisY: {
+          title: 'RNG Value',
+          minimum: 0,
+          maximum: 0.01
+        },
+        data: [{
+          type: 'scatter',
+          dataPoints: results.smalls
+        }]
+      });
+      if ($("div.tab-pane.active").attr('id') == 'tab-raw') {
+        this.chart.render();
+        this.chart_rendered = true;
+      }
+      else {
+        this.chart_rendered = false;
       }
     }
     this.forecastArtifacts = function() {
@@ -71,9 +95,10 @@
       var unobtain = {};
       for (var i of this.unobtain) unobtain[i] = true;
       var canignore = -this.unobtain.length;
-      //for (var i of eligible) if (i.random == 0) canignore += 1;
       var events = [];
       var num = util.save.stat(this.save, 35);
+      var smalls = [];
+      var raw_values = 0;
       while (remaining > 0) {
         excav += 1;
         num += 1;
@@ -85,6 +110,10 @@
             continue;
           }
           var val = rng.nextDouble();
+          if (raw_values < 10000) {
+            raw_values += 1;
+            if (val < 0.01) smalls.push({x: raw_values, y: val});
+          }
           if (unobtain[eligible[i].id]) continue;
           if (val < eligible[i].random) {
             excavation.push(['find', eligible[i]]);
@@ -112,7 +141,11 @@
           break;
         }
       }
-      return events;
+      while (raw_values < 10000) {
+        raw_values += 1;
+        if (val < 0.01) smalls.push({x: raw_values, y: val});
+      }
+      return {events: events, smalls: smalls};
     }
     this.classifyArtifacts = function() {
       View.raw.owned = [];
@@ -246,7 +279,14 @@
     $('#doSaveClear').on('click', function(e) {
       $('#saveInput').val('').trigger('focus');
     });
-    
+
+    $('a[data-toggle="pill"]').on('shown.bs.tab', function (e) {
+      var target = $(e.target).attr("href"); // activated tab
+      if (Controller.chart && !Controller.chart_rendered) {
+        Controller.chart.render();
+        Controller.chart_rendered = true;
+      }
+    });
   });
   
 } (window, document, jQuery));
