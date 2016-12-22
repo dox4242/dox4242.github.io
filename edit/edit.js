@@ -3239,7 +3239,8 @@
       template: '<tr>'
       + '<th><span class="statheader">Name</span></th>'
       + '<th><span class="statheader">Owned</span></th>'
-      //+ '<th><span class="statheader">u1 Boolean</span></th>'
+      + '<th><span class="statheader">u1 Boolean</span></th>'
+      + '<th><span class="statheader">u2 Byte</span></th>'
       + '</tr>'
     });
 
@@ -3252,7 +3253,8 @@
       template: '<tr>'
       + '<th><span class="statname">{{name}}</span></th>'
       + '<td><input type="checkbox" v-model="unlocked" number></input></td>'
-      //+ '<td><input type="checkbox" v-model="trophyU1" number></input></td>'
+      + '<td><input type="checkbox" v-model="trophyU1" number></input></td>'
+      + '<td><input type="checkbox" v-model="trophyU2" number></input></td>'
       + '</tr>',
       computed: {
         unlocked: {
@@ -3262,7 +3264,7 @@
           },
           set: function() {
             if (this.unlocked) { delete this.trophies[Number(this.id)]; }
-            else { this.trophies[Number(this.id)] = {_id: Number(this.id), u1: false}; }
+            else { this.trophies[Number(this.id)] = {_id: Number(this.id), u1: false, u2: 0}; }
           }
         },
         trophyU1: {
@@ -3270,7 +3272,15 @@
             return this.unlocked && this.trophies[Number(this.id)].u1;
           },
           set: function(x) {
-            if (this.unlocked) { this.trophies[Number(this.id)] = [x]; }
+            if (this.unlocked) { this.trophies[Number(this.id)].u1 = [x]; }
+          }
+        },
+        trophyU2: {
+          get: function() {
+            return this.unlocked && this.trophies[Number(this.id)].u2;
+          },
+          set: function(x) {
+            if (this.unlocked) { this.trophies[Number(this.id)].u2 = [x]; }
           }
         }
       }
