@@ -11,7 +11,8 @@
       fail: artifact.fail,
       notry: artifact.notry,
       required: artifact.required,
-      display: artifact.display
+      display: artifact.display,
+      nocache: artifact.nocache
     };
   }
 
@@ -97,12 +98,13 @@
             if (val < 0.01) smalls.push({x: raw_values, y: val});
           }
           if (unobtain[eligible[i].id]) continue;
-          if (val < eligible[i].random) {
+          var random = eligible[i].nocache ? eligible[i].random(this.save, excav) : eligible[i].random;
+          if (val < random) {
             excavation.push(['find', eligible[i]]);
             eligible[i].finished = true;
             remaining -= 1;
           } else if (eligible[i].required) {
-            var req = eligible[i].required(val, this.save);
+            var req = eligible[i].required(val, this.save, excav);
             if (eligible[i].lastreq == null || req < eligible[i].lastreq) {
               eligible[i].lastreq = req;
               excavation.push(['improve', req, eligible[i]]);
@@ -149,7 +151,7 @@
         else if ((!artifact.fixed || artifact.fixed(this.save)) && (!artifact.fail || !artifact.fail(this.save))) {
           if (artifact.random) {
             artifact = artifactCopy(artifact);
-            artifact.random = artifact.random(this.save);
+            if (!artifact.nocache) artifact.random = artifact.random(this.save);
             this.eligible.push(artifact);
             var name = artifact.name;
             if (excav < artifact.excav) name += ' (after ' + artifact.excav + ')';
