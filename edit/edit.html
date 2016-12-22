@@ -366,6 +366,7 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=106 name='Spellfury Secret Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=110 name='Unlimited Mana Secret Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=173 name='Mana Matrix Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=231 name='Mana Waste Secret Trophy'></tr>
           </table>
         </div>
       </div>
@@ -471,6 +472,7 @@
           <table class='table'>
             <tr is='widget-fivestat-header'></tr>
             <tr is='widget-field' :field.sync='save.artifactRngState' can-edit :colspan='5' name='Artifact RNG State (best value: 1407677000)'></tr>
+            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='artifacts' :colspan='5' name='Artifacts Trophy Series'></tr>
             <tr is='widget-field' :field.sync='save.excavations' can-edit :colspan='5' name='Current Excavations'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[35]' name='Excavations'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[36]' name='Excavation Reports?'></tr>
@@ -508,10 +510,15 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=132 name='Bottled Voice Lore Artifact'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=133 name='Ceremonial Dagger Lore Artifact'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=120 name='Chocolate Cookie Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=233 name='Dawnstone Lore Artifact'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=140 name='Demon Horn Lore Artifact'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=134 name='Demonic Figurine Lore Artifact'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=135 name='Divine Sword Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=229 name='Dragon Fang Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=230 name='Dragon Soul Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=234 name='Duskstone Lore Artifact'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=136 name='Dwarven Bow Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=215 name='Fortune Teller Machine Lore Artifact'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=137 name='Fossilized Rodent Lore Artifact'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=138 name='Glyph Table Lore Artifact'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=139 name='Goblin Purse Lore Artifact'></tr>
@@ -535,7 +542,6 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=179 name='Vanilla Flavor Juice Lore Artifact'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=187 name='Voodoo Doll Lore Artifact'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=177 name='Wall Fragment Lore Artifact'></tr>
-            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='artifacts' :colspan='5' name='Artifacts Trophy Series'></tr>
           </table>
         </div>
       </div>
@@ -583,8 +589,15 @@
             <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=572 name='Drow 3: Sorcerers Pact'></tr>
             <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=573 name='Drow 4: Trained Assassins'></tr>
             <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=574 name='Drow 5: Shadow Mirage'></tr>
+            <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=637 name='Dragon 1: Sky Monarch'></tr>
+            <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=638 name='Dragon 2: Barkscales'></tr>
+            <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=639 name='Dragon 3: Serpent Queller'></tr>
+            <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=640 name='Dragon 4: Draconstellation'></tr>
+            <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=641 name='Dragon 5: Ancient Incantation'></tr>
+            <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=642 name='Dragon 6: Dracomet Vault'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=113 name='Vanilla Challenger Secret Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=169 name='Neutral Challenger Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=197 name='Prestige Challenger Secret Trophy'></tr>
           </table>
         </div>
       </div>
@@ -592,6 +605,21 @@
       <div role='tabpanel' class='tab-pane fade' id='tab-research'>
         <div class='panel panel-default'>
           <table class='table'>
+            <tr is='widget-fivestat-header'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[90]' name='Spellcraft Level'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[91]' name='Craftsmanship Level'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[92]' name='Divine Level'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[93]' name='Economics Level'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[94]' name='Alchemy Level'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[95]' name='Warfare Level'></tr>
+            <tr><td><b>Miracle streak</b></td>
+            <template v-if="miracleAvail == 'True'"><td><select v-model="miracleinput">
+            <option v-for="name in currentbuildingsM">{{ name }}</option></select> {{ miraclemsg }}</td></template>
+            <template v-else><td>D400 not purchased or not enough targets</td></template></tr>
+            <tr is='widget-field-dropdown' :field.sync='save.miracleTier' type='bTiers' :colspan='5' name='Current Miracle Tier Target'></tr>
+            <tr is='widget-field' :field.sync='save.miracleTimer' can-edit :colspan='5' name='Miracle Effect Timer (max 120)'></tr>
+            <tr is='widget-research-upgrades-header'></tr>
+            <tr is='widget-research-upgrades' :upgrades.sync='upgradesArray'></tr>
             <tr is='widget-trophy-header'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=59 :colspan='5' name='Fairy Unique Building Unlock Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=58 :colspan='5' name='Elven Unique Building Unlock Trophy'></tr>
@@ -617,21 +645,8 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=121 name='Ancient Researcher Secret Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=188 name='Expert Researcher Secret Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=189 name='Underworld Researcher Secret Trophy'></tr>
-            <tr is='widget-fivestat-header'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[90]' name='Spellcraft Level'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[91]' name='Craftsmanship Level'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[92]' name='Divine Level'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[93]' name='Economics Level'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[94]' name='Alchemy Level'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[95]' name='Warfare Level'></tr>
-            <tr><td><b>Miracle streak</b></td>
-            <template v-if="miracleAvail == 'True'"><td><select v-model="miracleinput">
-            <option v-for="name in currentbuildingsM">{{ name }}</option></select> {{ miraclemsg }}</td></template>
-            <template v-else><td>D400 not purchased or not enough targets</td></template></tr>
-            <tr is='widget-field-dropdown' :field.sync='save.miracleTier' type='bTiers' :colspan='5' name='Current Miracle Tier Target'></tr>
-            <tr is='widget-field' :field.sync='save.miracleTimer' can-edit :colspan='5' name='Miracle Effect Timer (max 120)'></tr>
-            <tr is='widget-research-upgrades-header'></tr>
-            <tr is='widget-research-upgrades' :upgrades.sync='upgradesArray'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=227 name='Eternal Researcher Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=228 name='Master Researcher Secret Trophy'></tr>
           </table>
         </div>
       </div>
@@ -639,6 +654,7 @@
         <div class='panel panel-default'>
           <table class='table'>
             <tr is='widget-onestat-header'></tr>
+            <tr is='widget-trophy-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='spellTiers' :colspan='5' name='Spell Tiers Series'></tr>
             <tr is='widget-spell-tiers' :spell.sync='save.spells[i.id]' :name='i.name' v-for='i in spells'></tr>
          </table>
         </div>
