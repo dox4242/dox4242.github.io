@@ -630,7 +630,7 @@ var Artifacts = [
     id: 233,
     fixed: function(save) {
       var h = new Date().getHours();
-      return save.reincarnation >= 50 && save.prestigeFaction == 12 && h >= 5 && h <= 7 && util.save.upgrade_owned(save,469);
+      return h >= 5 && h <= 7 && util.save.upgrade_owned(save,469);
     },
     random: function(save) {
       return save.excavations / 1000000;
@@ -641,7 +641,7 @@ var Artifacts = [
     id: 234,
     fixed: function(save) {
       var h = new Date().getHours();
-      return save.reincarnation >= 50 && save.prestigeFaction == 12 && h >= 18 && h <= 20 && util.save.upgrade_owned(save,469);
+      return h >= 18 && h <= 20 && util.save.upgrade_owned(save,469);
     },
     random: function(save) {
       return save.excavations / 1000000;
