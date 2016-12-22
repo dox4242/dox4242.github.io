@@ -594,6 +594,21 @@
       <div role='tabpanel' class='tab-pane fade' id='tab-research'>
         <div class='panel panel-default'>
           <table class='table'>
+            <tr is='widget-fivestat-header'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[90]' name='Spellcraft Level'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[91]' name='Craftsmanship Level'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[92]' name='Divine Level'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[93]' name='Economics Level'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[94]' name='Alchemy Level'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[95]' name='Warfare Level'></tr>
+            <tr><td><b>Miracle streak</b></td>
+            <template v-if="miracleAvail == 'True'"><td><select v-model="miracleinput">
+            <option v-for="name in currentbuildingsM">{{ name }}</option></select> {{ miraclemsg }}</td></template>
+            <template v-else><td>D400 not purchased or not enough targets</td></template></tr>
+            <tr is='widget-field-dropdown' :field.sync='save.miracleTier' type='bTiers' :colspan='5' name='Current Miracle Tier Target'></tr>
+            <tr is='widget-field' :field.sync='save.miracleTimer' can-edit :colspan='5' name='Miracle Effect Timer (max 120)'></tr>
+            <tr is='widget-research-upgrades-header'></tr>
+            <tr is='widget-research-upgrades' :upgrades.sync='upgradesArray'></tr>
             <tr is='widget-trophy-header'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=59 :colspan='5' name='Fairy Unique Building Unlock Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=58 :colspan='5' name='Elven Unique Building Unlock Trophy'></tr>
@@ -621,21 +636,6 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=189 name='Underworld Researcher Secret Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=227 name='Eternal Researcher Secret Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=228 name='Master Researcher Secret Trophy'></tr>
-            <tr is='widget-fivestat-header'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[90]' name='Spellcraft Level'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[91]' name='Craftsmanship Level'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[92]' name='Divine Level'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[93]' name='Economics Level'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[94]' name='Alchemy Level'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[95]' name='Warfare Level'></tr>
-            <tr><td><b>Miracle streak</b></td>
-            <template v-if="miracleAvail == 'True'"><td><select v-model="miracleinput">
-            <option v-for="name in currentbuildingsM">{{ name }}</option></select> {{ miraclemsg }}</td></template>
-            <template v-else><td>D400 not purchased or not enough targets</td></template></tr>
-            <tr is='widget-field-dropdown' :field.sync='save.miracleTier' type='bTiers' :colspan='5' name='Current Miracle Tier Target'></tr>
-            <tr is='widget-field' :field.sync='save.miracleTimer' can-edit :colspan='5' name='Miracle Effect Timer (max 120)'></tr>
-            <tr is='widget-research-upgrades-header'></tr>
-            <tr is='widget-research-upgrades' :upgrades.sync='upgradesArray'></tr>
           </table>
         </div>
       </div>
