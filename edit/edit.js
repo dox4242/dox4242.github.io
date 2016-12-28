@@ -403,36 +403,36 @@
       computed: {
     	owned: {
           get: function() {
-            if (this.upgrades[Number(this.id)]) { return true; }
+            if (this.upgrades[this.id]) { return true; }
             else { return false; }
       	  },
           set: function() {
-            if (this.owned) { delete this.upgades[Number(this.id)]; }
-            else { this.upgrades[Number(this.id)] = {_id: Number(this.id), u1: false, u2: false, u3: false, s: 0}; }
+            if (this.owned) { delete this.upgades[this.id]; }
+            else { this.upgrades[this.id] = {_id: this.id, u1: false, u2: false, u3: false, s: 0}; }
           }
         },
     	upgradeU1: {
           get: function() {
-    	    return this.unlocked && this.upgrades[Number(this.id)].u1;
+    	    return this.unlocked && this.upgrades[this.id].u1;
           },
           set: function(x) {
-            if (this.unlocked) { this.upgrades[Number(this.id)] = [x]; }
+            if (this.unlocked) { this.upgrades[this.id] = [x]; }
           }
     	},
     	upgradeU3: {
           get: function() {
-    	    return this.unlocked && this.upgrades[Number(this.id)].u3;
+    	    return this.unlocked && this.upgrades[this.id].u3;
           },
           set: function(x) {
-            if (this.unlocked) { this.upgrades[Number(this.id)] = [x]; }
+            if (this.unlocked) { this.upgrades[this.id] = [x]; }
           }
     	},
     	upgradeRNGstate: {
           get: function() {
-    	    return this.unlocked && this.upgrades[Number(this.id)].s;
+    	    return this.unlocked && this.upgrades[this.id].s;
           },
           set: function(x) {
-            if (this.unlocked) { this.upgrades[Number(this.id)] = [x]; }
+            if (this.unlocked) { this.upgrades[this.id] = [x]; }
           }
     	}
       }
@@ -458,12 +458,12 @@
       computed: {
     	unlocked: {
           get: function() {
-            if (this.upgrades[Number(this.id)]) { return true; }
+            if (this.upgrades[this.id]) { return true; }
             else { return false; }
       	  },
           set: function() {
-            if (this.unlocked) { delete this.upgades[Number(this.id)]; }
-            else { this.upgrades[Number(this.id)] = {_id: Number(this.id), u1: false, u2: false, u3: false, s: 0}; }
+            if (this.unlocked) { delete this.upgades[this.id]; }
+            else { this.upgrades[this.id] = {_id: this.id, u1: false, u2: false, u3: false, s: 0}; }
           }
         }
       }
@@ -3234,7 +3234,6 @@
       template: '<tr>'
       + '<th><span class="statheader">Name</span></th>'
       + '<th><span class="statheader">Owned</span></th>'
-      //+ '<th><span class="statheader">u1 Boolean</span></th>'
       + '</tr>'
     });
 
@@ -3242,8 +3241,8 @@
       template: '<tr>'
       + '<th><span class="statheader">Name</span></th>'
       + '<th><span class="statheader">Owned</span></th>'
-      + '<th><span class="statheader">u1 Boolean</span></th>'
-      + '<th><span class="statheader">u2 Byte</span></th>'
+      + '<th><span class="statheader">Completed (this year)</span></th>'
+      + '<th><span class="statheader">Completed (total)</span></th>'
       + '</tr>'
     });
 
@@ -3261,20 +3260,20 @@
       computed: {
         unlocked: {
           get: function() {
-            if (this.trophies[Number(this.id)]) { return true; }
+            if (this.trophies[this.id]) { return true; }
             else { return false; }
           },
-          set: function() {
-            if (this.unlocked) { delete this.trophies[Number(this.id)]; }
-            else { this.trophies[Number(this.id)] = {_id: Number(this.id), u1: false}; }
+          set: function(x) {
+            if (this.unlocked && !x) { delete this.trophies[this.id]; }
+            else if (!this.unlocked && x) { this.trophies[this.id] = {_id: this.id, u1: false}; }
           }
         },
         trophyU1: {
           get: function() {
-            return this.unlocked && this.trophies[Number(this.id)].u1;
+            return this.unlocked && this.trophies[this.id].u1;
           },
           set: function(x) {
-            if (this.unlocked) { this.trophies[Number(this.id)] = [x]; }
+            if (this.unlocked) { this.trophies[this.id] = [x]; }
           }
         }
       }
@@ -3295,28 +3294,28 @@
       computed: {
         unlocked: {
           get: function() {
-            if (this.trophies[Number(this.id)]) { return true; }
+            if (this.trophies[this.id]) { return true; }
             else { return false; }
           },
-          set: function() {
-            if (this.unlocked) { delete this.trophies[Number(this.id)]; }
-            else { this.trophies[Number(this.id)] = {_id: Number(this.id), u1: false}; }
+          set: function(x) {
+            if (this.unlocked && !x) { delete this.trophies[this.id]; }
+            else if (!this.unlocked && x) { this.trophies[this.id] = {_id: this.id, u1: false, u2: 0}; }
           }
         },
         trophyU1: {
           get: function() {
-            return this.unlocked && this.trophies[Number(this.id)].u1;
+            return this.unlocked && this.trophies[this.id].u1;
           },
           set: function(x) {
-            if (this.unlocked) { this.trophies[Number(this.id)] = [x]; }
+            if (this.unlocked) { this.trophies[this.id] = [x]; }
           }
         },
         trophyU2: {
           get: function() {
-            return this.unlocked && this.trophies[Number(this.id)].u2;
+            return this.unlocked && this.trophies[this.id].u2;
           },
           set: function(x) {
-            if (this.unlocked) { this.trophies[Number(this.id)] = [x]; }
+            if (this.unlocked) { this.trophies[this.id] = [x]; }
           }
         }
       }
