@@ -24,16 +24,7 @@
     purchaseUpgrade: [105500, 105501, 105502, 105503, 105504, 105505, 105506, 105507, 105508, 105509, 105510],
     spendMana: [111200, 111201, 111202, 111203, 111204, 111205, 111206, 111207, 111208, 111209],
     gainRubies: [116200, 116201, 116202, 116203],
-    giftCollector: [116700, 116701, 116702, 116703],
-    snowpile: [116800, 116801, 116802, 116803],
     artifacts: [117000, 117001, 117002, 117003, 117004, 117005],
-    feelTheLove: [117600, 117601, 117602],
-    eggHunter: [119500, 119501, 119502, 119503],
-    eggCollection: [119600, 119601, 119602, 119603],
-    summerChamp: [120800, 120801, 120802],
-    winterChamp: [120900, 120901, 120902],
-    monsterBreeder: [122400, 122401, 122402],
-    pumpkinSmasher: [122500, 122501, 122502, 122503],
     spellTiers: [123200, 123201, 123202, 123203],
     buildFarmsTrophies: [102300, 102301, 102302, 102303, 102304, 102305, 102306, 102307, 102308, 102309, 102310, 102311, 102312, 102313, 102314, 102315, 102316, 102317, 102318, 102319],
     buildInnsTrophies: [102700, 102701, 102702, 102703, 102704, 102705, 102706, 102707, 102708, 102709, 102710, 102711, 102712, 102713, 102714, 102715, 102716, 102717, 102718, 102719],
@@ -3247,6 +3238,15 @@
       + '</tr>'
     });
 
+    Vue.component('widget-event-trophy-header', {
+      template: '<tr>'
+      + '<th><span class="statheader">Name</span></th>'
+      + '<th><span class="statheader">Owned</span></th>'
+      + '<th><span class="statheader">u1 Boolean</span></th>'
+      + '<th><span class="statheader">u2 Byte</span></th>'
+      + '</tr>'
+    });
+
     Vue.component('widget-trophy', {
       props: {
         'trophies': Object,
@@ -3272,6 +3272,48 @@
         trophyU1: {
           get: function() {
             return this.unlocked && this.trophies[Number(this.id)].u1;
+          },
+          set: function(x) {
+            if (this.unlocked) { this.trophies[Number(this.id)] = [x]; }
+          }
+        }
+      }
+    });
+
+    Vue.component('widget-event-trophy', {
+      props: {
+        'trophies': Object,
+        'name': String,
+        'id': String
+      },
+      template: '<tr>'
+      + '<th><span class="statname">{{name}}</span></th>'
+      + '<td><input type="checkbox" v-model="unlocked" number></input></td>'
+      + '<td><input type="checkbox" v-model="trophyU1" number></input></td>'
+      + '<td><input v-model="trophyU2" number></input></td>'
+      + '</tr>',
+      computed: {
+        unlocked: {
+          get: function() {
+            if (this.trophies[Number(this.id)]) { return true; }
+            else { return false; }
+          },
+          set: function() {
+            if (this.unlocked) { delete this.trophies[Number(this.id)]; }
+            else { this.trophies[Number(this.id)] = {_id: Number(this.id), u1: false}; }
+          }
+        },
+        trophyU1: {
+          get: function() {
+            return this.unlocked && this.trophies[Number(this.id)].u1;
+          },
+          set: function(x) {
+            if (this.unlocked) { this.trophies[Number(this.id)] = [x]; }
+          }
+        },
+        trophyU2: {
+          get: function() {
+            return this.unlocked && this.trophies[Number(this.id)].u2;
           },
           set: function(x) {
             if (this.unlocked) { this.trophies[Number(this.id)] = [x]; }
