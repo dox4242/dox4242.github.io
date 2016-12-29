@@ -5,11 +5,12 @@
 		// A list of all building names in ID'ed order
 		var buildingNames = util.save.building_names;
 		var buildingIds = util.save.building_ids;
-		
 		var buildingsOwned = [];
 		var buildingsHighlighted = [ [], [] ];
+        var breathNames = ['Red', 'Green', 'Blue', 'Black', 'White']
 		var lightningRNG = null;
 		var miracleRNG = null;
+        var breathRNG = null;
 		
 		// Refresh the entire forecast
 		var forecast = function(saveStr) {
@@ -17,7 +18,8 @@
 			buildingsHighlighted = [ [], [] ];
 			lightningRNG = null;
 			miracleRNG = null;
-			$('#lightningMessage, #lightningForecast, #miracleMessage, #miracleForecast').html('');
+            breathRNG = null;
+			$('#lightningMessage, #lightningForecast, #miracleMessage, #miracleForecast, #breathMessage, #breathForecast').html('');
 			
 			var save = SaveHandler.Decode(saveStr);
 			window.decoded = save;
@@ -37,6 +39,7 @@
 			
 			forecastLightning(save, buildingsOwned);
 			forecastMiracle(save, buildingsOwned);
+            forecastBreath(save);
 		};
 		
 		// Add the Lightning forecast
@@ -112,6 +115,33 @@
 			forecastMiracleMore();
 		};
 		
+		// Add the Breath forecast
+		var forecastBreath = function(save) {
+			var breathMessage = '';
+			var breathForecast = '';
+			
+			// Check if the save actually has Dragons Breath to forecast
+			if (!(save.prestigeFaction == 12 || save.mercSpell1 == 21 || save.mercSpell2 == 21)) {
+				breathMessage = 'You don\'t have Dragon\'s Breath.';
+				breathForecast = 'No Dragon\'s Breath.';
+			}
+			
+			// Early exit
+			if (breathMessage != '' || breathForecast != '') {
+				$('#breathMessage').html('<b>Dragon\'s Breath</b><br>').append(breathMessage);
+				$('#breathForecast').html('<b>Forecast</b><br>').append(breathForecast);
+				return;
+			}
+			
+			// Create the RNG and get the initial forecast
+			breathRNG = new PM_PRNG(save.spells[21].s);
+			$('#breathMessage').html('<b>Dragon\'s Breath</b><br>Your RNG state is: ' + breathRNG.state + '.');
+			$('#breathForecast').html('<b>Forecast</b><br><ol></ol>')
+				.append($('<button class="btn btn-link" type="button" />').html('Give me a longer Forecast').on('click', forecastBreathMore));
+			
+			forecastBreathMore();
+		};
+		
 		// Add Lightning forecast hits
 		var forecastLightningMore = function(e) {
 			if (buildingsOwned.length > 0 && lightningRNG)
@@ -152,6 +182,17 @@
 					$('#miracleForecast > ol > li.tier' + tier).removeClass('highlight');
 		};
 		
+		// Add Breath forecast hits
+		var forecastBreathMore = function(e) {
+			if (breathRNG)
+				for (var i = 0; i < 10; i++) {
+					var len = breathNames.length;
+					var tier = breathRNG.strikeTier(len);
+					var hit = breathNames[tier];
+					var li = $('<li />').html(hit).addClass('tier' + tier).data('tier', tier);
+					$('#breathForecast > ol').append(li);
+				}
+		};
 		
 		$(function() {
 			
@@ -198,6 +239,7 @@
 				if (delta == -1 && ($(window).scrollTop() + $(window).height() >= $(document).height())) {
 					forecastLightningMore();
 					forecastMiracleMore();
+					forecastBreathMore();
 				}
 			});
 			
