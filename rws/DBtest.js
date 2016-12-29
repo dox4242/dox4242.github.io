@@ -7,10 +7,10 @@
 		var buildingIds = util.save.building_ids;
 		var buildingsOwned = [];
 		var buildingsHighlighted = [ [], [] ];
-        var breathNames = ['Red', 'Green', 'Blue', 'White', 'Black']
+		var breathNames = ['Red', 'Green', 'Blue', 'Black', 'White']
 		var lightningRNG = null;
 		var miracleRNG = null;
-        var breathRNG = null;
+		var breathRNG = null;
 		
 		// Refresh the entire forecast
 		var forecast = function(saveStr) {
@@ -18,7 +18,7 @@
 			buildingsHighlighted = [ [], [] ];
 			lightningRNG = null;
 			miracleRNG = null;
-            breathRNG = null;
+			breathRNG = null;
 			$('#lightningMessage, #lightningForecast, #miracleMessage, #miracleForecast, #breathMessage, #breathForecast').html('');
 			
 			var save = SaveHandler.Decode(saveStr);
@@ -39,7 +39,7 @@
 			
 			forecastLightning(save, buildingsOwned);
 			forecastMiracle(save, buildingsOwned);
-            forecastBreath(save);
+			forecastBreath(save);
 		};
 		
 		// Add the Lightning forecast
