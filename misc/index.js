@@ -26,7 +26,7 @@
         if (s.name == 'Hailstorm') continue;
         if (s.name == 'Heatwave') continue;
         var spell = {name: s.name, id: s.id, unlocked: 0, owned: 0};
-        var start = 400000 + s.id * 100 + 1;
+        var start = 400001 + s.id * 100;
         for (var i = start; i < start + 4; i++) {
           if (save.upgrades[i]) {
             spell.unlocked += 1;
