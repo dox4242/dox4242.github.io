@@ -3288,7 +3288,7 @@
       template: '<tr>'
       + '<th><span class="statname">{{name}}</span></th>'
       + '<td><input type="checkbox" v-model="unlocked" number></input></td>'
-      + '<td><input type="checkbox" v-model="trophyU1" disabled></input></td>'
+      + '<td><input type="checkbox" v-model="trophyU1"g disabled></input></td>'
       + '<td><input v-model="trophyU2" number></input></td>'
       + '</tr>',
       computed: {
@@ -3312,7 +3312,7 @@
         },
         trophyU2: {
           get: function() {
-            return this.unlocked && this.trophies[this.id].u2;
+            return this.unlocked?this.trophies[this.id].u2:0;
           },
           set: function(x) {
             if (this.unlocked) { this.trophies[this.id].u2 = [x]; }
