@@ -3307,7 +3307,7 @@
             return this.unlocked && this.trophies[this.id].u1;
           },
           set: function(x) {
-            if (this.unlocked) { this.trophies[this.id] = [x]; }
+            if (this.unlocked) { this.trophies[this.id].u1 = [x]; }
           }
         },
         trophyU2: {
@@ -3315,7 +3315,7 @@
             return this.unlocked && this.trophies[this.id].u2;
           },
           set: function(x) {
-            if (this.unlocked) { this.trophies[this.id] = [x]; }
+            if (this.unlocked) { this.trophies[this.id].u2 = [x]; }
           }
         }
       }
