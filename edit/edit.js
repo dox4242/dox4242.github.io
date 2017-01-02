@@ -3298,24 +3298,32 @@
             else { return false; }
           },
           set: function(x) {
-            if (this.unlocked && !x) { delete this.trophies[this.id]; }
-            else if (!this.unlocked && x) { this.trophies[this.id] = {_id: this.id, u1: false, u2: 0}; }
+            if (this.trophies[this.id] && !x) { 
+              this.trophyU2 = 0;
+              delete this.trophies[this.id];
+            }
+            else if (!this.trophies[this.id] && x) {
+              Vue.set(View.save.trophies, this.id, {_id: this.id, u1: false, u2: 0});
+            }
           }
         },
         trophyU1: {
           get: function() {
-            return this.unlocked && this.trophies[this.id].u1;
+            return this.trophies[this.id] && this.trophies[this.id].u1;
           },
           set: function(x) {
-            if (this.unlocked) { this.trophies[this.id].u1 = [x]; }
+            if (this.trophies[this.id]) { this.trophies[this.id].u1 = x; }
           }
         },
         trophyU2: {
           get: function() {
-            return this.unlocked?this.trophies[this.id].u2:0;
+            return this.trophies[this.id]?this.trophies[this.id].u2:0;
           },
           set: function(x) {
-            if (this.unlocked) { this.trophies[this.id].u2 = [x]; }
+            if (!this.trophies[this.id] && x > 0) {
+              this.unlocked = true;
+            }
+            this.trophies[this.id].u2 = x;
           }
         }
       }
