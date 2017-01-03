@@ -53,8 +53,32 @@
     buildHallsOfLegendsTrophies: [102400, 102401, 102402, 102403, 102404, 102405, 102406, 102407, 102408, 102409, 102410, 102411, 102412, 102413, 102414, 102415, 102416, 102417, 102418, 102419]
   };
   
+  var upgradeIDs = {
+    ctaTiers: [400301, 400302, 400303, 400304],
+    hlTiers: [401201, 401202, 401203, 401204],
+    fcTiers: [400601, 400602, 400603, 400604],
+    mbTiers: [401401, 401402, 401403, 401404],
+    ghTiers: [400901, 400902, 400903, 400904],
+    bfTiers: [400101, 400102, 400103, 400104],
+    gbgTiers: [400801, 400802, 400803, 400804],
+    ntTiers: [401501, 401502, 401503, 401504],
+    hbTiers: [401101, 401102, 401103, 401104],
+    gmgTiers: [400701, 400702, 400703, 400704],
+    lsTiers: [401301, 401302, 401303, 401304],
+    gbTiers: [401001, 401002, 401003, 401004],
+    bwTiers: [400201, 400202, 400203, 400204],
+    dpTiers: [400501, 400502, 400503, 400504],
+    csTiers: [400401, 400402, 400403, 400404],
+    ssTiers: [402101, 402102, 402103, 402104],
+    dbTiers: [401701, 401702, 401703, 401704]
+  };
+  
   for (var x in trophyIDs) {
     dropdownFilter[x] = trophyIDs[x];
+  }
+
+  for (var x in upgradeIDs) {
+    dropdownFilter[x] = upgradeIDs[x];
   }
 
   for (var i in dropdownFilter) {
@@ -228,16 +252,51 @@
       + '</tr>'
     });
     
-    Vue.component('widget-spell-tiers', {
-      props: ['spell', 'name'],
+    Vue.component('widget-spell-tiers-dropdown', {
+      props: {
+        'upgrades': Object,
+        'name': String,
+        'type': String,
+        'filter': String
+      },
       template: '<tr>'
-      + '<th><span class="statname">{{name}} Tiers Bought</span></th>'
-      + '<td><input v-model="spell.tierstat1" number></input></td>'
-      + '</tr>'
-      + '<tr>'
-      + '<th><span class="statname">{{name}} Tier Autocasting Level</span></th>'
-      + '<td><input v-model="spell.tierstat2" number></input></td>'
-      + '</tr>'
+      + '<th><span class="statname">{{name}}</span></th>'
+      + '<td><select v-model="unlocked" number>'
+      + '<option :disabled="option.disabled" :value="option.id" v-for="option in options">{{option.name}}</option>'
+      + '</select></td>'
+      + '</tr>',
+      computed: {
+        unlocked: {
+          get: function() {
+            for (var i = this.options.length-2; i >= 0; i--) {
+              if (this.upgrades[upgradeIDs[this.filter][i]]) { return upgradeIDs[this.filter][i]; }
+            }
+            return -1;
+          },
+          set: function(x) {
+            for (var i = 0; i < this.options.length-1; i++) {
+              var uid = upgradeIDs[this.filter][i];
+              if (!this.upgrades[uid]) {
+                this.upgrades[uid] = {_id:uid, u1:false};
+              } else {
+                if (this.upgrades[uid]) delete this.upgrades[uid];
+              }
+            }
+          }
+        },
+        options: function() {
+          var opts = [{id:-1, name:'None'}];
+          for (var i of util.assoc[this.type]) {
+            if (this.filter && !dropdownFilter[this.filter][i.id]) continue;
+            opts.push({
+              id: i.id,
+              name: i.name,
+              //disabled: this.filter && !dropdownFilter[this.filter][i.id]
+            });
+          }
+          return opts;
+        }
+      }
     });
 
     Vue.component('widget-stat', {
