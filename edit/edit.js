@@ -466,7 +466,7 @@
             else { return false; }
       	  },
           set: function() {
-            if (this.owned) { delete this.upgades[this.id]; }
+            if (this.owned) { delete this.upgrades[this.id]; }
             else { this.upgrades[this.id] = {_id: this.id, u1: false, u2: false, u3: false, s: 0}; }
           }
         },
@@ -520,9 +520,11 @@
             if (this.upgrades[this.id]) { return true; }
             else { return false; }
       	  },
-          set: function() {
-            if (this.unlocked) { delete this.upgades[this.id]; }
-            else { this.upgrades[this.id] = {_id: this.id, u1: false, u2: false, u3: false, s: 0}; }
+          set: function(x) {
+            if (this.upgrades[this.id] && !x) { delete this.upgrades[this.id]; }
+            else if (!this.upgrades[this.id] && x) { 
+              Vue.set(View.save.upgrades, this.id, {_id: this.id, u1: true, u2: false, u3: false, s: 0}); 
+            }
           }
         }
       }
