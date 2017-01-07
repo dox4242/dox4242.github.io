@@ -3562,6 +3562,16 @@
           set: function(x) {
             this.save.trophies[x] = [true];
           }
+        },
+        lsJoke: {
+          get: function() {
+            return (localStorage.lsJoke == undefined || localStorage.lsJoke == 'true');
+          },
+          set: function(x) {
+            console.log(x);
+            localStorage.lsJoke = x;
+            console.log(localStorage.lsJoke);
+          }
         }
       }
     });
