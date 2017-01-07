@@ -276,7 +276,7 @@
           set: function(x) {
             for (var i = 0; i < this.options.length-1; i++) {
               var uid = upgradeIDs[this.filter][i];
-              if (!this.upgrades[uid]) {
+              if (uid <= x) {
                 this.upgrades[uid] = {_id:uid, u1:false, u3: true};
               } else {
                 if (this.upgrades[uid]) delete this.upgrades[uid];
