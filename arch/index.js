@@ -12,7 +12,8 @@
       notry: artifact.notry,
       required: artifact.required,
       display: artifact.display,
-      nocache: artifact.nocache
+      nocache: artifact.nocache,
+      precheck: artifact.precheck
     };
   }
 
@@ -139,16 +140,20 @@
       View.raw.nonrandom = [];
       View.raw.ineligible = [];
       var excav = this.save.excavations;
+      var num = util.save.stat(this.save, 35);
 
       this.eligible = [];
       this.unobtain = [];
       this.nonrandom = [];
 
       for (var artifact of Artifacts) {
+        var fixed = (!artifact.fixed || artifact.fixed(this.save));
+        var fail = (!artifact.fail || !artifact.fail(this.save, num + 1));
+        var eligible = (artifact.precheck ? artifact.precheck(this.save) : fixed);
         if (util.save.trophy_owned(this.save, artifact.id)) {
           View.raw.owned.push(artifact.name);
         }
-        else if ((!artifact.fixed || artifact.fixed(this.save)) && (!artifact.fail || !artifact.fail(this.save))) {
+        else if (eligible && fail) {
           if (artifact.random) {
             artifact = artifactCopy(artifact);
             if (!artifact.nocache) artifact.random = artifact.random(this.save);

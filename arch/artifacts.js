@@ -86,12 +86,14 @@ var Artifacts = [
     fixed: function(save) {
       return util.save.upgrade_owned(save,469);
     },
-    excav: 1,
     fail: function(excav, num) {
       return num > 1;
     },
     random: function(save) {
       return 0.02
+    },
+    precheck: function(save) {
+      return util.save.stat(save, 35) == 0;
     }
   },
   {
