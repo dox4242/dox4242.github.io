@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+  <title>Abdication Helper : Royal Advisory Board</title>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'
+    integrity='sha384-pdapHxIh7EYuwy6K7iE41uXVxGCXY0sAjBzaElYGJUrzwodck3Lx6IE2lA0rFREo'
+    crossorigin='anonymous'></link>
+  <link rel='stylesheet' href='../index.css'></link>
+  
+  <script src='https://code.jquery.com/jquery-2.1.4.min.js'
+    integrity='sha384-R4/ztc4ZlRqWjqIuvf6RX5yb/v90qNGx6fS48N0tRxiGkqveZETq72KgDVJCp2TC'
+    crossorigin='anonymous'></script>
+  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'
+    integrity='sha384-pPttEvTHTuUJ9L2kCoMnNqCRcaMPMVMsWVO+RLaaaYDmfSP5//dP6eKRusbPcqhZ' 
+    crossorigin='anonymous'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/0.2.8/pako.js"
+    integrity="sha384-2+IobOaTSbjKqEDmmIZdyBwCBsLf880E4AdS+CXVxRBMrGS01qZi2ZdA69kccuyt"
+    crossorigin="anonymous"></script>
+  <script src='../lib/vue.js'></script>
+  <script>window.Vue || document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js" integrity="sha384-oyil/hbn4lE/VRhQytSipUwmWiTbzVK5S3a+wzVrgexPs+UrQ+e4xRatGDd8RNNE" crossorigin="anonymous">\x3C/script>')</script>
+
+  <script src='../lib/savecodec2.js'></script>
+  <script src='../lib/util.js'></script>
+  <script src='abdication.js'></script>
+  <link rel='stylesheet' href='abdication.css'></link>
+</head>
+<body>
+  <div class='container' id='app'>
+    <h2 class='page-header'><span>Abdication Helper</span> <small>Helps You Abdicate (is it that hard?)</small></h2>
+    <div class='panel panel-primary'>
+      <div class='panel-heading'>Inputs</div>
+      <div class='panel-body'>
+        <div class='input-table'>
+          <div class='input-group'>
+            <label id='gems-active-label' class='input-group-addon input-cell' for='gems-active'>Gems Active (at the start of current run)</label>
+            <input id='gems-active' class='form-control input-cell' type='text' name='gems-active' value='' v-model='gemsActive' number></input>
+          </div>
+          <div class='input-group'>
+            <label id='gems-before-label' class='input-group-addon input-cell' for='gems-before'>Gems in Abdication Treasury before last spell cycle</label>
+            <input id='gems-before' class='form-control input-cell' type='text' name='gems-before' value='' v-model='gemsBefore' number></input>
+          </div>
+          <div class='input-group'>
+            <label id='gems-after-label' class='input-group-addon input-cell' for='gems-after'>Gems in Abdication Treasury after last spell cycle</label>
+            <input id='gems-after' class='form-control input-cell' type='text' name='gems-after' value='' v-model='gemsAfter' number></input>
+          </div>
+          <div class='input-group'>
+            <label id='gems-after-label' class='input-group-addon input-cell' for='gems-after'>Spell Cycle Time (in seconds)</label>
+            <input id='gems-after' class='form-control input-cell' type='text' name='gems-after' value='' v-model='cycleTime' number></input>
+          </div>
+          <div class='input-group'>
+            <label id='gems-after-label' class='input-group-addon input-cell' for='gems-after'>Current Run Time (in hours)</label>
+            <input id='gems-after' class='form-control input-cell' type='text' name='gems-after' value='' v-model='runTime' number></input>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class='panel panel-primary'>
+        <div class='panel-heading'>Linear (maximize slope)</div>
+        <div class='panel-body'>
+          <div class='input-table'>
+            <div class='input-group'>
+              <label id='gems-active-label' class='input-group-addon input-cell' for='gems-active'>Gems Per Cycle</label>
+              <span id='gems-active' class='form-control input-cell' name='gems-active'>{{(gemsCurr - gemsPrev).toPrecision(4)}}</span>
+            </div>
+            <div class='input-group'>
+              <label id='gems-active-label' class='input-group-addon input-cell' for='gems-active'>Current Rate (gems/hour)</label>
+              <span id='gems-active' class='form-control input-cell' name='gems-active'>{{gemRate.toPrecision(4)}}</span>
+            </div>
+            <div class='input-group'>
+              <label id='gems-active-label' class='input-group-addon input-cell' for='gems-active'>Full Run Rate (gems/hour)</label>
+              <span id='gems-active' class='form-control input-cell' name='gems-active'>{{gemRateFull.toPrecision(4)}}</span>
+            </div>
+            <div class='input-group'>
+              <label id='gems-active-label' class='input-group-addon input-cell' for='gems-active'>Abdicate?</label>
+              <span id='gems-active' class='form-control input-cell' name='gems-active'>{{recommend}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='panel panel-primary col'>
+        <div class='panel-heading'>Exponential (maximize percent growth)</div>
+        <div class='panel-body'>
+          <div class='input-table'>
+            <div class='input-group'>
+              <label id='gems-active-label' class='input-group-addon input-cell' for='gems-active'>Percent Per Cycle</label>
+              <span id='gems-active' class='form-control input-cell' name='gems-active'>{{percentCycle.toPrecision(4)}}</span>
+            </div>
+            <div class='input-group'>
+              <label id='gems-active-label' class='input-group-addon input-cell' for='gems-active'>Current Rate (percent/hour)</label>
+              <span id='gems-active' class='form-control input-cell' name='gems-active'>{{percentRate.toPrecision(4)}}</span>
+            </div>
+            <div class='input-group'>
+              <label id='gems-active-label' class='input-group-addon input-cell' for='gems-active'>Full Run Rate (percent/hour)</label>
+              <span id='gems-active' class='form-control input-cell' name='gems-active'>{{percentRateFull.toPrecision(4)}}</span>
+            </div>
+            <div class='input-group'>
+              <label id='gems-active-label' class='input-group-addon input-cell' for='gems-active'>Abdicate?</label>
+              <span id='gems-active' class='form-control input-cell' name='gems-active'>{{recommendPercent}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    <ul>
+      <li v-for='s in spells', :style='{fontWeight: s.unlocked != 4?"bold":"normal"}'>
+        {{s.name}}: {{s.unlocked + 1}}
+      </li>
+    </ul>
+  </div>
+</body>
+</html>

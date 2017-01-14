@@ -1,0 +1,11 @@
+.input-table {
+  display: table;
+}
+
+.input-group {
+  display: table-row;
+}
+
+.input-cell {
+  display: table-cell;
+}
