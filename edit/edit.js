@@ -107,6 +107,7 @@
       View.save = this.save;
       View.checkLSavail()
       View.checkMiracleAvail()
+      View.updateTime()
     }
   }
 
@@ -3473,7 +3474,7 @@
         spells: util.assoc.spells,
         spellsRNG: util.assoc.spellsRNG,
         factions: util.assoc.faction,
-        currenttime: Math.floor(new Date().getTime()/1000)
+        currentTime: Math.floor(new Date().getTime()/1000)
       },
       watch: {
         lsinput: function(data) {
@@ -3497,7 +3498,7 @@
         genSave: function(event) {
           this.outputsave = SaveHandler.Encode(this.save);
         },
-        updateTime: function(event) { 
+        updateTime: function() { 
           this.currentTime = Math.floor(new Date().getTime()/1000);
         },
         checkLSavail: function () {
@@ -3540,11 +3541,13 @@
       computed: {
         offlinetime: {
           get: function() {
-            this.offlineoffset = this.currenttime - this.save.lastsave
+            this.updateTime()
+            this.offlineoffset = this.currentTime - this.save.lastsave
             return 0;
           },
           set: function(x) {
-            this.save.lastsave = this.currenttime - x;
+            this.updateTime()
+            this.save.lastsave = this.currentTime - x;
           }
         },
         upgradesArray: {
