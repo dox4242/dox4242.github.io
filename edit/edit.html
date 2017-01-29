@@ -199,7 +199,7 @@
             <tr is='widget-stat-max-time' :stat.sync='save.stats[39]' hide-ab name='Max Playtime'></tr>
             <tr is='widget-stat-time' :stat.sync='save.stats[2]' name='Good Playtime'></tr>
             <tr is='widget-stat-time' :stat.sync='save.stats[3]' name='Evil Playtime'></tr>
-            <tr is='widget-neutraltime'></tr>
+            <tr is='widget-neutraltime' :total.sync='save.stats[1]' :good.sync='save.stats[2]' :evil.sync='save.stats[3]'></tr>
             <tr is='widget-stat-time' :stat.sync='save.stats[45]' name='Offline Playtime'></tr>
             <tr is='widget-stat-max' :stat.sync='save.stats[46]' name='Max Offline Playtime'></tr>
             <tr is='widget-field' :field.sync='save.cTimer' can-edit :colspan='5' name='Time Since Last Mouse Click (ticks, 30/seconds)'></tr>

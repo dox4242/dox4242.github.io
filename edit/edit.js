@@ -134,8 +134,26 @@
     })
 	
     Vue.component('widget-neutraltime', {
+      props: {
+        total: Object,
+        good: Object,
+        evil: Object
+      },
       template: '<tr>'
-      + '<th>Neutral playtime is not saved; it is calculated in-game.</th>'
+      + '<th>Neutral Playtime</th>'
+      + '<td><span class="derivedstat">{{lvl1 | timeIO}}</span></td>'
+      + '<td><span class="derivedstat">{{lvl2 | timeIO}}</span></td>'
+      + '<td><span class="derivedstat">{{lvl3 | timeIO}}</span></td>'
+      + '<td><span class="derivedstat">{{lvl4 | timeIO}}</span></td>'
+      + '<td><span class="derivedstat">{{lvl5 | timeIO}}</span></td>'
+      + '</tr>',
+      computed: {
+        lvl1: function() { return this.total.stats - this.good.stats - this.evil.stats; },
+        lvl2: function() { return this.total.statsReset - this.good.statsReset - this.evil.statsReset; },
+        lvl3: function() { return this.lvl1 + this.lvl2; },
+        lvl4: function() { return this.total.statsRei - this.good.statsRei - this.evil.statsRei; },
+        lvl5: function() { return this.lvl3 + this.lvl4; }
+      }
     });
 
     Vue.component('widget-fivestat-header', {
