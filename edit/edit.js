@@ -123,6 +123,15 @@
       }
       return filtered;
     });
+
+    Vue.filter('timeIO', {
+      read: function(val) {
+        return util.render.outputFilters.time(val);
+      },
+      write: function(val, old) {
+        return util.render.inputFilters.time(val);
+      }
+    })
 	
     Vue.component('widget-neutraltime', {
       template: '<tr>'
@@ -217,11 +226,11 @@
       props: ['spell', 'name'],
       template: '<tr>'
       + '<th><span class="statname">{{name}}</span></th>'
-      + '<td><input v-model="spell.active0" number></input></td>'
-      + '<td><input v-model="spell.active1" number></input></td>'
-      + '<td><span class="derivedstat">{{spell.active0 + spell.active1}}</span></td>'
-      + '<td><input v-model="spell.active2" number></input></td>'
-      + '<td><span class="derivedstat">{{spell.active0 + spell.active1 + spell.active2}}</span></td>'
+      + '<td><input v-model="spell.active0 | timeIO" number></input></td>'
+      + '<td><input v-model="spell.active1 | timeIO" number></input></td>'
+      + '<td><span class="derivedstat">{{spell.active0 + spell.active1 | timeIO}}</span></td>'
+      + '<td><input v-model="spell.active2 | timeIO" number></input></td>'
+      + '<td><span class="derivedstat">{{spell.active0 + spell.active1 + spell.active2 | timeIO}}</span></td>'
       + '</tr>'
     });
     
@@ -339,6 +348,46 @@
       + '<td v-else><span class="nullstat">&mdash;</span></td>'
       + '</tr>'
     });
+
+    Vue.component('widget-stat-time', {
+      props: {
+        stat: Object,
+        name: String,
+        hideAb: {
+          type: Boolean,
+          default: function() { return false; }
+        },
+        hidePrevAbs: {
+          type: Boolean,
+          default: function() { return false; }
+        },
+        hideRei: {
+          type: Boolean,
+          default: function() { return false; }
+        },
+        hidePrevReis: {
+          type: Boolean,
+          default: function() { return false; }
+        },
+        hideTotal: {
+          type: Boolean,
+          default: function() { return false; }
+        }
+      },
+      template: '<tr>'
+      + '<th><span class="statname">{{name}}</span></th>'
+      + '<td v-show="!hideAb"><input v-model="stat.stats | timeIO" number></input></td>'
+      + '<td v-else><span class="nullstat">&mdash;</span></td>'
+      + '<td v-show="!hidePrevAbs"><input v-model="stat.statsReset | timeIO" number></input></td>'
+      + '<td v-else><span class="nullstat">&mdash;</span></td>'
+      + '<td v-show="!hideRei"><span class="derivedstat">{{stat.stats + stat.statsReset | timeIO}}</span></td>'
+      + '<td v-else><span class="nullstat">&mdash;</span></td>'
+      + '<td v-show="!hidePrevReis"><input v-model="stat.statsRei | timeIO" number></input></td>'
+      + '<td v-else><span class="nullstat">&mdash;</span></td>'
+      + '<td v-show="!hideTotal"><span class="derivedstat">{{stat.stats + stat.statsReset + stat.statsRei | timeIO}}</span></td>'
+      + '<td v-else><span class="nullstat">&mdash;</span></td>'
+      + '</tr>'
+    });
     
     Vue.component('widget-stat-max', {
       props: {
@@ -388,6 +437,54 @@
       }
     });
     
+    Vue.component('widget-stat-max-time', {
+      props: {
+        stat: Object,
+        name: String,
+        hideAb: {
+          type: Boolean,
+          default: function() { return false; }
+        },
+        hidePrevAbs: {
+          type: Boolean,
+          default: function() { return false; }
+        },
+        hideRei: {
+          type: Boolean,
+          default: function() { return false; }
+        },
+        hidePrevReis: {
+          type: Boolean,
+          default: function() { return false; }
+        },
+        hideTotal: {
+          type: Boolean,
+          default: function() { return false; }
+        }
+      },
+      template: '<tr>'
+      + '<th><span class="statname">{{name}}</span></th>'
+      + '<td v-show="!hideAb"><input v-model="stat.stats | timeIO" number></input></td>'
+      + '<td v-else><span class="nullstat">&mdash;</span></td>'
+      + '<td v-show="!hidePrevAbs"><input v-model="stat.statsReset | timeIO" number></input></td>'
+      + '<td v-else><span class="nullstat">&mdash;</span></td>'
+      + '<td v-show="!hideRei"><span class="derivedstat">{{rei | timeIO}}</span></td>'
+      + '<td v-else><span class="nullstat">&mdash;</span></td>'
+      + '<td v-show="!hidePrevReis"><input v-model="stat.statsRei | timeIO" number></input></td>'
+      + '<td v-else><span class="nullstat">&mdash;</span></td>'
+      + '<td v-show="!hideTotal"><span class="derivedstat">{{total | timeIO}}</span></td>'
+      + '<td v-else><span class="nullstat">&mdash;</span></td>'
+      + '</tr>',
+      computed: {
+        rei: function() {
+          return Math.max(this.stat.stats, this.stat.statsReset);
+        },
+        total: function() {
+          return Math.max(this.stat.stats, this.stat.statsReset, this.stat.statsRei);
+        }
+      }
+    });
+    
     Vue.component('widget-field', {
       props: {
         'field': {},
@@ -405,6 +502,26 @@
       + '<th><span class="statname">{{name}}</span></th>'
       + '<td v-show="canEdit" :colspan="colspan"><input v-model="field" number></input></td>'
       + '<td v-else :colspan="colspan"><span class="rawstat">{{field}}</span></td>'
+      + '</tr>'
+    });
+    
+    Vue.component('widget-field-time', {
+      props: {
+        'field': {},
+        'name': String,
+        'canEdit': {
+          type: Boolean,
+          default: function() { return false; }
+        },
+        'colspan': {
+          type: Number,
+          default: function() { return 1; }
+        }
+      },
+      template: '<tr>'
+      + '<th><span class="statname">{{name}}</span></th>'
+      + '<td v-show="canEdit" :colspan="colspan"><input v-model="field | timeIO"></input></td>'
+      + '<td v-else :colspan="colspan"><span class="rawstat">{{field | timeIO}}</span></td>'
       + '</tr>'
     });
     

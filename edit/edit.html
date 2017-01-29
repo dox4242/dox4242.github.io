@@ -165,7 +165,7 @@
             <tr is='widget-field-dropdown' :field.sync='save.faction' type='faction' filter='faction' :colspan='5' name='Faction'></tr>
             <tr is='widget-field-dropdown' :field.sync='save.prestigeFaction' type='faction' filter='prestigeFaction' hide-neutral hide-merc :colspan='5' name='Prestige Faction'></tr>
             <tr is='widget-field-dropdown' :field.sync='save.bFaction' type='faction' filter='bFaction' :colspan='5' name='Bloodline Faction'></tr>
-            <tr is='widget-field' :field.sync='offlinetime' can-edit name='Save age (seconds, max 2592000)'></tr>
+            <tr is='widget-field-time' :field.sync='offlinetime' can-edit name='Save age (seconds, max 30d)'></tr>
           </table>
         </div>
       </div>
@@ -194,21 +194,21 @@
         <div class='panel panel-default'>
           <table class='table'>
             <tr is='widget-fivestat-header'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[1]' name='Playtime'></tr>
-            <tr is='widget-field' :field.sync='save.stats[29].statsReset' can-edit :colspan='5' name='Playtime Last Game'></tr>
-            <tr is='widget-stat-max' :stat.sync='save.stats[39]' hide-ab name='Max Playtime'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[2]' name='Good Playtime'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[3]' name='Evil Playtime'></tr>
+            <tr is='widget-stat-time' :stat.sync='save.stats[1]' name='Playtime'></tr>
+            <tr is='widget-field-time' :field.sync='save.stats[29].statsReset' can-edit :colspan='5' name='Playtime Last Game'></tr>
+            <tr is='widget-stat-max-time' :stat.sync='save.stats[39]' hide-ab name='Max Playtime'></tr>
+            <tr is='widget-stat-time' :stat.sync='save.stats[2]' name='Good Playtime'></tr>
+            <tr is='widget-stat-time' :stat.sync='save.stats[3]' name='Evil Playtime'></tr>
             <tr is='widget-neutraltime'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[45]' name='Offline Playtime'></tr>
+            <tr is='widget-stat-time' :stat.sync='save.stats[45]' name='Offline Playtime'></tr>
             <tr is='widget-stat-max' :stat.sync='save.stats[46]' name='Max Offline Playtime'></tr>
             <tr is='widget-field' :field.sync='save.cTimer' can-edit :colspan='5' name='Time Since Last Mouse Click (ticks, 30/seconds)'></tr>
             <tr is='widget-field' :field.sync='save.kcTimer' can-edit :colspan='5' name='Time Since Last Keypress (ticks)'></tr>
             <tr is='widget-field' :field.sync='save.mTimer' can-edit :colspan='5' name='Time Since Last Mouse Motion (ticks)'></tr>
             <tr is='widget-field' :field.sync='save.sTimer' can-edit :colspan='5' name='Time for Angel Bloodline (ticks)'></tr>
-            <tr is='widget-field' :field.sync='save.oTimer' can-edit :colspan='5' name='Scry Production Timer (max 14400)'></tr>
-            <tr is='widget-field' :field.sync='save.oTimer2' can-edit :colspan='5' name='Scry Mana Timer (max 600)'></tr>
-            <tr is='widget-field' :field.sync='save.oTimer3' can-edit :colspan='5' name='Scry Event Timer (max 14400)'></tr>
+            <tr is='widget-field-time' :field.sync='save.oTimer' can-edit :colspan='5' name='Scry Production Timer (max 4h)'></tr>
+            <tr is='widget-field-time' :field.sync='save.oTimer2' can-edit :colspan='5' name='Scry Mana Timer (max 10m)'></tr>
+            <tr is='widget-field-time' :field.sync='save.oTimer3' can-edit :colspan='5' name='Scry Event Timer (max 4h)'></tr>
             <tr is='widget-trophy-header'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=85 name='Lucky Neutral Secret Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=93 name='Perfectly Good Secret Trophy'></tr>
@@ -373,7 +373,7 @@
         <div class='panel panel-default'>
           <table class='table'>
             <tr is='widget-fivestat-header'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[97]' name='Active Spell Time'></tr>
+            <tr is='widget-stat-time' :stat.sync='save.stats[97]' name='Active Spell Time'></tr>
             <tr is='widget-spell-time' :spell.sync='save.spells[i.id]' :name='i.name + " Time"' v-for='i in spells'></tr>
             <tr is='widget-spell-duration' :spell.sync='save.spells[i.id]' :name='i.name + " Remaining Duration"' v-for='i in spells'></tr>
           </table>
@@ -393,7 +393,7 @@
         <div class='panel panel-default'>
           <table class='table'>
             <tr is='widget-fivestat-header'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[i.timestat]' :name='i.name + " Playtime"' v-for='i in factions | filterDef "timestat"'></tr>
+            <tr is='widget-stat-time' :stat.sync='save.stats[i.timestat]' :name='i.name + " Playtime"' v-for='i in factions | filterDef "timestat"'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[i.affilstat]' :name='i.name + " Affiliations"' v-for='i in factions | filterDef "affilstat"'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[i.upgstat]' :name='i.name + " Upgrades Bought"' v-for='i in factions | filterDef "upgstat"'></tr>
             <tr is='widget-stat-max' :stat.sync='save.stats[13]' name='Max Upgrades Bought'></tr>
@@ -694,7 +694,7 @@
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=117602 name='Feel the Love 3 Quest'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=174 name='Feel the Love Feat'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[120]' name='Call to Love Casts'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[121]' name='Offline Time During Valentines'></tr>
+            <tr is='widget-stat-time' :stat.sync='save.stats[121]' name='Offline Time During Valentines'></tr>
             <tr><td colspan='5' align='center'>Easter Event</td></tr>
             <tr is='widget-field' :field.sync='save.eggRngState' can-edit :colspan='5' name='Easter Egg RNG State (best value: 873457390)'></tr>
             <tr is='widget-field' :field.sync='save.eggStackSize' can-edit :colspan='5' name='Easter Egg Stack Size'></tr>
@@ -724,8 +724,8 @@
             <tr is='widget-field' :field.sync='save.eventResources[9].res' can-edit :colspan='5' name='Frost Orbs'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[126]' name='Flame Orbs Collected'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[127]' name='Frost Orbs Collected'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[128]' name='Summeraan Playtime'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[129]' name='Winterly Playtime'></tr>
+            <tr is='widget-stat-time' :stat.sync='save.stats[128]' name='Summeraan Playtime'></tr>
+            <tr is='widget-stat-time' :stat.sync='save.stats[129]' name='Winterly Playtime'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=204 name='Chill Out Feat'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=206 name='Warm Up Feat'></tr>
             <tr is='widget-event-trophy-header'></tr>
