@@ -3710,6 +3710,14 @@
             localStorage.lsJoke = x;
             console.log(localStorage.lsJoke);
           }
+        },
+        angelLine: {
+          get: function() {
+            return this.save.sTimer / 30;
+          },
+          set: function(x) {
+            this.save.sTimer = x * 30;
+          }
         }
       }
     });

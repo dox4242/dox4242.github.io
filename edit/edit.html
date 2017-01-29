@@ -202,10 +202,10 @@
             <tr is='widget-neutraltime' :total.sync='save.stats[1]' :good.sync='save.stats[2]' :evil.sync='save.stats[3]'></tr>
             <tr is='widget-stat-time' :stat.sync='save.stats[45]' name='Offline Playtime'></tr>
             <tr is='widget-stat-max' :stat.sync='save.stats[46]' name='Max Offline Playtime'></tr>
-            <tr is='widget-field' :field.sync='save.cTimer' can-edit :colspan='5' name='Time Since Last Mouse Click (ticks, 30/seconds)'></tr>
+            <!--tr is='widget-field' :field.sync='save.cTimer' can-edit :colspan='5' name='Time Since Last Mouse Click (ticks, 30/seconds)'></tr>
             <tr is='widget-field' :field.sync='save.kcTimer' can-edit :colspan='5' name='Time Since Last Keypress (ticks)'></tr>
-            <tr is='widget-field' :field.sync='save.mTimer' can-edit :colspan='5' name='Time Since Last Mouse Motion (ticks)'></tr>
-            <tr is='widget-field' :field.sync='save.sTimer' can-edit :colspan='5' name='Time for Angel Bloodline (ticks)'></tr>
+            <tr is='widget-field' :field.sync='save.mTimer' can-edit :colspan='5' name='Time Since Last Mouse Motion (ticks)'></tr-->
+            <tr is='widget-field-time' :field.sync='angelLine' can-edit :colspan='5' name='Angel Bloodline Time'></tr>
             <tr is='widget-field-time' :field.sync='save.oTimer' can-edit :colspan='5' name='Scry Production Timer (max 4h)'></tr>
             <tr is='widget-field-time' :field.sync='save.oTimer2' can-edit :colspan='5' name='Scry Mana Timer (max 10m)'></tr>
             <tr is='widget-field-time' :field.sync='save.oTimer3' can-edit :colspan='5' name='Scry Event Timer (max 4h)'></tr>
