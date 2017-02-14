@@ -3535,6 +3535,9 @@
       },
       template: '<tr>'
       + '<th><span class="statname">{{name}}</span></th>'
+      + '<td class="broken-message">currently broken</td></tr>'
+      /*template: '<tr>'
+      + '<th><span class="statname">{{name}}</span></th>'
       + '<td><select v-model="unlocked" number>'
       + '<option :disabled="option.disabled" :value="option.id" v-for="option in options">{{option.name}}</option>'
       + '</select></td>'
@@ -3570,7 +3573,7 @@
           }
           return opts;
         }
-      }
+      }*/
     });
 	
     Vue.config.debug = true;
