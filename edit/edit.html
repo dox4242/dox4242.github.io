@@ -411,6 +411,7 @@
             <tr is='widget-field' :field.sync='save.wealthStormTimer' can-edit :colspan='5' name='Time Until Storm of Wealth'></tr>
             <tr is='widget-field' :field.sync='save.chargedTimer' can-edit :colspan='5' name='Titan Charged Effects Timer'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[38]' hide-ab hide-prev-reis hide-total name='Consecutive Faceless Affiliations'></tr>
+            <tr is='widget-stat-time' :stat.sync='save.stats[81]' name='Dragon Egg Timer'></tr>
             <tr is='widget-trophy-header'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105400 name='Fairy Champion Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=105401 name='Elven Champion Trophy'></tr>
@@ -470,7 +471,7 @@
             <tr is='widget-stat' :stat.sync='save.stats[48]' name='Honor Among Killers FC'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[112]' name='Lightning Strike FC'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[i.fcstat]' :name='i.name + " Coins Gained"' v-for='i in factions | filterDef "fc"'></tr>
-            <tr is='widget-stat-max' :stat.sync='save.stats[i.fcmaxstat]' :name='"Max " + i.name + " Coins Gained"' v-for='i in factions | filterDef "fc"'></tr>
+            <!--tr is='widget-stat-max' :stat.sync='save.stats[i.fcmaxstat]' :name='"Max " + i.name + " Coins Gained"' v-for='i in factions | filterDef "fc"'></tr-->
           </table>
         </div>
       </div>
@@ -753,6 +754,9 @@
             <tr is='widget-field' :field.sync='save.eventResources[12].res' can-edit :colspan='5' name='Blood'></tr>
             <tr is='widget-field' :field.sync='save.eventResources[13].res' can-edit :colspan='5' name='Ectoplasm'></tr>
             <tr is='widget-field' :field.sync='save.eventResources[14].res' can-edit :colspan='5' name='Bones'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[82]' name='Blood Collected'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[83]' name='Ectoplasm Collected'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[84]' name='Bones Collected'></tr>
             <tr is='widget-event-trophy-header'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=122400 name='Monster Breeder 1 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=122401 name='Monster Breeder 2 Quest'></tr>
