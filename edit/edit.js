@@ -13,6 +13,7 @@
   
   var trophyIDs = {
     autocastSeries: [8, 9, 10, 11, 12, 13, 159, 200],
+    buildBuildings: [101700, 101701, 101702, 101703, 101704, 101705, 101706, 101707, 101708, 101709, 101710, 101711],
     castSpells: [104000, 104001, 104002, 104003, 104004, 104005, 104006, 104007, 104008, 104009, 104010, 104011, 104012, 104013],
     clickTreasure: [104100, 104101, 104102, 104103, 104104, 104105, 104106, 104107, 104108],
     findFactionCoins: [104500, 104501, 104502, 104503, 104504, 104505, 104506, 104507, 104508, 104509, 104510, 104511, 104512, 104513, 104514, 104515],
@@ -22,7 +23,7 @@
     gainReincarnate: [105000, 105001, 105002, 105003, 105004, 105005, 105006, 105007, 105008, 105009, 105010, 105011, 105012, 105013, 105014],
     haveAssistants: [105100, 105101, 105102, 105103, 105104, 105105, 105106, 105107, 105108, 105109],
     purchaseUpgrade: [105500, 105501, 105502, 105503, 105504, 105505, 105506, 105507, 105508, 105509, 105510],
-    spendMana: [111200, 111201, 111202, 111203, 111204, 111205, 111206, 111207, 111208, 111209],
+    produceMana: [111200, 111201, 111202, 111203, 111204, 111205, 111206, 111207, 111208, 111209],
     gainRubies: [116200, 116201, 116202, 116203],
     artifacts: [117000, 117001, 117002, 117003, 117004, 117005],
     spellTiers: [123200, 123201, 123202, 123203],
@@ -3476,7 +3477,7 @@
       }
     });
 
-    Vue.component('widget-event-trophy', {
+    Vue.component('widget-event-trophy', {   // simple, non-arrayed trophies
       props: {
         'trophies': Object,
         'name': String,
@@ -3526,7 +3527,7 @@
       }
     });
 
-    Vue.component('widget-trophy-dropdown', {
+    Vue.component('widget-trophy-dropdown', {    // trophy arrays in full
       props: {
         'trophies': Object,
         'name': String,
@@ -3534,9 +3535,6 @@
         'filter': String
       },
       template: '<tr>'
-      + '<th><span class="statname">{{name}}</span></th>'
-      + '<td class="broken-message">currently broken</td></tr>'
-      /*template: '<tr>'
       + '<th><span class="statname">{{name}}</span></th>'
       + '<td><select v-model="unlocked" number>'
       + '<option :disabled="option.disabled" :value="option.id" v-for="option in options">{{option.name}}</option>'
@@ -3573,7 +3571,51 @@
           }
           return opts;
         }
-      }*/
+      }
+    });
+	
+    Vue.component('widget-trophy-comp-dropdown', {    // trophy with compressed arrays
+      props: {
+        'trophies': Object,
+        'name': String,
+        'type': String,
+        'filter': String
+      },
+      template: '<tr>'
+      + '<th><span class="statname">{{name}}</span></th>'
+      + '<td><select v-model="unlocked" number>'
+      + '<option :disabled="option.disabled" :value="option.id" v-for="option in options">{{option.name}}</option>'
+      + '</select></td>'
+      + '</tr>',
+      computed: {
+        unlocked: {
+          get: function() {
+            for (var i = this.options.length-2; i >= 0; i--) {
+              if (this.trophies[trophyIDs[this.filter][i]]) { return trophyIDs[this.filter][i]; }
+            }
+            return -1;
+          },
+          set: function(x) {
+            for (var i = 0; i < this.options.length-1; i++) {
+              var tid = trophyIDs[this.filter][i];
+              if (this.trophies[tid]) delete this.trophies[tid];
+            }
+            this.trophies[x] = {_id:x, u1:false};
+          }
+        },
+        options: function() {
+          var opts = [{id:-1, name:'None'}];
+          for (var i of util.assoc[this.type]) {
+            if (this.filter && !dropdownFilter[this.filter][i.id]) continue;
+            opts.push({
+              id: i.id,
+              name: i.name,
+              //disabled: this.filter && !dropdownFilter[this.filter][i.id]
+            });
+          }
+          return opts;
+        }
+      }
     });
 	
     Vue.config.debug = true;
