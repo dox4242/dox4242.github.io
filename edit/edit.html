@@ -146,6 +146,9 @@
         <a href='#tab-magic-tiers' aria-controls='Magic Tiers' role='tab' data-toggle='pill'> Magic Tiers </a>
       </li>
       <li role='presentation'>
+        <a href='#tab-lineages' aria-controls='Lineages' role='tab' data-toggle='pill'> Lineages </a>
+      </li>
+      <li role='presentation'>
         <a href='#tab-events' aria-controls='Events' role='tab' data-toggle='pill'> Events </a>
       </li>
       <li role='presentation'>
@@ -372,6 +375,7 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=110 name='Unlimited Mana Secret Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=173 name='Mana Matrix Secret Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=231 name='Mana Waste Secret Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=236 name='Prismatic Mana Secret Trophy'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=213 name="Dragon's Roar Secret Trophy"></tr>
           </table>
         </div>
@@ -515,6 +519,7 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=186 name='Horn of the Kings Quest Artifact'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=211 name='Spiky Rough Egg Quest Artifact'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=129 name='Ancient Coin Piece Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=237 name='Ancient Heirloom Lore Artifact'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=130 name='Arachnid Figurine Lore Artifact'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=131 name='Black Sword Lore Artifact'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=132 name='Bottled Voice Lore Artifact'></tr>
@@ -682,6 +687,38 @@
             <tr is='widget-spell-tiers-dropdown' :upgrades.sync='upgradesArray' type='upgradeIDs' filter='csTiers' name='Combo Strike Tiers Unlocked'></tr>
             <tr is='widget-spell-tiers-dropdown' :upgrades.sync='upgradesArray' type='upgradeIDs' filter='dbTiers' name='Dragons Breath Tiers Unlocked'></tr>
             <tr is='widget-spell-tiers-dropdown' :upgrades.sync='upgradesArray' type='upgradeIDs' filter='ssTiers' name='Spiritual Surge Tiers Unlocked'></tr>
+         </table>
+        </div>
+      </div>
+      <div role='tabpanel' class='tab-pane fade' id='tab-lineages'>
+        <div class='panel panel-default'>
+          <table class='table'>
+            <tr is='widget-onestat-header'></tr>
+            <tr is='widget-field' :field.sync='save.lineageLevels[0].lev' can-edit :colspan='5' name='Fairy Lineage Levels'></tr>
+            <tr is='widget-field' :field.sync='save.lineageLevels[1].lev' can-edit :colspan='5' name='Elven Lineage Levels'></tr>
+            <tr is='widget-field' :field.sync='save.lineageLevels[2].lev' can-edit :colspan='5' name='Angel Lineage Levels'></tr>
+            <tr is='widget-field' :field.sync='save.lineageLevels[3].lev' can-edit :colspan='5' name='Goblin Lineage Levels'></tr>
+            <tr is='widget-field' :field.sync='save.lineageLevels[4].lev' can-edit :colspan='5' name='Undead Lineage Levels'></tr>
+            <tr is='widget-field' :field.sync='save.lineageLevels[5].lev' can-edit :colspan='5' name='Demon Lineage Levels'></tr>
+            <tr is='widget-field' :field.sync='save.lineageLevels[6].lev' can-edit :colspan='5' name='Titan Lineage Levels'></tr>
+            <tr is='widget-field' :field.sync='save.lineageLevels[7].lev' can-edit :colspan='5' name='Druid Lineage Levels'></tr>
+            <tr is='widget-field' :field.sync='save.lineageLevels[8].lev' can-edit :colspan='5' name='Faceless Lineage Levels'></tr>
+            <tr is='widget-field' :field.sync='save.lineageLevels[9].lev' can-edit :colspan='5' name='Dwarven Lineage Levels'></tr>
+            <tr is='widget-field' :field.sync='save.lineageLevels[10].lev' can-edit :colspan='5' name='Drow Lineage Levels'></tr>
+            <tr is='widget-field' :field.sync='save.lineageLevels[11].lev' can-edit :colspan='5' name='Dragon Lineage Levels'></tr>
+            <tr is='widget-trophy-header'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=123500 name='Fairy Grand Champion Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=123501 name='Elven Grand Champion Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=123502 name='Angel Grand Champion Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=123503 name='Goblin Grand Champion Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=123504 name='Undead Grand Champion Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=123505 name='Demon Grand Champion Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=123506 name='Titan Grand Champion Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=123507 name='Druid Grand Champion Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=123508 name='Faceless Grand Champion Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=123509 name='Dwarven Grand Champion Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=123510 name='Drow Grand Champion Trophy'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=123512 name='Dragon Grand Champion Trophy'></tr>
          </table>
         </div>
       </div>
