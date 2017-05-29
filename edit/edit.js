@@ -577,9 +577,9 @@
       template: '<tr>'
       + '<th><span class="statheader">Name</span></th>'
       + '<th><span class="statheader">Owned</span></th>'
-      + '<th><span class="statheader">u1 Boolean</span></th>'
+      /*+ '<th><span class="statheader">u1 Boolean</span></th>'
       + '<th><span class="statheader">u3 Boolean</span></th>'
-      + '<th><span class="statheader">RNG State</span></th>'
+      + '<th><span class="statheader">RNG State</span></th>'*/
       + '</tr>'
     });
 
@@ -592,9 +592,9 @@
       template: '<tr>'
       + '<th><span class="statname">{{name}}</span></th>'
       + '<td><input type="checkbox" v-model="owned" number></input></td>'
-      + '<td><input type="checkbox" v-model="upgradeU1" number></input></td>'
+      /*+ '<td><input type="checkbox" v-model="upgradeU1" number></input></td>'
       + '<td><input type="checkbox" v-model="upgradeU3" number></input></td>'
-      + '<td><input v-model="upgradeRNGstate" number></input></td>'
+      + '<td><input v-model="upgradeRNGstate" number></input></td>'*/
       + '</tr>',
       computed: {
     	owned: {
