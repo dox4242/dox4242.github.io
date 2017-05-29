@@ -3804,6 +3804,13 @@
       window.prompt('Copy to clipboard: Press Ctrl+C, then Enter', save);
     });
     
+    // Bind Copy button to copy the generated save string
+    $('#doGenCopy').on('click', function(e) {
+      $('#saveOutput').trigger('focus');
+      var save = $('#saveOutput').val();
+      window.prompt('Copy to clipboard: Press Ctrl+C, then Enter', save);
+    });
+    
     // Bind Clear button to clear the save input field
     $('#doSaveClear').on('click', function(e) {
       $('#saveInput').val('').trigger('focus');
