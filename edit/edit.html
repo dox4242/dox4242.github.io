@@ -105,6 +105,9 @@
         <a href='#tab-production' aria-controls='Production' role='tab' data-toggle='pill'> Production </a>
       </li>
       <li role='presentation'>
+        <a href='#tab-upgrades' aria-controls='Upgrades' role='tab' data-toggle='pill'> Upgrades </a>
+      </li>
+      <li role='presentation'>
         <a href='#tab-time' aria-controls='Time' role='tab' data-toggle='pill'> Time </a>
       </li>
       <li role='presentation'>
@@ -197,6 +200,133 @@
             <tr is='widget-stat' :stat.sync='save.stats[26]' name='Gold Spent'></tr>
             <tr is='widget-stat-max' :stat.sync='save.stats[96]' name='Max Base Assistants'></tr>
           </table>
+        </div>
+      </div>
+      <div role='tabpanel' class='tab-pane fade' id='tab-upgrades'>
+        <div class='panel panel-default'>
+          <table class='table'>
+            <tr is='widget-upgrade-header'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=204 name='Fairy 1,1: Pixie Dust Fertilizer'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=195 name='Fairy 1,2: Fairy Cuisine'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=207 name='Fairy 1,3: Starmetal Alloys'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=201 name='Fairy 2,1: Fairy Workers'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=202 name='Fairy 2,2: Golden Pots'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=206 name='Fairy 2,3: Spellsmith'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=203 name='Fairy 3,1: Kind Hearts'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=205 name='Fairy 3,2: Rainbow Link'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=208 name='Fairy 3,3: Swarm of Fairies'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=200 name='Fairy Heritage'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=174 name='Elf 1,1: Elven Mint'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=175 name='Elf 1,2: Elven Treasure Casing'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=177 name='Elf 1,3: Sylvan Treasure Frills'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=167 name='Elf 2,1: Elven Emissary'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=166 name='Elf 2,2: Elven Efficiency'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=176 name='Elf 2,3: Secret Clicking Techniques'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=165 name='Elf 3,1: Elven Diplomacy'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=173 name='Elf 3,2: Elven Luck'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=163 name='Elf 3,3: Ancient Clicking Arts'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=172 name='Elf Heritage'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=51 name='Angel 1,1: Holy Bells'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=44 name='Angel 1,2: Angelic Determination'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=43 name='Angel 1,3: Angel Feathers'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=50 name='Angel 2,1: Guardian Angels'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=48 name='Angel 2,2: Angelic Wisdom'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=49 name='Angel 2,3: Archangel Feathers'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=52 name='Angel 3,1: Magical Gates'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=45 name='Angel 3,2: Angelic Dominance'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=53 name='Angel 3,3: Wings of Liberty'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=47 name='Angelic Heritage'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=223 name='Goblin 1,1: Strong Currency'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=222 name='Goblin 1,2: Slave Trading'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=210 name='Goblin 1,3: Cheap Materials'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=209 name='Goblin 2,1: Black Market'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=221 name='Goblin 2,2: Hobgoblin Gladiators'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=214 name='Goblin 2,3: Goblin Economists'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=213 name='Goblin 3,1: Goblin Central Bank'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=211 name='Goblin 3,2: Fools Gold'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=220 name='Goblin 3,3: Green Fingers Discount'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=219 name='Goblin Heritage'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=394 name='Undead 1,1: The Walking Dead'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=390 name='Undead 1,2: Deadened Muscles'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=392 name='Undead 1,3: Death Temples'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=403 name='Undead 2,1: Unholy Rituals'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=389 name='Undead 2,2: Corpse Supply'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=393 name='Undead 2,3: Plagued Buildings'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=391 name='Undead 3,1: Dead Fields'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=395 name='Undead 3,2: Tireless Workers'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=402 name='Undead 3,3: Undead Resilience'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=401 name='Undead Heritage'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=115 name='Demon 1,1: Torture Chambers'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=111 name='Demon 1,2: Devil Tyrant'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=112 name='Demon 1,3: Evil Conquerors'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=114 name='Demon 2,1: Lava Pits'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=110 name='Demon 2,2: Demon Overseers'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=109 name='Demon 2,3: Demonic Presence'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=113 name='Demon 3,1: Infernal Magic'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=102 name='Demon 3,2: Burning Legion'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=116 name='Demon 3,3: Very Bad Guys'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=108 name='Demonic Heritage'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=376 name='Titan 1,1: Colossal Forge'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=374 name='Titan 1,2: Charged Clicks'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=379 name='Titan 1,3: Oversized Legends'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=381 name='Titan 2,1: Titan Drill'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=375 name='Titan 2,2: Charged Structures'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=377 name='Titan 2,3: Cyclopean Strength'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=387 name='Titan 3,1: Titan Sized Walls'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=378 name='Titan 3,2: Heavy Coins'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=386 name='Titan 3,3: Titan Obelisk'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=385 name='Titan Heritage'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=141 name='Druid 1,1: Druidic Vocabulary'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=133 name='Druid 1,2: Animal Companions'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=145 name='Druid 1,3: Natural Recycling'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=142 name='Druid 2,1: Earthly Bond'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=134 name='Druid 2,2: Bardic Knowledge'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=146 name='Druid 2,3: Shapeshifting'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=144 name='Druid 3,1: Mabinogion'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=143 name='Druid 3,2: Earthly Soul'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=135 name='Druid 3,3: Building Jungle'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=140 name='Druid Heritage'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=193 name='Faceless 1,1: Territorial Expanse'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=183 name='Faceless 1,2: Evolutive Mutation'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=181 name='Faceless 1,3: Deep Memory'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=188 name='Faceless 2,1: Gold Synthesis'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=191 name='Faceless 2,2: Mitosis'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=192 name='Faceless 2,3: Overgrowth'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=190 name='Faceless 3,1: Magical Treasure'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=180 name='Faceless 3,2: Abominations'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=189 name='Faceless 3,3: Hive Mind'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=187 name='Faceless Heritage'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=149 name='Dwarf 1,1: Dwarven Ale'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=157 name='Dwarf 1,2: Expert Masonry'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=160 name='Dwarf 1,3: Mining Prodigies'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=162 name='Dwarf 2,1: Underground Citadels'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=158 name='Dwarf 2,2: Indestrucible Treasure'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=148 name='Dwarf 2,3: Bearded Assistants'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=147 name='Dwarf 3,1: Battlehammers'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=159 name='Dwarf 3,2: Magic Resistance'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=161 name='Dwarf 3,3: Overwatch'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=155 name='Dwarven Heritage'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=132 name='Drow 1,1: Underworld Tyranny'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=127 name='Drow 1,2: Honor Among Killers'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=130 name='Drow 1,3: Shadow Advance'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=128 name='Drow 2,1: Mana Addicts'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=119 name='Drow 2,2: Blood Sacrifices'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=117 name='Drow 2,3: Blackmail'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=131 name='Drow 3,1: Spider Gods'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=129 name='Drow 3,2: Professional Assassins'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=118 name='Drow 3,3: Blade Dance'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=125 name='Drow Heritage'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=608 name='Dragon 1,1: Dragonscales'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=611 name='Dragon 1,2: Iron Flight'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=609 name='Dragon 1,3: Eternal Wisdom'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=599 name='Dragon 2,1: Dragonborn'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=596 name='Dragon 2,2: Bountiful Hoard'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=612 name='Dragon 2,3: Sharp Claws'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=595 name='Dragon 3,1: Ancient Hunger'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=610 name='Dragon 3,2: Imposing Presence'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=597 name='Dragon 3,3: Chromatic Scales'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=603 name='Dragon Heritage'></tr>
+        </table>
         </div>
       </div>
       <div role='tabpanel' class='tab-pane fade' id='tab-time'>
