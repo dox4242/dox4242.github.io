@@ -604,7 +604,7 @@
       	  },
           set: function() {
             if (this.owned) { delete this.upgrades[this.id]; }
-            else { this.upgrades[this.id] = {_id: this.id, u1: false, u2: false, u3: false, s: 0}; }
+            else { this.upgrades[this.id] = {_id: this.id, u1: true, u2: false, u3: false, s: 0}; }
           }
         },
     	upgradeU1: {
