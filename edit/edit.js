@@ -3682,7 +3682,7 @@
       template: '<tr>'
       + '<th><span class="statname">{{name}}</span></th>'
       + '<td><input type="checkbox" v-model="unlocked" number></input></td>'
-      + '<td><input type="checkbox" v-model="trophyU1"g disabled></input></td>'
+      + '<td><input type="checkbox" v-model="trophyU1" disabled></input></td>'
       + '<td><input v-model="trophyU2" number></input></td>'
       + '</tr>',
       computed: {
@@ -3693,11 +3693,12 @@
           },
           set: function(x) {
             if (this.trophies[this.id] && !x) { 
+              this.trophyU1 = false;
               this.trophyU2 = 0;
               delete this.trophies[this.id];
             }
             else if (!this.trophies[this.id] && x) {
-              Vue.set(View.save.trophies, this.id, {_id: this.id, u1: false, u2: 0});
+              Vue.set(View.save.trophies, this.id, {_id: this.id, u1: true, u2: 1});
             }
           }
         },
