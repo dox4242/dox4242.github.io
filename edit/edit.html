@@ -664,6 +664,7 @@
             <template v-else><td>D400 not purchased or not enough targets</td></template></tr>
             <tr is='widget-field-dropdown' :field.sync='save.miracleTier' type='bTiers' :colspan='5' name='Current Miracle Tier Target'></tr>
             <tr is='widget-field' :field.sync='save.miracleTimer' can-edit :colspan='5' name='Miracle Effect Timer (max 120)'></tr>
+            <tr is='widget-field-dropdown' :field.sync='save.combinationBL' type='faction' filter='bFaction' :colspan='5' name='Bloodline Faction'></tr>
             <tr is='widget-research-upgrades-header'></tr>
             <tr is='widget-research-upgrades' :upgrades.sync='upgradesArray'></tr>
           </table>
