@@ -95,9 +95,9 @@
       try {
         this.save = SaveHandler.Decode(dat);
         console.log('Decoded save:', this.save);
-        console.log('new 27:',this.save['newField27'])
-        console.log('new 29:',this.save['newField29'])
-        console.log('new 31:',this.save['newField31'])
+        console.log('version 27 field (season?):',this.save['seasonN'])
+        console.log('version 29 field (lineage?):',this.save['lineageField'])
+        console.log('version 31 field (a2950?):',this.save['combinationBL'])
         if (this.save.options[0]) {
           this.save.options = this.save.options[0];
         }
