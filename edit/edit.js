@@ -95,6 +95,9 @@
       try {
         this.save = SaveHandler.Decode(dat);
         console.log('Decoded save:', this.save);
+        console.log('new 27:',this.save['newField27'])
+        console.log('new 29:',this.save['newField29'])
+        console.log('new 31:',this.save['newField31'])
         if (this.save.options[0]) {
           this.save.options = this.save.options[0];
         }
