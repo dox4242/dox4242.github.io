@@ -8,7 +8,7 @@
     spell: [18, 3, 12, 6, 14, 9, 1, 8, 15, 11, 7, 13, 10, 2, 5, 4, 21, 17],
     goodmercspells: [6, 14, 9, 5, 8, 11, 4, 10, 2, 21],
     evilmercspells: [6, 14, 9, 5, 8, 15, 11, 4, 10, 2, 21],
-    neutralmercspells: [6, 14, 9, 5, 8, 11, 4, 13, 10, 2, 21]
+    neutralmercspells: [6, 14, 9, 5, 8, 11, 4, 13, 10, 2, 21],
   };
   
   var trophyIDs = {
@@ -55,6 +55,7 @@
   };
   
   var upgradeIDs = {
+    bloodlineIDs: [194, 164, 39, 212, 396, 103, 380, 136, 183, 150, 120, 598],
     ctaTiers: [400301, 400302, 400303, 400304, 400305],
     hlTiers: [401201, 401202, 401203, 401204, 401205],
     fcTiers: [400601, 400602, 400603, 400604, 400605],
@@ -560,6 +561,50 @@
       computed: {
         options: function() {
           var opts = [];
+          for (var i of util.assoc[this.type]) {
+            if (this.filter && !dropdownFilter[this.filter][i.id]) continue;
+            opts.push({
+              id: i.id,
+              name: i.name,
+              //disabled: this.filter && !dropdownFilter[this.filter][i.id]
+            });
+          }
+          return opts;
+        }
+      }
+    });
+
+    Vue.component('widget-bloodline-dropdown', {
+      props: {
+        'upgrades': Object,
+        'name': String,
+        'type': String,
+        'filter': String
+      },
+      template: '<tr>'
+      + '<th><span class="statname">{{name}}</span></th>'
+      + '<td><select v-model="unlocked" number>'
+      + '<option :disabled="option.disabled" :value="option.id" v-for="option in options">{{option.name}}</option>'
+      + '</select></td>'
+      + '</tr>',
+      computed: {
+        unlocked: {
+          get: function() {
+            for (var i = this.options.length-2; i >= 0; i--) {
+              if (this.upgrades[upgradeIDs[this.filter][i]]) { return upgradeIDs[this.filter][i]; }
+            }
+            return -1;
+          },
+          set: function(x) {
+            for (var i = 0; i < this.options.length-1; i++) {
+              var tid = upgradeIDs[this.filter][i];
+              if (this.upgrades[tid]) delete this.upgrades[tid];
+            }
+            this.upgrades[x] = {_id:x, u1:true};
+          }
+        },
+        options: function() {
+          var opts = [{id:-1, name:'None'}];
           for (var i of util.assoc[this.type]) {
             if (this.filter && !dropdownFilter[this.filter][i.id]) continue;
             opts.push({
@@ -3746,12 +3791,18 @@
             return -1;
           },
           set: function(x) {
+            console.log('set(), x =', x)
             for (var i = 0; i < this.options.length-1; i++) {
               var tid = trophyIDs[this.filter][i];
-              if (!this.trophies[tid]) {
-                this.trophies[tid] = {_id:tid, u1:false};
+              console.log('tid =', tid)
+              if (!x) {
+                delete this.trophies[tid];
               } else {
-                if (this.trophies[tid]) delete this.trophies[tid];
+                  if (tid <= x) {
+                    this.trophies[tid] = {_id:tid, u1:false};
+                  } else {
+                    delete this.trophies[tid];
+                  }
               }
             }
           }
@@ -3797,7 +3848,7 @@
               var tid = trophyIDs[this.filter][i];
               if (this.trophies[tid]) delete this.trophies[tid];
             }
-            this.trophies[x] = {_id:x, u1:false};
+            this.trophies[x] = {_id:x, u1:true};
           }
         },
         options: function() {
