@@ -3791,10 +3791,8 @@
             return -1;
           },
           set: function(x) {
-            console.log('set(), x =', x)
             for (var i = 0; i < this.options.length-1; i++) {
               var tid = trophyIDs[this.filter][i];
-              console.log('tid =', tid)
               if (!x) {
                 delete this.trophies[tid];
               } else {
