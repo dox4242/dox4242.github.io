@@ -48,13 +48,12 @@
 			var lightningForecast = '';
 			
 			// Check if the save actually has Lightning Strikes to forecast
-			if (!(save.faction == 6 || save.mercSpell1 == 13 || save.mercSpell2 == 13 || util.save.upgrade_owned(save,688))) {
+			if (save.alignment != 3) {
 				lightningMessage = 'You are not Neutral aligned.';
 				lightningForecast = 'No Lightning.';
-			} else if (save.alignment != 3) {
-			 	lightningMessage = 'You don\'t have Lightning Strike.';
-			 	lightningForecast = 'No Lightning.';
-			} else if (buildingsOwned.length == 0) {
+			// } else if (!(save.faction == 6 || save.mercSpell1 == 13 || save.mercSpell2 == 13)) {
+			// 	lightningMessage = 'You don\'t have Lightning Strike.';
+			// 	lightningForecast = 'No Lightning.';			} else if (buildingsOwned.length == 0) {
 				lightningMessage = 'You have no Buildings.';
 				lightningForecast = 'No Lightning.';
 			} else if (buildingsOwned.length == 1) {
