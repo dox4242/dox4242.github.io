@@ -353,7 +353,7 @@
           <table class='table'>
             <tr is='widget-field-dropdown' :field.sync='save.faction' type='faction' filter='faction' :colspan='5' name='Faction'></tr>
             <tr is='widget-field-dropdown' :field.sync='save.prestigeFaction' type='faction' filter='prestigeFaction' :colspan='5' name='Prestige Faction'></tr>
-            <tr is='widget-bloodline-dropdown' :upgrades.sync='upgradesArray' type='upgradeIDs' filter='bloodlineIDs' :colspan='5' name='Bloodline Faction'></tr>
+            <tr is='widget-bloodline-dropdown' :upgrades.sync='upgradesArray' type='upgradeIDs' filter='bloodlineIDs' savefield='bFaction' :colspan='5' name='Bloodline Faction'></tr>
             <tr is='widget-fivestat-header'></tr>
             <tr is='widget-stat-time' :stat.sync='save.stats[i.timestat]' :name='i.name + " Playtime"' v-for='i in factions | filterDef "timestat"'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[i.affilstat]' :name='i.name + " Affiliations"' v-for='i in factions | filterDef "affilstat"'></tr>
@@ -664,7 +664,7 @@
             <template v-else><td>D400 not purchased or not enough targets</td></template></tr>
             <tr is='widget-field-dropdown' :field.sync='save.miracleTier' type='bTiers' :colspan='5' name='Current Miracle Tier Target'></tr>
             <tr is='widget-field' :field.sync='save.miracleTimer' can-edit :colspan='5' name='Miracle Effect Timer (max 120)'></tr>
-            <tr is='widget-bloodline-dropdown' :upgrades.sync='upgradesArray' type='upgradeIDs' filter='bloodlineIDs' :colspan='5' name='Combination (A2950) Bloodline'></tr>
+            <tr is='widget-bloodline-dropdown' :upgrades.sync='upgradesArray' type='upgradeIDs' filter='bloodlineIDs' savefield='combinationBL' :colspan='5' name='Combination (A2950) Bloodline Faction'></tr>
             <tr is='widget-research-upgrades-header'></tr>
             <tr is='widget-research-upgrades' :upgrades.sync='upgradesArray'></tr>
           </table>

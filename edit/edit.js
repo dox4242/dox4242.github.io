@@ -579,7 +579,8 @@
         'upgrades': Object,
         'name': String,
         'type': String,
-        'filter': String
+        'filter': String,
+        'savefield': String
       },
       template: '<tr>'
       + '<th><span class="statname">{{name}}</span></th>'
@@ -601,6 +602,8 @@
               if (this.upgrades[tid]) delete this.upgrades[tid];
             }
             this.upgrades[x] = {_id:x, u1:true};
+            var factionIDs = { 194:0, 164:1, 39:2, 212:3, 396:4, 103:5, 380:6, 136:7, 183:8, 150:9, 120:10, 598:11 };
+            this.savefield = factionIDs[x]
           }
         },
         options: function() {
@@ -627,7 +630,6 @@
       + '<th><span class="statheader">RNG State</span></th>'*/
       + '</tr>'
     });
-
     Vue.component('widget-upgrade', {
       props: {
         'upgrades': Object,
