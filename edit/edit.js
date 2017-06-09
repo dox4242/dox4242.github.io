@@ -596,7 +596,6 @@
             return blFactionIDs[this.field]
           },
           set: function(x) {
-            console.log('set()')
             var blFactionIDs = { 0:194, 1:164, 2:39, 3:212, 4:396, 5:103, 6:380, 7:136, 8:183, 9:150, 10:120, 11:598 };
             if (this.field > -1) {
               delete this.upgrades[blFactionIDs[this.field]]
@@ -606,58 +605,6 @@
             }
             if (x == -1) { this.field = x }
             else { this.upgrades[x] = {_id:x, u1:true} }
-            console.log('setting new field value:', this.field)
-          }
-        },
-        options: function() {
-          var opts = [{id:-1, name:'None'}];
-          for (var i of util.assoc[this.type]) {
-            if (this.filter && !dropdownFilter[this.filter][i.id]) continue;
-            opts.push({
-              id: i.id,
-              name: i.name,
-              //disabled: this.filter && !dropdownFilter[this.filter][i.id]
-            });
-          }
-          return opts;
-        }
-      }
-    });
-
-    Vue.component('widget-combo-bloodline-dropdown', {
-      props: {
-        'field': {},
-        'upgrades': Object,
-        'name': String,
-        'type': String,
-        'filter': String
-      },
-      template: '<tr>'
-      + '<th><span class="statname">{{name}}</span></th>'
-      + '<td><select v-model="unlocked" number>'
-      + '<option :disabled="option.disabled" :value="option.id" v-for="option in options">{{option.name}}</option>'
-      + '</select></td>'
-      + '</tr>',
-      computed: {
-        unlocked: {
-          get: function() {
-            var blFactionIDs = { 0:194, 1:164, 2:39, 3:212, 4:396, 5:103, 6:380, 7:136, 8:183, 9:150, 10:120, 11:598 } ;
-            console.log('combo get(), ', this.field, blFactionIDs[this.field])
-            for (var i = this.options.length-2; i >= 0; i--) {
-              if (this.upgrades[upgradeIDs[this.filter][i]]) {
-                console.log(upgradeIDs[this.filter][i])
-                return upgradeIDs[this.filter][i];
-              }
-            }
-            return -1;
-          },
-          set: function(x) {
-            console.log('set(), x=',x)
-            for (var i = 0; i < this.options.length-1; i++) {
-              var tid = upgradeIDs[this.filter][i];
-              if (this.upgrades[tid]) delete this.upgrades[tid];
-            }
-            this.upgrades[x] = {_id:x, u1:true};
           }
         },
         options: function() {
