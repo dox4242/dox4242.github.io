@@ -4,7 +4,7 @@
   var dropdownFilter = {
     faction: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 11],
     prestigeFaction: [-1, 9, 10, 12],
-    bFaction: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12],
+    bloodlineFaction: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12],
     spell: [18, 3, 12, 6, 14, 9, 1, 8, 15, 11, 7, 13, 10, 2, 5, 4, 21, 17],
     goodmercspells: [6, 14, 9, 5, 8, 11, 4, 10, 2, 21],
     evilmercspells: [6, 14, 9, 5, 8, 15, 11, 4, 10, 2, 21],
@@ -576,11 +576,11 @@
 
     Vue.component('widget-bloodline-dropdown', {
       props: {
+        'field': {},
         'upgrades': Object,
         'name': String,
         'type': String,
-        'filter': String,
-        'savefield': String
+        'filter': String
       },
       template: '<tr>'
       + '<th><span class="statname">{{name}}</span></th>'
@@ -591,19 +591,73 @@
       computed: {
         unlocked: {
           get: function() {
+            var blFactionIDs = { 0:194, 1:164, 2:39, 3:212, 4:396, 5:103, 6:380, 7:136, 8:183, 9:150, 10:120, 11:598 };
+            if (this.field == -1) { return this.field }
+            return blFactionIDs[this.field]
+          },
+          set: function(x) {
+            console.log('set()')
+            var blFactionIDs = { 0:194, 1:164, 2:39, 3:212, 4:396, 5:103, 6:380, 7:136, 8:183, 9:150, 10:120, 11:598 };
+            if (this.field > -1) {
+              delete this.upgrades[blFactionIDs[this.field]]
+            }
+            for (var i in blFactionIDs) {
+              if (blFactionIDs[i] == x) { this.field = i }
+            }
+            if (x == -1) { this.field = x }
+            else { this.upgrades[x] = {_id:x, u1:true} }
+            console.log('setting new field value:', this.field)
+          }
+        },
+        options: function() {
+          var opts = [{id:-1, name:'None'}];
+          for (var i of util.assoc[this.type]) {
+            if (this.filter && !dropdownFilter[this.filter][i.id]) continue;
+            opts.push({
+              id: i.id,
+              name: i.name,
+              //disabled: this.filter && !dropdownFilter[this.filter][i.id]
+            });
+          }
+          return opts;
+        }
+      }
+    });
+
+    Vue.component('widget-combo-bloodline-dropdown', {
+      props: {
+        'field': {},
+        'upgrades': Object,
+        'name': String,
+        'type': String,
+        'filter': String
+      },
+      template: '<tr>'
+      + '<th><span class="statname">{{name}}</span></th>'
+      + '<td><select v-model="unlocked" number>'
+      + '<option :disabled="option.disabled" :value="option.id" v-for="option in options">{{option.name}}</option>'
+      + '</select></td>'
+      + '</tr>',
+      computed: {
+        unlocked: {
+          get: function() {
+            var blFactionIDs = { 0:194, 1:164, 2:39, 3:212, 4:396, 5:103, 6:380, 7:136, 8:183, 9:150, 10:120, 11:598 } ;
+            console.log('combo get(), ', this.field, blFactionIDs[this.field])
             for (var i = this.options.length-2; i >= 0; i--) {
-              if (this.upgrades[upgradeIDs[this.filter][i]]) { return upgradeIDs[this.filter][i]; }
+              if (this.upgrades[upgradeIDs[this.filter][i]]) {
+                console.log(upgradeIDs[this.filter][i])
+                return upgradeIDs[this.filter][i];
+              }
             }
             return -1;
           },
           set: function(x) {
+            console.log('set(), x=',x)
             for (var i = 0; i < this.options.length-1; i++) {
               var tid = upgradeIDs[this.filter][i];
               if (this.upgrades[tid]) delete this.upgrades[tid];
             }
             this.upgrades[x] = {_id:x, u1:true};
-            var factionIDs = { 194:0, 164:1, 39:2, 212:3, 396:4, 103:5, 380:6, 136:7, 183:8, 150:9, 120:10, 598:11 };
-            this.savefield = factionIDs[x]
           }
         },
         options: function() {
