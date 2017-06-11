@@ -27,7 +27,7 @@
         if (s.name == 'Heatwave') continue;
         var spell = {name: s.name, id: s.id, unlocked: 0, owned: 0};
         var start = 400001 + s.id * 100;
-        for (var i = start; i < start + 4; i++) {
+        for (var i = start; i < start + 9; i++) {
           if (save.upgrades[i]) {
             spell.unlocked += 1;
             if (save.upgrades[i].u1) spell.owned += 1;
