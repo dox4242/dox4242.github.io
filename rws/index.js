@@ -198,7 +198,7 @@
             var len = eligible.length || 5;
             var tier = breathRNG.nextIntRange(0, len);
             var hit = eligible.length ? eligible.splice(tier, 1) : breathNames[tier];
-            hits.push('<span class="breath' + tier + '">' + hit + '</span>');
+            hits.push('<span class="breath' + hit + '">' + hit + '</span>');
           }
 					var li = $('<li />').html(hits.join(', '));
 					$('#breathForecast > ol').append(li);
