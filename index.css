@@ -27,11 +27,11 @@
 	.highlight.tier9, .hover.tier9 { color: teal; }
 	.highlight.tier10, .hover.tier10 { color: aqua; }
 
-	.breathRed { border-bottom: 2px solid red; }
-	.breathGreen { border-bottom: 2px solid green; }
-	.breathBlue { border-bottom: 2px solid blue; }
-	.breathWhite { border-bottom: 2px dotted black; }
-	.breathBlack { border-bottom: 2px solid black; }
+	.breathRed { text-shadow: 0 0 5px red; }
+	.breathGreen { text-shadow: 0 0 5px green; }
+	.breathBlue { text-shadow: 0 0 5px blue; }
+	.breathWhite { text-shadow: 0 0 2px black, 0 0 5px black; color: white; }
+	.breathBlack { text-shadow: 0 0 5px black; }
 
 	.result {
 		font-weight: bold;
