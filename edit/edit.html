@@ -181,7 +181,7 @@
             <tr is='widget-stat' :stat.sync='save.stats[30]' hide-ab hide-rei hide-prev-reis hide-total name='Gems Gained Last Abdication'></tr>
             <tr is='widget-field' :field.sync='save.coins' can-edit :colspan='5' name='Gold'></tr>
             <tr is='widget-field-dropdown' :field.sync='save.alignment' type='alignment' :colspan='5' name='Alignment'></tr>
-            <tr is='widget-field-time' :field.sync='offlinetime' can-edit name='Save age (seconds, max 30d)'></tr>
+            <tr is='widget-field-time' :field.sync='offlinetime' can-edit :colspan='5' name='Save age (seconds, max 30d)'></tr>
           </table>
         </div>
       </div>
@@ -313,7 +313,7 @@
             <tr><td><b>Lightning streak</b></td>
             <template v-if="LSavail == 'True'"><td><select v-model="lsinput">
             <option v-for="name in currentbuildingsLS">{{ name }}</option></select> {{ lsmsg }}</td></template>
-            <template v-else><td>LS spell not available or not enough targets</td></template></tr>
+            <template v-else><td colspan='5'>LS spell not available or not enough targets</td></template></tr>
             <tr is='widget-field-dropdown' :field.sync='save.strikeTier' type='bTiers' :colspan='5' name='Lightning Strike Tier'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[37]' name='Lightning Strike Casts (alt)'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[64]' hide-prev-abs hide-rei hide-prev-reis hide-total name='Consecutive Goblins Greed Casts'></tr>
@@ -353,7 +353,7 @@
           <table class='table'>
             <tr is='widget-field-dropdown' :field.sync='save.faction' type='faction' filter='faction' :colspan='5' name='Faction'></tr>
             <tr is='widget-field-dropdown' :field.sync='save.prestigeFaction' type='faction' filter='prestigeFaction' :colspan='5' name='Prestige Faction'></tr>
-            <tr is='widget-bloodline-dropdown' :field.sync='save.bFaction' :upgrades.sync='upgradesArray' type='upgradeIDs' filter='bloodlineIDs' :colspan='5' name='Bloodline Faction'></tr>
+            <tr is='widget-bloodline-dropdown' :field.sync='save.bFaction' :upgrades.sync='upgradesArray' type='upgradeIDs' filter='bloodlines' :colspan='5' name='Bloodline Faction'></tr>
             <tr is='widget-fivestat-header'></tr>
             <tr is='widget-stat-time' :stat.sync='save.stats[i.timestat]' :name='i.name + " Playtime"' v-for='i in factions | filterDef "timestat"'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[i.affilstat]' :name='i.name + " Affiliations"' v-for='i in factions | filterDef "affilstat"'></tr>
@@ -538,59 +538,59 @@
             <tr is='widget-stat' :stat.sync='save.stats[107]' name='Ruby Max Mana Upgrades'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[108]' name='Ruby Gem Bonus Upgrades'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[109]' name='Ruby Royal Exchange Upgrades'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=123 name='Ancient Stoneslab 1 Quest Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=124 name='Ancient Stoneslab 2 Quest Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=125 name='Bone Fragment 1 Quest Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=126 name='Bone Fragment 2 Quest Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=127 name='Fossilized Piece of Bark 1 Quest Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=128 name='Fossilized Piece of Bark 2 Quest Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=160 name='Ancient Device Quest Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=161 name='Key to the Lost City Quest Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=184 name='Earth Core Quest Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=185 name='Flame of Bondelnar Quest Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=186 name='Horn of the Kings Quest Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=211 name='Spiky Rough Egg Quest Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=240 name='Obsidian Shard Quest Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=129 name='Ancient Coin Piece Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=237 name='Ancient Heirloom Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=130 name='Arachnid Figurine Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=131 name='Black Sword Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=132 name='Bottled Voice Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=133 name='Ceremonial Dagger Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=120 name='Chocolate Cookie Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=233 name='Dawnstone Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=140 name='Demon Horn Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=134 name='Demonic Figurine Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=135 name='Divine Sword Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=229 name='Dragon Fang Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=230 name='Dragon Soul Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=234 name='Duskstone Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=136 name='Dwarven Bow Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=215 name='Fortune Teller Machine Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=137 name='Fossilized Rodent Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=138 name='Glyph Table Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=139 name='Goblin Purse Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=141 name='Huge Titan Statue Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=142 name='Jaw Bone Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=178 name='Know Your Enemy, Part I Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=242 name='Know Your Enemy, Part II Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=143 name='Lucky Clover Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=144 name='Mini-treasure Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=145 name='Octopus-shaped Helmet Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=146 name='Pillar Fragment Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=147 name='Pink Carrot Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=148 name='Power Orb Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=150 name='Rotten Organ Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=151 name='Rough Stone Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=119 name='Scarab of Fortune Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=152 name='Steel Plate Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=153 name='Stone of Balance Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=154 name='Stone Tankard Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=155 name='Titan Shield Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=156 name='Translucent Goo Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=179 name='Vanilla Flavor Juice Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=187 name='Voodoo Doll Lore Artifact'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=177 name='Wall Fragment Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=123 name='Ancient Stoneslab 1 Quest Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=124 name='Ancient Stoneslab 2 Quest Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=125 name='Bone Fragment 1 Quest Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=126 name='Bone Fragment 2 Quest Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=127 name='Fossilized Piece of Bark 1 Quest Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=128 name='Fossilized Piece of Bark 2 Quest Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=160 name='Ancient Device Quest Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=161 name='Key to the Lost City Quest Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=184 name='Earth Core Quest Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=185 name='Flame of Bondelnar Quest Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=186 name='Horn of the Kings Quest Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=211 name='Spiky Rough Egg Quest Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=240 name='Obsidian Shard Quest Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=129 name='Ancient Coin Piece Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=237 name='Ancient Heirloom Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=130 name='Arachnid Figurine Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=131 name='Black Sword Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=132 name='Bottled Voice Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=133 name='Ceremonial Dagger Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=120 name='Chocolate Cookie Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=233 name='Dawnstone Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=140 name='Demon Horn Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=134 name='Demonic Figurine Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=135 name='Divine Sword Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=229 name='Dragon Fang Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=230 name='Dragon Soul Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=234 name='Duskstone Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=136 name='Dwarven Bow Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=215 name='Fortune Teller Machine Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=137 name='Fossilized Rodent Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=138 name='Glyph Table Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=139 name='Goblin Purse Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=141 name='Huge Titan Statue Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=142 name='Jaw Bone Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=178 name='Know Your Enemy, Part I Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=242 name='Know Your Enemy, Part II Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=143 name='Lucky Clover Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=144 name='Mini-treasure Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=145 name='Octopus-shaped Helmet Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=146 name='Pillar Fragment Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=147 name='Pink Carrot Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=148 name='Power Orb Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=150 name='Rotten Organ Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=151 name='Rough Stone Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=119 name='Scarab of Fortune Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=152 name='Steel Plate Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=153 name='Stone of Balance Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=154 name='Stone Tankard Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=155 name='Titan Shield Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=156 name='Translucent Goo Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=179 name='Vanilla Flavor Juice Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=187 name='Voodoo Doll Lore Artifact'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=177 name='Wall Fragment Lore Artifact'></tr>
           </table>
         </div>
       </div>
@@ -661,11 +661,12 @@
             <tr><td><b>Miracle (D400) streak</b></td>
             <template v-if="miracleAvail == 'True'"><td><select v-model="miracleinput">
             <option v-for="name in currentbuildingsM">{{ name }}</option></select> {{ miraclemsg }}</td></template>
-            <template v-else><td>D400 not purchased or not enough targets</td></template></tr>
+            <template v-else><td colspan="5">D400 not purchased or not enough targets</td></template></tr>
             <tr is='widget-field-dropdown' :field.sync='save.miracleTier' type='bTiers' :colspan='5' name='Current Miracle Tier Target'></tr>
             <tr is='widget-field' :field.sync='save.miracleTimer' can-edit :colspan='5' name='Miracle Effect Timer (max 120)'></tr>
-            <tr is='widget-bloodline-dropdown' :field.sync='save.combinationBL' :upgrades.sync='upgradesArray' type='upgradeIDs' filter='bloodlineIDs' :colspan='5' name='Combination (A2950) Bloodline Faction'></tr>
+            <tr is='widget-bloodline-dropdown' :field.sync='save.combinationBL' :upgrades.sync='upgradesArray' type='upgradeIDs' filter='bloodlines' :colspan='5' name='Combination (A2950) Bloodline Faction'></tr>
             <tr is='widget-research-upgrades-header'></tr>
+            <tr is='widget-research-all' :upgrades.sync='upgradesArray' :colspan=5></tr>
             <tr is='widget-research-upgrade-row' :upgrades.sync='upgradesArray' s_name='S1', s_id='130300', c_name='C1', c_id='125300', d_name='D1', d_id='126400', e_name='E1', e_id='128100', a_name='A1', a_id='124500', w_name='W1', w_id='131000'></tr>
             <tr is='widget-research-upgrade-row' :upgrades.sync='upgradesArray' s_name='S10', s_id='129901', c_name='C10', c_id='125201', d_name='D10', d_id='127001', e_name='E10', e_id='128701', a_name='A10', a_id='124801', w_name='W10', w_id='131501'></tr>
             <tr is='widget-research-upgrade-row' :upgrades.sync='upgradesArray' s_name='S30', s_id='130903', c_name='C25', c_id='125702', d_name='D25', d_id='126602', e_name='E25', e_id='128202', a_name='A25', a_id='123903', w_name='W25', w_id='132202'></tr>
@@ -747,75 +748,75 @@
         <div class='panel panel-default'>
           <table class='table'>
             <tr is='widget-event-trophy-header'></tr>
-            <tr><td colspan='5'><center><b>Valentines Event</b></center></td></tr>
+            <tr><td colspan='4'><center><b>Valentines Event</b></center></td></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=117600 name='Feel the Love 1 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=117601 name='Feel the Love 2 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=117602 name='Feel the Love 3 Quest'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=174 name='Feel the Love Feat'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=175 name='I Love You in Every Language Feat'></tr>
-            <tr><td colspan='5'><center><b>Easter Event</b></center></td></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=174 name='Feel the Love Feat'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=175 name='I Love You in Every Language Feat'></tr>
+            <tr><td colspan='4'><center><b>Easter Event</b></center></td></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=119500 name='Egg Hunter 1 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=119501 name='Egg Hunter 2 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=119502 name='Egg Hunter 3 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=119503 name='Egg Hunter 4 Quest'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=191 name='Egg Hunter Feat'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=191 name='Egg Hunter Feat'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=119600 name='Egg Collection 1 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=119601 name='Egg Collection 2 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=119602 name='Egg Collection 3 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=119603 name='Egg Collection 4 Quest'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=194 name='Egg Collection Feat'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=192 name='Golden Chicken Feat'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=193 name='Grey Easter Feat'></tr>
-            <tr><td colspan='5'><center><b>Summer Event</b></center></td></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=194 name='Egg Collection Feat'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=192 name='Golden Chicken Feat'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=193 name='Grey Easter Feat'></tr>
+            <tr><td colspan='4'><center><b>Summer Event</b></center></td></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=120800 name='Summeraan Champion 1 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=120801 name='Summeraan Champion 2 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=120802 name='Summeraan Champion 3 Quest'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=205 name='Summeraan Champion Feat'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=205 name='Summeraan Champion Feat'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=120900 name='Winterly Champion 1 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=120901 name='Winterly Champion 2 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=120902 name='Winterly Champion 3 Quest'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=207 name='Winterly Champion Feat'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=204 name='Chill Out Feat'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=206 name='Warm Up Feat'></tr>
-            <tr><td colspan='5'><center><b>Blood War Event</b></center></td></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=207 name='Winterly Champion Feat'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=204 name='Chill Out Feat'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=206 name='Warm Up Feat'></tr>
+            <tr><td colspan='4'><center><b>Blood War Event</b></center></td></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=124800 name='Seraphim Champion 1 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=124801 name='Seraphim Champion 2 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=124802 name='Seraphim Champion 3 Quest'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=246 name='Seraphim Champion Feat'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=246 name='Seraphim Champion Feat'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=124700 name='Asmodean Champion 1 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=124701 name='Asmodean Champion 2 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=124702 name='Asmodean Champion 3 Quest'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=243 name='Asmodean Champion Feat'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=245 name='Sacred Holiness Feat'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=244 name='Darkest Heresy Feat'></tr>
-            <tr><td colspan='5'><center><b>Halloween Event</b></center></td></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=243 name='Asmodean Champion Feat'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=245 name='Sacred Holiness Feat'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=244 name='Darkest Heresy Feat'></tr>
+            <tr><td colspan='4'><center><b>Halloween Event</b></center></td></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=122400 name='Monster Breeder 1 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=122401 name='Monster Breeder 2 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=122402 name='Monster Breeder 3 Quest'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=221 name='Monster Breeder Feat'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=221 name='Monster Breeder Feat'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=122500 name='Pumpkin Smasher 1 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=122501 name='Pumpkin Smasher 2 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=122502 name='Pumpkin Smasher 3 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=122503 name='Pumpkin Smasher 4 Quest'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=222 name='Pumpkin Smasher Feat'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=223 name='Spooky Feat'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=219 name='Bloodthirsty Feat'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=220 name='Bonepicker Feat'></tr>
-            <tr><td colspan='5'><center><b>Thanksgiving Event</b></center></td></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=115 name='Thanksgiving Feat'></tr>
-            <tr><td colspan='5'><center><b>Christmas Event</b></center></td></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=222 name='Pumpkin Smasher Feat'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=223 name='Spooky Feat'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=219 name='Bloodthirsty Feat'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=220 name='Bonepicker Feat'></tr>
+            <tr><td colspan='4'><center><b>Thanksgiving Event</b></center></td></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=115 name='Thanksgiving Feat'></tr>
+            <tr><td colspan='4'><center><b>Christmas Event</b></center></td></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=116800 name='Snowpile 1 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=116801 name='Snowpile 2 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=116802 name='Snowpile 3 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=116803 name='Snowpile 4 Quest'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=165 name='Snowpile Feat'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=165 name='Snowpile Feat'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=116700 name='Gift Collector 1 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=116701 name='Gift Collector 2 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=116702 name='Gift Collector 3 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=116703 name='Gift Collector 4 Quest'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=163 name='Gift Collector Feat'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=164 name='Santas Helpers Feat'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=166 name='Unholidays Feat'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=163 name='Gift Collector Feat'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=164 name='Santas Helpers Feat'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=166 name='Unholidays Feat'></tr>
           </table>
         </div>
       </div>
@@ -823,7 +824,7 @@
         <div class='panel panel-default'>
           <table class='table'>
             <tr is='widget-fivestat-header'></tr>
-            <tr><td colspan='5'><center><b>Valentines Event</b></center></td></tr>
+            <tr><td colspan='6'><center><b>Valentines Event</b></center></td></tr>
             <tr is='widget-field' :field.sync='save.eventResources[2].res' can-edit :colspan='5' name='Hearts'></tr>
             <tr is='widget-field' :field.sync='save.ctaFactionCasts' can-edit :colspan='5' name='Valentines Call to Love, cast by Factions (bit array)'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[119]' name='Hearts Found'></tr>
@@ -835,16 +836,16 @@
             <tr is='widget-stat' :stat.sync='save.stats[120]' name='Call to Love Casts'></tr>
             <tr is='widget-stat-time' :stat.sync='save.stats[111]' name='Call to Love Activity Time'></tr>
             <tr is='widget-stat-time' :stat.sync='save.stats[121]' name='Offline Time During Valentines'></tr>
-            <tr><td colspan='5'><center><b>Easter Event</b></center></td></tr>
+            <tr><td colspan='6'><center><b>Easter Event</b></center></td></tr>
             <tr is='widget-field' :field.sync='save.eggRngState' can-edit :colspan='5' name='Easter Egg RNG State (best value: 873457390)'></tr>
             <tr is='widget-field' :field.sync='save.eggStackSize' can-edit :colspan='5' name='Easter Egg Stack Size'></tr>
             <tr is='widget-field' :field.sync='save.eventResources[4].res' can-edit :colspan='5' name='Common Eggs'></tr>
             <tr is='widget-field' :field.sync='save.eventResources[5].res' can-edit :colspan='5' name='Rare Eggs'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[123]' name='Common Eggs Collected'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[124]' name='Rare Eggs Collected'></tr>
-            <tr><td colspan='5'><center><b>April Fools Event</b></center></td></tr>
+            <tr><td colspan='6'><center><b>April Fools Event</b></center></td></tr>
             <tr is='widget-field' :field.sync='save.eventResources[7].res' can-edit :colspan='5' name='April Fools Minutes'></tr>
-            <tr><td colspan='5'><center><b>Summer Event</b></center></td></tr>
+            <tr><td colspan='6'><center><b>Summer Event</b></center></td></tr>
             <tr is='widget-field' :field.sync='save.eventResources[10].res' can-edit :colspan='5' name='Orb Stack Size'></tr>
             <tr is='widget-field' :field.sync='save.eventResources[8].res' can-edit :colspan='5' name='Flame Orbs'></tr>
             <tr is='widget-field' :field.sync='save.eventResources[9].res' can-edit :colspan='5' name='Frost Orbs'></tr>
@@ -852,13 +853,13 @@
             <tr is='widget-stat' :stat.sync='save.stats[127]' name='Frost Orbs Collected'></tr>
             <tr is='widget-stat-time' :stat.sync='save.stats[128]' name='Summeraan Playtime'></tr>
             <tr is='widget-stat-time' :stat.sync='save.stats[129]' name='Winterly Playtime'></tr>
-            <tr><td colspan='5'><center><b>Blood War Event</b></center></td></tr>
+            <tr><td colspan='6'><center><b>Blood War Event</b></center></td></tr>
             <tr is='widget-field' :field.sync='save.eventResources[10].res' can-edit :colspan='5' name='Resource Stack Size'></tr>
             <tr is='widget-field' :field.sync='save.eventResources[18].res' can-edit :colspan='5' name='Holy Symbols'></tr>
             <tr is='widget-field' :field.sync='save.eventResources[19].res' can-edit :colspan='5' name='Lava Stones'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[131]' name='Holy Symbols Collected'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[132]' name='Lava Stones Collected'></tr>
-            <tr><td colspan='5'><center><b>Halloween Event</b></center></td></tr>
+            <tr><td colspan='6'><center><b>Halloween Event</b></center></td></tr>
             <tr is='widget-field' :field.sync='save.eventResources[10].res' can-edit :colspan='5' name='Resource Stack Size'></tr>
             <tr is='widget-field' :field.sync='save.eventResources[12].res' can-edit :colspan='5' name='Blood'></tr>
             <tr is='widget-field' :field.sync='save.eventResources[13].res' can-edit :colspan='5' name='Ectoplasm'></tr>
@@ -866,9 +867,9 @@
             <tr is='widget-stat' :stat.sync='save.stats[82]' name='Blood Collected'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[83]' name='Ectoplasm Collected'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[84]' name='Bones Collected'></tr>
-            <tr><td colspan='5'><center><b>Thanksgiving Event</b></center></td></tr>
+            <tr><td colspan='6'><center><b>Thanksgiving Event</b></center></td></tr>
             <tr><td>None.</td></tr>
-            <tr><td colspan='5'><center><b>Christmas Event</b></center></td></tr>
+            <tr><td colspan='6'><center><b>Christmas Event</b></center></td></tr>
             <tr is='widget-field' :field.sync='save.eventResources[0].res' can-edit :colspan='5' name='Snowballs'></tr>
             <tr is='widget-field' :field.sync='save.snowballScryUses' can-edit :colspan='5' name='Snowball Scry Uses'></tr>
             <tr is='widget-field' :field.sync='save.eventResources[10].res' can-edit :colspan='5' name='Snowball Stack Size'></tr>
@@ -1076,7 +1077,7 @@
             <tr is='widget-stat' :stat.sync='save.stats[14]' name='Trophy Counter (Defunct)'></tr>
             <tr>
               <th><span class="statname">LS_is_out_to_get_player</span></th>
-              <td><input type="checkbox" v-model="lsJoke" number></input></td>
+              <td colspan="5"><input type="checkbox" v-model="lsJoke" number></input></td>
             </tr>
           </table>
         </div>

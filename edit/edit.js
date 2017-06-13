@@ -55,7 +55,13 @@
   };
   
   var upgradeIDs = {
-    bloodlineIDs: [194, 164, 39, 212, 396, 103, 380, 136, 183, 150, 120, 598],
+    bloodlines: [194, 164, 39, 212, 396, 103, 380, 136, 183, 150, 120, 598],
+    spellcraft: [130300, 129901, 130903, 130002, 130504, 129805, 130806, 130208, 130407, 130110, 130709, 130611, 129712, 144713, 145314, 144915, 145116, 145217, 145018, 144819, 153920, 153621, 153722, 153823, 154024, 162925, 163026, 162827, 171828, 171729], 
+    craftsmanship: [125300, 125201, 125702, 125903, 125004, 126305, 126106, 126007, 126208, 125409, 125610, 125111, 125812, 142613, 143214, 142815, 143116, 142717, 143018, 142919, 151520, 151421, 151622, 151323, 151224, 162125, 162026, 161927, 171128, 171229],
+    divine: [126400, 127001, 126602, 126803, 127504, 126905, 127206, 127108, 127409, 126507, 127610, 127311, 126712, 143813, 143614, 143915, 143316, 143517, 143418, 143719, 152720, 152621, 152922, 153023, 152824, 162225, 162426, 162327, 171328, 171429],
+    economics: [128100, 128701, 128202, 128403, 127804, 128305, 127907, 128806, 128608, 127709, 128510, 128011, 128912, 144413, 144214, 144615, 144516, 144017, 144318, 144119, 153320, 153121, 153522, 153223, 153424, 162525, 162626, 162727, 171528, 171629],
+    alchemy: [124500, 124801, 123903, 124002, 124304, 124605, 124206, 124907, 123808, 124109, 124710, 123711, 124412, 142313, 142414, 142115, 142216, 141917, 142518, 142019, 152420, 152521, 152122, 152323, 152224, 161725, 161626, 161827, 171028, 170929],
+    warfare: [131000, 131501, 132202, 131603, 131204, 132005, 131810, 131909, 131706, 131407, 131108, 131311, 132112, 145413, 145514, 145615, 145816, 145717, 146018, 145919, 154120, 154421, 154222, 154323, 154524, 163125, 163326, 163227, 171928, 172029],
     ctaTiers: [400301, 400302, 400303, 400304, 400305],
     hlTiers: [401201, 401202, 401203, 401204, 401205],
     fcTiers: [400601, 400602, 400603, 400604, 400605],
@@ -74,6 +80,9 @@
     dbTiers: [402101, 402102, 402103, 402104, 402105],
     ssTiers: [401701, 401702, 401703, 401704, 401705],
   };
+  
+  var allResearches = upgradeIDs.spellcraft.concat(upgradeIDs.craftsmanship, upgradeIDs.divine, upgradeIDs.economics, upgradeIDs.alchemy, upgradeIDs.warfare)
+
   
   for (var x in trophyIDs) {
     dropdownFilter[x] = trophyIDs[x];
@@ -238,7 +247,7 @@
       props: ['spell', 'name'],
       template: '<tr>'
       + '<th><span class="statname">{{name}}</span></th>'
-      + '<td><input v-model="spell.s" number></input></td>'
+      + '<td colspan="5"><input v-model="spell.s" number></input></td>'
       + '</tr>'
     });
 
@@ -258,7 +267,7 @@
       props: ['spell', 'name'],
       template: '<tr>'
       + '<th><span class="statname">{{name}}</span></th>'
-      + '<td><input v-model="spell.t" number></input></td>'
+      + '<td colspan="5"><input v-model="spell.t" number></input></td>'
       + '</tr>'
     });
     
@@ -550,11 +559,15 @@
         'field': {},
         'name': String,
         'type': String,
-        'filter': String
+        'filter': String,
+        'colspan': {
+          type: Number,
+          default: function() { return 1; }
+        }
       },
       template: '<tr>'
       + '<th><span class="statname">{{name}}</span></th>'
-      + '<td><select v-model="field" number>'
+      + '<td :colspan="colspan"><select v-model="field" number>'
       + '<option :disabled="option.disabled" :value="option.id" v-for="option in options">{{option.name}}</option>'
       + '</select></td>'
       + '</tr>',
@@ -580,11 +593,15 @@
         'upgrades': Object,
         'name': String,
         'type': String,
-        'filter': String
+        'filter': String,
+        'colspan': {
+          type: Number,
+          default: function() { return 1; }
+        }
       },
       template: '<tr>'
       + '<th><span class="statname">{{name}}</span></th>'
-      + '<td><select v-model="unlocked" number>'
+      + '<td :colspan="colspan"><select v-model="unlocked" number>'
       + '<option :disabled="option.disabled" :value="option.id" v-for="option in options">{{option.name}}</option>'
       + '</select></td>'
       + '</tr>',
@@ -744,7 +761,42 @@
       + '<th><span class="statheader">Alchemy</span></th>'
       + '<th><span class="statheader">Warfare</span></th>'
       + '</tr><tr>'
-      + '<td>Unlocked / Owned</td></tr>'
+      + '<td colspan="6">Unlocked / Owned</td></tr>'
+    });
+    
+    Vue.component('widget-research-all', {
+      props: {
+        'upgrades': Object,
+      },
+      template: '<tr><td>All '
+      + '<input type="checkbox" v-model="all_unlocked" number></input> '
+      + '<input type="checkbox" v-model="all_owned" number></input></td></tr>',
+      computed: {
+        all_unlocked: {
+          set: function(x) {
+            for (var i of allResearches) {
+              if (x && !this.upgrades[i]) { this.upgrades[i] = {_id: this.i, u1: false, u2: false, u3: false, s: 0}; }
+              else if (this.upgrades[i]) { delete this.upgrades[i]; }
+            }
+          }
+        },
+        all_owned: {
+          set: function(x) {
+            console.log('own', x);
+            for (var i of allResearches) {
+              console.log(i, this.upgrades[i]);
+              if (!this.upgrades[i] && x) {
+                console.log('creating research');
+                this.upgrades[i] = {_id: i, u1: true, u2: false, u3: false, s: 0};
+              }
+              else {
+                console.log('setting research owned to', x);
+                this.upgrades[i].u1 = x;
+              }
+            }
+          }
+        }
+      }
     });
     Vue.component('widget-research-upgrade-row', {
       props: {
@@ -920,11 +972,15 @@
       props: {
         'trophies': Object,
         'name': String,
-        'id': String
+        'id': String,
+        'colspan': {
+          type: Number,
+          default: function() { return 1; }
+        }
       },
       template: '<tr>'
       + '<th><span class="statname">{{name}}</span></th>'
-      + '<td><input type="checkbox" v-model="unlocked" number></input></td>'
+      + '<td :colspan="colspan"><input type="checkbox" v-model="unlocked" number></input></td>'
       //+ '<td><input type="checkbox" v-model="trophyU1" number></input></td>'
       + '</tr>',
       computed: {
