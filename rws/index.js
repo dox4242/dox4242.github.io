@@ -196,7 +196,7 @@
           const eligible = breathNames.slice();
           for (var c = 0; c <= breathTier; c++) {
             var len = eligible.length || 5;
-            var tier = breathRNG.nextIntRange(0, len);
+            var tier = breathRNG.nextIntRange(0, len - 1);
             var hit = eligible.length ? eligible.splice(tier, 1) : breathNames[tier];
             hits.push('<span class="breath' + hit + '">' + hit + '</span>');
           }
