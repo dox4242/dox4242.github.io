@@ -11,6 +11,7 @@
 		var lightningRNG = null;
 		var miracleRNG = null;
 		var breathRNG = null;
+    var breathTier = 1;
 		
 		// Refresh the entire forecast
 		var forecast = function(saveStr) {
@@ -19,6 +20,7 @@
 			lightningRNG = null;
 			miracleRNG = null;
 			breathRNG = null;
+      breathTier = 1;
 			$('#lightningMessage, #lightningForecast, #miracleMessage, #miracleForecast, #breathMessage, #breathForecast').html('');
 			
 			var save = SaveHandler.Decode(saveStr);
@@ -136,6 +138,8 @@
 			
 			// Create the RNG and get the initial forecast
 			breathRNG = new PM_PRNG(save.spells[21].s);
+      // assume DB tier is active tiers
+      breathTier = save.spells[21].activeTiers;
 			$('#breathMessage').html('<b>Dragon\'s Breath</b><br>Your RNG state is: ' + breathRNG.state + '.');
 			$('#breathForecast').html('<b>Forecast</b><br><ol></ol>')
 				.append($('<button class="btn btn-link" type="button" />').html('Give me a longer Forecast').on('click', forecastBreathMore));
@@ -187,10 +191,16 @@
 		var forecastBreathMore = function(e) {
 			if (breathRNG)
 				for (var i = 0; i < 10; i++) {
-					var len = breathNames.length;
-					var tier = breathRNG.strikeTier(len);
-					var hit = breathNames[tier];
-					var li = $('<li />').html(hit).addClass('tier' + tier).data('tier', tier);
+          // TODO: prepopulate this with save.breathEffects.toString(2) when appropriate instead of assuming a full cast is ready
+          const hits = [];
+          const eligible = breathNames.slice();
+          for (var c = 0; c <= breathTier; c++) {
+            var len = eligible.length || 5;
+            var tier = breathRNG.nextIntRange(0, len);
+            var hit = eligible.length ? eligible.splice(tier, 1) : breathNames[tier];
+            hits.push('<span class="breath' + tier + '">' + hit + '</span>');
+          }
+					var li = $('<li />').html(hits.join(', '));
 					$('#breathForecast > ol').append(li);
 				}
 		};
