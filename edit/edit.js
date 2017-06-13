@@ -782,17 +782,9 @@
         },
         all_owned: {
           set: function(x) {
-            console.log('own', x);
             for (var i of allResearches) {
-              console.log(i, this.upgrades[i]);
-              if (!this.upgrades[i] && x) {
-                console.log('creating research');
-                this.upgrades[i] = {_id: i, u1: true, u2: false, u3: false, s: 0};
-              }
-              else {
-                console.log('setting research owned to', x);
-                this.upgrades[i].u1 = x;
-              }
+              if (!this.upgrades[i] && x) { this.upgrades[i] = {_id: i, u1: true, u2: false, u3: false, s: 0}; }
+              else { this.upgrades[i].u1 = x; }
             }
           }
         }
