@@ -648,7 +648,7 @@
       + '<th><span class="statheader">RNG State</span></th>'*/
       + '</tr>'
     });
-    
+
     Vue.component('widget-upgrade', {
       props: {
         'upgrades': Object,
@@ -939,6 +939,40 @@
           set: function(x) {
             if (!this.upgrades[this.w_id]) { this.upgrades[this.w_id] = {_id: this.w_id, u1: true, u2: false, u3: false, s: 0}; }
             else { this.upgrades[this.w_id].u1 = x; }
+          }
+    	}
+      }
+    });
+
+    Vue.component('widget-lineage-perk', {
+      props: {
+        'upgrades': Object,
+        'name': String,
+        'id': String
+      },
+      template: '<tr>'
+      + '<th><span class="statname">{{name}}</span></th>'
+      + '<td><input type="checkbox" v-model="unlocked" number></input> '
+      + '<input type="checkbox" v-model="owned" number></input></td>'
+      + '</tr>',
+      computed: {
+    	unlocked: {
+          get: function() {
+            if (this.upgrades[this.id]) { return true; }
+            else { return false; }
+          },
+          set: function(x) {
+            if (this.s_unlocked) { delete this.upgrades[this.id]; }
+            else { this.upgrades[this.id] = {_id: this.id, u1: false, u2: false, u3: false, s: 0}; }
+          }
+        },
+    	owned: {
+          get: function() {
+            return this.upgrades[this.id] && this.upgrades[this.id].u1;
+      	  },
+          set: function(x) {
+            if (!this.upgrades[this.id] && x) { this.upgrades[this.id] = {_id: this.id, u1: true, u2: false, u3: false, s: 0}; }
+            else { this.upgrades[this.id].u1 = x; }
           }
     	}
       }
