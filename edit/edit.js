@@ -1250,7 +1250,7 @@
           } else { this.LSavail = 'True' }
           for (var i of [9,13,3,23,15,25,4,5,20,11,21,19,24,6,18,8,12,7,22,1,17,16,14,2,10]) {
             if (this.save.buildings[i].q > 0) {
-              if ((i ==10) && this.save.upgrade_owned(save, 143018)) {
+              if ((i ==10) && this.save.upgrade_owned(this.save, 143018)) {
                 continue
               }
               this.currentbuildingsLS.push(this.buildingnames[this.save.buildings[i].id-1])
