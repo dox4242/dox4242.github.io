@@ -804,6 +804,16 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=243 name='Asmodean Champion Feat'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=245 name='Sacred Holiness Feat'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=244 name='Darkest Heresy Feat'></tr>
+            <tr><td colspan='4'><center><b>Goblin Invasion Event</b></center></td></tr>
+            <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=125500 name='Goblin&apos;s Commander 1 Quest'></tr>
+            <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=125501 name='Goblin&apos;s Commander 2 Quest'></tr>
+            <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=125502 name='Goblin&apos;s Commander 3 Quest'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=252 name='Goblin&apos;s Commander Feat'></tr>
+            <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=125400 name='Goblin&apos;s Bane 1 Quest'></tr>
+            <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=125401 name='Goblin&apos;s Bane 2 Quest'></tr>
+            <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=125402 name='Goblin&apos;s Bane 3 Quest'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=251 name='Goblin&apos;s Bane Feat'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=253 name='Goblins Everywhere Feat'></tr>
             <tr><td colspan='4'><center><b>Halloween Event</b></center></td></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=122400 name='Monster Breeder 1 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=122401 name='Monster Breeder 2 Quest'></tr>
@@ -830,7 +840,7 @@
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=116702 name='Gift Collector 3 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=116703 name='Gift Collector 4 Quest'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=163 name='Gift Collector Feat'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=164 name='Santas Helpers Feat'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=164 name='Santa&apos;s Helpers Feat'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=166 name='Unholidays Feat'></tr>
           </table>
         </div>
@@ -839,6 +849,7 @@
         <div class='panel panel-default'>
           <table class='table'>
             <tr is='widget-fivestat-header'></tr>
+            <tr is='widget-field' :field.sync='save.eventResources[10].res' can-edit :colspan='5' name='Current Resource Stack Size'></tr>
             <tr><td colspan='6'><center><b>Valentines Event</b></center></td></tr>
             <tr is='widget-field' :field.sync='save.eventResources[2].res' can-edit :colspan='5' name='Hearts'></tr>
             <tr is='widget-field' :field.sync='save.ctaFactionCasts' can-edit :colspan='5' name='Valentines Call to Love, cast by Factions (bit array)'></tr>
@@ -859,9 +870,8 @@
             <tr is='widget-stat' :stat.sync='save.stats[123]' name='Common Eggs Collected'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[124]' name='Rare Eggs Collected'></tr>
             <tr><td colspan='6'><center><b>April Fools Event</b></center></td></tr>
-            <tr is='widget-field' :field.sync='save.eventResources[7].res' can-edit :colspan='5' name='April Fools Minutes'></tr>
+            <tr is='widget-field' :field.sync='save.eventResources[7].res' can-edit :colspan='5' name='Minutes Since Last April Fools Upgrade'></tr>
             <tr><td colspan='6'><center><b>Summer Event</b></center></td></tr>
-            <tr is='widget-field' :field.sync='save.eventResources[10].res' can-edit :colspan='5' name='Orb Stack Size'></tr>
             <tr is='widget-field' :field.sync='save.eventResources[8].res' can-edit :colspan='5' name='Flame Orbs'></tr>
             <tr is='widget-field' :field.sync='save.eventResources[9].res' can-edit :colspan='5' name='Frost Orbs'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[126]' name='Flame Orbs Collected'></tr>
@@ -869,13 +879,16 @@
             <tr is='widget-stat-time' :stat.sync='save.stats[128]' name='Summeraan Playtime'></tr>
             <tr is='widget-stat-time' :stat.sync='save.stats[129]' name='Winterly Playtime'></tr>
             <tr><td colspan='6'><center><b>Blood War Event</b></center></td></tr>
-            <tr is='widget-field' :field.sync='save.eventResources[10].res' can-edit :colspan='5' name='Resource Stack Size'></tr>
             <tr is='widget-field' :field.sync='save.eventResources[18].res' can-edit :colspan='5' name='Holy Symbols'></tr>
             <tr is='widget-field' :field.sync='save.eventResources[19].res' can-edit :colspan='5' name='Lava Stones'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[131]' name='Holy Symbols Collected'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[132]' name='Lava Stones Collected'></tr>
+            <tr><td colspan='6'><center><b>Goblin Invasion Event</b></center></td></tr>
+            <tr is='widget-field' :field.sync='save.eventResources[21].res' can-edit :colspan='5' name='Goblin Crowns'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[65]' name='Goblin Crowns Collected'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[88]' name='Times Fought the Goblin Army'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[89]' name='Times Supported the Goblin Army'></tr>
             <tr><td colspan='6'><center><b>Halloween Event</b></center></td></tr>
-            <tr is='widget-field' :field.sync='save.eventResources[10].res' can-edit :colspan='5' name='Resource Stack Size'></tr>
             <tr is='widget-field' :field.sync='save.eventResources[12].res' can-edit :colspan='5' name='Blood'></tr>
             <tr is='widget-field' :field.sync='save.eventResources[13].res' can-edit :colspan='5' name='Ectoplasm'></tr>
             <tr is='widget-field' :field.sync='save.eventResources[14].res' can-edit :colspan='5' name='Bones'></tr>
@@ -887,7 +900,6 @@
             <tr><td colspan='6'><center><b>Christmas Event</b></center></td></tr>
             <tr is='widget-field' :field.sync='save.eventResources[0].res' can-edit :colspan='5' name='Snowballs'></tr>
             <tr is='widget-field' :field.sync='save.snowballScryUses' can-edit :colspan='5' name='Snowball Scry Uses'></tr>
-            <tr is='widget-field' :field.sync='save.eventResources[10].res' can-edit :colspan='5' name='Snowball Stack Size'></tr>
             <!--<tr is='widget-field' :field.sync='save.snowballSize' can-edit :colspan='5' name='Current Snowball Size'></tr>-->
             <tr is='widget-field' :field.sync='save.lastGiftDate' can-edit :colspan='5' name='Last Gift Date'></tr>
             <tr is='widget-field' :field.sync='save.eventResources[17].res' can-edit :colspan='5' name='Christmas Gifts Found'></tr>
