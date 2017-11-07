@@ -670,5 +670,21 @@ var Artifacts = [
     display: function(value) {
       return value + ' Excavation' + (value>1?'s':'') + ' (must excavate to this point with no eligible artifacts)';
     }*/
+  },
+  {
+    name: 'Veteran Figurine',
+    id: 268,
+    fixed: function(save) {
+      return save.reincarnation >= 90;
+    },
+    random: function(save) {
+      return util.save.stat(save, 1) / 100000000;
+    },
+    required: function(value) {
+      return Math.ceil(value * 100000000);
+    },
+    display: function(value) {
+      return util.render.time(value) + ' Playtime'
+    }
   }
 ];
