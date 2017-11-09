@@ -686,5 +686,15 @@ var Artifacts = [
     display: function(value) {
       return util.render.time(value) + ' Playtime'
     }
+  },
+  {
+    name: 'Ancient Cocoa Bean',
+    id: 269,
+    fixed: function(save) {
+      return save.reincarnation >= 22 && save.alignment == 3;
+    },
+    random: function(save) {
+      return 0.1
+    }
   }
 ];
