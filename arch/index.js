@@ -127,10 +127,20 @@
           break;
         }
       }
-      while (raw_values < 10000) {
+      var calculatedValues = 10000;
+      var valueLimit = 0.01;
+      
+      if (this.save.ascension >= 2)
+      {
+        // Extend the value range for A2 to account for new (Rare) artifacts
+        calculatedValues = 100000;
+        valueLimit = 0.001;
+      }
+      
+      while (raw_values < calculatedValues) {
         var val = rng.nextDouble();
         raw_values += 1;
-        if (val < 0.01) smalls.push({x: raw_values, y: val});
+        if (val < valueLimit) smalls.push({x: raw_values, y: val});
       }
       return {events: events, smalls: smalls};
     }
