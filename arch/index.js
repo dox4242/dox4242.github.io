@@ -55,6 +55,7 @@
       View.result.max_mana = util.save.max_mana(this.save);
       View.result.assistants = util.save.assistants(this.save);
       View.result.re_bonus = util.save.re_bonus(this.save);
+      View.result.fc_chance = util.save.fc_chance(this.save);
 
       this.classifyArtifacts();
       View.excavs = [];
@@ -251,7 +252,8 @@
           excavations: null,
           assistants: null,
           max_mana: null,
-          re_bonus: null
+          re_bonus: null,
+          fc_chance: null
         },
         excavs: [],
         raw: {
