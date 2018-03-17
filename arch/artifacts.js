@@ -696,5 +696,166 @@ var Artifacts = [
     random: function(save) {
       return 0.1
     }
+  },
+  //TODO: Add Ancestral Hourglass
+  {
+    name: 'Nightmare Figment',
+    id: 1001, //TODO: Update to real id
+    fixed: function (save) {
+      return save.faction == 8 && save.reincarnation >= 100 && save.excavations >= 3000; // TODO: Change faction to 8
+    },
+    random: function (save) {
+      return Math.pow(save.spells[2].active0 / (5 * 60), 1.5) / 2000000000
+    },
+    required: function (value) {
+      return Math.pow(value * 2000000000, 2 / 3);
+    },
+    display: function (value) {
+      return util.render.time(value) + ' Brainwave headstart';
+    }
+  },
+  {
+    name: 'Branch of the Life Tree',
+    id: 1002,//TODO: Update to real id
+    fixed: function (save) {
+      return save.faction == 7 && save.reincarnation >= 100 && save.excavations >= 3000;
+    },
+    random: function (save) {
+      return Math.pow(save.lineageLevels[7].lev, 3) / 200000000;
+    },
+    required: function (value) {
+      return Math.pow(value * 200000000, 1 / 3);
+    },
+    display: function (value) {
+      return 'Level ' + Math.ceil(value) + ' druid lineage';
+    }
+  },
+  {
+    name: 'Titan Helmet',
+    id: 1003,//TODO: Update to real id
+    fixed: function (save) {
+      return save.faction == 6 && save.reincarnation >= 100 && save.excavations >= 3000;
+    },
+    random: function (save) {
+      var exchanges = 0;
+      save.factionCoins.forEach(element => {
+        exchanges += element.royalExchanges;
+      });
+      return Math.pow(exchanges, 2) / 500000000000;
+    },
+    required: function (value) {
+      return Math.pow(value * 500000000000, 1 / 2);
+    },
+    display: function (value) {
+      return Math.ceil(value) + ' royal exchanges';
+    }
+  },
+  {
+    name: 'Crystallized Lava',
+    id: 1004,//TODO: Update to real id
+    fixed: function (save) {
+      return save.faction == 5 && save.reincarnation >= 100 && save.excavations >= 3000;
+    },
+    random: function (save) {
+      var value = save.buildings[10].q;
+      return (value - 10000) / 20000000;
+    },
+    required: function (value) {
+      return value * 20000000 + 10000;
+    },
+    display: function (value) {
+      return Math.ceil(value) + ' Hall of Legends';
+    }
+  },
+  {
+    name: 'Dusty Coffin', // TODO: higher is better, might require rework of the entire page logic
+    id: 1005,//TODO: Update to real id
+    fixed: function (save) {
+      return save.faction == 4 && save.reincarnation >= 100 && save.excavations >= 3000;
+    },
+    random: function (save) {
+      var value = save.stats[1].stats;
+      return 1 / (30 + Math.pow(value, 1.75));
+    },
+    required: function (value) {
+      return Math.floor(Math.pow((1 / (value * 100)) - 30, 1 / 1.75));
+    },
+    display: function (value) {
+      return util.render.time(value) + ' spent this game';
+    }
+  },
+  {
+    name: 'Spiked Whip',
+    id: 1006,//TODO: Update to real id
+    fixed: function (save) {
+      return save.faction == 3 && save.reincarnation >= 100 && save.excavations >= 3000;
+    },
+    random: function (save) {
+      var value = save.buildings[21].q;
+      return (value - 10000) / 30000000;
+    },
+    required: function (value) {
+      return value * 30000000 + 10000;
+    },
+    display: function (value) {
+      return Math.ceil(value) + ' Slave Pens';
+    }
+  },
+  {
+    name: 'Fossilized Wing',
+    id: 1007,//TODO: Update to real id
+    fixed: function (save) {
+      return save.faction == 2 && save.reincarnation >= 100 && save.excavations >= 3000;
+    },
+    random: function (save) {
+
+      var thisGame = save.stats[52].stats;
+      var thisR = save.stats[52].statsReset;
+      var prevR = save.stats[52].statsRei;
+
+      var value = thisGame + thisR + prevR; // TODO: time this game, this R or all time?
+      return value / 2592000000;
+    },
+    required: function (value) {
+      return value * 2592000000;
+    },
+    display: function (value) {
+      return util.render.time(value) + ' Angel time';
+    }
+  },
+  {
+    name: 'Raw Emerald',
+    id: 1008,//TODO: Update to real id
+    fixed: function (save) {
+      return save.faction == 1 && save.reincarnation >= 100 && save.excavations >= 3000;
+    },
+    random: function (save) {
+
+      var value = 1; // TODO: how to get non ruby excavation resets this game?
+      return 2 * Math.pow(value, 2) / 1000000;
+    },
+    required: function (value) {
+      return Math.sqrt(value * 1000000 / 2);
+    },
+    display: function (value) {
+      return Math.ceil(value) + ' non ruby excavation resets this game';
+    }
+  },
+  {
+    name: 'Silk Cloth',
+    id: 1009,//TODO: Update to real id
+    fixed: function (save) {
+      return save.faction == 0 && save.reincarnation >= 100 && save.excavations >= 3000;
+    },
+    random: function (save) {
+      var value = save.buildings[25].q;
+      return (value - 10000) / 20000000;
+    },
+    required: function (value) {
+      return value * 20000000 + 10000;
+    },
+    display: function (value) {
+      return Math.ceil(value) + ' Wizard Towers';
+    }
   }
 ];
