@@ -700,9 +700,9 @@ var Artifacts = [
   //TODO: Add Ancestral Hourglass
   {
     name: 'Nightmare Figment',
-    id: 1001, //TODO: Update to real id
+    id: 278,
     fixed: function (save) {
-      return save.faction == 8 && save.reincarnation >= 100 && save.excavations >= 3000; // TODO: Change faction to 8
+      return save.faction == 8 && save.reincarnation >= 100 && save.excavations >= 3000;
     },
     random: function (save) {
       return Math.pow(save.spells[2].active0 / (5 * 60), 1.5) / 2000000000
@@ -716,7 +716,7 @@ var Artifacts = [
   },
   {
     name: 'Branch of the Life Tree',
-    id: 1002,//TODO: Update to real id
+    id: 274,
     fixed: function (save) {
       return save.faction == 7 && save.reincarnation >= 100 && save.excavations >= 3000;
     },
@@ -732,7 +732,7 @@ var Artifacts = [
   },
   {
     name: 'Titan Helmet',
-    id: 1003,//TODO: Update to real id
+    id: 283,
     fixed: function (save) {
       return save.faction == 6 && save.reincarnation >= 100 && save.excavations >= 3000;
     },
@@ -752,7 +752,7 @@ var Artifacts = [
   },
   {
     name: 'Crystallized Lava',
-    id: 1004,//TODO: Update to real id
+    id: 275, 
     fixed: function (save) {
       return save.faction == 5 && save.reincarnation >= 100 && save.excavations >= 3000;
     },
@@ -769,7 +769,7 @@ var Artifacts = [
   },
   {
     name: 'Dusty Coffin', // TODO: higher is better, might require rework of the entire page logic
-    id: 1005,//TODO: Update to real id
+    id: 276, 
     fixed: function (save) {
       return save.faction == 4 && save.reincarnation >= 100 && save.excavations >= 3000;
     },
@@ -786,7 +786,7 @@ var Artifacts = [
   },
   {
     name: 'Spiked Whip',
-    id: 1006,//TODO: Update to real id
+    id: 282, 
     fixed: function (save) {
       return save.faction == 3 && save.reincarnation >= 100 && save.excavations >= 3000;
     },
@@ -803,7 +803,7 @@ var Artifacts = [
   },
   {
     name: 'Fossilized Wing',
-    id: 1007,//TODO: Update to real id
+    id: 277,
     fixed: function (save) {
       return save.faction == 2 && save.reincarnation >= 100 && save.excavations >= 3000;
     },
@@ -825,7 +825,7 @@ var Artifacts = [
   },
   {
     name: 'Raw Emerald',
-    id: 1008,//TODO: Update to real id
+    id: 280,
     fixed: function (save) {
       return save.faction == 1 && save.reincarnation >= 100 && save.excavations >= 3000;
     },
@@ -843,7 +843,7 @@ var Artifacts = [
   },
   {
     name: 'Silk Cloth',
-    id: 1009,//TODO: Update to real id
+    id: 281,
     fixed: function (save) {
       return save.faction == 0 && save.reincarnation >= 100 && save.excavations >= 3000;
     },
