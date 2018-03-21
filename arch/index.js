@@ -134,7 +134,7 @@
       {
         // Extend the value range for A2 to account for new (Rare) artifacts
         calculatedValues = 100000;
-        valueLimit = 0.01;
+        valueLimit = 0.001;
       }
       
       while (raw_values < calculatedValues) {
