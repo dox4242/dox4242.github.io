@@ -81,6 +81,14 @@ var Artifacts = [
     }
   },
   {
+    name: 'Obsidian Shard',
+    id: 240,
+    fixed: function(save) {
+      return save.reincarnation >= 75;
+    },
+    excav: 8000
+  },
+  {
     name: 'Rough Stone',
     id: 151,
     fixed: function(save) {
@@ -697,7 +705,22 @@ var Artifacts = [
       return 0.1
     }
   },
-  //TODO: Add Ancestral Hourglass
+  {
+    name: 'Ancestral Hourglass',
+    id: 284,
+    fixed: function(save) {
+      return save.ascension >= 2;
+    },
+    random: function(save) {
+      return util.save.fc_chance(save) / 1000000000000000000;
+    },
+    required: function(value) {
+      return Math.ceil(value * 1000000000000000000);
+    },
+    display: function(value) {
+      return util.render.eng(value) + ' Faction Coin Chance';
+    }
+  },
   {
     name: 'Nightmare Figment',
     id: 278,
@@ -705,7 +728,7 @@ var Artifacts = [
       return save.faction == 8 && save.reincarnation >= 100 && save.excavations >= 3000;
     },
     random: function (save) {
-      return Math.pow(save.spells[2].active0 / (5 * 60), 1.5) / 2000000000
+      return Math.pow(util.save.brainwaveHeadstart(save), 1.5) / 2000000000;
     },
     required: function (value) {
       return Math.pow(value * 2000000000, 2 / 3);
@@ -737,14 +760,20 @@ var Artifacts = [
       return save.faction == 6 && save.reincarnation >= 100 && save.excavations >= 3000;
     },
     random: function (save) {
-      var exchanges = 0;
-      save.factionCoins.forEach(element => {
-        exchanges += element.royalExchanges;
-      });
+      var exchanges = util.save.stat(save, 24);
+      if (util.save.upgrade_owned(save, 787)) {
+        var giantMarket = 1.5 * Math.pow(util.save.building_count(save, 7), 0.5);
+        exchanges *= (1 + 0.01 * giantMarket);
+      }
       return Math.pow(exchanges, 2) / 500000000000;
     },
-    required: function (value) {
-      return Math.pow(value * 500000000000, 1 / 2);
+    required: function(value, save) {
+      var exchanges = Math.ceil(Math.pow(value * 500000000000, 0.5));
+      if (util.save.upgrade_owned(save, 787)) {
+        var giantMarket = 1.5 * Math.pow(util.save.building_count(save, 7), 0.5);
+        exchanges /= (1 + 0.01 * giantMarket);
+      }
+      return exchanges;
     },
     display: function (value) {
       return Math.ceil(value) + ' royal exchanges';
@@ -757,8 +786,7 @@ var Artifacts = [
       return save.faction == 5 && save.reincarnation >= 100 && save.excavations >= 3000;
     },
     random: function (save) {
-      var value = save.buildings[10].q;
-      return (value - 10000) / 20000000;
+      return (save.buildings[10].q - 10000) / 20000000;
     },
     required: function (value) {
       return value * 20000000 + 10000;
@@ -791,8 +819,7 @@ var Artifacts = [
       return save.faction == 3 && save.reincarnation >= 100 && save.excavations >= 3000;
     },
     random: function (save) {
-      var value = save.buildings[21].q;
-      return (value - 10000) / 30000000;
+      return (save.buildings[21].q - 10000) / 30000000;
     },
     required: function (value) {
       return value * 30000000 + 10000;
@@ -808,13 +835,7 @@ var Artifacts = [
       return save.faction == 2 && save.reincarnation >= 100 && save.excavations >= 3000;
     },
     random: function (save) {
-
-      var thisGame = save.stats[52].stats;
-      var thisR = save.stats[52].statsReset;
-      var prevR = save.stats[52].statsRei;
-
-      var value = thisGame + thisR + prevR; // TODO: time this game, this R or all time?
-      return value / 2592000000;
+      return util.save.stat(save, 52, 2) / 2592000000;
     },
     required: function (value) {
       return value * 2592000000;
@@ -830,9 +851,7 @@ var Artifacts = [
       return save.faction == 1 && save.reincarnation >= 100 && save.excavations >= 3000;
     },
     random: function (save) {
-
-      var value = 1; // TODO: how to get non ruby excavation resets this game?
-      return 2 * Math.pow(value, 2) / 1000000;
+      return (2 * Math.pow(util.save.stat(save, 135), 2)) / 1000000;
     },
     required: function (value) {
       return Math.sqrt(value * 1000000 / 2);
@@ -848,8 +867,7 @@ var Artifacts = [
       return save.faction == 0 && save.reincarnation >= 100 && save.excavations >= 3000;
     },
     random: function (save) {
-      var value = save.buildings[25].q;
-      return (value - 10000) / 20000000;
+      return (save.buildings[25].q - 10000) / 20000000;
     },
     required: function (value) {
       return value * 20000000 + 10000;

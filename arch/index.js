@@ -84,6 +84,9 @@
       var num = util.save.stat(this.save, 35);
       var smalls = [];
       var raw_values = 0;
+      var calculatedValues = (this.save.ascension >= 2 ? 100000 : 10000);
+      var valueLimit = (this.save.ascension >= 2 ? 0.001 : 0.01);
+
       while (remaining > 0) {
         excav += 1;
         num += 1;
@@ -95,9 +98,9 @@
             continue;
           }
           var val = rng.nextDouble();
-          if (raw_values < 10000) {
+          if (raw_values < calculatedValues) {
             raw_values += 1;
-            if (val < 0.01) smalls.push({x: raw_values, y: val});
+            if (val < valueLimit) smalls.push({x: raw_values, y: val});
           }
           if (unobtain[eligible[i].id]) continue;
           var random = eligible[i].nocache ? eligible[i].random(this.save, excav) : eligible[i].random;
@@ -127,16 +130,10 @@
           break;
         }
       }
-      var calculatedValues = 10000;
-      var valueLimit = 0.01;
-      
-      if (this.save.ascension >= 2)
-      {
-        // Extend the value range for A2 to account for new (Rare) artifacts
-        calculatedValues = 100000;
-        valueLimit = 0.001;
-      }
-      
+
+      var calculatedValues = (this.save.ascension >= 2 ? 100000 : 10000);
+      var valueLimit = (this.save.ascension >= 2 ? 0.001 : 0.01);
+
       while (raw_values < calculatedValues) {
         var val = rng.nextDouble();
         raw_values += 1;
