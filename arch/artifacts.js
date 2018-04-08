@@ -705,6 +705,8 @@ var Artifacts = [
       return 0.1
     }
   },
+  // ancestral hourglass just uses a really weird number to correctly consume small values
+  // todo: make it use the proper number
   {
     name: 'Ancestral Hourglass',
     id: 284,
