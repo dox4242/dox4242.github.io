@@ -608,12 +608,12 @@
       computed: {
         unlocked: {
           get: function() {
-            var blFactionIDs = { 0:194, 1:164, 2:39, 3:212, 4:396, 5:103, 6:380, 7:136, 8:183, 9:150, 10:120, 11:598 };
+            var blFactionIDs = { 0:194, 1:164, 2:39, 3:212, 4:396, 5:103, 6:380, 7:136, 8:183, 9:150, 10:120, 12:598 };
             if (this.field == -1) { return this.field }
             return blFactionIDs[this.field]
           },
           set: function(x) {
-            var blFactionIDs = { 0:194, 1:164, 2:39, 3:212, 4:396, 5:103, 6:380, 7:136, 8:183, 9:150, 10:120, 11:598 };
+            var blFactionIDs = { 0:194, 1:164, 2:39, 3:212, 4:396, 5:103, 6:380, 7:136, 8:183, 9:150, 10:120, 12:598 };
             if (this.field > -1) {
               delete this.upgrades[blFactionIDs[this.field]]
             }
