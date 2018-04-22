@@ -808,7 +808,7 @@ var Artifacts = [
       return 1 / (30 + Math.pow(value, 1.75));
     },
     required: function (value) {
-      return Math.floor(Math.pow((1 / (value * 100)) - 30, 1 / 1.5));
+      return Math.floor(Math.pow((1 / (value * 100)) - 30, 1 / 1.75));
     },
     display: function (value) {
       return util.render.time(value) + ' spent this game';
@@ -856,7 +856,7 @@ var Artifacts = [
       return (Math.pow(2 * util.save.stat(save, 135), 4.5)) / 1000000;
     },
     required: function (value) {
-      return Math.sqrt(value * 1000000 / 2);
+      return Math.pow(value * 1000000 , (1 / 4.5)) / 2;
     },
     display: function (value) {
       return Math.ceil(value) + ' non ruby excavation resets this game';
