@@ -680,6 +680,28 @@ var Artifacts = [
     }*/
   },
   {
+    name: 'Ancient Heirloom',
+    id: 237,
+    fixed: function (save) {
+      return (save.lineageLevels[0].lev + save.lineageLevels[1].lev + save.lineageLevels[2].lev + 
+              save.lineageLevels[3].lev + save.lineageLevels[4].lev + save.lineageLevels[5].lev + 
+              save.lineageLevels[6].lev + save.lineageLevels[7].lev + save.lineageLevels[8].lev + 
+              save.lineageLevels[9].lev + save.lineageLevels[10].lev + save.lineageLevels[11].lev) > 0;
+    },
+    random: function (save) {
+      return (save.lineageLevels[0].lev + save.lineageLevels[1].lev + save.lineageLevels[2].lev + 
+              save.lineageLevels[3].lev + save.lineageLevels[4].lev + save.lineageLevels[5].lev + 
+              save.lineageLevels[6].lev + save.lineageLevels[7].lev + save.lineageLevels[8].lev + 
+              save.lineageLevels[9].lev + save.lineageLevels[10].lev + save.lineageLevels[11].lev) / 20;
+    },
+    required: function (value) {
+      return Math.ceil(value * 20);
+    },
+    display: function (value) {
+      return 'Level ' + Math.ceil(value) + ' total lineages';
+    }
+  },
+  {
     name: 'Veteran Figurine',
     id: 268,
     fixed: function(save) {
