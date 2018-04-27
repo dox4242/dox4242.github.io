@@ -31,7 +31,7 @@
     </div>
     <ul>
       <li v-for='s in spells', :style='{fontWeight: s.unlocked != 4?"bold":"normal"}'>
-        {{s.name}}: {{s.unlocked + 1}}
+        {{s.name}}: {{s.unlocked + 1}} (Next tier in {{s.time2tier}} seconds)
       </li>
     </ul>
   </div>

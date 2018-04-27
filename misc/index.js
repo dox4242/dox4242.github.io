@@ -21,11 +21,18 @@
 
     this.get_tiers = function(save) {
       var spells = [];
+      var arcaneTrophies = 0;
+      for (var i = 0; i < 10; i++) {
+        if (save.trophies[123200 + i]) arcaneTrophies = i + 1;
+      }
       for (var s of util.assoc.spells) {
         if (s.name == 'Tax Collection') continue;
         if (s.name == 'Hailstorm') continue;
         if (s.name == 'Heatwave') continue;
-        var spell = {name: s.name, id: s.id, unlocked: 0, owned: 0};
+        if (s.name == 'Temporal Flux') continue;
+        if (s.name == 'All Creation') continue;
+        if (s.name == 'Maelstrom') continue;
+        var spell = {name: s.name, id: s.id, unlocked: 0, owned: 0, time2tier: 0};
         var start = 400001 + s.id * 100;
         for (var i = start; i < start + 9; i++) {
           if (save.upgrades[i]) {
@@ -33,6 +40,11 @@
             if (save.upgrades[i].u1) spell.owned += 1;
           }
         }
+        // Time for tier: Formula: 43200 * ( (T - 0.5 * A)^2 - (T - 0.5 * A)) * 0.98^(R - (T - 0.5 * (A + 1)) - 42) seconds
+        // where T is tier, A is amount of arcane brilliance trophies, R is reincarnation.
+        // console.log(spell.name, 'active time:', spell.active);
+        var nextTier = spell.owned + 2;
+        spell.time2tier = Math.ceil((43200 * (Math.pow((nextTier - 0.5 * arcaneTrophies), 2) - (nextTier - 0.5 * arcaneTrophies)) * Math.pow(0.98, (save.reincarnation - (nextTier - 0.5 * (arcaneTrophies + 1)) - 42))) - save.spells[spell.id].active0 - save.spells[spell.id].active1);
         spells.push(spell);
       }
       return spells;
