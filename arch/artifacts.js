@@ -702,6 +702,19 @@ var Artifacts = [
     }
   },
   {
+    name: 'Know Your Enemy, Part II',
+    id: 242,
+    fixed: function(save) {
+      for (i = 0; i <= 10; i++) {
+        if (!util.save.bloodline_upgrades(save, i)) return false;
+      }
+      return util.save.upgrade_owned(save,469) && save.faction == 11 && save.reincarnation >= 76;
+    },
+    random: function(save) {
+      return 0.05
+    }
+  },
+  {
     name: 'Veteran Figurine',
     id: 268,
     fixed: function(save) {
