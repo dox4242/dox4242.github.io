@@ -354,6 +354,7 @@
             <tr is='widget-stat' :stat.sync='save.stats[i.upgstat]' :name='i.name + " Upgrades Bought"' v-for='i in factions | filterDef "upgstat"'></tr>
             <tr is='widget-stat-max' :stat.sync='save.stats[13]' name='Max Upgrades Bought'></tr>
             <tr is='widget-stat-max' :stat.sync='save.stats[101]' hide-ab name='Consecutive Elven Luck Triggers'></tr>
+            <tr is='widget-stat-max' :stat.sync='save.stats[134]' hide-ab name='Elven Luck Clicks'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[99]' hide-ab hide-prev-reis hide-total name='Consecutive Angel Affiliations'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[100]' hide-ab hide-prev-reis hide-total name='Consecutive Demon Affiliations'></tr>
             <tr is='widget-field' :field.sync='save.goblinTimer' can-edit :colspan='5' name='Time Until Green Fingers Discount'></tr>
