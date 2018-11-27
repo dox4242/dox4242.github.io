@@ -912,5 +912,53 @@ var Artifacts = [
     display: function (value) {
       return Math.ceil(value) + ' Wizard Towers';
     }
+  },
+  {
+    name: 'Beard Hair',
+    id: 273,
+    fixed: function (save) {
+      return save.prestigeFaction === 9 && save.reincarnation >= 116 && save.excavations >= 3000;
+    },
+    random: function (save) {
+      return util.save.assistants(save) / 10000000000;
+    },
+    required: function (value) {
+      return value * 10000000000;
+    },
+    display: function (value) {
+      return Math.ceil(value) + ' Assistant Count';
+    }
+  },
+  {
+    name: 'Poison Vial',
+    id: 279,
+    fixed: function (save) {
+      return save.prestigeFaction === 10 && save.reincarnation >= 116 && save.excavations >= 3000;
+    },
+    random: function (save) {
+      return Math.pow(40 * util.save.combo_strike_counter(save), 0.9) / 1000000000;
+    },
+    required: function (value) {
+      return value * 1000000000;
+    },
+    display: function (value) {
+      return Math.ceil(value) + ' Combo Strike production bonus';
+    }
+  },
+  {
+    name: 'Dragon Scale',
+    id: 292,
+    fixed: function (save) {
+      return save.prestigeFaction === 12 && save.reincarnation >= 116 && save.excavations >= 3000;
+    },
+    random: function (save) {
+      return util.save.active_spells(save) / 250000;
+    },
+    required: function (value) {
+      return value * 250000;
+    },
+    display: function (value) {
+      return Math.ceil(value) + ' Active Spells';
+    }
   }
 ];
