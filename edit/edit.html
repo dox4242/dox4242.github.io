@@ -321,7 +321,6 @@
             <tr v-show='save.alignment == 2' is='widget-field-dropdown' :field.sync='save.mercSpell2' type='spells' filter='evilmercspells' :colspan='5' name='Mercenary Spell 2'></tr>
             <tr v-show='save.alignment == 3' is='widget-field-dropdown' :field.sync='save.mercSpell1' type='spells' filter='neutralmercspells' :colspan='5' name='Mercenary Spell 1'></tr>
             <tr v-show='save.alignment == 3' is='widget-field-dropdown' :field.sync='save.mercSpell2' type='spells' filter='neutralmercspells' :colspan='5' name='Mercenary Spell 2'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[65]' name='Casts of Pay Upkeep (unused)'></tr>
           </table>
         </div>
       </div>
@@ -348,6 +347,7 @@
           <table class='table'>
             <tr is='widget-field-dropdown' :field.sync='save.faction' type='faction' filter='faction' :colspan='5' name='Faction'></tr>
             <tr is='widget-field-dropdown' :field.sync='save.prestigeFaction' type='faction' filter='prestigeFaction' :colspan='5' name='Prestige Faction'></tr>
+            <tr is='widget-field-dropdown' :field.sync='save.elitePrestigeFaction' type='faction' filter='elitePrestigeFaction' :colspan='5' name='Elite Prestige Faction'></tr>
             <tr is='widget-bloodline-dropdown' :field.sync='save.bFaction' :upgrades.sync='upgradesArray' type='upgradeIDs' filter='bloodlines' :colspan='5' name='Bloodline Faction'></tr>
             <tr is='widget-fivestat-header'></tr>
             <tr is='widget-stat-time' :stat.sync='save.stats[i.timestat]' :name='i.name + " Playtime"' v-for='i in factions | filterDef "timestat"'></tr>
@@ -497,6 +497,9 @@
             <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=159 name='Dwarf 3,2: Magic Resistance'></tr>
             <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=161 name='Dwarf 3,3: Overwatch'></tr>
             <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=155 name='Dwarven Heritage'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=849 name='Dwarf 4,1: Solidity'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=850 name='Dwarf 4,2: Stonetalking'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=848 name='Dwarf 4,3: Refined Minerals'></tr>
             <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=132 name='Drow 1,1: Underworld Tyranny'></tr>
             <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=127 name='Drow 1,2: Honor Among Killers'></tr>
             <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=130 name='Drow 1,3: Shadow Advance'></tr>
@@ -506,6 +509,9 @@
             <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=131 name='Drow 3,1: Spider Gods'></tr>
             <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=129 name='Drow 3,2: Professional Assassins'></tr>
             <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=118 name='Drow 3,3: Blade Dance'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=853 name='Drow 4,1: Spider Clerics'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=851 name='Drow 4,2: Ancillae Obscurae'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=852 name='Drow 4,3: Crystal Servants'></tr>
             <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=125 name='Drow Heritage'></tr>
             <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=608 name='Dragon 1,1: Dragonscales'></tr>
             <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=611 name='Dragon 1,2: Iron Flight'></tr>
@@ -517,6 +523,48 @@
             <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=610 name='Dragon 3,2: Imposing Presence'></tr>
             <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=597 name='Dragon 3,3: Chromatic Scales'></tr>
             <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=603 name='Dragon Heritage'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=859 name='Dragon 4,1: Fang Food'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=860 name='Dragon 4,2: Wyrm&apos;s Rest'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=858 name='Dragon 4,3: Draconic Supremacy'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=887 name='Archon 1,1: Star Trading'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=885 name='Archon 1,2: Energy Recharge'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=883 name='Archon 1,3: Cosmic Resonance'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=882 name='Archon 2,1: Constellation'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=881 name='Archon 2,2: Archon Pride'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=874 name='Archon 2,3: Absent-mindedness'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=889 name='Archon 3,1: Superior Consciousness'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=888 name='Archon 3,2: Strange Attraction'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=876 name='Archon 3,3: Arcane Core'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=922 name='Archon Heritage'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=886 name='Archon 4,1: Purity of Form'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=876 name='Archon 4,2: Absolute Hierarchy'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=884 name='Archon 4,3: Essence Extractor'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=904 name='Djinn 1,1: The Desire Within'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=896 name='Djinn 1,2: Forbidden Will'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=903 name='Djinn 1,3: Magical Circuit'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=897 name='Djinn 2,1: Aura of Magic'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=898 name='Djinn 2,2: Spiritual Bindings'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=899 name='Djinn 2,3: Wild Surge'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=900 name='Djinn 3,1: Wishing Well'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=901 name='Djinn 3,2: Flashy Storm'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=902 name='Djinn 3,3: Mana Creatures'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=923 name='Djinn Heritage'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=905 name='Djinn 4,1: Wishes Come True'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=895 name='Djinn 4,2: Blue Powder'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=890 name='Djinn 4,3: Academic Prodigy'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=909 name='Makers 1,1: Hand of the Makers'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=911 name='Makers 1,2: Magical Shards'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=910 name='Makers 1,3: Infinite Improvements'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=908 name='Makers 2,1: Everlasting Materials'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=920 name='Makers 2,2: Treasure Mosaic'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=906 name='Makers 2,3: Art of Commerce'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=918 name='Makers 3,1: Stone Servants'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=916 name='Makers 3,2: Past Trade'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=919 name='Makers 3,3: Structural Stability'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=924 name='Makers Heritage'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=921 name='Makers 4,1: Valuable Antiquity'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=907 name='Makers 4,2: Bedrock Foundations'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=917 name='Makers 4,3: Reality Marble'></tr>
         </table>
         </div>
       </div>
@@ -1159,11 +1207,12 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=2 :colspan='5' name='Druid Faction'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=5 :colspan='5' name='Faceless Faction'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=7 :colspan='5' name='Underworld'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=44 :colspan='5' name='Dwarven Invitation (defunct)'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=43 :colspan='5' name='Drow Invitation (defunct)'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=3 :colspan='5' name='Dwarf Faction'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=1 :colspan='5' name='Drow Faction'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=53 :colspan='5' name='Mercenary Faction'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=309 :colspan='5' name='Archon Faction'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=310 :colspan='5' name='Djinn Faction'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=311 :colspan='5' name='Makers Faction'></tr>
             <tr><td colspan='2'><center><b>Unique Buildings</b></center></td></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=59 :colspan='5' name='Enchanted Field (Fairy)'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=58 :colspan='5' name='Training Grounds (Elf)'></tr>
@@ -1200,7 +1249,6 @@
             <tr is='widget-stat' :stat.sync='save.stats[23]' name='Assistant Squishes'></tr>
             <tr is='widget-stat-max' :stat.sync='save.stats[88]' hide-ab name='Max Assistant Squishes'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[125]' name='Hint Button Clicks'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[14]' name='Trophy Counter (Defunct)'></tr>
             <tr>
               <th><span class="statname">LS_is_out_to_get_player</span></th>
               <td colspan="5"><input type="checkbox" v-model="lsJoke" number></input></td>
