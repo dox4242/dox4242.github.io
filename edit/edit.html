@@ -349,6 +349,7 @@
             <tr is='widget-field-dropdown' :field.sync='save.prestigeFaction' type='faction' filter='prestigeFaction' :colspan='5' name='Prestige Faction'></tr>
             <tr is='widget-field-dropdown' :field.sync='save.elitePrestigeFaction' type='faction' filter='elitePrestigeFaction' :colspan='5' name='Elite Prestige Faction'></tr>
             <tr is='widget-bloodline-dropdown' :field.sync='save.bFaction' :upgrades.sync='upgradesArray' type='upgradeIDs' filter='bloodlines' :colspan='5' name='Bloodline Faction'></tr>
+            <tr is='widget-artifactSet-dropdown' :field.sync='save.artifactSet' :upgrades.sync='upgradesArray' type='upgradeIDs' filter='artifactSets' :colspan='5' name='Artifact Set'></tr>
             <tr is='widget-fivestat-header'></tr>
             <tr is='widget-stat-time' :stat.sync='save.stats[i.timestat]' :name='i.name + " Playtime"' v-for='i in factions | filterDef "timestat"'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[i.affilstat]' :name='i.name + " Affiliations"' v-for='i in factions | filterDef "affilstat"'></tr>

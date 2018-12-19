@@ -6,6 +6,7 @@
     prestigeFaction: [-1, 9, 10, 12],
     elitePrestigeFaction: [-1, 13, 14, 15],
     bloodlineFaction: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12],
+    artifactSetFaction: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12],
     spell: [18, 3, 12, 6, 14, 9, 1, 8, 15, 11, 7, 13, 10, 2, 5, 4, 21, 17, 25, 26, 27, 28, 29, 30],
     goodmercspells: [6, 14, 9, 5, 8, 11, 4, 10, 2, 21],
     evilmercspells: [6, 14, 9, 5, 8, 15, 11, 4, 10, 2, 21],
@@ -57,6 +58,7 @@
   
   var upgradeIDs = {
     bloodlines: [194, 164, 39, 212, 396, 103, 380, 136, 183, 150, 120, 598],
+    artifactSets: [832, 830, 824, 833, 838, 825, 837, 828, 831, 829, 827, 826],
     spellcraft: [130300, 129901, 130903, 130002, 130504, 129805, 130806, 130208, 130407, 130110, 130709, 130611, 129712, 144713, 145314, 144915, 145116, 145217, 145018, 144819, 153920, 153621, 153722, 153823, 154024, 162925, 163026, 162827, 171828, 171729], 
     craftsmanship: [125300, 125201, 125702, 125903, 125004, 126305, 126106, 126007, 126208, 125409, 125610, 125111, 125812, 142613, 143214, 142815, 143116, 142717, 143018, 142919, 151520, 151421, 151622, 151323, 151224, 162125, 162026, 161927, 171128, 171229],
     divine: [126400, 127001, 126602, 126803, 127504, 126905, 127206, 127108, 127409, 126507, 127610, 127311, 126712, 143813, 143614, 143915, 143316, 143517, 143418, 143719, 152720, 152621, 152922, 153023, 152824, 162225, 162426, 162327, 171328, 171429],
@@ -620,6 +622,58 @@
             }
             for (var i in blFactionIDs) {
               if (blFactionIDs[i] == x) { this.field = i }
+            }
+            if (x == -1) { this.field = x }
+            else { this.upgrades[x] = {_id:x, u1:true} }
+          }
+        },
+        options: function() {
+          var opts = [{id:-1, name:'None'}];
+          for (var i of util.assoc[this.type]) {
+            if (this.filter && !dropdownFilter[this.filter][i.id]) continue;
+            opts.push({
+              id: i.id,
+              name: i.name,
+              //disabled: this.filter && !dropdownFilter[this.filter][i.id]
+            });
+          }
+          return opts;
+        }
+      }
+    });
+    
+    Vue.component('widget-artifactSet-dropdown', {
+      props: {
+        'field': {},
+        'upgrades': Object,
+        'name': String,
+        'type': String,
+        'filter': String,
+        'colspan': {
+          type: Number,
+          default: function() { return 1; }
+        }
+      },
+      template: '<tr>'
+      + '<th><span class="statname">{{name}}</span></th>'
+      + '<td :colspan="colspan"><select v-model="unlocked" number>'
+      + '<option :disabled="option.disabled" :value="option.id" v-for="option in options">{{option.name}}</option>'
+      + '</select></td>'
+      + '</tr>',
+      computed: {
+        unlocked: {
+          get: function() {
+            var artifactSetIDs = { 0:832, 1:830, 2:824, 3:833, 4:838, 5:825, 6:837, 7:828, 8:831, 9:829, 10:827, 12:826 };
+            if (this.field == -1) { return this.field }
+            return artifactSetIDs[this.field]
+          },
+          set: function(x) {
+            var artifactSetIDs = { 0:832, 1:830, 2:824, 3:833, 4:838, 5:825, 6:837, 7:828, 8:831, 9:829, 10:827, 12:826 };
+            if (this.field > -1) {
+              delete this.upgrades[artifactSetIDs[this.field]]
+            }
+            for (var i in artifactSetIDs) {
+              if (artifactSetIDs[i] == x) { this.field = i }
             }
             if (x == -1) { this.field = x }
             else { this.upgrades[x] = {_id:x, u1:true} }
