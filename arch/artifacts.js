@@ -1,4 +1,4 @@
-var Artifacts = [
+﻿var Artifacts = [
   {
     name: 'Ancient Stoneslab 1',
     id: 123,
@@ -959,6 +959,55 @@ var Artifacts = [
     },
     display: function (value) {
       return Math.ceil(value) + ' Active Spells';
+    }
+  },
+  {
+    name: 'Lantern of Guidance',
+    id: 294,
+    fixed: function (save) {
+      return util.save.upgrade_owned(save, 749) && save.reincarnation >= 120;
+    },
+    random: function (save) {
+      return 0;
+    },
+    required: function (value) {
+      return value * 1000000000000;
+    },
+    display: function (value) {
+      return util.render.eng(value) + '/s Mana Regen';
+    }
+  },
+  {
+    name: 'Oil Lamp',
+    id: 295,
+    fixed: function (save) {
+      return util.save.upgrade_owned(save, 748) && save.reincarnation >= 120;
+    },
+    random: function (save) {
+      return Math.min(save.spells[6].active2, save.spells[11].active2, save.spells[2].active2) / 8640000000;
+    },
+    required: function (value) {
+      return value * 8640000000;
+    },
+    display: function (value) {
+      return util.render.time(Math.ceil(value)) + ' Lowest Activity time of Fairy Chanting, Hellfire Blast or Brainwave';
+    }
+  },
+  {
+    name: 'Spark of Life',
+    id: 296,
+    fixed: function (save) {
+      return util.save.upgrade_owned(save, 747) && save.reincarnation >= 120;
+    },
+    random: function (save) {
+      return Math.pow(Math.log10(1 + util.save.faction_coins(save)), 2) / 1200000;
+    },
+    required: function (value) {
+      return -1 + Math.pow(10, Math.pow(1200000 * value, 0.5));
+    },
+    display: function (value) {
+      if (!isFinite(value)) { return '∞ Faction Coins'; }
+      return util.render.eng(value) + ' Faction Coins';
     }
   }
 ];

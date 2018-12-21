@@ -126,7 +126,7 @@
         if (excavation.length > 2) {
           events.push(excavation);
         }
-        if ((excav + this.save.excavations) > 20000 || remaining <= canignore) {
+        if ((excav + this.save.excavations) > 50000 || remaining <= canignore) {
           break;
         }
       }
