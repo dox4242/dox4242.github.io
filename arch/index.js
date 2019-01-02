@@ -85,6 +85,7 @@
       var smalls = [];
       var raw_values = 0;
       var calculatedValues = (this.save.ascension >= 2 ? 100000 : 10000);
+	  var excavLimit = (this.save.ascension >= 2 ? 50000 : 20000);
       var valueLimit = (this.save.ascension >= 2 ? 0.001 : 0.01);
 
       while (remaining > 0) {
@@ -126,7 +127,7 @@
         if (excavation.length > 2) {
           events.push(excavation);
         }
-        if ((excav + this.save.excavations) > 20000 || remaining <= canignore) {
+        if ((excav + this.save.excavations) > excavLimit || remaining <= canignore) {
           break;
         }
       }
