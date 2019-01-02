@@ -1179,7 +1179,7 @@ var Artifacts = [
       return Math.pow(10,Math.pow(value*12500000,1/3));;
     },
     display: function (value) {
-      return util.render.eng(value) + ' Tax Collections';
+      return util.render.eng(value) + ' Tax Collections (This Game)';
     }
   }
 ];
