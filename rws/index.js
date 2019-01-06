@@ -42,6 +42,7 @@
 			forecastLightning(save, buildingsOwned);
 			forecastMiracle(save, buildingsOwned);
 			forecastBreath(save);
+			forecastMaelstrom(save);
 		};
 		
 		// Add the Lightning forecast
@@ -202,6 +203,26 @@
 		    		var li = $('<li />').html(hits.join(', '));
 		    		$('#breathForecast > ol').append(li);
 		    		}
+		};
+		
+		// Add the Maelstrom forecast
+		var forecastMaelstrom = function(save) {
+		var maelstromMessage = '';
+		var maelstromForecast = '';
+			
+		// Check if the save actually has Maelstrom to forecast
+			if (!(util.save.upgrade_owned(save,748))) {
+			 	maelstromMessage = 'You don\'t have Maelstrom.';
+			 	maelstromForecast = 'No Chaos that is trying to pull you in.';
+			} 
+			
+		// Early exit
+			if (maelstromMessage != '' || maelstromForecast != '') {
+				$('#maelstromMessage').html('<b>Maelstrom</b><br>').append(maelstromMessage);
+				$('#maelstromForecast').html('<b>Forecast</b><br>').append(maelstromForecast);
+				return;
+			}
+		
 		};
 		
 		$(function() {
