@@ -14,6 +14,48 @@
     <script src="../lib/pmprng.js"></script>
     <script src="../lib/util.js"></script>
     <script src="index.js"></script>
+	<script src="tabs.js"></script>
+	<style>
+	body {font-family: Arial;}
+
+	/* Style the tab */
+	.tab {
+	overflow: hidden;
+	border: 1px solid #ccc;
+	background-color: #f1f1f1;
+	}
+
+	/* Style the buttons inside the tab */
+	.tab button {
+		background-color: inherit;
+		float: left;
+		border: none;
+		outline: none;
+		cursor: pointer;
+		padding: 14px 16px;
+		transition: 0.3s;
+		font-size: 17px;
+	}
+
+	/* Change background color of buttons on hover */
+	.tab button:hover {
+		background-color: #ddd;
+	}
+
+	/* Create an active/current tablink class */
+	.tab button.active {
+		background-color: #ccc;
+	}
+	
+	/* Style the tab content */
+	.tabcontent {
+		display: none;
+		padding: 6px 12px;
+		border: 1px solid #ccc;
+		border-top: none;
+	}
+	</style>
+	
 </head>
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -72,14 +114,45 @@
 				</div>
 			</div>
 		</div>
-		<div class="alert alert-info" v-show="breathMessage != ''">DB forecast now attempts to account for more than one tier based on your active tier count.</div>
+		<div class="alert alert-info" v-show="breathMessage != ''">DB forecast now attempts to account for more than one tier based on your active tier count. MS is not yet added, only the needed layout changes</div>
 		<div class="row">
 			<div class="col-xs-12">
 				<div id="buildings"></div>
 			</div>
 		</div>
 		<br>
-		<div class="row">
+		<div class="tab">
+			<button class="tablinks" onclick="openForecast(event, 'LS')">Lightning Strike</button>
+			<button class="tablinks" onclick="openForecast(event, 'Miracle')">Miracle</button>
+			<button class="tablinks" onclick="openForecast(event, 'DB')">Dragon's Breath</button>
+			<button class="tablinks" onclick="openForecast(event, 'MS')">Maelstrom</button>
+		</div>
+		<div id="LS" class="tabcontent">
+				<br>
+				<div id="lightningMessage"></div>
+				<br>
+				<div id="lightningForecast"></div>
+		</div>
+		<div id="Miracle" class="tabcontent">
+				<br>
+				<div id="miracleMessage"></div>
+				<br>
+				<div id="miracleForecast"></div>
+		</div>
+		<div id="DB" class="tabcontent">
+				<br>
+				<div id="breathMessage"></div>
+				<br>
+				<div id="breathForecast"></div>
+		</div>
+		<div id="MS" class="tabcontent">
+				<br>
+				<div id="maelstromMessage"></div>
+				<br>
+				<div id="maelstromForecast"></div>
+		</div>
+		
+		<!-- <div class="row">
 			<div class="col-xs-4">
 				<div id="lightningMessage"></div>
 				<br>
@@ -90,12 +163,18 @@
 				<br>
 				<div id="miracleForecast"></div>
 			</div>
-				<div class="col-xs-4">
+			<div class="col-xs-4">
 				<div id="breathMessage"></div>
 				<br>
 				<div id="breathForecast"></div>
 			</div>
-		</div>
+			<div class="col-xs-4">
+				<div id="maelstromMessage"></div>
+				<br>
+				<div id="maelstromForecast"></div>
+			</div>
+		</div> -->
+	</div>
 	</div>
 </body>
 </html>
