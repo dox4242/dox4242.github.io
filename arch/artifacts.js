@@ -331,7 +331,7 @@ var Artifacts = [
     name: 'Demonic Figurine',
     id: 134,
     fixed: function(save) {
-      return util.save.upgrade_owned(save,469) && save.faction == 5 && save.prestigeFaction == -1 && util.save.trophies(save) > util.save.max_trophy_count * 0.9;
+      return util.save.upgrade_owned(save,469) && save.faction == 5 && save.prestigeFaction == -1 && util.save.trophies(save) >= 666;
     },
     random: function(save) {
       return 0.01;
@@ -798,18 +798,12 @@ var Artifacts = [
     },
     random: function (save) {
       var exchanges = util.save.stat(save, 24);
-      if (util.save.upgrade_owned(save, 787)) {
-        var giantMarket = 1.5 * Math.pow(util.save.building_count(save, 7), 0.5);
-        exchanges *= (1 + 0.01 * giantMarket);
-      }
+     
       return Math.pow(exchanges, 2) / 500000000000;
     },
     required: function(value, save) {
       var exchanges = Math.ceil(Math.pow(value * 500000000000, 0.5));
-      if (util.save.upgrade_owned(save, 787)) {
-        var giantMarket = 1.5 * Math.pow(util.save.building_count(save, 7), 0.5);
-        exchanges /= (1 + 0.01 * giantMarket);
-      }
+      
       return exchanges;
     },
     display: function (value) {
@@ -1063,10 +1057,10 @@ var Artifacts = [
     },
     random: function (save) {
 	//(x / 50000000 (50M))%, where x is evil spells this R.
-      return util.save.total_spells(save,2,1) / 50000000;
+      return (save.spells[1].c + save.spells[1].r + save.spells[8].c + save.spells[8].r + save.spells[15].c + save.spells[15].r + save.spells[15].c + save.spells[15].r + + save.spells[11].c + save.spells[11].r + save.spells[4].c + save.spells[4].r) / 5000000000;
     },
     required: function (value) {
-      return value * 50000000;
+      return value * 5000000000;
     },
     display: function (value) {
       return util.render.eng(value) + ' Evil Spells cast (This R)';
