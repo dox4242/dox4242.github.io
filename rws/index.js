@@ -6,22 +6,28 @@
 		var buildingNames = util.save.building_names;
 		var buildingIds = util.save.building_ids;
 		var buildingsOwned = [];
+        var buildingsAvailable = [];
 		var buildingsHighlighted = [ [], [] ];
-		var breathNames = ['Red', 'Green', 'Blue', 'White', 'Black']
 		var lightningRNG = null;
 		var miracleRNG = null;
 		var breathRNG = null;
-        	var breathTier = 1;
+        var breathNames = ['Red', 'Green', 'Blue', 'White', 'Black'];
+        var breathTier = 1;
+        var maelstromRNG = null;
+        var maelstromTargets = 3;
+        var maelstromEffects = ['Mana Produced', 'Trophies Unlocked', 'Faction Coins found', 'Amount of Assistants'];
 		
 		// Refresh the entire forecast
 		var forecast = function(saveStr) {
 			buildingsOwned = [];
+            buildingsAvailable = [];
 			buildingsHighlighted = [ [], [] ];
 			lightningRNG = null;
 			miracleRNG = null;
 			breathRNG = null;
-            		breathTier = 1;
-			$('#lightningMessage, #lightningForecast, #miracleMessage, #miracleForecast, #breathMessage, #breathForecast').html('');
+            maelstromRNG = null;
+            breathTier = 1;
+			$('#lightningMessage, #lightningForecast, #miracleMessage, #miracleForecast, #breathMessage, #breathForecast, #maelstromMessage, #maelstromForecast').html('');
 			
 			var save = SaveHandler.Decode(saveStr);
 			window.decoded = save;
@@ -29,8 +35,16 @@
 			
 			// Only buildings owned by the player can be hit
 			for (var i of buildingIds)
+            {
 				if (save.buildings[i].q > 0)
+                {
 					buildingsOwned.push(i);
+                }
+                if (util.save.building_alignment[i] == 0 || util.save.building_alignment[i] == save.alignment)
+                {
+                    buildingsAvailable.push(i);
+                }
+            }
 			$('#buildings').html('<b>Buildings owned</b> <small><i>(Click a building to toggle its highlighting)</i></small><br>');
 			for (var tier in buildingsOwned) {
 				var hit = buildingNames[buildingsOwned[tier]];
@@ -42,7 +56,7 @@
 			forecastLightning(save, buildingsOwned);
 			forecastMiracle(save, buildingsOwned);
 			forecastBreath(save);
-			forecastMaelstrom(save);
+			forecastMaelstrom(save, buildingsAvailable);
 		};
 		
 		// Add the Lightning forecast
@@ -201,6 +215,7 @@
                 {
                     var hits = [0,0,0,0,0];
                     var textResult = [];
+                    //slice() clones the array
                     var eligible = breathNames.slice();
                     for (var c = 0; c < breathTier; c++)
                     {
@@ -211,7 +226,6 @@
                         
                         if (eligible.length == 0)
                         {
-                            //slice() clones the array
                             eligible = breathNames.slice();
                         }
                       
@@ -233,23 +247,88 @@
 		};
 		
 		// Add the Maelstrom forecast
-		var forecastMaelstrom = function(save) {
-		var maelstromMessage = '';
-		var maelstromForecast = '';
+		var forecastMaelstrom = function(save, buildingsAvailable) 
+        {
+            var maelstromMessage = '';
+            var maelstromForecast = '';
 			
-		// Check if the save actually has Maelstrom to forecast
-			if (!(util.save.upgrade_owned(save,748))) {
-			 	maelstromMessage = 'You don\'t have Maelstrom.';
-			 	maelstromForecast = 'No Chaos that is trying to pull you in.';
-			} 
+            // Check if the save actually has Maelstrom to forecast
+            if (!(util.save.upgrade_owned(save,748))) {
+                maelstromMessage = 'You don\'t have Maelstrom.';
+                maelstromForecast = 'No Chaos that is trying to pull you in.';
+            } 
 			
-		// Early exit
-			if (maelstromMessage != '' || maelstromForecast != '') {
-				$('#maelstromMessage').html('<b>Maelstrom</b><br>').append(maelstromMessage);
-				$('#maelstromForecast').html('<b>Forecast</b><br>').append(maelstromForecast);
-				return;
-			}
-		
+            // Early exit
+            if (maelstromMessage != '' || maelstromForecast != '') {
+                $('#maelstromMessage').html('<b>Maelstrom</b><br>').append(maelstromMessage);
+                $('#maelstromForecast').html('<b>Forecast</b><br>').append(maelstromForecast);
+                    return;
+            }
+        
+            // Create the RNG and get the initial forecast
+            maelstromRNG = new PM_PRNG(save.spells[27].s);
+            
+            $('#maelstromMessage').html('<b>Maelstrom</b><br>Your RNG state is: ' + maelstromRNG.state + '.');
+            $('#maelstromForecast').html('<b>Forecast</b><br><ol></ol>')
+                .append($('<button class="btn btn-link" type="button" />').html('Give me a longer Forecast').on('click', forecastMaelstromMore));
+			
+            forecastMaelstromMore();		
+		};
+        
+        // Add Breath forecast hits
+		var forecastMaelstromMore = function(e) 
+        {
+			if (maelstromRNG)
+            {
+				for (var i = 0; i < 10; i++)
+                {
+                    //slice() clones the array
+                    var eligible = buildingsAvailable.slice();
+                    var targets = [];
+                    var effects = [];
+                    var textResult = [];
+                    
+                    // Targets
+                    for (var c = 0; c < maelstromTargets; c++)
+                    {
+                        var len = eligible.length;
+                        var loc = maelstromRNG.nextIntRange(0, len - 1);
+                        var hit = eligible[loc];
+                        eligible.splice(loc, 1);
+                        targets.push(hit);
+                    }
+                    
+                    // Effects
+                    for (var c = 0; c < maelstromTargets; c++)
+                    {
+                        var len = maelstromEffects.length;
+                        var hit = maelstromRNG.nextIntRange(0, len - 1);
+                        effects.push(maelstromEffects[hit]);
+                    }
+                    
+                    // Text Result
+                    for (var c = 0; c < maelstromTargets; c++)
+                    {   
+                        textResult.push((c + 1) + '. ' + buildingNames[targets[c]] + ', ' + effects[c]);
+                    }
+                    
+                    var li = $('<li />').html(textResult.join('<br/>'));//.addClass('tier' + targets[c]).data('tier', targets[c]);
+                    $('#maelstromForecast > ol').append(li);
+		    	}               
+            }
+            
+            // Update building highlighting
+			for (var tier in buildingsHighlighted[0])
+            {
+				if (buildingsHighlighted[0][tier])
+                {
+					$('#maelstromForecast > ol > li.tier' + tier).addClass('highlight');
+                }
+				else
+                {
+					$('#maelstromForecast > ol > li.tier' + tier).removeClass('highlight');
+                }
+            }
 		};
 		
 		$(function() {
@@ -298,6 +377,7 @@
 					forecastLightningMore();
 					forecastMiracleMore();
 					forecastBreathMore();
+                    forecastMaelstromMore();
 				}
 			});
 			
@@ -324,11 +404,11 @@
 				if ($(this).hasClass('highlight')) {
 					$(this).removeClass('highlight');
 					buildingsHighlighted[0][tier] = buildingsHighlighted[1][tier] = false;
-					$('#lightningForecast > ol, #miracleForecast > ol').children('.tier' + tier).removeClass('highlight');
+					$('#lightningForecast > ol, #miracleForecast > ol, #maelstromForceast > ol').children('.tier' + tier).removeClass('highlight');
 				} else {
 					$(this).addClass('highlight');
 					buildingsHighlighted[0][tier] = buildingsHighlighted[1][tier] = true;
-					$('#lightningForecast > ol, #miracleForecast > ol').children('.tier' + tier).addClass('highlight');
+					$('#lightningForecast > ol, #miracleForecast > ol, #maelstromForceast > ol').children('.tier' + tier).addClass('highlight');
 				}
 			}).on('mouseenter', 'span', function(e) {
 				$(this).addClass('hover');
