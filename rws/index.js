@@ -16,6 +16,11 @@
         var maelstromRNG = null;
         var maelstromTargets = 3;
         var maelstromEffects = ['Mana Produced', 'Trophies Unlocked', 'Faction Coins found', 'Amount of Assistants'];
+        var limitedWishRNG = null;
+        var limitedWishEffects = ["Increase the production of all buildings", "Increase Assistants", "Increase Maximum Mana", "Increase Trophy Count and Offline Bonus", "Increase Faction Coin find chance", "Increase Mana Regeneration", "All Spell Durations count more"];
+        var limitedWishEligibleEffects = [];
+        var limitedWishActivityTime = 0;
+        var limitedWishCastCount = 0;
 		
 		// Refresh the entire forecast
 		var forecast = function(saveStr) {
@@ -26,8 +31,9 @@
 			miracleRNG = null;
 			breathRNG = null;
             maelstromRNG = null;
+            limitedWishRNG = null
             breathTier = 1;
-			$('#lightningMessage, #lightningForecast, #miracleMessage, #miracleForecast, #breathMessage, #breathForecast, #maelstromMessage, #maelstromForecast').html('');
+			$('#lightningMessage, #lightningForecast, #miracleMessage, #miracleForecast, #breathMessage, #breathForecast, #maelstromMessage, #maelstromForecast, #limitedWishMessage, #limitedWishForecast').html('');
 			
 			var save = SaveHandler.Decode(saveStr);
 			window.decoded = save;
@@ -57,6 +63,7 @@
 			forecastMiracle(save, buildingsOwned);
 			forecastBreath(save);
 			forecastMaelstrom(save, buildingsAvailable);
+            forecastLimitedWish(save);
 		};
 		
 		// Add the Lightning forecast
@@ -330,6 +337,89 @@
                 }
             }
 		};
+        
+        // Add the Limited Wish forecast
+		var forecastLimitedWish = function(save, buildingsAvailable) 
+        {
+            var limitedWishMessage = '';
+            var limitedWishForecast = '';
+			
+            // Check if the save actually has Limited Wish to forecast
+            if (save.elitePrestigeFaction == 12) {
+                limitedWishMessage = 'You don\'t have Limited Wish.';
+                limitedWishForecast = 'The Geine is in an another lamp.';
+            } 
+			
+            // Early exit
+            if (limitedWishMessage != '' || limitedWishForecast != '') {
+                $('#limitedWishMessage').html('<b>Limited Wish</b><br>').append(limitedWishMessage);
+                $('#limitedWishForecast').html('<b>Forecast</b><br>').append(limitedWishForecast);
+                    return;
+            }
+        
+            // Create the RNG and get the initial forecast
+            limitedWishRNG = new PM_PRNG(save.spells[29].s);
+            
+            limitedWishActivityTime = save.spells[29].active0;
+            limitedWishCastCount = save.spells[29].c;
+            
+            limitedWishEligibleEffects = [];
+            limitedWishEligibleEffects.push(limitedWishEffects[0]);
+            
+            //var limitedWishEffects = ["Increase the production of all buildings", "Increase Assistants", "Increase Maximum Mana", "Increase Trophy Count and Offline Bonus", "Increase Faction Coin find chance", "Increase Mana Regeneration", "All Spell Durations count more"];
+            
+            if (save.faction == 0)
+            {
+                limitedWishEligibleEffects.push(limitedWishEffects[1]);
+                limitedWishEligibleEffects.push(limitedWishEffects[6]);
+                limitedWishEligibleEffects.push(limitedWishEffects[5]);
+            }
+            else if (save.faction == 5)
+            {
+                limitedWishEligibleEffects.push(limitedWishEffects[3]);
+                limitedWishEligibleEffects.push(limitedWishEffects[5]);
+                limitedWishEligibleEffects.push(limitedWishEffects[4]);               
+            }
+            else if (save.faction == 8)
+            {
+                limitedWishEligibleEffects.push(limitedWishEffects[2]);
+                limitedWishEligibleEffects.push(limitedWishEffects[6]);
+                limitedWishEligibleEffects.push(limitedWishEffects[4]); 
+            }
+            
+            $('#limitedWishMessage').html('<b>Limited Wish</b><br>Your RNG state is: ' + limitedWishRNG.state + '.');
+            $('#limitedWishForecast').html('<b>Forecast</b><br><ol></ol>')
+                .append($('<button class="btn btn-link" type="button" />').html('Give me a longer Forecast').on('click', forecastLimitedWishMore));
+			
+            forecastLimitedWishMore();		
+		};
+        
+        var forecastLimitedWishMore = function(e) 
+        {
+			if (limitedWishRNG)
+            {
+				for (var i = 0; i < 10; i++)
+                {
+                    var typeHit = limitedWishRNG.nextIntRange(0, limitedWishEligibleEffects.length - 1);
+                    var strengthHit = limitedWishRNG.nextIntRange(1, limitedWishCastCount + 1);
+                    var lowEffect = limitedWishFormula(limitedWishActivityTime, strengthHit);
+                    var highEffect = limitedWishFormula(limitedWishActivityTime + 12, strengthHit);
+                    
+                    var textResult = limitedWishEligibleEffects[typeHit] + ' for %' + lowEffect.toFixed(2) + ' to %' + highEffect.toFixed(2);
+                    
+                    var li = $('<li />').html(textResult);;
+                    $('#limitedWishForecast > ol').append(li);
+                    
+                    limitedWishActivityTime += 12; // spell duration
+                    limitedWishCastCount++;
+		    	}               
+            }
+		};
+        
+        var limitedWishFormula = function(spellActivity, castCount)
+        {
+            return 1.725 * Math.pow(Math.log(spellActivity + 1), 1.25) * Math.pow(castCount, 0.65);
+        }
 		
 		$(function() {
 			

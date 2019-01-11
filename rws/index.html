@@ -114,7 +114,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="alert alert-info" v-show="breathMessage != ''">DB forecast now attempts to account for more than one tier based on your active tier count. MS is not yet added, only the needed layout changes</div>
+		<div class="alert alert-info" v-show="breathMessage != ''">Dragon's breath forecast fixed, Maelstrom and Limited wish forecast added (Limited wish is a bit inaccurate due to issues)</div>
 		<div class="row">
 			<div class="col-xs-12">
 				<div id="buildings"></div>
@@ -126,6 +126,7 @@
 			<button class="tablinks" onclick="openForecast(event, 'Miracle')">Miracle</button>
 			<button class="tablinks" onclick="openForecast(event, 'DB')">Dragon's Breath</button>
 			<button class="tablinks" onclick="openForecast(event, 'MS')">Maelstrom</button>
+            <button class="tablinks" onclick="openForecast(event, 'LW')">Limited Wish</button>
 		</div>
 		<div id="LS" class="tabcontent">
 				<br>
@@ -150,6 +151,12 @@
 				<div id="maelstromMessage"></div>
 				<br>
 				<div id="maelstromForecast"></div>
+		</div>
+        <div id="LW" class="tabcontent">
+				<br>
+				<div id="limitedWishMessage"></div>
+				<br>
+				<div id="limitedWishForecast"></div>
 		</div>
 		
 		<!-- <div class="row">
