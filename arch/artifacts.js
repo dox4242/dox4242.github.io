@@ -755,7 +755,7 @@ var Artifacts = [
       return Math.ceil(value * 1000000000000000000);
     },
     display: function(value) {
-      return util.render.eng(value) + ' Faction Coin Chance';
+      return util.render.sci(value) + ' Faction Coin Chance';
     }
   },
   {
@@ -971,7 +971,7 @@ var Artifacts = [
       return value * 1000000000000;
     },
     display: function (value) {
-      return util.render.eng(value) + ' Mana per second';
+      return util.render.sci(value) + ' Mana per second';
     }
   },
   
@@ -1009,7 +1009,7 @@ var Artifacts = [
       return Math.exp(Math.sqrt(value * 1200000)) - 1;
     },
     display: function (value) {
-      return util.render.eng(value) + ' Faction Coins found';
+      return util.render.sci(value) + ' Faction Coins found';
     }
   },
   
@@ -1027,7 +1027,7 @@ var Artifacts = [
       return value * 10000000000000;
     },
     display: function (value) {
-      return util.render.eng(value) + ' Assistants';
+      return util.render.sci(value) + ' Assistants';
     }
   },
   
@@ -1045,7 +1045,7 @@ var Artifacts = [
       return Math.pow(10,Math.pow(value*500000000,1/3));
     },
     display: function (value) {
-      return util.render.eng(value) + ' Faction Coins found';
+      return util.render.sci(value) + ' Faction Coins found';
     }
   },
   
@@ -1063,7 +1063,7 @@ var Artifacts = [
       return value * 5000000000;
     },
     display: function (value) {
-      return util.render.eng(value) + ' Evil Spells cast (This R)';
+      return util.render.sci(value) + ' Evil Spells cast (This R)';
     }
   },
   
@@ -1082,7 +1082,7 @@ var Artifacts = [
       return Math.pow(10,Math.pow(value*10000000,1/3));
     },
     display: function (value) {
-      return util.render.eng(value) + ' Mana per second';
+      return util.render.sci(value) + ' Mana per second';
     }
   },
   
@@ -1119,7 +1119,7 @@ var Artifacts = [
       return Math.pow(10,Math.pow(value*100000000,1/3));
     },
     display: function (value) {
-      return util.render.eng(value) + ' offline bonus multiplier';
+      return util.render.sci(value) + ' offline bonus multiplier';
     }
   },
   
@@ -1137,7 +1137,7 @@ var Artifacts = [
       return Math.pow(10,Math.pow(value*2000000,1/3));
     },
     display: function (value) {
-      return util.render.eng(value)  + ' Clicks';
+      return util.render.sci(value)  + ' Clicks';
     }
   },
   
@@ -1173,7 +1173,7 @@ var Artifacts = [
       return Math.pow(10,Math.pow(value*12500000,1/3));;
     },
     display: function (value) {
-      return util.render.eng(value) + ' Tax Collections (This Game)';
+      return util.render.sci(value) + ' Tax Collections (This Game)';
     }
   }
 ];
