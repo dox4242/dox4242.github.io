@@ -1208,7 +1208,7 @@ var Artifacts = [
   
   {
     name: 'Planetary Force',
-    id: 954,
+    id: 319,
     fixed: function(save) {
       return save.reincarnation >= 100;
     },
