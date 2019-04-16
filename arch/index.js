@@ -52,10 +52,6 @@
       }
       View.result.state = this.save.artifactRngState;
       View.result.excavations = this.save.excavations;
-      View.result.max_mana = util.save.max_mana(this.save);
-      View.result.assistants = util.save.assistants(this.save);
-      View.result.re_bonus = util.save.re_bonus(this.save);
-      View.result.fc_chance = util.save.fc_chance(this.save);
 
       this.classifyArtifacts();
       View.excavs = [];
@@ -127,13 +123,10 @@
         if (excavation.length > 2) {
           events.push(excavation);
         }
-        if ((excav + this.save.excavations) > excavLimit || remaining <= canignore) {
+        if (this.save.excavations > excavLimit || remaining <= canignore) {
           break;
         }
       }
-
-      var calculatedValues = (this.save.ascension >= 2 ? 100000 : 10000);
-      var valueLimit = (this.save.ascension >= 2 ? 0.001 : 0.01);
 
       while (raw_values < calculatedValues) {
         var val = rng.nextDouble();
@@ -258,10 +251,6 @@
         result: {
           state: null,
           excavations: null,
-          assistants: null,
-          max_mana: null,
-          re_bonus: null,
-          fc_chance: null
         },
         excavs: [],
         raw: {
