@@ -1175,5 +1175,52 @@ var Artifacts = [
     display: function (value) {
       return util.render.sci(value) + ' Tax Collections (This Game)';
     }
+  },
+	
+  {
+    name: 'Wall Chunk',
+    id: 256,
+    fixed: function(save) {
+      return save.reincarnation >= 100;
+    },
+    random: function(save) {
+      return 0.1;
+    }
+  },
+  
+  {
+    name: 'Excavated Mirage',
+    id: 257,
+    fixed: function(save) {
+      return save.reincarnation >= 100;
+    },
+    random: function(save) {
+	  //(log10(x) / 100)%, where x is FC chance
+      return (Math.log10(util.save.fc_chance(save))/10000);
+    },
+	required: function (value) {
+      return Math.pow(10,value*10000);
+    },
+    display: function (value) {
+      return util.render.sci(value) + ' Faction Coin Chance';
+    }
+  },
+  
+  {
+    name: 'Planetary Force',
+    id: 319,
+    fixed: function(save) {
+      return save.reincarnation >= 100;
+    },
+    random: function(save) {
+	  //((x ^ 2.5) / 5000)%, where x is amount of consecutive days logged in
+      return (Math.pow(save.consecutiveDays,2.5)/500000);
+    },
+	required: function (value) {
+      return Math.pow(value*500000,1/2.5);
+    },
+    display: function (value) {
+      return Math.ceil(value) + ' Consecutive Days logged in';
+    }
   }
 ];
