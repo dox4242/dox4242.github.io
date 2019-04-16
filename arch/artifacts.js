@@ -331,7 +331,7 @@ var Artifacts = [
     name: 'Demonic Figurine',
     id: 134,
     fixed: function(save) {
-      return util.save.upgrade_owned(save,469) && save.faction == 5 && save.prestigeFaction == -1 && util.save.trophies(save) > util.save.max_trophy_count * 0.9;
+      return util.save.upgrade_owned(save,469) && save.faction == 5 && save.prestigeFaction == -1 && util.save.trophies(save) >= 666;
     },
     random: function(save) {
       return 0.01;
@@ -755,7 +755,7 @@ var Artifacts = [
       return Math.ceil(value * 1000000000000000000);
     },
     display: function(value) {
-      return util.render.eng(value) + ' Faction Coin Chance';
+      return util.render.sci(value) + ' Faction Coin Chance';
     }
   },
   {
@@ -798,18 +798,12 @@ var Artifacts = [
     },
     random: function (save) {
       var exchanges = util.save.stat(save, 24);
-      if (util.save.upgrade_owned(save, 787)) {
-        var giantMarket = 1.5 * Math.pow(util.save.building_count(save, 7), 0.5);
-        exchanges *= (1 + 0.01 * giantMarket);
-      }
+     
       return Math.pow(exchanges, 2) / 500000000000;
     },
     required: function(value, save) {
       var exchanges = Math.ceil(Math.pow(value * 500000000000, 0.5));
-      if (util.save.upgrade_owned(save, 787)) {
-        var giantMarket = 1.5 * Math.pow(util.save.building_count(save, 7), 0.5);
-        exchanges /= (1 + 0.01 * giantMarket);
-      }
+      
       return exchanges;
     },
     display: function (value) {
@@ -959,6 +953,227 @@ var Artifacts = [
     },
     display: function (value) {
       return Math.ceil(value) + ' Active Spells';
+    }
+  },
+  //TODO
+  {
+    name: 'Lantern of Guidance',
+    id: 294,
+    fixed: function (save) {
+      return util.save.upgrade_owned(save,749) && save.reincarnation >= 120;
+    },
+    random: function (save) {
+    //(x / 10,000,000,000 (10B))%, where x is mana regen.
+	//set to 1 until i can figure out a way to get the stat
+      return 1 / 1000000000000 ;
+    },
+    required: function (value) {
+      return value * 1000000000000;
+    },
+    display: function (value) {
+      return util.render.sci(value) + ' Mana per second';
+    }
+  },
+  
+  {
+    name: 'Oil Lamp',
+    id: 295,
+    fixed: function (save) {
+      return util.save.upgrade_owned(save,748) && save.reincarnation >= 120;
+    },
+    random: function (save) {
+	//(min(x, y, z) / 1,000 days)%, where x is Fairy Chanting spell activity time, y is Hellfire Blast spell activity time, and z is Brainwave spell activity time (all time)
+      return (Math.min((save.spells[6].active0 + save.spells[6].active1 + save.spells[6].active2),
+					   (save.spells[11].active0 + save.spells[11].active1 + save.spells[11].active2),
+	                   (save.spells[2].active0 + save.spells[2].active1 + save.spells[2].active2)) / 86400)  / 100000;
+    },
+    required: function (value) {
+      return value * 100000;
+    },
+    display: function (value) {
+      return 'at least ' + Math.ceil(value) + ' days of activity time for each of these spells: Fairy Chanting, Hellfire Blast and Brainwave (Check Editor for your current Stats)';
+    }
+  },
+  
+  {
+    name: 'Spark of Life',
+    id: 296,
+    fixed: function (save) {
+      return util.save.upgrade_owned(save,747) && save.reincarnation >= 120;
+    },
+    random: function (save) {
+    //(ln(1 + x) ^ 2 / 12000)%, where x is FC collected this game.
+      return Math.pow(Math.log(1 + util.save.faction_coins(save)) , 2) / 1200000;
+    },
+    required: function (value) {
+      return Math.exp(Math.sqrt(value * 1200000)) - 1;
+    },
+    display: function (value) {
+      return util.render.sci(value) + ' Faction Coins found';
+    }
+  },
+  
+  {
+    name: 'First Crystal Fragment',
+    id: 300,
+    fixed: function (save) {
+      return save.faction == 0 && save.reincarnation >= 125 && save.excavations >= 12500;
+    },
+    random: function (save) {
+	//(x / 100000000000 (100B))%, where x is assistant count.
+      return util.save.assistants(save) / 10000000000000;
+    },
+    required: function (value) {
+      return value * 10000000000000;
+    },
+    display: function (value) {
+      return util.render.sci(value) + ' Assistants';
+    }
+  },
+  
+  {
+    name: 'Second Crystal Fragment',
+    id: 303,
+    fixed: function (save) {
+      return save.faction == 8 && save.reincarnation >= 125 && save.excavations >= 12500;
+    },
+    random: function (save) {
+	//(log10(1 + x) ^ 3 / 5000000 (5M))%, where x is faction coins this game.	
+      return Math.pow(Math.log10(util.save.faction_coins(save) + 1),3) / 500000000;
+    },
+    required: function (value) {
+      return Math.pow(10,Math.pow(value*500000000,1/3));
+    },
+    display: function (value) {
+      return util.render.sci(value) + ' Faction Coins found';
+    }
+  },
+  
+  {
+    name: 'Third Crystal Fragment',
+    id: 306,
+    fixed: function (save) {
+      return save.faction == 5 && save.reincarnation >= 125 && save.excavations >= 12500;
+    },
+    random: function (save) {
+	//(x / 50000000 (50M))%, where x is evil spells this R.
+      return (save.spells[1].c + save.spells[1].r + save.spells[8].c + save.spells[8].r + save.spells[15].c + save.spells[15].r + save.spells[15].c + save.spells[15].r + + save.spells[11].c + save.spells[11].r + save.spells[4].c + save.spells[4].r) / 5000000000;
+    },
+    required: function (value) {
+      return value * 5000000000;
+    },
+    display: function (value) {
+      return util.render.sci(value) + ' Evil Spells cast (This R)';
+    }
+  },
+  
+  {
+    name: 'First Iron Fragment',
+    id: 301,
+    fixed: function (save) {
+      return save.faction == 2 && save.reincarnation >= 125 && save.excavations >= 12500;
+    },
+    random: function (save) {
+	//(log10(1 + x) ^ 3 / 100000 (100K))%, where x is mana regen.
+	//Set to 1 until I find a better way to do this
+      return Math.pow(Math.log10(1 + 1),3) / 10000000;
+    },
+    required: function (value) {
+      return Math.pow(10,Math.pow(value*10000000,1/3));
+    },
+    display: function (value) {
+      return util.render.sci(value) + ' Mana per second';
+    }
+  },
+  
+  {
+    name: 'Second Iron Fragment',
+    id: 304,
+    fixed: function (save) {
+      return save.faction == 6 && save.reincarnation >= 125 && save.excavations >= 12500;
+    },
+    random: function (save) {
+	//(x ^ 3 / 5000000000 (5B))%, where x is royal exchange bonus
+      return Math.pow(util.save.re_bonus(save),3) / 500000000000;
+    },
+    required: function (value) {
+      return Math.pow(value * 500000000000 , 1/3);
+    },
+    display: function (value) {
+      return Math.ceil(value) + '% Royal Exchange Bonus';
+    }
+  },
+  
+  {
+    name: 'Third Iron Fragment',
+    id: 307,
+    fixed: function (save) {
+      return save.faction == 4 && save.reincarnation >= 125 && save.excavations >= 12500;
+    },
+    random: function (save) {
+	//(log10(1 + x) ^ 3 / 1000000 (1M))%, where x is offline bonus multiplier.
+	// Set to 1, see above
+      return Math.pow(Math.log10(1 + 1),3) / 100000000;
+    },
+    required: function (value) {
+      return Math.pow(10,Math.pow(value*100000000,1/3));
+    },
+    display: function (value) {
+      return util.render.sci(value) + ' offline bonus multiplier';
+    }
+  },
+  
+  {
+    name: 'First Stone Fragment',
+    id: 302,
+    fixed: function (save) {
+      return save.faction == 1 && save.reincarnation >= 125 && save.excavations >= 12500;
+    },
+    random: function (save) {
+	//(log10(1 + x) ^ 3) / 20000 (20K))%, where x is clicks this game.
+      return Math.pow(Math.log10(util.save.stat(save, 4) + 1),3) / 2000000;
+    },
+    required: function (value) {
+      return Math.pow(10,Math.pow(value*2000000,1/3));
+    },
+    display: function (value) {
+      return util.render.sci(value)  + ' Clicks';
+    }
+  },
+  
+  {
+    name: 'Second Stone Fragment',
+    id: 305,
+    fixed: function (save) {
+      return save.faction == 7 && save.reincarnation >= 125 && save.excavations >= 12500;
+    },
+    random: function (save) {
+	//(x / 20000000 (20M))%, where x is amount of buildings.
+      return util.save.total_buildings(save) / 2000000000;
+    },
+    required: function (value) {
+      return value * 2000000000;
+    },
+    display: function (value) {
+      return Math.ceil(value) + ' Buildings (Multipliers do NOT count)';
+    }
+  },
+  
+  {
+  name: 'Third Stone Fragment',
+    id: 308,
+    fixed: function (save) {
+      return save.faction == 3 && save.reincarnation >= 125 && save.excavations >= 12500;
+    },
+    random: function (save) {
+	//(log10(1 + x) ^ 3) / 125000 (125K))%, where x is Tax Collections this game.
+      return Math.pow(Math.log10(save.spells[18].c + 1),3) / 12500000;
+    },
+    required: function (value) {
+      return Math.pow(10,Math.pow(value*12500000,1/3));;
+    },
+    display: function (value) {
+      return util.render.sci(value) + ' Tax Collections (This Game)';
     }
   }
 ];

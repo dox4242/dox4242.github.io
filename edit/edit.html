@@ -40,9 +40,8 @@
             <ul class='dropdown-menu'>
               <li><a href='http://www.kongregate.com/games/divinegames/realm-grinder'>Realm Grinder</a></li>
               <li><a href='http://www.divinegames.it/'>Divine Games</a></li>
-              <li><a href='http://realm-grinder.wikia.com/wiki/Realm_Grinder_Wikia'>Realm Grinder Wiki</a></li>
               <li><a href="http://musicfamily.org/realm/">G00F's Not a Wiki</a></li>
-              <li><a href="https://discord.gg/HrzMsD7">Discord Chat - Realm Grinder and more</a></li>
+              <li><a href="https://discord.gg/3YvX9hN">Discord Chat - Realm Grinder and more</a></li>
             </ul>    
           </li>
           <li class="dropdown">
@@ -693,6 +692,7 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=294 name='Lantern of Guidance'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=295 name='Oil Lamp'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=296 name='Spark of Life'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=319 name='Planetary Force'></tr>
           </table>
         </div>
       </div>
@@ -843,6 +843,9 @@
             <tr is='widget-field' :field.sync='save.lineageLevels[9].lev' can-edit :colspan='5' name='Dwarven Lineage Levels'></tr>
             <tr is='widget-field' :field.sync='save.lineageLevels[10].lev' can-edit :colspan='5' name='Drow Lineage Levels'></tr>
             <tr is='widget-field' :field.sync='save.lineageLevels[11].lev' can-edit :colspan='5' name='Dragon Lineage Levels'></tr>
+            <tr is='widget-field' :field.sync='save.lineageLevels[12].lev' can-edit :colspan='5' name='Archon Lineage Levels'></tr>
+            <tr is='widget-field' :field.sync='save.lineageLevels[13].lev' can-edit :colspan='5' name='Djinn Lineage Levels'></tr>
+            <tr is='widget-field' :field.sync='save.lineageLevels[14].lev' can-edit :colspan='5' name='Makers Lineage Levels'></tr>
             <tr><td></td><td>Unlocked / Owned</td></tr>
             <tr is='widget-lineage-perk' :upgrades.sync='upgradesArray' id=680 name='Fairy Perk 2'></tr>
             <tr is='widget-lineage-perk' :upgrades.sync='upgradesArray' id=672 name='Elven Perk 2'></tr>
@@ -856,6 +859,9 @@
             <tr is='widget-lineage-perk' :upgrades.sync='upgradesArray' id=668 name='Dwarven Perk 2'></tr>
             <tr is='widget-lineage-perk' :upgrades.sync='upgradesArray' id=660 name='Drow Perk 2'></tr>
             <tr is='widget-lineage-perk' :upgrades.sync='upgradesArray' id=696 name='Dragon Perk 2'></tr>
+            <tr is='widget-lineage-perk' :upgrades.sync='upgradesArray' id=957 name='Archon Perk 2'></tr>
+            <tr is='widget-lineage-perk' :upgrades.sync='upgradesArray' id=963 name='Djinn Perk 2'></tr>
+            <tr is='widget-lineage-perk' :upgrades.sync='upgradesArray' id=969 name='Makers Perk 2'></tr>
          </table>
         </div>
       </div>
@@ -884,6 +890,7 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=192 name='Golden Chicken Feat'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=193 name='Grey Easter Feat'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=287 name='Bunny Helpers Feat'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=324 name='Chocolate Egg Feat'></tr>
             <tr><td colspan='4'><center><b>Summer Event</b></center></td></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=120800 name='Summeraan Champion 1 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=120801 name='Summeraan Champion 2 Quest'></tr>
@@ -1096,6 +1103,9 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=89 name='Minedwarf'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=92 name='Perfect Combo'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=213 name="Dragon's Roar"></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=321 name="Chrono Loading"></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=322 name="Persistent Entropy"></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=323 name="Reality Crater"></tr>
             <tr><td colspan='2'><center><b>Buildings Trophies</b></center></td></tr>
             <tr is='widget-trophy-comp-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='buildFarmsTrophies' :colspan='5' name='Build X Farms'></tr>
             <tr is='widget-trophy-comp-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='buildInnsTrophies' :colspan='5' name='Build X Inns'></tr>
@@ -1198,6 +1208,7 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=290 name='Art of the Crow'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=297 name='Faction Ruler'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=312 name='MAD Masks'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=320 name='Future Linkin'></tr>
           </table>
         </div>
       </div>
@@ -1229,18 +1240,21 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=182 :colspan='5' name='Spider Sanctuary (Drow)'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=212 :colspan='5' name='Wyrm&apos;s Den (Dragon)'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=239 :colspan='5' name='Mercenary Encampment (Mercenary)'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=263 :colspan='5' name='Swarming Tower (Fairy)'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=261 :colspan='5' name='Arboreal City (Elf)'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=258 :colspan='5' name='Holy Site (Angel)'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=264 :colspan='5' name='Slave Market (Goblin)'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=266 :colspan='5' name='Flesh Workshop (Undead)'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=259 :colspan='5' name='Burning Abyss (Demon)'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=265 :colspan='5' name='Mountain Palace (Titan)'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=260 :colspan='5' name='Ziggurat (Druid)'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=262 :colspan='5' name='Forbidden Library (Faceless)'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=288 :colspan='5' name='High Bastion (Dwarf)'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=289 :colspan='5' name='Brothel (Drow)'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=291 :colspan='5' name='Dragon Pasture (Dragon)'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=263 :colspan='5' name='Swarming Tower (Fairy 2)'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=261 :colspan='5' name='Arboreal City (Elf 2)'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=258 :colspan='5' name='Holy Site (Angel 2)'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=264 :colspan='5' name='Slave Market (Goblin 2)'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=266 :colspan='5' name='Flesh Workshop (Undead 2)'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=259 :colspan='5' name='Burning Abyss (Demon 2)'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=265 :colspan='5' name='Mountain Palace (Titan 2)'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=260 :colspan='5' name='Ziggurat (Druid 2)'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=262 :colspan='5' name='Forbidden Library (Faceless 2)'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=288 :colspan='5' name='High Bastion (Dwarf 2)'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=289 :colspan='5' name='Brothel (Drow 2)'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=291 :colspan='5' name='Dragon Pasture (Dragon 2)'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=316 :colspan='5' name='Nexus (Archon)'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=317 :colspan='5' name='Pavilion (Djinn)'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=318 :colspan='5' name='Hall of Origination (Makers)'></tr>
           </table>
         </div>
       </div>
@@ -1251,8 +1265,9 @@
             <tr is='widget-stat' :stat.sync='save.stats[23]' name='Assistant Squishes'></tr>
             <tr is='widget-stat-max' :stat.sync='save.stats[88]' hide-ab name='Max Assistant Squishes'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[125]' name='Hint Button Clicks'></tr>
+            <tr is='widget-field' :field.sync='save.consecutiveDays' can-edit :colspan='5' name='Consecutive Days'></tr>
             <tr>
-              <th><span class="statname">LS_is_out_to_get_player</span></th>
+              <th><span class="statname">Maelstrom is out to get player</span></th>
               <td colspan="5"><input type="checkbox" v-model="lsJoke" number></input></td>
             </tr>
           </table>

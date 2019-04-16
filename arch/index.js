@@ -85,6 +85,7 @@
       var smalls = [];
       var raw_values = 0;
       var calculatedValues = (this.save.ascension >= 2 ? 100000 : 10000);
+	  var excavLimit = (this.save.ascension >= 2 ? 50000 : 20000);
       var valueLimit = (this.save.ascension >= 2 ? 0.001 : 0.01);
 
       while (remaining > 0) {
@@ -110,7 +111,7 @@
             remaining -= 1;
           } else if (eligible[i].required) {
             var req = eligible[i].required(val, this.save, excav);
-            if (req != NaN && req >= 0 && (eligible[i].lastreq == null || req < eligible[i].lastreq)) {
+            if (req != NaN && req != Infinity && req >= 0 && (eligible[i].lastreq == null || req < eligible[i].lastreq)) {
               eligible[i].lastreq = req;
               excavation.push(['improve', req, eligible[i]]);
             }
@@ -126,7 +127,7 @@
         if (excavation.length > 2) {
           events.push(excavation);
         }
-        if ((excav + this.save.excavations) > 20000 || remaining <= canignore) {
+        if ((excav + this.save.excavations) > excavLimit || remaining <= canignore) {
           break;
         }
       }
