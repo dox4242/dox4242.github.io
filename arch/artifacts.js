@@ -1003,7 +1003,7 @@ var Artifacts = [
     },
     random: function (save) {
     //(ln(1 + x) ^ 2 / 12000)%, where x is FC collected this game.
-      return Math.pow(Math.log(1 + util.save.faction_coins(save)) , 2) / 1200000;
+      return Math.pow(Math.log(1 + util.save.faction_coins(save)) / 2.30258509299405 , 2) / 1200000;
     },
     required: function (value) {
       return Math.exp(Math.sqrt(value * 1200000)) - 1;
