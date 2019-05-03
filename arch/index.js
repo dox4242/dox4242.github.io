@@ -68,7 +68,6 @@
 	  $('.artifactviewer').show();
 	  $('.viewer-results').empty().html("Click on a value above to see available artifact requirements for that value.");
 	  $('#override-reincarnation').val(this.save.reincarnation);
-	  $('.viewertitle').css({"paddingLeft":"80px"});
 	  
     }
 
@@ -246,8 +245,7 @@
 	this.viewArtifacts = function() {
 		if (View.raw.sv) {
 			var svs,i,reinc;
-			$(".viewer-results").empty();
-			$(".viewer-results").html("<b>Excavation:</b> " + View.raw.sv.x + " values ahead (" + Math.ceil(View.raw.sv.x / Math.max(View.raw.eligible.length, 1)) + " Excavations) with <b>Small Value:</b> " + View.raw.sv.y);
+			$(".viewer-results").empty().html("<b>Excavation:</b> " + View.raw.sv.x + " values ahead (" + Math.ceil(View.raw.sv.x / Math.max(View.raw.eligible.length, 1)) + " Excavations) with <b>Small Value:</b> " + View.raw.sv.y);
 			if (View.raw.unowned.length) {
 				$(".viewer-results").append("<br><br><table><tbody>");
 				svs = View.raw.eligible.length > 1 ? "<th> Small Value Shifts Required <a>(?)</a></th>" : "";
@@ -265,7 +263,7 @@
 				i && i == View.raw.eligible.length && $(".viewer-results tbody").append("---");
 				if (!artifact.reincarnation || reinc >= artifact.reincarnation) {
 					var probability = artifact.required ? artifact.display(artifact.required(View.raw.sv.y)) : artifact.random ? View.raw.sv.y <= artifact.random(this.save, View.raw.sv.x) : 0;
-					//true = Possible, false = Not Possible, value is unchanged
+					//true = Possible, false = Not Possible, an actual value is unchanged
 					if (probability = !0 === probability ? "Possible" : probability === !1 ? "Not Possible" : probability) {
 						if(i < View.raw.eligible.length && View.raw.eligible.length > 1) {
 							svs = View.raw.sv.x % View.raw.eligible.length, svs = (i >= svs ? View.raw.eligible.length : 0) + svs - i - 1; 
@@ -275,10 +273,7 @@
 					}
 				}
 			}
-			$(".viewer-results td").css({
-				paddingRight: "15px",
-				"max-width": "300px"
-			});
+			//no results = remove a br, for consistent style
 			$(".viewer-results tr").length == 1 && $(".viewer-results tbody, .viewer-results br").remove();
 		}
 	};
