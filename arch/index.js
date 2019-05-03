@@ -64,6 +64,11 @@
       if ($("div.tab-pane.active").attr('id') == 'tab-raw') {
         this.renderChart();
       }
+	  View.raw.sv = "";
+	  $('.artifactviewer').show();
+	  $('.viewer-results').empty().html("Click on a value above to see available artifact requirements for that value.");
+	  $('#override-reincarnation').val(this.save.reincarnation);
+	  
     }
 
     this.forecastArtifacts = function() {
@@ -105,7 +110,7 @@
             excavation.push(['find', eligible[i]]);
             eligible[i].finished = true;
             remaining -= 1;
-          } else if (eligible[i].required) {
+          } else if (eligible[i].required && !eligible[i].nocache) {
             var req = eligible[i].required(val, this.save, excav);
             if (req != NaN && req != Infinity && req >= 0 && (eligible[i].lastreq == null || req < eligible[i].lastreq)) {
               eligible[i].lastreq = req;
@@ -141,6 +146,7 @@
       View.raw.unobtain = [];
       View.raw.nonrandom = [];
       View.raw.ineligible = [];
+	  View.raw.unowned = [];
       var excav = this.save.excavations;
       var num = util.save.stat(this.save, 35);
 
@@ -157,6 +163,7 @@
         }
         else if (eligible && fail) {
           if (artifact.random) {
+			View.raw.unowned.push(artifact);
             artifact = artifactCopy(artifact);
             if (!artifact.nocache) artifact.random = artifact.random(this.save);
             this.eligible.push(artifact);
@@ -177,8 +184,10 @@
         }
         else {
           View.raw.ineligible.push(artifact.name);
+		  View.raw.unowned.push(artifact);
         }
       }
+	  View.raw.unowned.sort(function(a,b){return (jQuery.inArray(a.name, View.raw.eligible) === -1 && jQuery.inArray(b.name,View.raw.eligible) > -1) ? 1 : 0});
     }
 
     this.renderChart = function() {
@@ -232,6 +241,42 @@
       this.chart.render();
       this.chart_rendered = true;
     }
+	
+	this.viewArtifacts = function() {
+		if (View.raw.sv) {
+			var svs,i,reinc;
+			$(".viewer-results").empty().html("<b>Excavation:</b> " + View.raw.sv.x + " values ahead (" + Math.ceil(View.raw.sv.x / Math.max(View.raw.eligible.length, 1)) + " Excavations) with <b>Small Value:</b> " + View.raw.sv.y);
+			if (View.raw.unowned.length) {
+				$(".viewer-results").append("<br><br><table><tbody>");
+				svs = View.raw.eligible.length > 1 ? "<th> Small Value Shifts Required <a>(?)</a></th>" : "";
+				$(".viewer-results tbody").append("<tr><th> Artifact </th><th> Requirement </th>" + svs);
+				View.raw.eligible.length > 1 && $(".viewer-results th a").popover({
+					trigger: "hover",
+					content: 'Every time you excavate, each eligible artifact consumes a small value per excavation. If you have more than one eligible artifact, this means that a good'
+					+ ' small value can be consumed by the "wrong" artifact. You can shift the small values your current artifacts will consume by excavating with less (but at least one) eligible artifacts.'
+				});
+			}
+			reinc = ($("#override-box").is(":checked") && !isNaN(parseInt($('#override-reincarnation').val()))) ? $('#override-reincarnation').val() : this.save.reincarnation;
+			for (i = 0; i < View.raw.unowned.length; i++) {
+				var artifact = View.raw.unowned[i];
+				svs = "";
+				i && i == View.raw.eligible.length && $(".viewer-results tbody").append("---");
+				if (!artifact.reincarnation || reinc >= artifact.reincarnation) {
+					var probability = artifact.required ? artifact.display(artifact.required(View.raw.sv.y)) : artifact.random ? View.raw.sv.y <= artifact.random(this.save, View.raw.sv.x) : 0;
+					//true = Possible, false = Not Possible, an actual value is unchanged
+					if (probability = !0 === probability ? "Possible" : probability === !1 ? "Not Possible" : probability) {
+						if(i < View.raw.eligible.length && View.raw.eligible.length > 1) {
+							svs = View.raw.sv.x % View.raw.eligible.length, svs = (i >= svs ? View.raw.eligible.length : 0) + svs - i - 1; 
+							svs = ("<td>" + (svs === 0 ? "Uses Value" : (svs + " Shift" + (svs == 1 ? "" : "s"))) + "</td>"); 
+						}
+						$(".viewer-results tbody").append("<tr><td>" + artifact.name + "</td><td>" + probability + "</td>" + svs + "</tr>");
+					}
+				}
+			}
+			//no results = remove a br, for consistent style
+			$(".viewer-results tr").length == 1 && $(".viewer-results tbody, .viewer-results br").remove();
+		}
+	};
   }
 
   window.Controller = new controller();
@@ -286,7 +331,10 @@
     
     // Initialize Bootstrap popovers
     $('[data-toggle="popover"]').popover();
-
+	
+	//Dechecks a checkbox
+	$('#override-box').prop('checked', false);
+	
     // Bind Save decoding and parsing
     $('#saveInput').on('paste', function(e) {
       // Empty the input right before the paste comes through
@@ -327,6 +375,24 @@
         Controller.renderChart();
       }
     });
+	
+	$('#chartcontainer').on('click', function(e) {
+		var activeElement = Controller.chart.getElementAtEvent(e);
+		if(activeElement.length) {
+			View.raw.sv = activeElement[0]._chart.config.data.datasets[0].data[activeElement[0]._index];
+			Controller.viewArtifacts();
+		}
+	});
+	
+	$('#override-box').change(function() {
+		($(this).is(':checked')) ? $('#artifactform').show() : $('#artifactform').hide()
+		Controller.viewArtifacts();
+	});
+	
+	$('#artifactform').change(function() {
+		Controller.viewArtifacts();
+	});
+	
   });
   
 } (window, document, jQuery));

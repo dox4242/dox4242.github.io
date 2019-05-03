@@ -32,14 +32,16 @@ var Artifacts = [
   {
     name: 'Key to the Lost City',
     id: 161,
+	reincarnation: 23,
     fixed: function(save) {
-      return save.reincarnation >= 23;
+      return save.reincarnation >= this.reincarnation;
     },
     excav: 1500
   },
   {
     name: 'Ancient Device',
     id: 160,
+	reincarnation: 22,
     fixed: function(save) {
       return save.upgrades[465] && save.upgrades[465].u1 ||
         save.upgrades[461] && save.upgrades[461].u1 ||
@@ -53,14 +55,16 @@ var Artifacts = [
   {
     name: 'Earth Core',
     id: 184,
+	reincarnation: 29,
     fixed: function(save) {
-      return save.reincarnation >= 29;
+      return save.reincarnation >= this.reincarnation;
     },
     excav: 2750
   },
   {
     name: 'Horn of the Kings',
     id: 186,
+	reincarnation: 29,
     fixed: function(save) {
       return util.save.upgrade_owned(save, 519);
     },
@@ -72,6 +76,7 @@ var Artifacts = [
   {
     name: 'Flame of Bondelnar',
     id: 185,
+	reincarnation: 29,
     fixed: function(save) {
       return util.save.upgrade_owned(save, 517);
     },
@@ -83,8 +88,9 @@ var Artifacts = [
   {
     name: 'Obsidian Shard',
     id: 240,
+	reincarnation: 75,
     fixed: function(save) {
-      return save.reincarnation >= 75;
+      return save.reincarnation >= this.reincarnation;
     },
     excav: 8000
   },
@@ -133,7 +139,13 @@ var Artifacts = [
     random: function(save, e) {
       e = !e?save.excavations:e;
       return e / 5000;
-    }
+    },
+	required: function(value) {
+	  return value * 5000;
+	},
+	display: function(value) {
+	  return Math.ceil(value) + ' Excavation' + (value>1?'s':'') + ' at this point';
+	}
   },
   {
     name: 'Fossilized Rodent',
@@ -330,6 +342,7 @@ var Artifacts = [
   {
     name: 'Demonic Figurine',
     id: 134,
+	reincarnation: 34,
     fixed: function(save) {
       return util.save.upgrade_owned(save,469) && save.faction == 5 && save.prestigeFaction == -1 && util.save.trophies(save) >= 666;
     },
@@ -508,8 +521,9 @@ var Artifacts = [
   {
     name: 'Steel Plate',
     id: 152,
+	reincarnation: 5,
     fixed: function(save) {
-      return util.save.upgrade_owned(save,469) && save.faction == 11 && save.reincarnation >= 5;
+      return util.save.upgrade_owned(save,469) && save.faction == 11 && save.reincarnation >= this.reincarnation;
     },
     random: function(save) {
       return save.reincarnation / 5000;
@@ -518,6 +532,7 @@ var Artifacts = [
   {
     name: 'Black Sword',
     id: 131,
+	reincarnation: 3,
     fixed: function(save) {
       return util.save.upgrade_owned(save,469) && save.faction == 11 && util.save.stat(save, 49, 2) >= 100;
     },
@@ -534,9 +549,10 @@ var Artifacts = [
   {
     name: 'Dragon Fang',
     id: 229,
+	reincarnation: 50,
     fixed: function(save) {
       var h = new Date().getHours();
-      return save.reincarnation >= 50 && save.prestigeFaction == 12 && util.save.upgrade_owned(save,469);
+      return save.reincarnation >= this.reincarnation && save.prestigeFaction == 12 && util.save.upgrade_owned(save,469);
     },
     random: function(save) {
       return util.save.building_count(save, 14) / 40000000;
@@ -551,8 +567,9 @@ var Artifacts = [
   {
     name: 'Dragon Soul',
     id: 230,
+	reincarnation: 50,
     fixed: function(save) {
-      return save.reincarnation >= 50 && save.prestigeFaction == 12 && util.save.upgrade_owned(save,469) && save.spells[21].activeTiers >= 4;
+      return save.reincarnation >= this.reincarnation && save.prestigeFaction == 12 && util.save.upgrade_owned(save,469) && save.spells[21].activeTiers >= 4;
     },
     required: function(value) {
       return Math.ceil(value * 20000000);
@@ -567,8 +584,9 @@ var Artifacts = [
   {
     name: 'Vanilla Flavor Juice',
     id: 179,
+	reincarnation: 16,
     fixed: function(save) {
-      return util.save.upgrade_owned(save,469) && save.reincarnation >= 16 && util.save.stat(save, 1) <= 300;
+      return util.save.upgrade_owned(save,469) && save.reincarnation >= this.reincarnation && util.save.stat(save, 1) <= 300;
     },
     random: function(save) {
       return 0.2
@@ -577,11 +595,12 @@ var Artifacts = [
   {
     name: 'Know Your Enemy, Part I',
     id: 178,
+	reincarnation: 12,
     fixed: function(save) {
       for (i = 0; i <= 10; i++) {
         if (!util.save.bloodline_upgrades(save, i)) return false;
       }
-      return util.save.upgrade_owned(save,469) && save.faction == 11 && save.reincarnation >= 12;
+      return util.save.upgrade_owned(save,469) && save.faction == 11 && save.reincarnation >= this.reincarnation;
     },
     random: function(save) {
       return 0.1
@@ -609,6 +628,7 @@ var Artifacts = [
   {
     name: 'Wall Fragment',
     id: 177,
+	reincarnation: 40,
     fixed: function(save) {
       return util.save.upgrade_owned(save,469) && save.ascension >= 1;
     },
@@ -619,8 +639,9 @@ var Artifacts = [
   {
     name: 'Spiky Rough Egg',
     id: 211,
+	reincarnation: 46,
     fixed: function(save) {
-      return save.reincarnation >= 46;
+      return save.reincarnation >= this.reincarnation;
     },
     excav: 1500,
     random: function(save) {
@@ -648,7 +669,13 @@ var Artifacts = [
     random: function(save, e) {
       e = !e?save.excavations:e;
       return e / 1000000;
-    }/*,
+    },
+	required: function(value) {
+	  return value * 1000000;
+	},
+	display: function(value) {
+	  return Math.ceil(value) + " Excavations at this point";
+	}/*,
     required: function(value, save, n) {
       if (Math.ceil(value * 1000000) < n + save.excavations)
       console.log(value, Math.ceil(value * 1000000), n);
@@ -669,7 +696,13 @@ var Artifacts = [
     random: function(save, e) {
       e = !e?save.excavations:e;
       return e / 1000000;
-    }/*,
+    },
+	required: function(value) {
+	  return value * 1000000;
+	},
+	display: function(value) {
+	  return Math.ceil(value) + " Excavations at this point";
+	}/*,
     required: function(value, save, n) {
       if (Math.ceil(value * 1000000) < n + save.excavations)
       console.log(value, Math.ceil(value * 1000000), n);
@@ -682,6 +715,7 @@ var Artifacts = [
   {
     name: 'Ancient Heirloom',
     id: 237,
+	reincarnation: 60,
     fixed: function (save) {
       return (save.lineageLevels[0].lev + save.lineageLevels[1].lev + save.lineageLevels[2].lev + 
               save.lineageLevels[3].lev + save.lineageLevels[4].lev + save.lineageLevels[5].lev + 
@@ -704,11 +738,12 @@ var Artifacts = [
   {
     name: 'Know Your Enemy, Part II',
     id: 242,
+	reincarnation: 76,
     fixed: function(save) {
       for (i = 0; i <= 10; i++) {
         if (!util.save.bloodline_upgrades(save, i)) return false;
       }
-      return util.save.upgrade_owned(save,469) && save.faction == 11 && save.reincarnation >= 76;
+      return util.save.upgrade_owned(save,469) && save.faction == 11 && save.reincarnation >= this.reincarnation;
     },
     random: function(save) {
       return 0.05
@@ -717,8 +752,9 @@ var Artifacts = [
   {
     name: 'Veteran Figurine',
     id: 268,
+	reincarnation: 90,
     fixed: function(save) {
-      return save.reincarnation >= 90;
+      return save.reincarnation >= this.reincarnation;
     },
     random: function(save) {
       return util.save.stat(save, 1) / 100000000;
@@ -733,11 +769,43 @@ var Artifacts = [
   {
     name: 'Ancient Cocoa Bean',
     id: 269,
+	reincarnation: 22,
     fixed: function(save) {
-      return save.reincarnation >= 22 && save.alignment == 3;
+      return save.reincarnation >= this.reincarnation && save.alignment == 3;
     },
     random: function(save) {
       return 0.1
+    }
+  },
+  
+  {
+    name: 'Wall Chunk',
+    id: 256,
+	reincarnation: 100,
+    fixed: function(save) {
+      return save.reincarnation >= this.reincarnation;
+    },
+    random: function(save) {
+      return 0.1;
+    }
+  },
+  
+  {
+    name: 'Excavated Mirage',
+    id: 257,
+	reincarnation: 100,
+    fixed: function(save) {
+      return save.reincarnation >= this.reincarnation;
+    },
+    random: function(save) {
+	  //(log10(x) / 100)%, where x is FC chance
+      return (Math.log10(1000)/10000);
+    },
+	required: function (value) {
+      return Math.pow(10,value*10000);
+    },
+    display: function (value) {
+      return util.render.sci(Math.ceil(value)) + ' Faction Coin Chance';
     }
   },
   // ancestral hourglass just uses a really weird number to correctly consume small values
@@ -745,6 +813,7 @@ var Artifacts = [
   {
     name: 'Ancestral Hourglass',
     id: 284,
+	reincarnation: 100,
     fixed: function(save) {
       return save.ascension >= 2;
     },
@@ -761,8 +830,9 @@ var Artifacts = [
   {
     name: 'Nightmare Figment',
     id: 278,
+	reincarnation: 100,
     fixed: function (save) {
-      return save.faction == 8 && save.reincarnation >= 100 && save.excavations >= 3000;
+      return save.faction == 8 && save.reincarnation >= this.reincarnation && save.excavations >= 3000;
     },
     random: function (save) {
       return Math.pow(util.save.brainwaveHeadstart(save), 1.5) / 2000000000;
@@ -777,8 +847,9 @@ var Artifacts = [
   {
     name: 'Branch of the Life Tree',
     id: 274,
+	reincarnation: 100,
     fixed: function (save) {
-      return save.faction == 7 && save.reincarnation >= 100 && save.excavations >= 3000;
+      return save.faction == 7 && save.reincarnation >= this.reincarnation && save.excavations >= 3000;
     },
     random: function (save) {
       return Math.pow(save.lineageLevels[7].lev, 3) / 200000000;
@@ -787,14 +858,15 @@ var Artifacts = [
       return Math.pow(value * 200000000, 1 / 3);
     },
     display: function (value) {
-      return 'Level ' + Math.ceil(value) + ' druid lineage';
+      return 'Level ' + Math.ceil(value) + ' Druid Lineage';
     }
   },
   {
     name: 'Titan Helmet',
     id: 283,
+	reincarnation: 100,
     fixed: function (save) {
-      return save.faction == 6 && save.reincarnation >= 100 && save.excavations >= 3000;
+      return save.faction == 6 && save.reincarnation >= this.reincarnation && save.excavations >= 3000;
     },
     random: function (save) {
       var exchanges = util.save.stat(save, 24);
@@ -807,14 +879,15 @@ var Artifacts = [
       return exchanges;
     },
     display: function (value) {
-      return Math.ceil(value) + ' royal exchanges';
+      return Math.ceil(value) + ' Royal Exchanges';
     }
   },
   {
     name: 'Crystallized Lava',
     id: 275, 
+	reincarnation: 100,
     fixed: function (save) {
-      return save.faction == 5 && save.reincarnation >= 100 && save.excavations >= 3000;
+      return save.faction == 5 && save.reincarnation >= this.reincarnation && save.excavations >= 3000;
     },
     random: function (save) {
       return (save.buildings[10].q - 10000) / 20000000;
@@ -829,25 +902,27 @@ var Artifacts = [
   {
     name: 'Dusty Coffin', // TODO: higher is better, might require rework of the entire page logic
     id: 276, 
+	reincarnation: 100,
     fixed: function (save) {
-      return save.faction == 4 && save.reincarnation >= 100 && save.excavations >= 3000;
+      return save.faction == 4 && save.reincarnation >= this.reincarnation && save.excavations >= 3000;
     },
     random: function (save) {
       var value = save.stats[1].stats;
-      return 1 / (30 + Math.pow(value, 1.75));
+      return 0.01 / (30 + Math.pow(value, 1.5));
     },
     required: function (value) {
-      return Math.floor(Math.pow((1 / (value * 100)) - 30, 1 / 1.75));
+      return Math.floor(Math.pow((1 / (value * 100)) - 30, 1 / 1.5));
     },
     display: function (value) {
-      return util.render.time(value) + ' spent this game';
+      return util.render.time(~~value) + ' spent this game';
     }
   },
   {
     name: 'Spiked Whip',
     id: 282, 
+	reincarnation: 100,
     fixed: function (save) {
-      return save.faction == 3 && save.reincarnation >= 100 && save.excavations >= 3000;
+      return save.faction == 3 && save.reincarnation >= this.reincarnation && save.excavations >= 3000;
     },
     random: function (save) {
       return (save.buildings[21].q - 10000) / 30000000;
@@ -862,8 +937,9 @@ var Artifacts = [
   {
     name: 'Fossilized Wing',
     id: 277,
+	reincarnation: 100,
     fixed: function (save) {
-      return save.faction == 2 && save.reincarnation >= 100 && save.excavations >= 3000;
+      return save.faction == 2 && save.reincarnation >= this.reincarnation && save.excavations >= 3000;
     },
     random: function (save) {
       return util.save.stat(save, 52, 2) / 2592000000;
@@ -878,8 +954,9 @@ var Artifacts = [
   {
     name: 'Raw Emerald',
     id: 280,
+	reincarnation: 100,
     fixed: function (save) {
-      return save.faction == 1 && save.reincarnation >= 100 && save.excavations >= 3000;
+      return save.faction == 1 && save.reincarnation >= this.reincarnation && save.excavations >= 3000;
     },
     random: function (save) {
       return (Math.pow(2 * util.save.stat(save, 135), 4.5)) / 1000000;
@@ -888,14 +965,15 @@ var Artifacts = [
       return Math.pow(value * 1000000 , (1 / 4.5)) / 2;
     },
     display: function (value) {
-      return Math.ceil(value) + ' non ruby excavation resets this game';
+      return Math.ceil(value) + ' Non Ruby Excavation Resets this game';
     }
   },
   {
     name: 'Silk Cloth',
     id: 281,
+	reincarnation: 100,
     fixed: function (save) {
-      return save.faction == 0 && save.reincarnation >= 100 && save.excavations >= 3000;
+      return save.faction == 0 && save.reincarnation >= this.reincarnation && save.excavations >= 3000;
     },
     random: function (save) {
       return (save.buildings[25].q - 10000) / 20000000;
@@ -910,8 +988,9 @@ var Artifacts = [
   {
     name: 'Beard Hair',
     id: 273,
+	reincarnation: 116,
     fixed: function (save) {
-      return save.prestigeFaction === 9 && save.reincarnation >= 116 && save.excavations >= 3000;
+      return save.prestigeFaction === 9 && save.reincarnation >= this.reincarnation && save.excavations >= 3000;
     },
     random: function (save) {
       return util.save.assistants(save) / 10000000000;
@@ -926,8 +1005,9 @@ var Artifacts = [
   {
     name: 'Poison Vial',
     id: 279,
+	reincarnation: 116,
     fixed: function (save) {
-      return save.prestigeFaction === 10 && save.reincarnation >= 116 && save.excavations >= 3000;
+      return save.prestigeFaction === 10 && save.reincarnation >= this.reincarnation && save.excavations >= 3000;
     },
     random: function (save) {
       return Math.pow(40 * util.save.combo_strike_counter(save), 0.9) / 1000000000;
@@ -942,8 +1022,9 @@ var Artifacts = [
   {
     name: 'Dragon Scale',
     id: 292,
+	reincarnation: 116,
     fixed: function (save) {
-      return save.prestigeFaction === 12 && save.reincarnation >= 116 && save.excavations >= 3000;
+      return save.prestigeFaction === 12 && save.reincarnation >= this.reincarnation && save.excavations >= 3000;
     },
     random: function (save) {
       return util.save.active_spells(save) / 250000;
@@ -959,8 +1040,9 @@ var Artifacts = [
   {
     name: 'Lantern of Guidance',
     id: 294,
+	reincarnation: 120,
     fixed: function (save) {
-      return util.save.upgrade_owned(save,749) && save.reincarnation >= 120;
+      return util.save.upgrade_owned(save,749) && save.reincarnation >= this.reincarnation;
     },
     random: function (save) {
     //(x / 10,000,000,000 (10B))%, where x is mana regen.
@@ -978,8 +1060,9 @@ var Artifacts = [
   {
     name: 'Oil Lamp',
     id: 295,
+	reincarnation: 120,
     fixed: function (save) {
-      return util.save.upgrade_owned(save,748) && save.reincarnation >= 120;
+      return util.save.upgrade_owned(save,748) && save.reincarnation >= this.reincarnation;
     },
     random: function (save) {
 	//(min(x, y, z) / 1,000 days)%, where x is Fairy Chanting spell activity time, y is Hellfire Blast spell activity time, and z is Brainwave spell activity time (all time)
@@ -991,22 +1074,23 @@ var Artifacts = [
       return value * 100000;
     },
     display: function (value) {
-      return 'at least ' + Math.ceil(value) + ' days of activity time for each of these spells: Fairy Chanting, Hellfire Blast and Brainwave (Check Editor for your current Stats)';
+      return 'At least ' + Math.ceil(value) + ' days of activity time for each of these spells: Fairy Chanting, Hellfire Blast and Brainwave (Check Editor for your current Stats)';
     }
   },
   
   {
     name: 'Spark of Life',
     id: 296,
+	reincarnation: 120,
     fixed: function (save) {
-      return util.save.upgrade_owned(save,747) && save.reincarnation >= 120;
+      return util.save.upgrade_owned(save,747) && save.reincarnation >= this.reincarnation;
     },
     random: function (save) {
     //(ln(1 + x) ^ 2 / 12000)%, where x is FC collected this game.
       return Math.pow(Math.log10(1 + util.save.faction_coins(save)), 2) / 1200000;
     },
     required: function (value) {
-      return Math.exp(Math.sqrt(value * 1200000)) - 1;
+      return Math.pow(10,Math.sqrt(value * 1200000)) - 1;
     },
     display: function (value) {
       return util.render.sci(value) + ' Faction Coins found';
@@ -1016,8 +1100,9 @@ var Artifacts = [
   {
     name: 'First Crystal Fragment',
     id: 300,
+	reincarnation: 125,
     fixed: function (save) {
-      return save.faction == 0 && save.reincarnation >= 125 && save.excavations >= 12500;
+      return save.faction == 0 && save.reincarnation >= this.reincarnation && save.excavations >= 12500;
     },
     random: function (save) {
 	//(x / 100000000000 (100B))%, where x is assistant count.
@@ -1034,8 +1119,9 @@ var Artifacts = [
   {
     name: 'Second Crystal Fragment',
     id: 303,
+	reincarnation: 125,
     fixed: function (save) {
-      return save.faction == 8 && save.reincarnation >= 125 && save.excavations >= 12500;
+      return save.faction == 8 && save.reincarnation >= this.reincarnation && save.excavations >= 12500;
     },
     random: function (save) {
 	//(log10(1 + x) ^ 3 / 5000000 (5M))%, where x is faction coins this game.	
@@ -1052,8 +1138,9 @@ var Artifacts = [
   {
     name: 'Third Crystal Fragment',
     id: 306,
+	reincarnation: 125,
     fixed: function (save) {
-      return save.faction == 5 && save.reincarnation >= 125 && save.excavations >= 12500;
+      return save.faction == 5 && save.reincarnation >= this.reincarnation && save.excavations >= 12500;
     },
     random: function (save) {
 	//(x / 50000000 (50M))%, where x is evil spells this R.
@@ -1070,8 +1157,9 @@ var Artifacts = [
   {
     name: 'First Iron Fragment',
     id: 301,
+	reincarnation: 125,
     fixed: function (save) {
-      return save.faction == 2 && save.reincarnation >= 125 && save.excavations >= 12500;
+      return save.faction == 2 && save.reincarnation >= this.reincarnation && save.excavations >= 12500;
     },
     random: function (save) {
 	//(log10(1 + x) ^ 3 / 100000 (100K))%, where x is mana regen.
@@ -1089,8 +1177,9 @@ var Artifacts = [
   {
     name: 'Second Iron Fragment',
     id: 304,
+	reincarnation: 125,
     fixed: function (save) {
-      return save.faction == 6 && save.reincarnation >= 125 && save.excavations >= 12500;
+      return save.faction == 6 && save.reincarnation >= this.reincarnation && save.excavations >= 12500;
     },
     random: function (save) {
 	//(x ^ 3 / 5000000000 (5B))%, where x is royal exchange bonus
@@ -1107,8 +1196,9 @@ var Artifacts = [
   {
     name: 'Third Iron Fragment',
     id: 307,
+	reincarnation: 125,
     fixed: function (save) {
-      return save.faction == 4 && save.reincarnation >= 125 && save.excavations >= 12500;
+      return save.faction == 4 && save.reincarnation >= this.reincarnation && save.excavations >= 12500;
     },
     random: function (save) {
 	//(log10(1 + x) ^ 3 / 1000000 (1M))%, where x is offline bonus multiplier.
@@ -1119,15 +1209,16 @@ var Artifacts = [
       return Math.pow(10,Math.pow(value*100000000,1/3));
     },
     display: function (value) {
-      return util.render.sci(value) + ' offline bonus multiplier';
+      return util.render.sci(value) + ' Offline bonus multiplier';
     }
   },
   
   {
     name: 'First Stone Fragment',
     id: 302,
+	reincarnation: 125,
     fixed: function (save) {
-      return save.faction == 1 && save.reincarnation >= 125 && save.excavations >= 12500;
+      return save.faction == 1 && save.reincarnation >= this.reincarnation && save.excavations >= 12500;
     },
     random: function (save) {
 	//(log10(1 + x) ^ 3) / 20000 (20K))%, where x is clicks this game.
@@ -1144,8 +1235,9 @@ var Artifacts = [
   {
     name: 'Second Stone Fragment',
     id: 305,
+	reincarnation: 125,
     fixed: function (save) {
-      return save.faction == 7 && save.reincarnation >= 125 && save.excavations >= 12500;
+      return save.faction == 7 && save.reincarnation >= this.reincarnation && save.excavations >= 12500;
     },
     random: function (save) {
 	//(x / 20000000 (20M))%, where x is amount of buildings.
@@ -1162,8 +1254,9 @@ var Artifacts = [
   {
   name: 'Third Stone Fragment',
     id: 308,
+	reincarnation: 125,
     fixed: function (save) {
-      return save.faction == 3 && save.reincarnation >= 125 && save.excavations >= 12500;
+      return save.faction == 3 && save.reincarnation >= this.reincarnation && save.excavations >= 12500;
     },
     random: function (save) {
 	//(log10(1 + x) ^ 3) / 125000 (125K))%, where x is Tax Collections this game.
@@ -1176,41 +1269,13 @@ var Artifacts = [
       return util.render.sci(value) + ' Tax Collections (This Game)';
     }
   },
-	
-  {
-    name: 'Wall Chunk',
-    id: 256,
-    fixed: function(save) {
-      return save.reincarnation >= 100;
-    },
-    random: function(save) {
-      return 0.1;
-    }
-  },
-  
-  {
-    name: 'Excavated Mirage',
-    id: 257,
-    fixed: function(save) {
-      return save.reincarnation >= 100;
-    },
-    random: function(save) {
-	  //(log10(x) / 100)%, where x is FC chance
-      return (Math.log10(1000)/10000);
-    },
-	required: function (value) {
-      return Math.pow(10,value*10000);
-    },
-    display: function (value) {
-      return util.render.sci(value) + ' Faction Coin Chance';
-    }
-  },
   
   {
     name: 'Planetary Force',
     id: 319,
+	reincarnation: 100,
     fixed: function(save) {
-      return save.reincarnation >= 100;
+      return save.reincarnation >= this.reincarnation;
     },
     random: function(save) {
 	  //((x ^ 2.5) / 5000)%, where x is amount of consecutive days logged in

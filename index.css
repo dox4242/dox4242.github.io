@@ -36,3 +36,11 @@
 	.result {
 		font-weight: bold;
 	}
+	
+	/* Artifact Requirement Viewer styling */
+	.viewertitle { padding-Left: 80px; }
+	
+	.viewer-results td {
+		padding-Right: 15px;
+		max-width: 300px;
+	}
