@@ -149,6 +149,7 @@
 	  View.raw.unowned = [];
       var excav = this.save.excavations;
       var num = util.save.stat(this.save, 35);
+	  var unownede = [], unownedi = [];
 
       this.eligible = [];
       this.unobtain = [];
@@ -163,7 +164,7 @@
         }
         else if (eligible && fail) {
           if (artifact.random) {
-			View.raw.unowned.push(artifact);
+			unownede.push(artifact);
             artifact = artifactCopy(artifact);
             if (!artifact.nocache) artifact.random = artifact.random(this.save);
             this.eligible.push(artifact);
@@ -184,10 +185,10 @@
         }
         else {
           View.raw.ineligible.push(artifact.name);
-		  View.raw.unowned.push(artifact);
+		  unownedi.push(artifact);
         }
       }
-	  View.raw.unowned.sort(function(a,b){return (jQuery.inArray(a.name, View.raw.eligible) === -1 && jQuery.inArray(b.name,View.raw.eligible) > -1) ? 1 : 0});
+	  View.raw.unowned = unownede.concat(unownedi);
     }
 
     this.renderChart = function() {
