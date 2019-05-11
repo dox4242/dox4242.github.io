@@ -754,7 +754,7 @@ var Artifacts = [
     id: 268,
 	reincarnation: 90,
     fixed: function(save) {
-      return save.reincarnation >= this.reincarnation;
+      return save.reincarnation >= this.reincarnation && util.save.challenge_owned(save,642);
     },
     random: function(save) {
       return util.save.stat(save, 1) / 100000000;
