@@ -171,6 +171,7 @@
             <tr is='widget-stat' :stat.sync='save.stats[30]' hide-ab hide-rei hide-prev-reis hide-total name='Gems Gained Last Abdication'></tr>
             <tr is='widget-field' :field.sync='save.coins' can-edit :colspan='5' name='Gold'></tr>
             <tr is='widget-field-dropdown' :field.sync='save.alignment' type='alignment' :colspan='5' name='Alignment'></tr>
+            <tr is='widget-field-dropdown' :field.sync='save.secondaryAlignment' type='secondaryAlignment' :colspan='5' name='Secondary Alignment'></tr>
             <tr is='widget-field-time' :field.sync='offlinetime' can-edit :colspan='5' name='Save age (seconds, max 30d)'></tr>
           </table>
         </div>
