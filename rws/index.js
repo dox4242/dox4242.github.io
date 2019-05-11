@@ -8,20 +8,28 @@
 		var buildingsOwned = [];
         var buildingsAvailable = [];
 		var buildingsHighlighted = [ [], [] ];
+        
 		var lightningRNG = null;
+        
 		var miracleRNG = null;
-		var breathRNG = null;
+        
+		var breathRNG = null;        
         var breathNames = ['Red', 'Green', 'Blue', 'White', 'Black'];
         var breathTier = 1;
         var maelstromRNG = null;
         var maelstromTargets = 3;
         var maelstromEffects = ['Mana Produced', 'Trophies Unlocked', 'Faction Coins found', 'Amount of Assistants'];
+        
         var limitedWishRNG = null;
         var limitedWishEffects = ["Increase the production of all buildings", "Increase Assistants", "Increase Maximum Mana", "Increase Trophy Count and Offline Bonus", "Increase Faction Coin find chance", "Increase Mana Regeneration", "All Spell Durations count more"];
         var limitedWishEligibleEffects = [];
         var limitedWishActivityTime = 0;
         var limitedWishCastCount = 0;
         var baseLimitedWishCastCount = 0;
+        
+        var catalystRNG = null;
+        var catalystEffects = ["Fairy Chanting", "Moon Blessing", "God's Hand", "Goblin's Greed", "Night Time", "Hellfire Blast", "Gem Grinder", "Holy Light", "Blood Frenzy"];
+        var catalystEligibleEffects = [];
 		
 		// Refresh the entire forecast
 		var forecast = function(saveStr) {
@@ -32,9 +40,10 @@
 			miracleRNG = null;
 			breathRNG = null;
             maelstromRNG = null;
-            limitedWishRNG = null
+            limitedWishRNG = null;
+            catalystRNG = null;
             breathTier = 1;
-			$('#lightningMessage, #lightningForecast, #miracleMessage, #miracleForecast, #breathMessage, #breathForecast, #maelstromMessage, #maelstromForecast, #limitedWishMessage, #limitedWishForecast').html('');
+			$('#lightningMessage, #lightningForecast, #miracleMessage, #miracleForecast, #breathMessage, #breathForecast, #maelstromMessage, #maelstromForecast, #limitedWishMessage, #limitedWishForecast, #catalystMessage, #catalystForecast').html('');
 			
 			var save = SaveHandler.Decode(saveStr);
 			window.decoded = save;
@@ -65,6 +74,7 @@
 			forecastBreath(save);
 			forecastMaelstrom(save, buildingsAvailable);
             forecastLimitedWish(save);
+            forecastCatalyst(save);
 		};
 		
 		// Add the Lightning forecast
@@ -73,7 +83,7 @@
 		var lightningForecast = '';
 			
 		// Check if the save actually has Lightning Strikes to forecast
-			if (!(save.faction == 6 || save.mercSpell1 == 13 || save.mercSpell2 == 13 || util.save.upgrade_owned(save, 688))) {
+			if (!save.spells[13].a) {
 			 	lightningMessage = 'You don\'t have Lightning Strike.';
 			 	lightningForecast = 'No Lightning.';
 			} else if (save.alignment != 3 && !util.save.upgrade_owned(save, 688)) {
@@ -146,7 +156,7 @@
 			var breathForecast = '';
 			
 			// Check if the save actually has Dragons Breath to forecast
-			if (!(save.prestigeFaction == 12 || save.mercSpell1 == 21 || save.mercSpell2 == 21 || util.save.upgrade_owned(save, 696))) {
+			if (!save.spells[21].a) {
 				breathMessage = 'You don\'t have Dragon\'s Breath.';
 				breathForecast = 'No Dragon\'s Breath.';
 			}
@@ -261,7 +271,7 @@
             var maelstromForecast = '';
 			
             // Check if the save actually has Maelstrom to forecast
-            if (!(util.save.upgrade_owned(save,748))) {
+            if (!save.spells[27].a) {
                 maelstromMessage = 'You don\'t have Maelstrom.';
                 maelstromForecast = 'No Chaos that is trying to pull you in.';
             } 
@@ -346,7 +356,7 @@
             var limitedWishForecast = '';
 			
             // Check if the save actually has Limited Wish to forecast
-            if (save.elitePrestigeFaction != 14 && !util.save.upgrade_owned(save,963)) {
+            if (!save.spells[29].a) {
                 limitedWishMessage = 'You don\'t have Limited Wish.';
                 limitedWishForecast = 'The Geine is in an another lamp.';
             } 
@@ -377,9 +387,7 @@
             
             
             limitedWishEligibleEffects = [];
-            limitedWishEligibleEffects.push(limitedWishEffects[0]);
-            
-            //var limitedWishEffects = ["Increase the production of all buildings", "Increase Assistants", "Increase Maximum Mana", "Increase Trophy Count and Offline Bonus", "Increase Faction Coin find chance", "Increase Mana Regeneration", "All Spell Durations count more"];
+            limitedWishEligibleEffects.push(limitedWishEffects[0]);           
             
             if (save.secondaryAlignment == 5)
             {
@@ -435,6 +443,104 @@
         {
             return 2.25 * Math.pow(Math.log(spellActivity + 1), 1.35) * Math.pow(castCount, 0.45);
         }
+        
+        // Add the Catalyst forecast
+		var forecastCatalyst = function(save) 
+        {
+            var catalystMessage = '';
+            var catalystForecast = '';
+			
+            // Check if the save actually has Catalyst to forecast
+            if (!save.spells[31].a) {
+                catalystMessage = 'You don\'t have Catalyst.';
+                catalystForecast = 'Who knew chaotic blood was so magical?';
+            } 
+			
+            // Early exit
+            if (catalystMessage != '' || catalystForecast != '') {
+                $('#catalystMessage').html('<b>Catalyst</b><br>').append(catalystMessage);
+                $('#catalystForecast').html('<b>Forecast</b><br>').append(catalystForecast);
+                    return;
+            }
+        
+            // Create the RNG and get the initial forecast
+            catalystRNG = new PM_PRNG(save.spells[31].s);
+            
+            catalystEligibleEffects = catalystEffects.slice();
+
+            // Cue stupid code because internals are spaghetti
+            /*for (var i = 1; i <= util.save.lengths.spells; i++)
+            {
+                if (save.spells[i].a)
+                {
+                    var spell = util.assoc.spells.find(spell => spell.id == i);
+                    
+                    if (catalystEligibleEffects.indexOf(spell.name)
+                    {
+                        catalystEligibleEffects.splice(spell.name, 1);
+                    }
+                }
+            }*/         
+            
+            // ugh
+            if (save.spells[6].a)
+            {
+                catalystEligibleEffects.splice(catalystEligibleEffects.indexOf("Fairy Chanting"), 1);
+            }
+            if (save.spells[14].a)
+            {
+                catalystEligibleEffects.splice(catalystEligibleEffects.indexOf("Moon Blessing"), 1);
+            }
+            if (save.spells[9].a)
+            {
+                catalystEligibleEffects.splice(catalystEligibleEffects.indexOf("God's Hand"), 1);
+            }
+            if (save.spells[8].a)
+            {
+                catalystEligibleEffects.splice(catalystEligibleEffects.indexOf("Goblin's Greed"), 1);
+            }
+            if (save.spells[15].a)
+            {
+                catalystEligibleEffects.splice(catalystEligibleEffects.indexOf("Night Time"), 1);
+            }
+            if (save.spells[11].a)
+            {
+                catalystEligibleEffects.splice(catalystEligibleEffects.indexOf("Hellfire Blast"), 1);
+            }
+            if (save.spells[7].a)
+            {
+                catalystEligibleEffects.splice(catalystEligibleEffects.indexOf("Gem Grinder"), 1);
+            }
+            if (save.spells[12].a)
+            {
+                catalystEligibleEffects.splice(catalystEligibleEffects.indexOf("Holy Light"), 1);
+            }
+            if (save.spells[1].a)
+            {
+                catalystEligibleEffects.splice(catalystEligibleEffects.indexOf("Blood Frenzy"), 1);
+            }
+            
+            $('#catalystMessage').html('<b>Catalyst</b><br>Your RNG state is: ' + catalystRNG.state + '.');
+            $('#catalystForecast').html('<b>Forecast</b><br><ol></ol>')
+                .append($('<button class="btn btn-link" type="button" />').html('Give me a longer Forecast').on('click', forecastCatalystMore));
+			
+            forecastCatalystMore();		
+		};
+        
+        var forecastCatalystMore = function(e) 
+        {
+			if (catalystRNG)
+            {
+				for (var i = 0; i < 10; i++)
+                {
+                    var typeHit = catalystRNG.nextIntRange(0, catalystEligibleEffects.length - 1);                  
+                    var textResult = catalystEligibleEffects[typeHit];
+                    
+                    var li = $('<li />').html(textResult);;
+                    $('#catalystForecast > ol').append(li);
+		    	}               
+            }
+		};      
 		
 		$(function() {
 			
