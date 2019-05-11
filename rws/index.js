@@ -21,6 +21,7 @@
         var limitedWishEligibleEffects = [];
         var limitedWishActivityTime = 0;
         var limitedWishCastCount = 0;
+        var baseLimitedWishCastCount = 0;
 		
 		// Refresh the entire forecast
 		var forecast = function(saveStr) {
@@ -345,7 +346,7 @@
             var limitedWishForecast = '';
 			
             // Check if the save actually has Limited Wish to forecast
-            if (save.elitePrestigeFaction == 12) {
+            if (save.elitePrestigeFaction != 14 && !util.save.upgrade_owned(save,963)) {
                 limitedWishMessage = 'You don\'t have Limited Wish.';
                 limitedWishForecast = 'The Geine is in an another lamp.';
             } 
@@ -362,25 +363,37 @@
             
             limitedWishActivityTime = save.spells[29].active0;
             limitedWishCastCount = save.spells[29].c;
+            baseLimitedWishCastCount = 1;
+            
+            if (util.save.upgrade_owned(save,975))
+            {
+                limitedWishCastCount += 150;
+                baseLimitedWishCastCount = 150;
+            }
+            if (util.save.upgrade_owned(save,940))
+            {
+                limitedWishCastCount += save.spells[31].c;
+            }
+            
             
             limitedWishEligibleEffects = [];
             limitedWishEligibleEffects.push(limitedWishEffects[0]);
             
             //var limitedWishEffects = ["Increase the production of all buildings", "Increase Assistants", "Increase Maximum Mana", "Increase Trophy Count and Offline Bonus", "Increase Faction Coin find chance", "Increase Mana Regeneration", "All Spell Durations count more"];
             
-            if (save.faction == 0)
+            if (save.secondaryAlignment == 5)
             {
                 limitedWishEligibleEffects.push(limitedWishEffects[1]);
                 limitedWishEligibleEffects.push(limitedWishEffects[6]);
                 limitedWishEligibleEffects.push(limitedWishEffects[5]);
             }
-            else if (save.faction == 5)
+            else if (save.secondaryAlignment == 6)
             {
                 limitedWishEligibleEffects.push(limitedWishEffects[3]);
                 limitedWishEligibleEffects.push(limitedWishEffects[5]);
                 limitedWishEligibleEffects.push(limitedWishEffects[4]);               
             }
-            else if (save.faction == 8)
+            else if (save.secondaryAlignment == 4)
             {
                 limitedWishEligibleEffects.push(limitedWishEffects[2]);
                 limitedWishEligibleEffects.push(limitedWishEffects[6]);
@@ -401,11 +414,13 @@
 				for (var i = 0; i < 10; i++)
                 {
                     var typeHit = limitedWishRNG.nextIntRange(0, limitedWishEligibleEffects.length - 1);
-                    var strengthHit = limitedWishRNG.nextIntRange(1, limitedWishCastCount + 1);
+                    var strengthHit = limitedWishRNG.nextIntRange(baseLimitedWishCastCount, limitedWishCastCount + 1);
                     var lowEffect = limitedWishFormula(limitedWishActivityTime, strengthHit);
                     var highEffect = limitedWishFormula(limitedWishActivityTime + 12, strengthHit);
                     
-                    var textResult = limitedWishEligibleEffects[typeHit] + ' for %' + lowEffect.toFixed(2) + ' to %' + highEffect.toFixed(2);
+                    //Due to Djinn perk 3 we can no longer accurately calculate limitedWish
+                    //var textResult = limitedWishEligibleEffects[typeHit] + ' for %' + lowEffect.toFixed(2) + ' to %' + highEffect.toFixed(2);
+                    var textResult = limitedWishEligibleEffects[typeHit] + ' with random value of ' + strengthHit;
                     
                     var li = $('<li />').html(textResult);;
                     $('#limitedWishForecast > ol').append(li);
@@ -418,7 +433,7 @@
         
         var limitedWishFormula = function(spellActivity, castCount)
         {
-            return 1.725 * Math.pow(Math.log(spellActivity + 1), 1.25) * Math.pow(castCount, 0.65);
+            return 2.25 * Math.pow(Math.log(spellActivity + 1), 1.35) * Math.pow(castCount, 0.45);
         }
 		
 		$(function() {
