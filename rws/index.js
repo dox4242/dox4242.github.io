@@ -83,7 +83,7 @@
 		var lightningForecast = '';
 			
 		// Check if the save actually has Lightning Strikes to forecast
-			if (!save.spells[13].a) {
+			if (!(save.faction == 6 || save.mercSpell1 == 13 || save.mercSpell2 == 13 || util.save.upgrade_owned(save, 688))) {
 			 	lightningMessage = 'You don\'t have Lightning Strike.';
 			 	lightningForecast = 'No Lightning.';
 			} else if (save.alignment != 3 && !util.save.upgrade_owned(save, 688)) {
@@ -156,7 +156,7 @@
 			var breathForecast = '';
 			
 			// Check if the save actually has Dragons Breath to forecast
-			if (!save.spells[21].a) {
+			if (!(save.prestigeFaction == 12 || save.mercSpell1 == 21 || save.mercSpell2 == 21 || util.save.upgrade_owned(save, 696))) {
 				breathMessage = 'You don\'t have Dragon\'s Breath.';
 				breathForecast = 'No Dragon\'s Breath.';
 			}
@@ -271,7 +271,7 @@
             var maelstromForecast = '';
 			
             // Check if the save actually has Maelstrom to forecast
-            if (!save.spells[27].a) {
+            if (!(util.save.upgrade_owned(save,748))) {
                 maelstromMessage = 'You don\'t have Maelstrom.';
                 maelstromForecast = 'No Chaos that is trying to pull you in.';
             } 
@@ -356,7 +356,7 @@
             var limitedWishForecast = '';
 			
             // Check if the save actually has Limited Wish to forecast
-            if (!save.spells[29].a) {
+            if (save.elitePrestigeFaction != 14 && !util.save.upgrade_owned(save,963)) {
                 limitedWishMessage = 'You don\'t have Limited Wish.';
                 limitedWishForecast = 'The Geine is in an another lamp.';
             } 
@@ -451,7 +451,7 @@
             var catalystForecast = '';
 			
             // Check if the save actually has Catalyst to forecast
-            if (!save.spells[31].a) {
+            if (!util.save.upgrade_owned(save,940)) {
                 catalystMessage = 'You don\'t have Catalyst.';
                 catalystForecast = 'Who knew chaotic blood was so magical?';
             } 
