@@ -871,10 +871,10 @@ var Artifacts = [
     random: function (save) {
       var exchanges = util.save.stat(save, 24);
      
-      return Math.pow(exchanges, 2) / 500000000000;
+      return Math.pow(exchanges, 2) / 150000000000;
     },
     required: function(value, save) {
-      var exchanges = Math.ceil(Math.pow(value * 500000000000, 0.5));
+      var exchanges = Math.ceil(Math.pow(value * 150000000000, 0.5));
       
       return exchanges;
     },
