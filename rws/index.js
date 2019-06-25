@@ -387,21 +387,21 @@
             
             
             limitedWishEligibleEffects = [];
-            limitedWishEligibleEffects.push(limitedWishEffects[0]);           
+            limitedWishEligibleEffects.push(limitedWishEffects[0]);              
             
-            if (save.secondaryAlignment == 5)
+            if (save.alignment == 1)
             {
                 limitedWishEligibleEffects.push(limitedWishEffects[1]);
                 limitedWishEligibleEffects.push(limitedWishEffects[6]);
                 limitedWishEligibleEffects.push(limitedWishEffects[5]);
             }
-            else if (save.secondaryAlignment == 6)
+            else if (save.alignment == 2)
             {
                 limitedWishEligibleEffects.push(limitedWishEffects[3]);
                 limitedWishEligibleEffects.push(limitedWishEffects[5]);
                 limitedWishEligibleEffects.push(limitedWishEffects[4]);               
             }
-            else if (save.secondaryAlignment == 4)
+            else if (save.alignment == 3)
             {
                 limitedWishEligibleEffects.push(limitedWishEffects[2]);
                 limitedWishEligibleEffects.push(limitedWishEffects[6]);
