@@ -451,7 +451,7 @@
             var catalystForecast = '';
 			
             // Check if the save actually has Catalyst to forecast
-            if (!util.save.upgrade_owned(save,940)) {
+            if (!util.save.upgrade_owned(save,940) && !(util.save.upgrade_owned(save,144119) && save.elitePrestigeFaction == 14)) {
                 catalystMessage = 'You don\'t have Catalyst.';
                 catalystForecast = 'Who knew chaotic blood was so magical?';
             } 
