@@ -358,7 +358,7 @@
             // Check if the save actually has Limited Wish to forecast
             if (save.elitePrestigeFaction != 14 && !util.save.upgrade_owned(save,963)) {
                 limitedWishMessage = 'You don\'t have Limited Wish.';
-                limitedWishForecast = 'The Geine is in an another lamp.';
+                limitedWishForecast = 'The Genie is in an another lamp.';
             } 
 			
             // Early exit
