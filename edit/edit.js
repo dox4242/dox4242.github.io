@@ -12,7 +12,7 @@
     evilmercspells: [6, 14, 9, 5, 8, 15, 11, 4, 10, 2, 21],
     neutralmercspells: [6, 14, 9, 5, 8, 11, 4, 13, 10, 2, 21],
   };
-  
+
   var trophyIDs = {
     autocastSeries: [8, 9, 10, 11, 12, 13, 159, 200],
     buildBuildings: [101700, 101701, 101702, 101703, 101704, 101705, 101706, 101707, 101708, 101709, 101710, 101711, 101712, 101713, 101714],
@@ -22,8 +22,8 @@
     gainCoins: [104600, 104601, 104602, 104603, 104604, 104605, 104606, 104607, 104608, 104609, 104610, 104611, 104612, 104613, 104614, 104615, 104616, 104617, 104618, 104619],
     gainCoinClicking: [104700, 104701, 104702, 104703, 104704, 104705, 104706, 104707, 104708, 104709, 104710, 104711, 104712, 104713, 104714, 104715, 104716, 104717, 104718],
     gainGems: [104900, 104901, 104902, 104903, 104904, 104905, 104906, 104907, 104908, 104909, 104910, 104911, 104912, 104913, 104914, 104915, 104916, 104917, 104918, 104919, 104920, 104921, 104922],
-    gainReincarnate: [105000, 105001, 105002, 105003, 105004, 105005, 105006, 105007, 105008, 105009, 105010, 105011, 105012, 105013, 105014, 105015, 105016, 105017, 105018],
-    haveAssistants: [105100, 105101, 105102, 105103, 105104, 105105, 105106, 105107, 105108, 105109, 105110, 105111, 105112, 105113, 105114, 105115, 105116],
+    gainReincarnate: [105000, 105001, 105002, 105003, 105004, 105005, 105006, 105007, 105008, 105009, 105010, 105011, 105012, 105013, 105014, 105015, 105016, 105017, 105018, 105019],
+    haveAssistants: [105100, 105101, 105102, 105103, 105104, 105105, 105106, 105107, 105108, 105109, 105110, 105111, 105112, 105113, 105114, 105115, 105116, 105117],
     purchaseUpgrade: [105500, 105501, 105502, 105503, 105504, 105505, 105506, 105507, 105508, 105509, 105510],
     produceMana: [111200, 111201, 111202, 111203, 111204, 111205, 111206, 111207, 111208, 111209, 111210, 111211, 111212, 111213],
     gainRubies: [116200, 116201, 116202, 116203],
@@ -55,11 +55,11 @@
     buildAncientPyramidsTrophies: [101500, 101501, 101502, 101503, 101504, 101505, 101506, 101507, 101508, 101509, 101510, 101511, 101512, 101513, 101514, 101515, 101516, 101517, 101518, 101519, 101520, 101521],
     buildHallsOfLegendsTrophies: [102400, 102401, 102402, 102403, 102404, 102405, 102406, 102407, 102408, 102409, 102410, 102411, 102412, 102413, 102414, 102415, 102416, 102417, 102418, 102419, 102420, 102421]
   };
-  
+
   var upgradeIDs = {
     bloodlines: [194, 164, 39, 212, 396, 103, 380, 136, 183, 150, 120, 598, 939, 940, 953],
-    artifactSets: [832, 830, 824, 833, 838, 825, 837, 828, 831, 829, 827, 826],
-    spellcraft: [130300, 129901, 130903, 130002, 130504, 129805, 130806, 130208, 130407, 130110, 130709, 130611, 129712, 144713, 145314, 144915, 145116, 145217, 145018, 144819, 153920, 153621, 153722, 153823, 154024, 162925, 163026, 162827, 171828, 171729], 
+    artifactSets: [832, 830, 824, 833, 838, 825, 837, 828, 831, 829, 827, 826, 834],
+    spellcraft: [130300, 129901, 130903, 130002, 130504, 129805, 130806, 130208, 130407, 130110, 130709, 130611, 129712, 144713, 145314, 144915, 145116, 145217, 145018, 144819, 153920, 153621, 153722, 153823, 154024, 162925, 163026, 162827, 171828, 171729],
     craftsmanship: [125300, 125201, 125702, 125903, 125004, 126305, 126106, 126007, 126208, 125409, 125610, 125111, 125812, 142613, 143214, 142815, 143116, 142717, 143018, 142919, 151520, 151421, 151622, 151323, 151224, 162125, 162026, 161927, 171128, 171229],
     divine: [126400, 127001, 126602, 126803, 127504, 126905, 127206, 127108, 127409, 126507, 127610, 127311, 126712, 143813, 143614, 143915, 143316, 143517, 143418, 143719, 152720, 152621, 152922, 153023, 152824, 162225, 162426, 162327, 171328, 171429],
     economics: [128100, 128701, 128202, 128403, 127804, 128305, 127907, 128806, 128608, 127709, 128510, 128011, 128912, 144413, 144214, 144615, 144516, 144017, 144318, 144119, 153320, 153121, 153522, 153223, 153424, 162525, 162626, 162727, 171528, 171629],
@@ -83,10 +83,10 @@
     dbTiers: [402101, 402102, 402103, 402104, 402105, 402106],
     ssTiers: [401701, 401702, 401703, 401704, 401705, 401706],
   };
-  
+
   var allResearches = upgradeIDs.spellcraft.concat(upgradeIDs.craftsmanship, upgradeIDs.divine, upgradeIDs.economics, upgradeIDs.alchemy, upgradeIDs.warfare)
 
-  
+
   for (var x in trophyIDs) {
     dropdownFilter[x] = trophyIDs[x];
   }
@@ -146,7 +146,7 @@
         return util.render.inputFilters.time(val);
       }
     })
-	
+
     Vue.component('widget-neutraltime', {
       props: {
         total: Object,
@@ -195,7 +195,7 @@
       + '<th><span class="statheader">Royal Exchanges</span></th>'
       + '</tr>'
     });
-    
+
     Vue.component('widget-factioncoin', {
       props: ['fc', 'name'],
       template: '<tr>'
@@ -204,7 +204,7 @@
       + '<td><input v-model="fc.royalExchanges" number></input></td>'
       + '</tr>'
     });
-    
+
     Vue.component('widget-building', {
       props: ['building', 'name'],
       template: '<tr>'
@@ -216,7 +216,7 @@
       + '<td><span class="derivedstat">{{building.r + building.t}}</span></td>'
       + '</tr>'
     });
-    
+
     Vue.component('widget-building-max', {
       props: ['building', 'name'],
       template: '<tr>'
@@ -233,7 +233,7 @@
         }
       }
     });
-    
+
     Vue.component('widget-spell', {
       props: ['spell', 'name'],
       template: '<tr>'
@@ -245,7 +245,7 @@
       + '<td><span class="derivedstat">{{spell.c + spell.r + spell.e}}</span></td>'
       + '</tr>'
     });
-    
+
     Vue.component('widget-spell-rng', {
       props: ['spell', 'name'],
       template: '<tr>'
@@ -265,7 +265,7 @@
       + '<td><span class="derivedstat">{{spell.active0 + spell.active1 + spell.active2 | timeIO}}</span></td>'
       + '</tr>'
     });
-    
+
     Vue.component('widget-spell-duration', {
       props: ['spell', 'name'],
       template: '<tr>'
@@ -273,7 +273,7 @@
       + '<td colspan="5"><input v-model="spell.t" number></input></td>'
       + '</tr>'
     });
-    
+
     Vue.component('widget-spell-autocasting', {
       props: ['spell', 'name'],
       template: '<tr>'
@@ -293,7 +293,7 @@
       + '<td><input v-model="spell.n3" number></input></td>'
       + '</tr>'
     });
-    
+
     Vue.component('widget-spell-tiers-dropdown', {
       props: {
         'upgrades': Object,
@@ -420,7 +420,7 @@
       + '<td v-else><span class="nullstat">&mdash;</span></td>'
       + '</tr>'
     });
-    
+
     Vue.component('widget-stat-max', {
       props: {
         stat: Object,
@@ -468,7 +468,7 @@
         }
       }
     });
-    
+
     Vue.component('widget-stat-max-time', {
       props: {
         stat: Object,
@@ -516,7 +516,7 @@
         }
       }
     });
-    
+
     Vue.component('widget-field', {
       props: {
         'field': {},
@@ -536,7 +536,7 @@
       + '<td v-else :colspan="colspan"><span class="rawstat">{{field}}</span></td>'
       + '</tr>'
     });
-    
+
     Vue.component('widget-field-time', {
       props: {
         'field': {},
@@ -556,7 +556,7 @@
       + '<td v-else :colspan="colspan"><span class="rawstat">{{field | timeIO}}</span></td>'
       + '</tr>'
     });
-    
+
     Vue.component('widget-field-dropdown', {
       props: {
         'field': {},
@@ -641,7 +641,7 @@
         }
       }
     });
-    
+
     Vue.component('widget-artifactSet-dropdown', {
       props: {
         'field': {},
@@ -791,8 +791,8 @@
       	  },
           set: function(x) {
             if (this.upgrades[this.id] && !x) { delete this.upgrades[this.id]; }
-            else if (!this.upgrades[this.id] && x) { 
-              Vue.set(View.save.upgrades, this.id, {_id: this.id, u1: true, u2: false, u3: false, s: 0}); 
+            else if (!this.upgrades[this.id] && x) {
+              Vue.set(View.save.upgrades, this.id, {_id: this.id, u1: true, u2: false, u3: false, s: 0});
             }
           }
         },
@@ -818,7 +818,7 @@
       + '</tr><tr>'
       + '<td colspan="6">Unlocked / Owned</td></tr>'
     });
-    
+
     Vue.component('widget-research-all', {
       props: {
         'upgrades': Object,
@@ -1105,7 +1105,7 @@
             else { return false; }
           },
           set: function(x) {
-            if (this.trophies[this.id] && !x) { 
+            if (this.trophies[this.id] && !x) {
               this.trophyU1 = false;
               this.trophyU2 = 0;
               delete this.trophies[this.id];
@@ -1187,7 +1187,7 @@
         }
       }
     });
-	
+
     Vue.component('widget-trophy-comp-dropdown', {    // trophy with compressed arrays
       props: {
         'trophies': Object,
@@ -1231,7 +1231,7 @@
         }
       }
     });
-	
+
     Vue.config.debug = true;
 
     // Initalize Vue
@@ -1292,7 +1292,7 @@
         genSave: function(event) {
           this.outputsave = SaveHandler.Encode(this.save);
         },
-        updateTime: function() { 
+        updateTime: function() {
           this.currentTime = Math.floor(new Date().getTime()/1000);
         },
         checkLSavail: function () {
@@ -1380,12 +1380,12 @@
         }
       }
     });
-	
+
     Vue.config.debug = true;
 
     // Initialize Flavor texts
     Flavor.pageLoaded(View);
-    
+
     // Initialize Bootstrap popovers
     $('[data-toggle="popover"]').popover();
 
@@ -1393,7 +1393,7 @@
     $('#saveInput').on('paste', function(e) {
       // Empty the input right before the paste comes through
       $(this).val('');
-      
+
       // The timeout ensures we can grab the save right after the paste comes through, without messing with the clipboard
       var self = this;
       setTimeout(function() {
@@ -1402,7 +1402,7 @@
           Controller.loadSave(saveStr);
       }, 1);
     }).trigger('focus');
-    
+
     // Bind Re-Enter button to refresh the forecast using the current save string
     $('#doReEnter').on('click', function(e) {
       $('#saveInput').trigger('focus');
@@ -1410,26 +1410,26 @@
       if (saveStr)
         Controller.loadSave(saveStr);
     });
-    
+
     // Bind Copy button to copy the current save string
     $('#doSaveCopy').on('click', function(e) {
       $('#saveInput').trigger('focus');
       var save = $('#saveInput').val();
       window.prompt('Copy to clipboard: Press Ctrl+C, then Enter', save);
     });
-    
+
     // Bind Copy button to copy the generated save string
     $('#doGenCopy').on('click', function(e) {
       $('#saveOutput').trigger('focus');
       var save = $('#saveOutput').val();
       window.prompt('Copy to clipboard: Press Ctrl+C, then Enter', save);
     });
-    
+
     // Bind Clear button to clear the save input field
     $('#doSaveClear').on('click', function(e) {
       $('#saveInput').val('').trigger('focus');
     });
-    
+
   });
-  
+
 } (window, document, jQuery));

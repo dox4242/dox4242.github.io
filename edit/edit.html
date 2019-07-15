@@ -4,7 +4,7 @@
   <title>Save Editor : Royal Advisory Board</title>
   <link rel='stylesheet' href='../lib/bootstrap.min.css'>
   <link rel='stylesheet' href='../index.css'>
-  
+
   <script src='../lib/jquery-2.1.4.min.js'></script>
   <script src='../lib/bootstrap.min.js'></script>
   <script src="../lib/pako.js"></script>
@@ -36,13 +36,13 @@
         <ul class='nav navbar-nav'>
           <li><a href='../index.html'>Home</a></li>
           <li class='dropdown'>
-            <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Realm Grinder <span class='caret'></span></a>    
+            <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Realm Grinder <span class='caret'></span></a>
             <ul class='dropdown-menu'>
               <li><a href='http://www.kongregate.com/games/divinegames/realm-grinder'>Realm Grinder</a></li>
               <li><a href='http://www.divinegames.it/'>Divine Games</a></li>
               <li><a href="http://musicfamily.org/realm/">G00F's Not a Wiki</a></li>
               <li><a href="https://discord.gg/3YvX9hN">Discord Chat - Realm Grinder and more</a></li>
-            </ul>    
+            </ul>
           </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Useful Tools <span class="caret"></span></a>
@@ -351,6 +351,8 @@
             <tr is='widget-field-dropdown' :field.sync='save.elitePrestigeFaction' type='faction' filter='elitePrestigeFaction' :colspan='5' name='Elite Prestige Faction'></tr>
             <tr is='widget-bloodline-dropdown' :field.sync='save.bFaction' :upgrades.sync='upgradesArray' type='upgradeIDs' filter='bloodlines' :colspan='5' name='Bloodline Faction'></tr>
             <tr is='widget-artifactSet-dropdown' :field.sync='save.artifactSet' :upgrades.sync='upgradesArray' type='upgradeIDs' filter='artifactSets' :colspan='5' name='Artifact Set'></tr>
+            <tr is='widget-artifactSet-dropdown' :field.sync='save.stoneheartSet' :upgrades.sync='upgradesArray' type='upgradeIDs' filter='artifactSets' :colspan='5' name='Stoneheart Set'></tr>
+
             <tr is='widget-fivestat-header'></tr>
             <tr is='widget-stat-time' :stat.sync='save.stats[i.timestat]' :name='i.name + " Playtime"' v-for='i in factions | filterDef "timestat"'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[i.affilstat]' :name='i.name + " Affiliations"' v-for='i in factions | filterDef "affilstat"'></tr>
@@ -633,6 +635,7 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=302 name='First Stone Fragment'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=305 name='Second Stone Fragment'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=308 name='Third Stone Fragment'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=331 name='Obsidian Crown'></tr>
             <tr><td colspan='6'><center><b>Lore Artifacts</b></center></td></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=151 name='Rough Stone'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=119 name='Scarab of Fortune'></tr>
@@ -695,6 +698,7 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=295 name='Oil Lamp'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=296 name='Spark of Life'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=319 name='Planetary Force'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=330 name='Mercenary Insignia'></tr>
           </table>
         </div>
       </div>
@@ -727,7 +731,7 @@
             <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=485 name='Druid 1: Silent Assistance'></tr>
             <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=486 name='Druid 2: Balanced Current'></tr>
             <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=487 name='Druid 3: Eldritch Architecture'></tr>
-            <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=488 name='Druid 4: Overflowing Mana'></tr>
+            <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=488 name='Druid 4: Overflowing Magic'></tr>
             <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=490 name='Faceless 1: Recruitment'></tr>
             <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=491 name='Faceless 2: Mystic Maze'></tr>
             <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=492 name='Faceless 3: Cyclopean Army'></tr>
@@ -748,10 +752,26 @@
             <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=640 name='Dragon 4: Draconstellation'></tr>
             <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=641 name='Dragon 5: Ancient Incantation'></tr>
             <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=642 name='Dragon 6: Dracomet Vault'></tr>
+            <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=983 name='Archon 1: God&#39;s Plan'></tr>
+            <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=984 name='Archon 2: An Untimely Death'></tr>
+            <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=985 name='Archon 3: Titanomachy'></tr>
+            <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=986 name='Archon 4: Time Merge'></tr>
+            <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=987 name='Archon 5: Power Overwhelming'></tr>
+            <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=989 name='Djinn 1: Miniature Lamps'></tr>
+            <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=990 name='Djinn 2: Ifrit Ignition'></tr>
+            <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=991 name='Djinn 3: Identity Shaper'></tr>
+            <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=992 name='Djinn 4: Worldly Desires'></tr>
+            <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=993 name='Djinn 5: Altar of Wishes'></tr>
+            <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=995 name='Makers 1: Seed of Life'></tr>
+            <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=996 name='Makers 2: Artificial Currency'></tr>
+            <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=997 name='Makers 3: Pillars of Creation'></tr>
+            <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=998 name='Makers 4: Stoneheart'></tr>
+            <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=999 name='Makers 5: Greatest Invention'></tr>
+
           </table>
         </div>
       </div>
-	  
+
       <div role='tabpanel' class='tab-pane fade' id='tab-research'>
         <div class='panel panel-default'>
           <table class='table'>
@@ -1137,6 +1157,7 @@
             <tr is='widget-trophy-comp-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='buildAncientPyramidsTrophies' :colspan='5' name='Build X Ancient Pyramids'></tr>
             <tr is='widget-trophy-comp-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='buildHallsOfLegendsTrophies' :colspan='5' name='Build X Halls of Legends'></tr>
             <tr is='widget-trophy-comp-dropdown' :trophies.sync='trophiesArray' type='trophyIDs' filter='buildBuildings' :colspan='5' name='Build X Buildings'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=329 name='The Architect'></tr>
             <tr><td colspan='2'><center><b>Secret Trophies</b></center></td></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=82 name='Leet'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=109 name='Unitary'></tr>
@@ -1177,6 +1198,7 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=113 name='Vanilla Challenger'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=169 name='Neutral Challenger'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=197 name='Prestige Challenger'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=328 name='Elite Challenger'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=114 name='Faction Run'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=122 name='Intermediate Researcher'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=121 name='Ancient Researcher'></tr>
@@ -1201,6 +1223,7 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=228 name='Master Researcher'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=227 name='Eternal Researcher'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=267 name='Warrior Researcher'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=327 name='God&#39;s Finger'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=231 name='Mana Waste'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=236 name='Prismatic Mana'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=238 name='Autoclicker'></tr>
@@ -1230,6 +1253,7 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=309 :colspan='5' name='Archon Faction'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=310 :colspan='5' name='Djinn Faction'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=311 :colspan='5' name='Makers Faction'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=980 :colspan='5' name='Mercenary Duel'></tr>
             <tr><td colspan='2'><center><b>Unique Buildings</b></center></td></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=59 :colspan='5' name='Enchanted Field (Fairy)'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=58 :colspan='5' name='Training Grounds (Elf)'></tr>
