@@ -68,7 +68,7 @@
 	  $('.artifactviewer').show();
 	  $('.viewer-results').empty().html("Click on a value above to see available artifact requirements for that value.");
 	  $('#override-reincarnation').val(this.save.reincarnation);
-	  
+
     }
 
     this.forecastArtifacts = function() {
@@ -86,7 +86,7 @@
       var smalls = [];
       var raw_values = 0;
       var calculatedValues = (this.save.ascension >= 2 ? 100000 : 10000);
-	  var excavLimit = calculatedValues;
+	    var excavLimit = calculatedValues;
       var valueLimit = (this.save.ascension >= 2 ? 0.001 : 0.01);
 
       while (remaining > 0) {
@@ -146,10 +146,11 @@
       View.raw.unobtain = [];
       View.raw.nonrandom = [];
       View.raw.ineligible = [];
-	  View.raw.unowned = [];
+	    View.raw.unowned = [];
       var excav = this.save.excavations;
       var num = util.save.stat(this.save, 35);
-	  var unownede = [], unownedi = [];
+	    var unownede = [];
+      var unownedi = [];
 
       this.eligible = [];
       this.unobtain = [];
@@ -164,7 +165,7 @@
         }
         else if (eligible && fail) {
           if (artifact.random) {
-			unownede.push(artifact);
+			      unownede.push(artifact);
             artifact = artifactCopy(artifact);
             if (!artifact.nocache) artifact.random = artifact.random(this.save);
             this.eligible.push(artifact);
@@ -185,10 +186,10 @@
         }
         else {
           View.raw.ineligible.push(artifact.name);
-		  unownedi.push(artifact);
+		      unownedi.push(artifact);
         }
       }
-	  View.raw.unowned = unownede.concat(unownedi);
+	    View.raw.unowned = unownede.concat(unownedi);
     }
 
     this.renderChart = function() {
@@ -242,7 +243,7 @@
       this.chart.render();
       this.chart_rendered = true;
     }
-	
+
 	this.viewArtifacts = function() {
 		if (View.raw.sv) {
 			var svs,i,reinc;
@@ -267,8 +268,8 @@
 					//true = Possible, false = Not Possible, an actual value is unchanged
 					if (probability = !0 === probability ? "Possible" : probability === !1 ? "Not Possible" : probability) {
 						if(i < View.raw.eligible.length && View.raw.eligible.length > 1) {
-							svs = View.raw.sv.x % View.raw.eligible.length, svs = (i >= svs ? View.raw.eligible.length : 0) + svs - i - 1; 
-							svs = ("<td>" + (svs === 0 ? "Uses Value" : (svs + " Shift" + (svs == 1 ? "" : "s"))) + "</td>"); 
+							svs = View.raw.sv.x % View.raw.eligible.length, svs = (i >= svs ? View.raw.eligible.length : 0) + svs - i - 1;
+							svs = ("<td>" + (svs === 0 ? "Uses Value" : (svs + " Shift" + (svs == 1 ? "" : "s"))) + "</td>");
 						}
 						$(".viewer-results tbody").append("<tr><td>" + artifact.name + "</td><td>" + probability + "</td>" + svs + "</tr>");
 					}
@@ -281,10 +282,10 @@
   }
 
   window.Controller = new controller();
-  
-  
+
+
   $(function() {
-    
+
     // Initalize Vue
     window.View = new Vue({
       el: '#app',
@@ -329,18 +330,18 @@
 
     // Initialize Flavor texts
     Flavor.pageLoaded(View);
-    
+
     // Initialize Bootstrap popovers
     $('[data-toggle="popover"]').popover();
-	
+
 	//Dechecks a checkbox
 	$('#override-box').prop('checked', false);
-	
+
     // Bind Save decoding and parsing
     $('#saveInput').on('paste', function(e) {
       // Empty the input right before the paste comes through
       $(this).val('');
-      
+
       // The timeout ensures we can grab the save right after the paste comes through, without messing with the clipboard
       var self = this;
       setTimeout(function() {
@@ -349,7 +350,7 @@
           Controller.loadSave(saveStr);
       }, 1);
     }).trigger('focus');
-    
+
     // Bind Re-Enter button to refresh the forecast using the current save string
     $('#doReEnter').on('click', function(e) {
       $('#saveInput').trigger('focus');
@@ -357,14 +358,14 @@
       if (saveStr)
         Controller.loadSave(saveStr);
     });
-    
+
     // Bind Copy button to copy the current save string
     $('#doSaveCopy').on('click', function(e) {
       $('#saveInput').trigger('focus');
       var save = $('#saveInput').val();
       window.prompt('Copy to clipboard: Press Ctrl+C, then Enter', save);
     });
-    
+
     // Bind Clear button to clear the save input field
     $('#doSaveClear').on('click', function(e) {
       $('#saveInput').val('').trigger('focus');
@@ -376,7 +377,7 @@
         Controller.renderChart();
       }
     });
-	
+
 	$('#chartcontainer').on('click', function(e) {
 		var activeElement = Controller.chart.getElementAtEvent(e);
 		if(activeElement.length) {
@@ -384,16 +385,16 @@
 			Controller.viewArtifacts();
 		}
 	});
-	
+
 	$('#override-box').change(function() {
 		($(this).is(':checked')) ? $('#artifactform').show() : $('#artifactform').hide()
 		Controller.viewArtifacts();
 	});
-	
+
 	$('#artifactform').change(function() {
 		Controller.viewArtifacts();
 	});
-	
+
   });
-  
+
 } (window, document, jQuery));
