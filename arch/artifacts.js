@@ -959,10 +959,10 @@ var Artifacts = [
       return save.faction == 1 && save.reincarnation >= this.reincarnation && save.excavations >= 3000;
     },
     random: function (save) {
-      return (Math.pow(2 * util.save.stat(save, 135), 4.5)) / 1000000;
+      return (Math.pow(3 * util.save.stat(save, 135), 4.5)) / 1000000;
     },
     required: function (value) {
-      return Math.pow(value * 1000000 , (1 / 4.5)) / 2;
+      return Math.pow(value * 1000000 , (1 / 4.5)) / 3;
     },
     display: function (value) {
       return Math.ceil(value) + ' Non Ruby Excavation Resets this game';
