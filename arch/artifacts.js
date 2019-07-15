@@ -1125,10 +1125,10 @@ var Artifacts = [
     },
     random: function (save) {
 	//(log10(1 + x) ^ 3 / 5000000 (5M))%, where x is faction coins this game.
-      return Math.pow(Math.log10(util.save.faction_coins(save) + 1),3) / 500000000;
+      return Math.pow(Math.log10(util.save.faction_coins(save) + 1),3) / 250000000;
     },
     required: function (value) {
-      return Math.pow(10,Math.pow(value*500000000,1/3));
+      return Math.pow(10,Math.pow(value*250000000,1/3));
     },
     display: function (value) {
       return util.render.sci(value) + ' Faction Coins found';
@@ -1144,7 +1144,7 @@ var Artifacts = [
     },
     random: function (save) {
 	//(x / 50000000 (50M))%, where x is evil spells this R.
-      return (save.spells[1].c + save.spells[1].r + save.spells[8].c + save.spells[8].r + save.spells[15].c + save.spells[15].r + save.spells[15].c + save.spells[15].r + + save.spells[11].c + save.spells[11].r + save.spells[4].c + save.spells[4].r) / 5000000000;
+      return (save.spells[1].c + save.spells[1].r + save.spells[8].c + save.spells[8].r + save.spells[15].c + save.spells[15].r + save.spells[11].c + save.spells[11].r + save.spells[4].c + save.spells[4].r) / 5000000000;
     },
     required: function (value) {
       return value * 5000000000;
