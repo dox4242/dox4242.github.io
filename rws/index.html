@@ -4,11 +4,11 @@
 	<title>Realm Weather Service : Royal Advisory Board</title>
 	<link rel="stylesheet" href="../lib/bootstrap.min.css">
 	<link rel="stylesheet" href="../index.css">
-	
+
 	<script src="../lib/jquery-2.1.4.min.js"></script>
 	<script src="../lib/bootstrap.min.js"></script>
     <script src="../lib/pako.js"></script>
-	
+
     <script src="../lib/zlib.min.js"></script>
     <script src="../lib/savecodec2.js"></script>
     <script src="../lib/pmprng.js"></script>
@@ -46,7 +46,7 @@
 	.tab button.active {
 		background-color: #ccc;
 	}
-	
+
 	/* Style the tab content */
 	.tabcontent {
 		display: none;
@@ -55,7 +55,7 @@
 		border-top: none;
 	}
 	</style>
-	
+
 </head>
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -73,13 +73,13 @@
 				<ul class="nav navbar-nav">
 					<li><a href="../index.html">Home</a></li>
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Realm Grinder <span class="caret"></span></a>    
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Realm Grinder <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="http://www.kongregate.com/games/divinegames/realm-grinder">Realm Grinder</a></li>
 							<li><a href="http://www.divinegames.it/">Divine Games</a></li>
 							<li><a href="http://musicfamily.org/realm/">G00F's Not a Wiki</a></li>
 							<li><a href="https://discord.gg/3YvX9hN">Discord Chat - Realm Grinder and more</a></li>
-						</ul>    
+						</ul>
 					</li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Useful Tools <span class="caret"></span></a>
@@ -127,6 +127,7 @@
 			<button class="tablinks" onclick="openForecast(event, 'MS')">Maelstrom</button>
             <button class="tablinks" onclick="openForecast(event, 'LW')">Limited Wish</button>
             <button class="tablinks" onclick="openForecast(event, 'Cata')">Catalyst</button>
+			<button class="tablinks" onclick="openForecast(event, 'DJC4')">Worldly Desires</button>
 		</div>
 		<div id="LS" class="tabcontent">
 				<br>
@@ -161,8 +162,15 @@
 		<div id="Cata" class="tabcontent">
 				<br>
 				<div id="catalystMessage"></div>
+				<div id="catalystCurrent"></div>
 				<br>
 				<div id="catalystForecast"></div>
+		</div>
+		<div id="DJC4" class="tabcontent">
+				<br>
+				<div id='DJC4Message'></div>
+				<br>
+				<div id='DJC4Forecast'></div>
 		</div>
 	</div>
 	</div>
