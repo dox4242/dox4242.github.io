@@ -391,6 +391,8 @@
             {
                 limitedWishCastCount += save.spells[31].c;
             }
+            
+            limitedWishCastCount = Math.floor(limitedWishCastCount);
 
             limitedWishEligibleEffects = [];
             
