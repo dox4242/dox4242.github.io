@@ -30,10 +30,10 @@
         var catalystRNG = null;
         var catalystEffects = ["Fairy Chanting", "Moon Blessing", "God's Hand", "Goblin's Greed", "Night Time", "Hellfire Blast", "Gem Grinder", "Holy Light", "Blood Frenzy"];
         var catalystEligibleEffects = [];
-				var catalystTargets = 1;
+		var catalystTargets = 1;
 
-				var DJC4RNG = null;
-				var DJC4Hits = [[8,88,888],[8,888,88],[88,8,888],[88,888,8],[888,8,88],[888,88,8]];
+		var DJC4RNG = null;
+		var DJC4Hits = [[8,88,888],[8,888,88],[88,8,888],[88,888,8],[888,8,88],[888,88,8]];
 		// Refresh the entire forecast
 		var forecast = function(saveStr) {
 			buildingsOwned = [];
@@ -379,19 +379,26 @@
             limitedWishCastCount = save.spells[29].c;
             baseLimitedWishCastCount = 1;
 
+            // Persistent Entropy
             if (util.save.upgrade_owned(save,975))
             {
-                limitedWishCastCount += 150;
-                baseLimitedWishCastCount = 150;
+                limitedWishCastCount += 149;
+                baseLimitedWishCastCount = 149;
             }
-            if (util.save.upgrade_owned(save,940))
+            
+            // Djinn perk 1
+            if (util.save.upgrade_owned(save,962))
             {
                 limitedWishCastCount += save.spells[31].c;
             }
 
-
             limitedWishEligibleEffects = [];
-            limitedWishEligibleEffects.push(limitedWishEffects[0]);
+            
+            // Full Wish
+            if (!util.save.upgrade_owned(save,994))
+            {
+                limitedWishEligibleEffects.push(limitedWishEffects[0]);
+            }
 
             if (save.alignment == 1)
             {
@@ -427,12 +434,12 @@
                 {
                     var typeHit = limitedWishRNG.nextIntRange(0, limitedWishEligibleEffects.length - 1);
                     var strengthHit = limitedWishRNG.nextIntRange(baseLimitedWishCastCount, limitedWishCastCount + 1);
-                    var lowEffect = limitedWishFormula(limitedWishActivityTime, strengthHit);
-                    var highEffect = limitedWishFormula(limitedWishActivityTime + 12, strengthHit);
+                    //var lowEffect = limitedWishFormula(limitedWishActivityTime, strengthHit);
+                    //var highEffect = limitedWishFormula(limitedWishActivityTime + 12, strengthHit);
 
                     //Due to Djinn perk 3 we can no longer accurately calculate limitedWish
                     //var textResult = limitedWishEligibleEffects[typeHit] + ' for %' + lowEffect.toFixed(2) + ' to %' + highEffect.toFixed(2);
-                    var textResult = limitedWishEligibleEffects[typeHit] + ' with random value of ' + strengthHit.toLocaleString() + "%";
+                    var textResult = limitedWishEligibleEffects[typeHit] + ' with random value of ' + strengthHit.toLocaleString() + " (out of maximum of " + limitedWishCastCount + ").";
                     var li = $('<li />').html(textResult);
                     $('#limitedWishForecast > ol').append(li);
 
