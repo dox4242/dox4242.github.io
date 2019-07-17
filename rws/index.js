@@ -432,9 +432,8 @@
 
                     //Due to Djinn perk 3 we can no longer accurately calculate limitedWish
                     //var textResult = limitedWishEligibleEffects[typeHit] + ' for %' + lowEffect.toFixed(2) + ' to %' + highEffect.toFixed(2);
-                    var textResult = limitedWishEligibleEffects[typeHit] + ' with random value of ' + strengthHit;
-
-                    var li = $('<li />').html(textResult);;
+                    var textResult = limitedWishEligibleEffects[typeHit] + ' with random value of ' + strengthHit.toLocaleString() + "%";
+                    var li = $('<li />').html(textResult);
                     $('#limitedWishForecast > ol').append(li);
 
                     limitedWishActivityTime += 12; // spell duration
@@ -557,6 +556,7 @@
 				var forecastDJC4 = function(save) {
 					if(!(util.save.challenge_active(save,992))) {
 						$('#DJC4Message').html('<b>Worldly Desires</b><br>There is no desire here...');
+						$('#DJC4Forecast').html('<b>Forecast</b><br>No Worldly Desires.');
 						return;
 					}
 					DJC4RNG = new PM_PRNG(save.upgrades[992].s);
