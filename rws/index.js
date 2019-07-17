@@ -439,7 +439,7 @@
 
                     //Due to Djinn perk 3 we can no longer accurately calculate limitedWish
                     //var textResult = limitedWishEligibleEffects[typeHit] + ' for %' + lowEffect.toFixed(2) + ' to %' + highEffect.toFixed(2);
-                    var textResult = limitedWishEligibleEffects[typeHit] + ' with random value of ' + strengthHit.toLocaleString() + " (out of maximum of " + limitedWishCastCount + ").";
+                    var textResult = limitedWishEligibleEffects[typeHit] + ' with random value of ' + strengthHit.toLocaleString() + " (out of maximum of " + limitedWishCastCount.toLocaleString() + ").";
                     var li = $('<li />').html(textResult);
                     $('#limitedWishForecast > ol').append(li);
 
