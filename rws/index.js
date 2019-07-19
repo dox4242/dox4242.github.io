@@ -436,6 +436,10 @@
                 {
                     var typeHit = limitedWishRNG.nextIntRange(0, limitedWishEligibleEffects.length - 1);
                     var strengthHit = limitedWishRNG.nextIntRange(baseLimitedWishCastCount, limitedWishCastCount + 1);
+                    
+                    // 3.6.0 bug returns strengthHit that is a uint
+                    strengthHit %= 2 ** 32;
+                    
                     //var lowEffect = limitedWishFormula(limitedWishActivityTime, strengthHit);
                     //var highEffect = limitedWishFormula(limitedWishActivityTime + 12, strengthHit);
 
