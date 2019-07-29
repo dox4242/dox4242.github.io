@@ -30,8 +30,8 @@
       </div>
     </div>
     <ul>
-      <li v-for='s in spells', :style='{fontWeight: s.unlocked != 4?"bold":"normal"}'>
-        {{s.name}}: {{s.unlocked + 1}} (Next tier in {{s.time2tier}} seconds)
+      <li v-for='s in spells'>
+        {{s.name}}: {{s.unlocked + 1}} ({{s.text}})
       </li>
     </ul>
   </div>
