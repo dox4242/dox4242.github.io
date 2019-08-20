@@ -314,14 +314,6 @@
             <tr is='widget-stat' :stat.sync='save.stats[37]' name='Lightning Strike Casts (alt)'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[64]' hide-prev-abs hide-rei hide-prev-reis hide-total name='Consecutive Goblins Greed Casts'></tr>
             <tr is='widget-field' :field.sync='save.comboStrikeCont' can-edit :colspan='5' name='Combo Strike Streak'></tr>
-            <tr v-show='save.alignment == null' is='widget-field-dropdown' :field.sync='save.mercSpell1' type='spells' filter='goodmercspells' :colspan='5' name='Mercenary Spell 1'></tr>
-            <tr v-show='save.alignment == null' is='widget-field-dropdown' :field.sync='save.mercSpell2' type='spells' filter='goodmercspells' :colspan='5' name='Mercenary Spell 2'></tr>
-            <tr v-show='save.alignment == 1' is='widget-field-dropdown' :field.sync='save.mercSpell1' type='spells' filter='goodmercspells' :colspan='5' name='Mercenary Spell 1'></tr>
-            <tr v-show='save.alignment == 1' is='widget-field-dropdown' :field.sync='save.mercSpell2' type='spells' filter='goodmercspells' :colspan='5' name='Mercenary Spell 2'></tr>
-            <tr v-show='save.alignment == 2' is='widget-field-dropdown' :field.sync='save.mercSpell1' type='spells' filter='evilmercspells' :colspan='5' name='Mercenary Spell 1'></tr>
-            <tr v-show='save.alignment == 2' is='widget-field-dropdown' :field.sync='save.mercSpell2' type='spells' filter='evilmercspells' :colspan='5' name='Mercenary Spell 2'></tr>
-            <tr v-show='save.alignment == 3' is='widget-field-dropdown' :field.sync='save.mercSpell1' type='spells' filter='neutralmercspells' :colspan='5' name='Mercenary Spell 1'></tr>
-            <tr v-show='save.alignment == 3' is='widget-field-dropdown' :field.sync='save.mercSpell2' type='spells' filter='neutralmercspells' :colspan='5' name='Mercenary Spell 2'></tr>
           </table>
         </div>
       </div>
@@ -352,6 +344,16 @@
             <tr is='widget-bloodline-dropdown' :field.sync='save.bFaction' :upgrades.sync='upgradesArray' type='upgradeIDs' filter='bloodlines' :colspan='5' name='Bloodline Faction'></tr>
             <tr is='widget-artifactSet-dropdown' :field.sync='save.artifactSet' :upgrades.sync='upgradesArray' type='upgradeIDs' filter='artifactSets' :colspan='5' name='Artifact Set'></tr>
             <tr is='widget-artifactSet-dropdown' :field.sync='save.stoneheartSet' :upgrades.sync='upgradesArray' type='upgradeIDs' filter='artifactSets' :colspan='5' name='Stoneheart Set'></tr>
+            
+            <tr is='widget-mercenaryselection-header'></tr>
+            <tr v-show='save.alignment == 1 || save.alignment == null' is='widget-field-dropdown' :field.sync='save.mercSpell1' type='spells' filter='goodmercspells' :colspan='5' name='Mercenary Spell 1'></tr>
+            <tr v-show='save.alignment == 1 || save.alignment == null' is='widget-field-dropdown' :field.sync='save.mercSpell2' type='spells' filter='goodmercspells' :colspan='5' name='Mercenary Spell 2'></tr>
+            <tr v-show='save.alignment == 2' is='widget-field-dropdown' :field.sync='save.mercSpell1' type='spells' filter='evilmercspells' :colspan='5' name='Mercenary Spell 1'></tr>
+            <tr v-show='save.alignment == 2' is='widget-field-dropdown' :field.sync='save.mercSpell2' type='spells' filter='evilmercspells' :colspan='5' name='Mercenary Spell 2'></tr>
+            <tr v-show='save.alignment == 3' is='widget-field-dropdown' :field.sync='save.mercSpell1' type='spells' filter='neutralmercspells' :colspan='5' name='Mercenary Spell 1'></tr>
+            <tr v-show='save.alignment == 3' is='widget-field-dropdown' :field.sync='save.mercSpell2' type='spells' filter='neutralmercspells' :colspan='5' name='Mercenary Spell 2'></tr>
+            <!--<tr v-show='save.ascension >= 3 || save.ascesion == null' is='widget-field-dropdown' :field.sync='save.' type='spells' :colspan='5' name='Mercenary Unique Building'></tr>-->
+            <tr v-show='save.ascension >= 3 || save.ascesion == null' is='widget-field-dropdown' :field.sync='save.mercUnion' :upgrades.sync='upgradesArray' type='upgradeIDs' filter='unions' :colspan='5' name='Mercenary Union'></tr>
 
             <tr is='widget-fivestat-header'></tr>
             <tr is='widget-stat-time' :stat.sync='save.stats[i.timestat]' :name='i.name + " Playtime"' v-for='i in factions | filterDef "timestat"'></tr>

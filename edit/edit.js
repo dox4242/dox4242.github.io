@@ -8,9 +8,10 @@
     bloodlineFaction: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15],
     artifactSetFaction: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12],
     spell: [18, 3, 12, 6, 14, 9, 1, 8, 15, 11, 7, 13, 10, 2, 5, 4, 21, 17, 25, 26, 27, 28, 29, 30, 31],
-    goodmercspells: [6, 14, 9, 5, 8, 11, 4, 10, 2, 21],
-    evilmercspells: [6, 14, 9, 5, 8, 15, 11, 4, 10, 2, 21],
-    neutralmercspells: [6, 14, 9, 5, 8, 11, 4, 13, 10, 2, 21],
+    goodmercspells: [6, 14, 9, 5, 8, 11, 4, 10, 2, 21, 28, 29, 30],
+    evilmercspells: [6, 14, 9, 5, 8, 15, 11, 4, 10, 2, 21, 28, 29, 30],
+    neutralmercspells: [6, 14, 9, 5, 8, 11, 4, 13, 10, 2, 21, 28, 29, 30],
+    unions: [778, 774, 770, 779, 781, 772, 780, 773, 776, 847, 846, 855, 880, 894, 915]
   };
 
   var trophyIDs = {
@@ -168,6 +169,12 @@
         lvl4: function() { return this.total.statsRei - this.good.statsRei - this.evil.statsRei; },
         lvl5: function() { return this.lvl3 + this.lvl4; }
       }
+    });
+    
+    Vue.component('widget-mercenaryselection-header', {
+      template: '<tr>'
+      + '<th><span>Mercenary Selections</span></th>'
+      + '</tr>'
     });
 
     Vue.component('widget-fivestat-header', {
@@ -663,12 +670,12 @@
       computed: {
         unlocked: {
           get: function() {
-            var artifactSetIDs = { 0:832, 1:830, 2:824, 3:833, 4:838, 5:825, 6:837, 7:828, 8:831, 9:829, 10:827, 12:826 };
+            var artifactSetIDs = { 0:832, 1:830, 2:824, 3:833, 4:838, 5:825, 6:837, 7:828, 8:831, 9:829, 10:827, 11:834, 12:826};
             if (this.field == -1) { return this.field }
             return artifactSetIDs[this.field]
           },
           set: function(x) {
-            var artifactSetIDs = { 0:832, 1:830, 2:824, 3:833, 4:838, 5:825, 6:837, 7:828, 8:831, 9:829, 10:827, 12:826 };
+            var artifactSetIDs = { 0:832, 1:830, 2:824, 3:833, 4:838, 5:825, 6:837, 7:828, 8:831, 9:829, 10:827, 11:834, 12:826};
             if (this.field > -1) {
               delete this.upgrades[artifactSetIDs[this.field]]
             }
