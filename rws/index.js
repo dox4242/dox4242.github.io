@@ -354,7 +354,7 @@
 		};
 
         // Add the Limited Wish forecast
-		var forecastLimitedWish = function(save, buildingsAvailable)
+	var forecastLimitedWish = function(save, buildingsAvailable)
         {
             var limitedWishMessage = '';
             var limitedWishForecast = '';
@@ -369,8 +369,10 @@
             if (limitedWishMessage != '' || limitedWishForecast != '') {
                 $('#limitedWishMessage').html('<b>Limited Wish</b><br>').append(limitedWishMessage);
                 $('#limitedWishForecast').html('<b>Forecast</b><br>').append(limitedWishForecast);
-                    return;
+		$('#limitedWishForecastOptions').hide();
+		return;
             }
+
 
             // Create the RNG and get the initial forecast
             limitedWishRNG = new PM_PRNG(save.spells[29].s);
@@ -385,17 +387,17 @@
                 limitedWishCastCount += 149;
                 baseLimitedWishCastCount = 149;
             }
-            
+
             // Djinn perk 1
             if (util.save.upgrade_owned(save,962))
             {
                 limitedWishCastCount += save.spells[31].c;
             }
-            
+
             limitedWishCastCount = Math.floor(limitedWishCastCount);
 
             limitedWishEligibleEffects = [];
-            
+
             // Full Wish
             if (!util.save.upgrade_owned(save,994))
             {
@@ -422,43 +424,55 @@
             }
 
             $('#limitedWishMessage').html('<b>Limited Wish</b><br>Your RNG state is: ' + limitedWishRNG.state + '.');
-            $('#limitedWishForecast').html('<b>Forecast</b><br><ol></ol>')
+            $('#limitedWishForecast, #limitedWishForecastAlt').html('<b>Forecast</b><br><ol></ol>')
                 .append($('<button class="btn btn-link" type="button" />').html('Give me a longer Forecast').on('click', forecastLimitedWishMore));
 
             forecastLimitedWishMore();
+	    limitedWishShowForecast();
+	    $('#limitedWishForecastOptions').show();
 		};
 
         var forecastLimitedWishMore = function(e)
         {
-			if (limitedWishRNG)
-            {
-				for (var i = 0; i < 10; i++)
-                {
-                    var typeHit = limitedWishRNG.nextIntRange(0, limitedWishEligibleEffects.length - 1);
-                    var strengthHit = limitedWishRNG.nextIntRange(baseLimitedWishCastCount, limitedWishCastCount + 1);
-                    
-                    // 3.6.0 bug returns strengthHit that is a uint
-                    strengthHit %= 2 ** 32;
-                    
-                    //var lowEffect = limitedWishFormula(limitedWishActivityTime, strengthHit);
-                    //var highEffect = limitedWishFormula(limitedWishActivityTime + 12, strengthHit);
+		if (limitedWishRNG)
+		{
+			for (var i = 0; i < 10; i++)
+			{
+				var typeHit = limitedWishRNG.nextIntRange(0, limitedWishEligibleEffects.length - 1);
+				var strengthHit = Math.floor(limitedWishRNG.nextDoubleRange(baseLimitedWishCastCount, limitedWishCastCount + 1));
 
-                    //Due to Djinn perk 3 we can no longer accurately calculate limitedWish
-                    //var textResult = limitedWishEligibleEffects[typeHit] + ' for %' + lowEffect.toFixed(2) + ' to %' + highEffect.toFixed(2);
-                    var textResult = limitedWishEligibleEffects[typeHit] + ' with random value of ' + strengthHit.toLocaleString() + " (out of maximum of " + limitedWishCastCount.toLocaleString() + ").";
-                    var li = $('<li />').html(textResult);
-                    $('#limitedWishForecast > ol').append(li);
+				//Due to Djinn perk 3 we can no longer accurately calculate limitedWish
+				//create two results for both value and percentage
+				var textResult = limitedWishEligibleEffects[typeHit] + ' with random value of ' + strengthHit.toLocaleString() + " (out of maximum of " + limitedWishCastCount.toLocaleString() + ").";
+				var textResult2 = limitedWishEligibleEffects[typeHit] + ' with ' + ((strengthHit**0.45 / limitedWishCastCount**0.45) * 100).toPrecision(4) + '% strength';
+				var li = $('<li />').html(textResult);
+				var li2 = $('<li />').html(textResult2);
+				$('#limitedWishForecast > ol').append(li);
+				$('#limitedWishForecastAlt > ol').append(li2);
 
-                    limitedWishActivityTime += 12; // spell duration
-                    limitedWishCastCount++;
-		    	}
-            }
-		};
+				limitedWishActivityTime += 12; // spell duration
+				limitedWishCastCount++;
+			}
+		}
+	};
 
         var limitedWishFormula = function(spellActivity, castCount)
         {
             return 2.25 * Math.pow(Math.log(spellActivity + 1), 1.35) * Math.pow(castCount, 0.45);
         }
+
+	var limitedWishShowForecast = function()
+	{
+		if ($('input[name=LWForecastType]:checked').val() == "percentage") {
+			$('#limitedWishForecast').hide();
+			$('#limitedWishForecastAlt').show();
+		}
+		//default case: value
+		else {
+			$('#limitedWishForecast').show();
+			$('#limitedWishForecastAlt').hide();
+		}
+	}
 
         // Add the Catalyst forecast
 		var forecastCatalyst = function(save)
@@ -467,7 +481,7 @@
             var catalystForecast = '';
 
             // Check if the save actually has Catalyst to forecast
-						if (!util.save.upgrade_owned(save,940) && !(save.reincarnation >= 130 && util.save.upgrade_owned(save,142019) && save.elitePrestigeFaction == 14)) {
+	    if (!util.save.challenge_active(save,991) && !util.save.upgrade_owned(save,940) && !(save.reincarnation >= 130 && util.save.upgrade_owned(save,142019) && save.elitePrestigeFaction == 14)) {
                 catalystMessage = 'You don\'t have Catalyst.';
                 catalystForecast = 'Who knew chaotic blood was so magical?';
             }
@@ -482,8 +496,8 @@
             // Create the RNG and get the initial forecast
             catalystRNG = new PM_PRNG(save.spells[31].s);
 
-						//check if djinn challenge 3 is active
-						catalystTargets = util.save.challenge_active(save,991)?2:1;
+			//check if djinn challenge 3 is active
+	    catalystTargets = util.save.challenge_active(save,991)?2:1;
 
             catalystEligibleEffects = catalystEffects.slice();
 
@@ -538,11 +552,11 @@
             {
                 catalystEligibleEffects.splice(catalystEligibleEffects.indexOf("Blood Frenzy"), 1);
             }
-						//ugh2
-						var spellIDs = [null,null,'Holy Light','Blood Frenzy','Gem Grinder',null,null,null,'Fairy Chanting','Moon Blessing', 'God\'s Hand', 'Goblin\'s Greed', 'Night Time', 'Hellfire Blast'];
+			//ugh2
+	    var spellIDs = [null,null,'Holy Light','Blood Frenzy','Gem Grinder',null,null,null,'Fairy Chanting','Moon Blessing', 'God\'s Hand', 'Goblin\'s Greed', 'Night Time', 'Hellfire Blast'];
             $('#catalystMessage').html('<b>Catalyst</b><br>Your RNG state is: ' + catalystRNG.state + '.');
-						if(save.catalystTargets.length > 0) $('#catalystCurrent').html('Your current spell is: ' + spellIDs[save.catalystTargets[0]['targetspell']]);
-						if(save.catalystTargets.length > 1) $('#catalystCurrent').append('<br>' + 'Your second current spell is: ' + spellIDs[save.catalystTargets[1]['targetspell']]);
+	    if(save.catalystTargets.length > 0) $('#catalystCurrent').html('Your current spell is: ' + spellIDs[save.catalystTargets[0]['targetspell']]);
+	    if(save.catalystTargets.length > 1) $('#catalystCurrent').append('<br>' + 'Your second current spell is: ' + spellIDs[save.catalystTargets[1]['targetspell']]);
             $('#catalystForecast').html('<b>Forecast</b><br><ol></ol>')
                 .append($('<button class="btn btn-link" type="button" />').html('Give me a longer Forecast').on('click', forecastCatalystMore));
 
@@ -550,46 +564,44 @@
 		};
 
         var forecastCatalystMore = function(e) {
-						if (catalystRNG) {
-								for (var i = 0; i < 10; i++) {
-										var textResult = '';
-										var tempEligibleEffects = catalystEligibleEffects.slice();
-										for(var j = 0; j < catalystTargets; ++j) {
-                    	var typeHit = catalystRNG.nextIntRange(0, tempEligibleEffects.length - 1);
-                    	textResult += (j > 0? ' + ':'') + tempEligibleEffects[typeHit];
-											tempEligibleEffects.splice(typeHit, 1);
-										}
-                    var li = $('<li />').html(textResult);;
-                    $('#catalystForecast > ol').append(li);
-		    			}
-        		}
-				};
-
-
-				var forecastDJC4 = function(save) {
-					if(!(util.save.challenge_active(save,992))) {
-						$('#DJC4Message').html('<b>Worldly Desires</b><br>There is no desire here...');
-						$('#DJC4Forecast').html('<b>Forecast</b><br>No Worldly Desires.');
-						return;
-					}
-					DJC4RNG = new PM_PRNG(save.upgrades[992].s);
-					$('#DJC4Message').html('<b>Worldly Desires</b><br>Your RNG state is: ' + DJC4RNG.state + '.');
-					$('#DJC4Forecast').html('<b>Forecast</b><br><ol></ol>')
-							.append($('<button class="btn btn-link" type="button" />').html('Give me a longer Forecast').on('click', forecastDJC4More));
-
-					forecastDJC4More(save);
-				};
-				//assistants, gem production, max mana
-				var forecastDJC4More = function() {
-					if(DJC4RNG) {
-						for (var i = 0; i < 10; ++i) {
-							var hit = DJC4Hits[DJC4RNG.nextIntRange(0,DJC4Hits.length - 1)];
-							var textResult = 'Increasing Assistants by ' + hit[0] + '%, Production Bonus from Gems by ' + hit[1] + '% and Maximum Mana by ' + hit[2] + '%.';
-							var li = $('<li />').html(textResult);;
-							$('#DJC4Forecast > ol').append(li);
-						}
-					}
+		if (catalystRNG) {
+			for (var i = 0; i < 10; i++) {
+				var textResult = '';
+				var tempEligibleEffects = catalystEligibleEffects.slice();
+				for(var j = 0; j < catalystTargets; ++j) {
+					var typeHit = catalystRNG.nextIntRange(0, tempEligibleEffects.length - 1);
+					textResult += (j > 0? ', ':'') + tempEligibleEffects[typeHit];
+					tempEligibleEffects.splice(typeHit, 1);
 				}
+				var li = $('<li />').html(textResult);;
+				$('#catalystForecast > ol').append(li);
+			}
+		}
+	};
+
+	var forecastDJC4 = function(save) {
+		if(!(util.save.challenge_active(save,992))) {
+			$('#DJC4Message').html('<b>Worldly Desires</b><br>There is no desire here...');
+			$('#DJC4Forecast').html('<b>Forecast</b><br>No Worldly Desires.');
+			return;
+		}
+		DJC4RNG = new PM_PRNG(save.upgrades[992].s);
+		$('#DJC4Message').html('<b>Worldly Desires</b><br>Your RNG state is: ' + DJC4RNG.state + '.');
+		$('#DJC4Forecast').html('<b>Forecast</b><br><ol></ol>')
+		.append($('<button class="btn btn-link" type="button" />').html('Give me a longer Forecast').on('click', forecastDJC4More));
+		forecastDJC4More(save);
+	};
+	//assistants, gem production, max mana
+	var forecastDJC4More = function() {
+		if(DJC4RNG) {
+			for (var i = 0; i < 10; ++i) {
+				var hit = DJC4Hits[DJC4RNG.nextIntRange(0,DJC4Hits.length - 1)];
+				var textResult = 'Increasing Assistants by ' + hit[0] + '%, Production Bonus from Gems by ' + hit[1] + '% and Maximum Mana by ' + hit[2] + '%.';
+				var li = $('<li />').html(textResult);;
+				$('#DJC4Forecast > ol').append(li);
+			}
+		}
+	}
 
 		$(function() {
 
@@ -676,6 +688,10 @@
 			}).on('mouseleave', 'span', function(e) {
 				$(this).removeClass('hover');
 				$('#lightningForecast > ol, #miracleForecast > ol').children('.tier' + $(this).data('tier')).removeClass('hover');
+			});
+
+			$('input[type=radio][name=LWForecastType]').change(function() {
+				limitedWishShowForecast();
 			});
 
 		});

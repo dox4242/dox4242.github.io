@@ -247,7 +247,8 @@
 	this.viewArtifacts = function() {
 		if (View.raw.sv) {
 			var svs,i,reinc;
-			$(".viewer-results").empty().html("<b>Excavation:</b> " + View.raw.sv.x + " values ahead (" + Math.ceil(View.raw.sv.x / Math.max(View.raw.eligible.length, 1)) + " Excavations) with <b>Small Value:</b> " + View.raw.sv.y);
+			$(".viewer-results").empty().html("<b>Excavation:</b> " + View.raw.sv.x + " values ahead (" + 
+			(View.raw.eligible.length > 0 ? View.raw.sv.x / View.raw.eligible.length + " Excavations)":"Unable to move small values due to 0 eligible artifacts)") + " with <b>Small Value:</b> " + View.raw.sv.y);
 			if (View.raw.unowned.length) {
 				$(".viewer-results").append("<br><br><table><tbody>");
 				svs = View.raw.eligible.length > 1 ? "<th> Small Value Shifts Required <a>(?)</a></th>" : "";
@@ -255,7 +256,7 @@
 				View.raw.eligible.length > 1 && $(".viewer-results th a").popover({
 					trigger: "hover",
 					content: 'Every time you excavate, each eligible artifact consumes a small value per excavation. If you have more than one eligible artifact, this means that a good'
-					+ ' small value can be consumed by the "wrong" artifact. You can shift the small values your current artifacts will consume by excavating with less (but at least one) eligible artifacts.'
+					+ ' small value can be consumed by the "wrong" artifact. You can shift the small values your current artifacts will consume by excavating with less (but at least one) eligible artifacts, likely in a different run.'
 				});
 			}
 			reinc = ($("#override-box").is(":checked") && !isNaN(parseInt($('#override-reincarnation').val()))) ? $('#override-reincarnation').val() : this.save.reincarnation;
