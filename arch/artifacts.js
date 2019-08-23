@@ -805,11 +805,9 @@ var Artifacts = [
       return Math.pow(10,value*10000);
     },
     display: function (value) {
-      return util.render.sci(Math.ceil(value)) + ' Faction Coin Chance';
+      return util.render.sci(Math.ceil(value)) + '% Faction Coin Chance';
     }
   },
-  // ancestral hourglass just uses a really weird number to correctly consume small values
-  // todo: make it use the proper number
   {
     name: 'Ancestral Hourglass',
     id: 284,
@@ -824,7 +822,7 @@ var Artifacts = [
       return Math.ceil(value * 1000000000000000000);
     },
     display: function(value) {
-      return util.render.sci(value) + ' Faction Coin Chance';
+      return util.render.sci(value) + '% Faction Coin Chance';
     }
   },
   {
