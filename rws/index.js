@@ -497,58 +497,44 @@
             catalystRNG = new PM_PRNG(save.spells[31].s);
 
 			//check if djinn challenge 3 is active
-	    catalystTargets = util.save.challenge_active(save,991)?2:1;
+            catalystTargets = util.save.challenge_active(save,991)?2:1;
 
             catalystEligibleEffects = catalystEffects.slice();
 
-            // Cue stupid code because internals are spaghetti
-            /*for (var i = 1; i <= util.save.lengths.spells; i++)
-            {
-                if (save.spells[i].a)
-                {
-                    var spell = util.assoc.spells.find(spell => spell.id == i);
-
-                    if (catalystEligibleEffects.indexOf(spell.name)
-                    {
-                        catalystEligibleEffects.splice(spell.name, 1);
-                    }
-                }
-            }*/
-
             // ugh
-            if (save.spells[6].a)
+            if (save.faction == 0 || util.save.upgrade_owned(save,680))
             {
                 catalystEligibleEffects.splice(catalystEligibleEffects.indexOf("Fairy Chanting"), 1);
             }
-            if (save.spells[14].a)
+            if (save.faction == 1 || util.save.upgrade_owned(save,672))
             {
                 catalystEligibleEffects.splice(catalystEligibleEffects.indexOf("Moon Blessing"), 1);
             }
-            if (save.spells[9].a)
+            if (save.faction == 2 || util.save.upgrade_owned(save,651))
             {
                 catalystEligibleEffects.splice(catalystEligibleEffects.indexOf("God's Hand"), 1);
             }
-            if (save.spells[8].a)
+            if (save.faction == 3 || util.save.upgrade_owned(save,684))
             {
                 catalystEligibleEffects.splice(catalystEligibleEffects.indexOf("Goblin's Greed"), 1);
             }
-            if (save.spells[15].a)
+            if (save.faction == 4 || util.save.upgrade_owned(save,692))
             {
                 catalystEligibleEffects.splice(catalystEligibleEffects.indexOf("Night Time"), 1);
             }
-            if (save.spells[11].a)
+            if (save.faction == 5 || util.save.upgrade_owned(save,656))
             {
                 catalystEligibleEffects.splice(catalystEligibleEffects.indexOf("Hellfire Blast"), 1);
             }
-            if (save.spells[7].a)
+            if (save.alignment == 3)
             {
                 catalystEligibleEffects.splice(catalystEligibleEffects.indexOf("Gem Grinder"), 1);
             }
-            if (save.spells[12].a)
+            if (save.alignment == 1)
             {
                 catalystEligibleEffects.splice(catalystEligibleEffects.indexOf("Holy Light"), 1);
             }
-            if (save.spells[1].a)
+            if (save.alignment == 2)
             {
                 catalystEligibleEffects.splice(catalystEligibleEffects.indexOf("Blood Frenzy"), 1);
             }
