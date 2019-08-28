@@ -799,10 +799,10 @@ var Artifacts = [
     },
     random: function(save) {
 	  //(log10(x) / 100)%, where x is FC chance
-      return (Math.log10(1000)/10000);
+      return util.save.fc_chance(save) / 10000;
     },
 	required: function (value) {
-      return Math.pow(10,value*10000);
+      return Math.pow(10, value * 10000);
     },
     display: function (value) {
       return util.render.sci(Math.ceil(value)) + '% Faction Coin Chance';
@@ -1011,10 +1011,10 @@ var Artifacts = [
       return Math.pow(40 * util.save.combo_strike_counter(save), 0.9) / 1000000000;
     },
     required: function (value) {
-      return value * 1000000000;
+      return Math.pow((value * 1000000000) / 40, 1 / 0.9);
     },
     display: function (value) {
-      return Math.ceil(value) + ' Combo Strike production bonus';
+      return Math.ceil(value) + ' Combo Strike Counter';
     }
   },
   {
@@ -1085,10 +1085,10 @@ var Artifacts = [
     },
     random: function (save) {
     //(ln(1 + x) ^ 2 / 12000)%, where x is FC collected this game.
-      return Math.pow(Math.log10(1 + util.save.faction_coins(save)), 2) / 1200000;
+      return Math.pow(Math.log10(1 + util.save.faction_coins(save)), 2) / 600000;
     },
     required: function (value) {
-      return Math.pow(10,Math.sqrt(value * 1200000)) - 1;
+      return Math.pow(10,Math.sqrt(value * 600000)) - 1;
     },
     display: function (value) {
       return util.render.sci(value) + ' Faction Coins found';
@@ -1201,13 +1201,13 @@ var Artifacts = [
     random: function (save) {
 	//(log10(1 + x) ^ 3 / 1000000 (1M))%, where x is offline bonus multiplier.
 	// Set to 1000, see above
-      return Math.pow(Math.log10(1000 + 1),3) / 100000000;
+      return Math.pow(Math.log10(1000 + 1),3) / 10000000000;
     },
     required: function (value) {
-      return Math.pow(10,Math.pow(value*100000000,1/3));
+      return Math.pow(10,Math.pow(value*10000000000,1/3));
     },
     display: function (value) {
-      return util.render.sci(value) + ' Offline Bonus Multiplier';
+      return util.render.sci(value) + ' Offline Production Bonus';
     }
   },
 
