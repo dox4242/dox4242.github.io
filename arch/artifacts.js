@@ -816,10 +816,10 @@ var Artifacts = [
       return save.ascension >= 2;
     },
     random: function(save) {
-      return util.save.fc_chance(save) / 1000000000000000000;
+      return util.save.fc_chance(save) / 500000000000000000;
     },
     required: function(value) {
-      return Math.ceil(value * 1000000000000000000);
+      return Math.ceil(value * 500000000000000000);
     },
     display: function(value) {
       return util.render.sci(value) + '% Faction Coin Chance';
