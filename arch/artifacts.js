@@ -1184,7 +1184,7 @@ var Artifacts = [
       return Math.pow(util.save.re_bonus(save),3) / 500000000000;
     },
     required: function (value) {
-      return Math.pow(value * 500000000000 , 1/3);
+      return Math.pow(value * 500000000000, 1/3);
     },
     display: function (value) {
       return Math.ceil(value) + '% Royal Exchange Bonus';
@@ -1201,13 +1201,13 @@ var Artifacts = [
     random: function (save) {
 	//(log10(1 + x) ^ 3 / 1000000 (1M))%, where x is offline bonus multiplier.
 	// Set to 1000, see above
-      return Math.pow(Math.log10(1000 + 1),3) / 10000000000;
+      return Math.pow(Math.log10(1000 + 1),3) / 100000000;
     },
     required: function (value) {
-      return Math.pow(10,Math.pow(value*10000000000,1/3));
+      return Math.pow(10 ,Math.pow(value * 100000000,1/3));
     },
     display: function (value) {
-      return util.render.sci(value) + ' Offline Production Bonus';
+      return util.render.sci(value) + ' Offline Production Multiplier';
     }
   },
 
