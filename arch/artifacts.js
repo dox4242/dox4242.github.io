@@ -1201,13 +1201,13 @@ var Artifacts = [
     random: function (save) {
 	//(log10(1 + x) ^ 3 / 1000000 (1M))%, where x is offline bonus multiplier.
 	// Set to 1000, see above
-      return Math.pow(Math.log10(1000 + 1),3) / 100000000;
+      return Math.pow((Math.log10(1000 + 1) - 2),3) / 100000000;
     },
     required: function (value) {
-      return Math.pow(10 ,Math.pow(value * 100000000,1/3));
+      return Math.pow(10 ,Math.pow(value * 100000000,1/3) + 2);
     },
     display: function (value) {
-      return util.render.sci(value) + ' Offline Production Multiplier';
+      return util.render.sci(value) + '% Offline Production Bonus';
     }
   },
 
