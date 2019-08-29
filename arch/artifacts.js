@@ -799,7 +799,7 @@ var Artifacts = [
     },
     random: function(save) {
 	  //(log10(x) / 100)%, where x is FC chance
-      return util.save.fc_chance(save) / 10000;
+      return Math.log10(util.save.fc_chance(save)) / 10000;
     },
 	required: function (value) {
       return Math.pow(10, value * 10000);
