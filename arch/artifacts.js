@@ -1273,7 +1273,7 @@ var Artifacts = [
     id: 319,
     reincarnation: 100,
     fixed: function(save) {
-      return save.reincarnation >= this.reincarnation;
+      return save.reincarnation >= this.reincarnation && util.save.trophy_owned(save,233) && util.save.trophy_owned(save,234);
     },
     random: function(save) {
 	  //((x ^ 2.5) / 5000)%, where x is amount of consecutive days logged in
