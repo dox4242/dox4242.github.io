@@ -87,7 +87,7 @@
 		var lightningForecast = '';
 
 		// Check if the save actually has Lightning Strikes to forecast
-			if (!(save.faction == 6 || save.mercSpell1 == 13 || save.mercSpell2 == 13 || util.save.upgrade_owned(save, 688))) {
+			if (!util.save.hasSpell(save,"Lightning Strike")) {
 			 	lightningMessage = 'You don\'t have Lightning Strike.';
 			 	lightningForecast = 'No Lightning.';
 			} else if (save.alignment != 3 && !util.save.upgrade_owned(save, 688)) {
@@ -160,7 +160,7 @@
 			var breathForecast = '';
 
 			// Check if the save actually has Dragons Breath to forecast
-			if (!(save.prestigeFaction == 12 || save.mercSpell1 == 21 || save.mercSpell2 == 21 || util.save.upgrade_owned(save, 696))) {
+			if (!util.save.hasSpell(save,"Dragon's Breath")) {
 				breathMessage = 'You don\'t have Dragon\'s Breath.';
 				breathForecast = 'No Dragon\'s Breath.';
 			}
@@ -275,7 +275,7 @@
             var maelstromForecast = '';
 
             // Check if the save actually has Maelstrom to forecast
-            if (!(util.save.upgrade_owned(save,748))) {
+            if (!util.save.hasSpell(save,"Maelstrom")) {
                 maelstromMessage = 'You don\'t have Maelstrom.';
                 maelstromForecast = 'No Chaos that is trying to pull you in.';
             }
@@ -360,7 +360,7 @@
             var limitedWishForecast = '';
 
             // Check if the save actually has Limited Wish to forecast
-            if (save.elitePrestigeFaction != 14 && !util.save.upgrade_owned(save,963)) {
+            if (!util.save.hasSpell(save,"Limited Wish")) {
                 limitedWishMessage = 'You don\'t have Limited Wish.';
                 limitedWishForecast = 'The Genie is in an another lamp.';
             }
@@ -481,7 +481,7 @@
             var catalystForecast = '';
 
             // Check if the save actually has Catalyst to forecast
-	    if (!util.save.challenge_active(save,991) && !util.save.upgrade_owned(save,940) && !(save.reincarnation >= 130 && util.save.upgrade_owned(save,142019) && save.elitePrestigeFaction == 14)) {
+	    if (!util.save.hasSpell(save,"Catalyst")) {
                 catalystMessage = 'You don\'t have Catalyst.';
                 catalystForecast = 'Who knew chaotic blood was so magical?';
             }
@@ -498,46 +498,8 @@
 
 			//check if djinn challenge 3 is active
             catalystTargets = util.save.challenge_active(save,991)?2:1;
-
-            catalystEligibleEffects = catalystEffects.slice();
-
-            // ugh
-            if (save.faction == 0 || util.save.upgrade_owned(save,680))
-            {
-                catalystEligibleEffects.splice(catalystEligibleEffects.indexOf("Fairy Chanting"), 1);
-            }
-            if (save.faction == 1 || util.save.upgrade_owned(save,672))
-            {
-                catalystEligibleEffects.splice(catalystEligibleEffects.indexOf("Moon Blessing"), 1);
-            }
-            if (save.faction == 2 || util.save.upgrade_owned(save,651))
-            {
-                catalystEligibleEffects.splice(catalystEligibleEffects.indexOf("God's Hand"), 1);
-            }
-            if (save.faction == 3 || util.save.upgrade_owned(save,684))
-            {
-                catalystEligibleEffects.splice(catalystEligibleEffects.indexOf("Goblin's Greed"), 1);
-            }
-            if (save.faction == 4 || util.save.upgrade_owned(save,692))
-            {
-                catalystEligibleEffects.splice(catalystEligibleEffects.indexOf("Night Time"), 1);
-            }
-            if (save.faction == 5 || util.save.upgrade_owned(save,656))
-            {
-                catalystEligibleEffects.splice(catalystEligibleEffects.indexOf("Hellfire Blast"), 1);
-            }
-            if (save.alignment == 3)
-            {
-                catalystEligibleEffects.splice(catalystEligibleEffects.indexOf("Gem Grinder"), 1);
-            }
-            if (save.alignment == 1)
-            {
-                catalystEligibleEffects.splice(catalystEligibleEffects.indexOf("Holy Light"), 1);
-            }
-            if (save.alignment == 2)
-            {
-                catalystEligibleEffects.splice(catalystEligibleEffects.indexOf("Blood Frenzy"), 1);
-            }
+	    //filter out already owned spells
+            catalystEligibleEffects = catalystEffects.filter(spell => !util.save.hasSpell(save,spell));
 			//ugh2
 	    var spellIDs = [null,null,'Holy Light','Blood Frenzy','Gem Grinder',null,null,null,'Fairy Chanting','Moon Blessing', 'God\'s Hand', 'Goblin\'s Greed', 'Night Time', 'Hellfire Blast'];
             $('#catalystMessage').html('<b>Catalyst</b><br>Your RNG state is: ' + catalystRNG.state + '.');

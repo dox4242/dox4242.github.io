@@ -247,8 +247,8 @@
 	this.viewArtifacts = function() {
 		if (View.raw.sv) {
 			var svs,i,reinc;
-			$(".viewer-results").empty().html("<b>Excavation:</b> " + View.raw.sv.x + " values ahead (" + 
-			(View.raw.eligible.length > 0 ? View.raw.sv.x / View.raw.eligible.length + " Excavations)":"Unable to move small values due to 0 eligible artifacts)") + " with <b>Small Value:</b> " + View.raw.sv.y);
+			$(".viewer-results").empty().html("<b>Excavation:</b> " + View.raw.sv.x + " values ahead (" +
+			(View.raw.eligible.length > 0 ? Math.ceil(View.raw.sv.x / View.raw.eligible.length) + " Excavations)":"Unable to move small values due to 0 eligible artifacts)") + " with <b>Small Value:</b> " + View.raw.sv.y);
 			if (View.raw.unowned.length) {
 				$(".viewer-results").append("<br><br><table><tbody>");
 				svs = View.raw.eligible.length > 1 ? "<th> Small Value Shifts Required <a>(?)</a></th>" : "";
@@ -382,8 +382,13 @@
 	$('#chartcontainer').on('click', function(e) {
 		var activeElement = Controller.chart.getElementAtEvent(e);
 		if(activeElement.length) {
-			View.raw.sv = activeElement[0]._chart.config.data.datasets[0].data[activeElement[0]._index];
+			//clicked dot turns red, all other dots revert to default (blue)
+			Controller.chart.data.datasets[0]._meta[Controller.chart.id].data.forEach(function(e){delete e.custom;});
+			activeElement[0].custom = {backgroundColor : 'rgba(255, 0, 0, 0.7)'};
+			View.raw.sv = Controller.chart.data.datasets[0].data[activeElement[0]._index];
 			Controller.viewArtifacts();
+			Controller.chart.update();
+
 		}
 	});
 
