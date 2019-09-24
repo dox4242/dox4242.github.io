@@ -1074,9 +1074,9 @@
             <tr is='widget-stat' :stat.sync='save.stats[150]' name='Crystal Prisms Collected'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[151]' name='Entropic Drops Collected'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[152]' name='Equilibrium Fragments Collected'></tr>
-            <tr is='widget-stat' :stat.sync='save.eventResources[27]' name='Order Remnant Level'></tr>     
-            <tr is='widget-stat' :stat.sync='save.eventResources[28]' name='Chaos Remnant Level'></tr> 
-            <tr is='widget-stat' :stat.sync='save.eventResources[29]' name='Balance Remnant Level'></tr>    
+            <tr is='widget-field' :field.sync='save.eventResources[27].res' can-edit :colspan='5' name='Order Remnant Level'></tr>     
+            <tr is='widget-field' :field.sync='save.eventResources[28].res' can-edit :colspan='5' name='Chaos Remnant Level'></tr> 
+            <tr is='widget-field' :field.sync='save.eventResources[29].res' can-edit :colspan='5' name='Balance Remnant Level'></tr>    
             <tr is='widget-stat' :stat.sync='save.stats[153]' name='Golden Age Feat counter'></tr>            
           </table>          
         </div>
