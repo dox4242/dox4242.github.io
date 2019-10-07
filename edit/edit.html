@@ -601,9 +601,10 @@
             <tr is='widget-field' :field.sync='save.artifactRngState' can-edit :colspan='5' name='Artifact RNG State (best value: 1407677000)'></tr>
             <tr is='widget-field' :field.sync='save.excavations' can-edit :colspan='5' name='Current Excavations'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[35]' name='Total Excavations'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[98]' name='Max Excavations'></tr>
+            <tr is='widget-stat-max' :stat.sync='save.stats[98]' name='Max Excavations'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[104]' name='Ruby Excavation Resets'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[135]' name='Free Excavation Resets'></tr>
+			<tr is='widget-stat-max' :stat.sync='save.stats[149]' name='Max Free Excavation Resets'></tr>
             <tr is='widget-field' :field.sync='save.rubies' can-edit :colspan='5' name='Rubies'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[102]' name='Rubies Found'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[103]' name='Rubies Purchased'></tr>
