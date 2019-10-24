@@ -21,12 +21,13 @@
 
     this.get_tiers = function(save) {
       var spells = [];
-      var arcaneTrophies = 0;
+      //var arcaneTrophies = 0;
+	  var unlockedTiers = 0;
       var maxTier = 0;
       
-      for (var i = 0; i < 20; i++) {
-        if (save.trophies[123200 + i]) arcaneTrophies = i + 1;
-      }
+      //for (var i = 0; i < 20; i++) {
+      //  if (save.trophies[123200 + i]) arcaneTrophies = i + 1;
+      //}
       
       maxTier = save.reincarnation >= 100 ? 7 : 6;
       
@@ -37,8 +38,13 @@
         for (var i = start; i < start + 20; i++) {
           if (save.upgrades[i]) {
             spell.unlocked += 1;
+			unlockedTiers += 1;
           }
         }
+		spells.push(spell);
+	  }
+	  
+	  for (var spell of spells) {
         
         if (spell.unlocked + 1 == maxTier)
         {
@@ -46,9 +52,9 @@
         }
         else
         {
-            // Time for tier: Formula: 43200 * ( (T - 0.5 * A)^2 - (T - 0.5 * A)) * 0.98^(R - (T - 0.5 * (A + 1)) - 42) seconds
-            // where T is tier, A is amount of arcane brilliance trophies, R is reincarnation.
-            spell.time2tier = Math.ceil((43200 * (Math.pow(((spell.unlocked + 2) - 0.5 * arcaneTrophies), 2) - ((spell.unlocked + 2) - 0.5 * arcaneTrophies)) * Math.pow(0.98, (save.reincarnation - ((spell.unlocked + 2) - 0.5 * (arcaneTrophies + 1)) - 42))) - save.spells[spell.id].active0 - save.spells[spell.id].active1);
+            // Time for tier: Formula: 86400 * (0.4 + 0.1 * T) * ((T ^ 2 + 1) / (0.1 * U + 1)) * (0.98 ^ (R - 35))
+			// Where T = tier, U = number of unlocked tiers, R = reincarnation
+			spell.time2tier = Math.ceil((86400 * (0.4 + 0.1 * (spell.unlocked + 1)) * ((Math.pow(spell.unlocked + 1, 2) + 1) / (0.1 * unlockedTiers + 1)) * (Math.pow(0.98, save.reincarnation - 35))) - save.spells[spell.id].active0 - save.spells[spell.id].active1);
             
             if (spell.time2tier < 0)
             {
@@ -60,8 +66,8 @@
             }
         }
         
-        spells.push(spell);
       }
+	  View.unlockedTiers = unlockedTiers;
       return spells;
     }
   }
@@ -74,7 +80,8 @@
     window.View = new Vue({
       el: '#app',
       data: {
-        spells: []
+        spells: [],
+		unlockedTiers: -1
       }
     });
     Vue.config.debug = true;

@@ -29,6 +29,9 @@
         </div>
       </div>
     </div>
+	<ul v-if='unlockedTiers > -1'>
+		Total unlocked tiers: {{unlockedTiers}}
+	</ul>
     <ul>
       <li v-for='s in spells'>
         {{s.name}}: {{s.unlocked + 1}} ({{s.text}})
