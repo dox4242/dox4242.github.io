@@ -54,7 +54,7 @@
         {
             // Time for tier: Formula: 86400 * (0.4 + 0.1 * T) * ((T ^ 2 + 1) / (0.1 * U + 1)) * (0.98 ^ (R - 35))
 			// Where T = tier, U = number of unlocked tiers, R = reincarnation
-			spell.time2tier = Math.ceil((86400 * (0.4 + 0.1 * (spell.unlocked + 1)) * ((Math.pow(spell.unlocked + 1, 2) + 1) / (0.1 * unlockedTiers + 1)) * (Math.pow(0.98, save.reincarnation - 35))) - save.spells[spell.id].active0 - save.spells[spell.id].active1);
+			spell.time2tier = Math.ceil((86400 * (0.4 + 0.1 * (spell.unlocked + 2)) * ((Math.pow(spell.unlocked + 2, 2) + 1) / (0.1 * unlockedTiers + 1)) * (Math.pow(0.98, save.reincarnation - 35))) - save.spells[spell.id].active0 - save.spells[spell.id].active1);
             
             if (spell.time2tier < 0)
             {
