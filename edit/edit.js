@@ -822,8 +822,9 @@
       + '<th><span class="statheader">Economics</span></th>'
       + '<th><span class="statheader">Alchemy</span></th>'
       + '<th><span class="statheader">Warfare</span></th>'
+	  + '<th><span class="statheader">Forbidden</span></th>'
       + '</tr><tr>'
-      + '<td colspan="6">Unlocked / Owned</td></tr>'
+      + '<td colspan="7">Unlocked / Owned</td></tr>'
     });
 
     Vue.component('widget-research-all', {
@@ -861,12 +862,14 @@
         'e_name': String,
         'a_name': String,
         'w_name': String,
+		'f_name': String,
         's_id': String,
         'c_id': String,
         'd_id': String,
         'e_id': String,
         'a_id': String,
-        'w_id': String
+        'w_id': String,
+		'f_id': String
       },
       template: '<tr>'
       + '<td><span class="statname">{{s_name}} </span>'
@@ -887,6 +890,9 @@
       + '<td><span class="statname">{{w_name}}</span> '
       + '<input type="checkbox" v-model="w_unlocked" number></input> '
       + '<input type="checkbox" v-model="w_owned" number></input></td>'
+	  + '<td v-if="f_id"><span class="statname">{{f_name}}</span> '
+      + '<input type="checkbox" v-model="f_unlocked" number></input> '
+      + '<input type="checkbox" v-model="f_owned" number></input></td>'
       + '</tr>',
       computed: {
     	s_unlocked: {
@@ -1001,6 +1007,25 @@
           set: function(x) {
             if (!this.upgrades[this.w_id]) { this.upgrades[this.w_id] = {_id: this.w_id, u1: true, u2: false, u3: false, s: 0}; }
             else { this.upgrades[this.w_id].u1 = x; }
+          }
+    	},
+		f_unlocked: {
+          get: function() {
+            if (this.upgrades[this.f_id]) { return true; }
+            else { return false; }
+          },
+          set: function(x) {
+            if (this.w_unlocked) { delete this.upgrades[this.f_id]; }
+            else { this.upgrades[this.f_id] = {_id: this.f_id, u1: false, u2: false, u3: false, s: 0}; }
+          }
+        },
+    	f_owned: {
+          get: function() {
+            return this.upgrades[this.f_id].u1;
+      	  },
+          set: function(x) {
+            if (!this.upgrades[this.f_id]) { this.upgrades[this.f_id] = {_id: this.f_id, u1: true, u2: false, u3: false, s: 0}; }
+            else { this.upgrades[this.f_id].u1 = x; }
           }
     	}
       }
