@@ -86,7 +86,7 @@
     ssTiers: [401701, 401702, 401703, 401704, 401705, 401706],
   };
 
-  var allResearches = upgradeIDs.spellcraft.concat(upgradeIDs.craftsmanship, upgradeIDs.divine, upgradeIDs.economics, upgradeIDs.alchemy, upgradeIDs.warfare, upgradeIDs.forbidden)
+  var allResearches = upgradeIDs.spellcraft.concat(upgradeIDs.craftsmanship, upgradeIDs.divine, upgradeIDs.economics, upgradeIDs.alchemy, upgradeIDs.warfare, upgradeIDs.forbidden);
 
 
   for (var x in trophyIDs) {
@@ -838,15 +838,15 @@
         all_unlocked: {
           set: function(x) {
             for (var i of allResearches) {
-              if (x && !this.upgrades[i]) { this.upgrades[i] = {_id: this.i, u1: false, u2: false, u3: false, s: 0}; }
-              else if (this.upgrades[i]) { delete this.upgrades[i]; }
+              if (x && !this.upgrades[i]) { Vue.set(this.upgrades,i,{_id: i, u1: false, u2: false, u3: false, s: 0}); }
+              else if (this.upgrades[i] && !x) { Vue.delete(this.upgrades,i); }
             }
           }
         },
         all_owned: {
           set: function(x) {
             for (var i of allResearches) {
-              if (!this.upgrades[i] && x) { this.upgrades[i] = {_id: i, u1: true, u2: false, u3: false, s: 0}; }
+              if (!this.upgrades[i] && x) { Vue.set(this.upgrades,i,{_id: i, u1: true, u2: false, u3: false, s: 0}); }
               else { this.upgrades[i].u1 = x; }
             }
           }
