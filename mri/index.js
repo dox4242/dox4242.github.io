@@ -157,10 +157,13 @@
 	//Snow
 	this.findFlake = function() {
       if (!this.save) return;
+	  
+	  // worst case
 	  var rng = new PM_PRNG(View.snowState);
 	  var found = false;
 	  var snowballs = View.snowballsFound;
 	  var count = 0;
+	  
       while (!found)
 	  {
 		  count++;
@@ -171,7 +174,25 @@
 			  found = true;
 		  }
 	  }
-	  View.snowballsNeeded = count;
+	  View.snowballsNeeded = snowballs + count;
+	  
+	  // best case
+	  /*var rng = new PM_PRNG(View.snowState);
+	  var found = false;
+	  var snowballs = View.snowballsFound;
+	  var count = 0;
+	  
+      while (!found)
+	  {
+		  count++;
+		  var chance = Math.pow(snowballs + count + 719, 2) / 9000000000;
+	      var roll = rng.nextDouble();
+		  if (roll <= chance)
+		  {
+			  found = true;
+		  }
+	  }
+	  View.snowballsNeeded2 = count;*/
     }
   }
 
@@ -216,6 +237,7 @@
 		snowballsFound: 0,
 		snowflakeChance: 0,
 		snowballsNeeded: 0,
+		snowballsNeeded2: 0,
       },
       computed: {
         remainder_list: function() {
