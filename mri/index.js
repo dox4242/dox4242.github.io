@@ -129,6 +129,17 @@
       this.updatecustom();
       this.updaterare();
       this.updatecommon();
+	  
+	  //Snow
+	  View.isComplete = this.save.trophies[353] != undefined
+	  View.snowState = this.save.upgrades[1062].s;
+	  View.snowballsFound = this.save.stats[110].stats + this.save.stats[110].statsReset + this.save.stats[110].statsRei;
+	  View.raw.snowflakeChance = Math.pow(View.snowballsFound, 2) / 9000000000;
+	  View.snowflakeChance = (View.raw.snowflakeChance * 100) + "%";
+	  if (!View.isComplete)
+	  {
+		this.findFlake();
+	  }
     }
     this.updatecustom = function() {
       if (!this.save) return;
@@ -141,6 +152,26 @@
     this.updatecommon = function() {
       if (!this.save) return;
       View.raw.common = eggForecastType(this.state, View.commonnumber, 0, this.unowned);
+    }
+	
+	//Snow
+	this.findFlake = function() {
+      if (!this.save) return;
+	  var rng = new PM_PRNG(View.snowState);
+	  var found = false;
+	  var snowballs = View.snowballsFound;
+	  var count = 0;
+      while (!found)
+	  {
+		  count++;
+		  var chance = Math.pow(snowballs + count, 2) / 9000000000;
+	      var roll = rng.nextDouble();
+		  if (roll <= chance)
+		  {
+			  found = true;
+		  }
+	  }
+	  View.snowballsNeeded = count;
     }
   }
 
@@ -175,8 +206,16 @@
           common: [],
           customnumber: 0,
           rarenumber: 0,
-          commonnumber: 0
-        }
+          commonnumber: 0,
+		  //Snow
+		  snowflakeChance: ""
+        },
+		//Snow
+		isComplete: false,
+		snowState: 0,
+		snowballsFound: 0,
+		snowflakeChance: 0,
+		snowballsNeeded: 0,
       },
       computed: {
         remainder_list: function() {
