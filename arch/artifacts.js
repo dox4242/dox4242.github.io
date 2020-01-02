@@ -1378,7 +1378,7 @@ var Artifacts = [
   },
 	
   {
-    name: 'Mythos',
+    name: 'Vault',
     id: 352,
 	  reincarnation: 175,
     fixed: function(save) {
