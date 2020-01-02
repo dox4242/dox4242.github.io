@@ -1421,7 +1421,7 @@ var Artifacts = [
       return save.reincarnation >= this.reincarnation && util.save.upgrade_owned(save,749);
     },
     random: function(save) {
-      return (1 / 100000000);
+      return (util.save.stat(save, 94) / 100000000);
     },
 	required: function (value) {
       return (value * 100000000);
