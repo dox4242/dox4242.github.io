@@ -1305,23 +1305,7 @@ var Artifacts = [
     }
   },
 	
-  {
-    name: 'Forgotten Relic',
-    id: 344,
-	  reincarnation: 175,
-    fixed: function(save) {
-      return save.reincarnation >= this.reincarnation;
-    },
-    random: function(save) {
-      return Math.pow(1,2) / 10000000000000;
-    },
-	required: function (value) {
-      return Math.pow(value * 10000000000000,1/2);
-    },
-    display: function (value) {
-      return Math.ceil(value) + 'RP spent';
-    }
-  },
+  
 
   {
     name: 'Obsidian Crown',
@@ -1338,6 +1322,24 @@ var Artifacts = [
     },
     display: function (value) {
       return Math.ceil(value) + ' Excavation Resets (This Game)';
+    }
+  },
+	
+  {
+    name: 'Forgotten Relic',
+    id: 344,
+	  reincarnation: 175,
+    fixed: function(save) {
+      return save.reincarnation >= this.reincarnation;
+    },
+    random: function(save) {
+      return Math.pow(1,2) / 10000000000000;
+    },
+	required: function (value) {
+      return Math.pow(value * 10000000000000,1/2);
+    },
+    display: function (value) {
+      return Math.ceil(value) + 'RP spent';
     }
   },
 	
