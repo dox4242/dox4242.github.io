@@ -1187,7 +1187,7 @@ var Artifacts = [
       return Math.pow(value * 500000000000, 1/3);
     },
     display: function (value) {
-      return Math.ceil(value) + '% Royal Exchange Bonus';
+      return Math.ceil(value) + '% individual Royal Exchange Bonus';
     }
   },
 
@@ -1321,5 +1321,132 @@ var Artifacts = [
     display: function (value) {
       return Math.ceil(value) + ' Excavation Resets (This Game)';
     }
+  },
+	
+  {
+    name: 'Mana Loom',
+    id: 350,
+	  reincarnation: 175,
+    fixed: function(save) {
+      return save.reincarnation >= this.reincarnation && util.save.upgrade_owned(save,748);
+    },
+    random: function(save) {
+      return (Math.pow(Math.log10(util.save.stat(save, 15),3))) / 5000000;
+    },
+	required: function (value) {
+      return Math.pow(Math.pow((value * 5000000),1/3),10);
+    },
+    display: function (value) {
+      return Math.ceil(value) + ' Mana Produced (This Game)';
+    }
+  },
+	
+  {
+    name: 'Factory',
+    id: 349,
+	  reincarnation: 175,
+    fixed: function(save) {
+      return save.reincarnation >= this.reincarnation && util.save.upgrade_owned(save,388);
+    },
+    random: function(save) {
+      return (Math.pow(Math.log10(util.save.stat(save, 4),3))) / 1000000;
+    },
+	required: function (value) {
+      return Math.pow(Math.pow((value * 1000000),1/3),10);
+    },
+    display: function (value) {
+      return Math.ceil(value) + ' Clicks (This Game)';
+    }
+  },
+	
+ {
+    name: 'Mythos',
+    id: 351,
+	  reincarnation: 175,
+    fixed: function(save) {
+      return save.reincarnation >= this.reincarnation && util.save.upgrade_owned(save,224);
+    },
+    random: function(save) {
+      return 1 / 432000000;
+    },
+	required: function (value) {
+      return (value * 432000000);
+    },
+    display: function (value) {
+      return Math.ceil(value) + ' minimum Spell Activity Time (This R)';
+    }
+  },
+	
+  {
+    name: 'Mythos',
+    id: 352,
+	  reincarnation: 175,
+    fixed: function(save) {
+      return save.reincarnation >= this.reincarnation && util.save.upgrade_owned(save,747);
+    },
+    random: function(save) {
+      return (util.save.re_bonus(save) / 10000000000);
+    },
+	required: function (value) {
+      return (value * 10000000000);
+    },
+    display: function (value) {
+      return Math.ceil(value) + ' individual Royal Exchange Bonus';
+    }
+  },
+	
+  {
+    name: 'Athanor',
+    id: 347,
+	  reincarnation: 175,
+    fixed: function(save) {
+      return save.reincarnation >= this.reincarnation && util.save.upgrade_owned(save,749);
+    },
+    random: function(save) {
+      return (1 / 100000000);
+    },
+	required: function (value) {
+      return (value * 100000000);
+    },
+    display: function (value) {
+      return Math.ceil(value) + ' Alchemy RP spent';
+    }
+  },	
+
+  {
+    name: 'Battlefield',
+    id: 348,
+	  reincarnation: 175,
+    fixed: function(save) {
+      return save.reincarnation >= this.reincarnation && util.save.upgrade_owned(save,178);
+    },
+    random: function(save) {
+      return (Math.pow(Math.log10(util.save.assistants(save),3))) / 2000000;
+    },
+	required: function (value) {
+      return (Math.pow(Math.pow((value * 2000000),1/3),10));
+    },
+    display: function (value) {
+      return Math.ceil(value) + ' Assistants (Base + Temp)';
+    }
+  },
+	
+ {
+    name: 'Forgotten Relic',
+    id: 344,
+	  reincarnation: 175,
+    fixed: function(save) {
+      return save.reincarnation >= this.reincarnation;
+    },
+    random: function(save) {
+      return Math.pow(1,2) / 10000000000000;
+    },
+	required: function (value) {
+      return Math.pow(value * 10000000000000,1/2);
+    },
+    display: function (value) {
+      return Math.ceil(value) + 'RP spent';
+    }
   }
+	
 ];
