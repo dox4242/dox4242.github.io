@@ -33,7 +33,7 @@
 		var catalystTargets = 1;
 
 		var DJC4RNG = null;
-		var DJC4Hits = [[8,88,888],[8,888,88],[88,8,888],[88,888,8],[888,8,88],[888,88,8]];
+		var DJC4Hits = [[88,88,888],[88,888,88],[88,88,888],[88,888,88],[888,88,88],[888,88,88]];
 		// Refresh the entire forecast
 		var forecast = function(saveStr) {
 			buildingsOwned = [];
