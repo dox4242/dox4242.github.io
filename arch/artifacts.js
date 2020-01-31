@@ -1447,7 +1447,7 @@ var Artifacts = [
       return (Math.pow(Math.pow((value * 2000000),1/3),10));
     },
     display: function (value) {
-      return Math.ceil(value) + ' Assistants (Base + Temp)';
+      return Math.ceil(value) + ' Assistants';
     }
   }
 	
