@@ -1066,13 +1066,13 @@ var Artifacts = [
 	//(min(x, y, z) / 1,000 days)%, where x is Fairy Chanting spell activity time, y is Hellfire Blast spell activity time, and z is Brainwave spell activity time (all time)
       return (Math.min((save.spells[6].active0 + save.spells[6].active1 + save.spells[6].active2),
 					   (save.spells[11].active0 + save.spells[11].active1 + save.spells[11].active2),
-	                   (save.spells[2].active0 + save.spells[2].active1 + save.spells[2].active2)) / 86400)  / 100000;
+	                   (save.spells[2].active0 + save.spells[2].active1 + save.spells[2].active2)))  / 100000;
     },
     required: function (value) {
       return value * 100000;
     },
     display: function (value) {
-      return 'At least ' + Math.ceil(value) + ' days of activity time for each of these spells: Fairy Chanting, Hellfire Blast and Brainwave (Check Editor for your current Stats)';
+      return 'At least ' + util.render.time(value) + ' days of activity time for each of these spells: Fairy Chanting, Hellfire Blast and Brainwave';
     }
   },
 
@@ -1333,13 +1333,13 @@ var Artifacts = [
       return save.reincarnation >= this.reincarnation;
     },
     random: function(save) {
-      return Math.pow(1,2) / 10000000000000;
+      return Math.pow(util.save.getSpentBudget(save),2) / 10000000000000;
     },
 	required: function (value) {
       return Math.pow(value * 10000000000000,1/2);
     },
     display: function (value) {
-      return Math.ceil(value) + 'RP spent';
+      return Math.ceil(value) + ' Research Budget Spent';
     }
   },
 	
@@ -1387,13 +1387,13 @@ var Artifacts = [
       return save.reincarnation >= this.reincarnation && util.save.upgrade_owned(save,224);
     },
     random: function(save) {
-      return 1 / 432000000;
+      return util.save.minSpellTime(save) / 432000000;
     },
 	required: function (value) {
       return (value * 432000000);
     },
     display: function (value) {
-      return Math.ceil(value) + ' minimum Spell Activity Time (This R)';
+      return util.render.time(value) + ' minimum Spell Activity Time (This R)';
     }
   },
 	
@@ -1423,13 +1423,13 @@ var Artifacts = [
       return save.reincarnation >= this.reincarnation && util.save.upgrade_owned(save,749);
     },
     random: function(save) {
-      return (util.save.stat(save, 94) / 100000000);
+      return (util.save.stat(save, 94, 2) / 100000000);
     },
 	required: function (value) {
       return (value * 100000000);
     },
     display: function (value) {
-      return Math.ceil(value) + ' Alchemy RP spent';
+      return Math.ceil(value) + ' Alchemy Research Points';
     }
   },	
 
