@@ -1295,13 +1295,13 @@ var Artifacts = [
       return save.reincarnation >= this.reincarnation && save.faction == 11 && util.save.trophy_owned(save,152) && util.save.trophy_owned(save,131);
     },
     random: function(save) {
-      return ((Math.log10(save.gems)) - 37) * (0.001);
+      return (Math.floor(Math.log10(save.gems)) - 37) * (0.001);
     },
 	required: function (value) {
-      return 10**((value / 0.001) + 37);
+      return 10**(Math.ceil(value / 0.001) + 37);
     },
     display: function (value) {
-      return Math.ceil(value).toPrecision(4) + ' Gems';
+      return Math.ceil(value).toPrecision(1) + ' Gems';
     }
   },
 	
