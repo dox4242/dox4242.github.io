@@ -1072,7 +1072,7 @@ var Artifacts = [
       return value * 100000;
     },
     display: function (value) {
-      return 'At least ' + util.render.time(value) + ' days of activity time for each of these spells: Fairy Chanting, Hellfire Blast and Brainwave';
+      return 'At least ' + util.render.time(value * 86400) + ' activity time (all time) for each of these spells: Fairy Chanting, Hellfire Blast and Brainwave';
     }
   },
 
