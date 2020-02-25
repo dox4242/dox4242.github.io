@@ -392,7 +392,7 @@ var Artifacts = [
       return util.save.stat(save, 1) / 18000000;
     },
     required: function(value) {
-      return Math.ceil(value * 18000000);
+      return Math.max(Math.ceil(value * 18000000), 36000);
     },
     display: function(value) {
       return util.render.time(value) + ' Playtime'
