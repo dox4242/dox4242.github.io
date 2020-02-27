@@ -1066,7 +1066,7 @@ var Artifacts = [
 	//(min(x, y, z) / 1,000 days)%, where x is Fairy Chanting spell activity time, y is Hellfire Blast spell activity time, and z is Brainwave spell activity time (all time)
       return (Math.min((save.spells[6].active0 + save.spells[6].active1 + save.spells[6].active2),
 					   (save.spells[11].active0 + save.spells[11].active1 + save.spells[11].active2),
-	                   (save.spells[2].active0 + save.spells[2].active1 + save.spells[2].active2)))  / 100000;
+	                   (save.spells[2].active0 + save.spells[2].active1 + save.spells[2].active2)))  / (100000 * 86400);
     },
     required: function (value) {
       return value * 100000;
