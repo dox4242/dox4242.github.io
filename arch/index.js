@@ -247,16 +247,18 @@
 	this.viewArtifacts = function() {
 		if (View.raw.sv) {
 			var svs,i,reinc;
-			$(".viewer-results").empty().html("<b>Excavation:</b> " + View.raw.sv.x + " values ahead (" +
-			(View.raw.eligible.length > 0 ? Math.ceil(View.raw.sv.x / View.raw.eligible.length) + " Excavations)":"Unable to move small values due to 0 eligible artifacts)") + " with <b>Small Value:</b> " + View.raw.sv.y);
+			$(".viewer-results").empty().html("<b>Excavations:</b>  " + (View.raw.eligible.length > 0 ? Math.ceil(View.raw.sv.x / View.raw.eligible.length) + " (If current number of eligible artifacts does not change)":"Unable to move small values due to 0 eligible artifacts")
+			+ "<br><b>Values:</b>  " + View.raw.sv.x + " values ahead " + " with <b>Small Value:</b> " + View.raw.sv.y);
 			if (View.raw.unowned.length) {
 				$(".viewer-results").append("<br><br><table><tbody>");
 				svs = View.raw.eligible.length > 1 ? "<th> Small Value Shifts Required <a>(?)</a></th>" : "";
 				$(".viewer-results tbody").append("<tr><th> Artifact </th><th> Requirement </th>" + svs);
 				View.raw.eligible.length > 1 && $(".viewer-results th a").popover({
 					trigger: "hover",
+					html: true,
 					content: 'Every time you excavate, each eligible artifact consumes a small value per excavation. If you have more than one eligible artifact, this means that a good'
 					+ ' small value can be consumed by the "wrong" artifact. You can shift the small values your current artifacts will consume by excavating with less (but at least one) eligible artifacts, likely in a different run.'
+					+ '	<br \><b>Warning:</b> If an artifact becomes eligible at an even number of excavations such as 2000, that excavation will also cause a small value shift.'
 				});
 			}
 			reinc = ($("#override-box").is(":checked") && !isNaN(parseInt($('#override-reincarnation').val()))) ? $('#override-reincarnation').val() : this.save.reincarnation;
@@ -266,8 +268,8 @@
 				i && i == View.raw.eligible.length && $(".viewer-results tbody").append("---");
 				if (!artifact.reincarnation || reinc >= artifact.reincarnation) {
 					var probability = artifact.required ? artifact.display(artifact.required(View.raw.sv.y)) : artifact.random ? View.raw.sv.y <= artifact.random(this.save, View.raw.sv.x) : 0;
-					//true = Possible, false = Not Possible, an actual value is unchanged
-					if (probability = !0 === probability ? "Possible" : probability === !1 ? "Not Possible" : probability) {
+					//change input if required: true = Obtainable, false = Not Obtainable, an actual value is unchanged
+					if (probability = !0 === probability ? "Obtainable" : probability === !1 ? "Not Obtainable" : probability) {
 						if(i < View.raw.eligible.length && View.raw.eligible.length > 1) {
 							svs = View.raw.sv.x % View.raw.eligible.length, svs = (i >= svs ? View.raw.eligible.length : 0) + svs - i - 1;
 							svs = ("<td>" + (svs === 0 ? "Uses Value" : (svs + " Shift" + (svs == 1 ? "" : "s"))) + "</td>");

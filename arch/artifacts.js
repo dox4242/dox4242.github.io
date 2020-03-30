@@ -114,7 +114,7 @@ var Artifacts = [
     name: 'Scarab of Fortune',
     id: 119,
     fixed: function(save) {
-      return util.save.upgrade_owned(save,469);
+      return util.save.upgrade_owned(save,469) && save.alignment == 3;
     },
     notry: function(save) {
       return save.alignment != 3;
@@ -320,7 +320,7 @@ var Artifacts = [
       return Math.ceil(value * 50000);
     },
     display: function(value) {
-      return value + ' Assistant' + (value>1?'s':'');;
+      return value + ' Base Assistant' + (value>1?'s':'');;
     }
   },
   {
@@ -342,7 +342,6 @@ var Artifacts = [
   {
     name: 'Demonic Figurine',
     id: 134,
-	  reincarnation: 27,
     fixed: function(save) {
       return util.save.upgrade_owned(save,469) && save.faction == 5 && save.prestigeFaction == -1 && util.save.trophies(save) >= 666;
     },
@@ -610,7 +609,7 @@ var Artifacts = [
     name: 'Voodoo Doll',
     id: 187,
     fixed: function(save) {
-      return util.save.upgrade_owned(save,469);
+      return util.save.upgrade_owned(save,469) && save.alignment == 2;
     },
     notry: function(save) {
       return save.alignment != 2;
@@ -997,7 +996,7 @@ var Artifacts = [
       return value * 10000000000;
     },
     display: function (value) {
-      return Math.ceil(value) + ' Assistant Count';
+      return Math.ceil(value) + ' Base Assistants';
     }
   },
   {
@@ -1110,7 +1109,7 @@ var Artifacts = [
       return value * 10000000000000;
     },
     display: function (value) {
-      return util.render.sci(value) + ' Assistants';
+      return util.render.sci(value) + ' Base Assistants';
     }
   },
 
