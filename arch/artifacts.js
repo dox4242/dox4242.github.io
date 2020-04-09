@@ -167,7 +167,7 @@ var Artifacts = [
     name: 'Power Orb',
     id: 148,
     fixed: function(save) {
-      return util.save.upgrade_owned(save,469) && util.save.max_mana(save) >= 3000;
+      return util.save.upgrade_owned(save,469);
     },
     random: function(save) {
       return util.save.max_mana(save) / 1500000;
