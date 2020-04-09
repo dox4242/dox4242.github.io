@@ -108,7 +108,7 @@
       View.remainder = til_end;
       View.raw.remainder_scry = eggForecast(this.state, til_end_scry, this.unowned);
       View.remainder_scry = til_end_scry;
-      View.raw.full_stack = eggForecast(this.state, 480, this.unowned);
+      View.raw.full_stack = eggForecast(this.state, 720, this.unowned);
       View.raw.next_stack = eggForecast(this.state, next_stack, this.unowned);
       View.next_stack = next_stack;
       if (this.unowned.length) {
