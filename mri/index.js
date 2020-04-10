@@ -94,7 +94,7 @@
       View.state = this.state = this.save.eggRngState;
 
       var now = new Date();
-      var end = Date.UTC(2020, 4, 16, 18, 59, 0);
+      var end = Date.UTC(2020, 3, 16, 18, 59, 0);
       var til_end = Math.floor((end - now) / 60000);
       var til_end_scry = Math.floor((end - now) / 60000 * 1.2);
       var next_stack = this.save.eggStackSize;
