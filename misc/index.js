@@ -16,12 +16,11 @@
         console.log(err);
         return;
       }
-      View.spells = this.get_tiers(this.save);
+      this.get_tiers(this.save);
     }
 
     this.get_tiers = function(save) {
       var spells = [];
-      //var arcaneTrophies = 0;
 	  var unlockedTiers = 0;
       var maxTier = 0;
       
@@ -33,13 +32,17 @@
       
       for (var s of util.assoc.spells) {
         if (s.id == 18 || s.id == 19 || s.id == 20 || s.id == 22 || s.id == 23 || s.id == 24 || s.id == 25 || s.id == 26 || s.id == 27 || s.id == 28 || s.id == 29 || s.id == 30 || s.id == 31) continue;
-        var spell = {name: s.name, id: s.id, unlocked: 0, time2tier: 0, text: ""};
+        var spell = {name: s.name, id: s.id, enabled: false, unlocked: 0, time2tier: 0, text: ""};
         var start = 400001 + s.id * 100;
         for (var i = start; i < start + 20; i++) {
           if (save.upgrades[i]) {
             spell.unlocked += 1;
 			unlockedTiers += 1;
           }
+		  if (util.save.hasSpell(save, spell.id))
+		  {
+			  spell.enabled = true;
+		  }
         }
 		spells.push(spell);
 	  }
@@ -68,7 +71,60 @@
         
       }
 	  View.unlockedTiers = unlockedTiers;
-      return spells;
+      View.allSpells = spells;
+	  
+	  // Timeline
+	  var timeLineText = [];
+	  var timeLineTimeSpent = 0;
+	  var timeLineUnlockedTiers = unlockedTiers;
+	  
+	  var enabledSpells = [];
+	  var currentTiers = 0;
+	  var maxTiers = 0;
+	  
+	  for (var spell of spells)
+	  {
+		  if (spell.enabled)
+		  {
+			  //clone the spell
+			  enabledSpells.push(JSON.parse(JSON.stringify(spell)));
+			  currentTiers += spell.unlocked + 1;
+		  }
+	  }
+	  maxTiers = maxTier * enabledSpells.length;
+	  
+	  while (currentTiers < maxTiers)
+	  {
+		  var spell2tier;
+		  var minTierTime = Infinity;
+		  for (var spell of enabledSpells)
+		  {
+			  if (spell.unlocked + 1 == maxTier)
+			  {
+				  continue;
+			  }
+			  
+			  var time2tier = Math.ceil((86400 * (0.4 + 0.1 * (spell.unlocked + 2)) * ((Math.pow(spell.unlocked + 2, 2) + 1) / (0.1 * timeLineUnlockedTiers + 1)) * (Math.pow(0.98, save.reincarnation - 35))) - save.spells[spell.id].active0 - save.spells[spell.id].active1 - timeLineTimeSpent);
+			  
+			  if (minTierTime > time2tier)
+			  {
+				  minTierTime = time2tier;
+				  spell2tier = spell;
+			  }
+		  }
+		  
+		  if (minTierTime < 0)
+		  {
+			  minTierTime = 0;
+		  }
+		  
+		  timeLineTimeSpent += minTierTime;
+		  timeLineText.push(util.render.time(timeLineTimeSpent) + ": " + spell2tier.name + " Will tier to tier " + (spell2tier.unlocked + 2));
+		  timeLineUnlockedTiers += 1;
+		  currentTiers += 1;
+		  spell2tier.unlocked += 1;
+	  }
+	  View.timeLine = timeLineText;
     }
   }
 
@@ -80,8 +136,9 @@
     window.View = new Vue({
       el: '#app',
       data: {
-        spells: [],
-		unlockedTiers: -1
+        allSpells: [],
+		unlockedTiers: -1,
+		timeLine: ""
       }
     });
     Vue.config.debug = true;
