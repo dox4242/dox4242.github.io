@@ -31,7 +31,7 @@
       maxTier = save.reincarnation >= 100 ? 7 : 6;
       
       for (var s of util.assoc.spells) {
-        if (s.id == 18 || s.id == 19 || s.id == 20 || s.id == 22 || s.id == 23 || s.id == 24 || s.id == 25 || s.id == 26 || s.id == 27 || s.id == 28 || s.id == 29 || s.id == 30 || s.id == 31) continue;
+        if (s.id == 18 || s.id == 19 || s.id == 20 || s.id == 22 || s.id == 23 || s.id == 24 || s.id == 25 || s.id == 26 || s.id == 27 || s.id == 28 || s.id == 29 || s.id == 30 || s.id == 31 || s.id == 32}) continue;
         var spell = {name: s.name, id: s.id, enabled: false, unlocked: 0, time2tier: 0, text: ""};
         var start = 400001 + s.id * 100;
         for (var i = start; i < start + 20; i++) {
@@ -55,9 +55,9 @@
         }
         else
         {
-            // Time for tier: Formula: 86400 * (0.4 + 0.1 * T) * ((T ^ 2 + 1) / (0.1 * U + 1)) * (0.98 ^ (R - 35))
+            // Time for tier: Formula: 57600 * (0.4 + 0.1 * T) * ((T ^ 2 + 1) / (0.1 * U + 1)) * (0.97 ^ (R - 35))
 			// Where T = tier, U = number of unlocked tiers, R = reincarnation
-			spell.time2tier = Math.ceil((86400 * (0.4 + 0.1 * (spell.unlocked + 2)) * ((Math.pow(spell.unlocked + 2, 2) + 1) / (0.1 * unlockedTiers + 1)) * (Math.pow(0.98, save.reincarnation - 35))) - save.spells[spell.id].active0 - save.spells[spell.id].active1);
+			spell.time2tier = Math.ceil((57600 * (0.4 + 0.1 * (spell.unlocked + 2)) * ((Math.pow(spell.unlocked + 2, 2) + 1) / (0.1 * unlockedTiers + 1)) * (Math.pow(0.97, save.reincarnation - 35))) - save.spells[spell.id].active0 - save.spells[spell.id].active1);
             
             if (spell.time2tier < 0)
             {
@@ -104,7 +104,7 @@
 				  continue;
 			  }
 			  
-			  var time2tier = Math.ceil((86400 * (0.4 + 0.1 * (spell.unlocked + 2)) * ((Math.pow(spell.unlocked + 2, 2) + 1) / (0.1 * timeLineUnlockedTiers + 1)) * (Math.pow(0.98, save.reincarnation - 35))) - save.spells[spell.id].active0 - save.spells[spell.id].active1 - timeLineTimeSpent);
+			  var time2tier = Math.ceil((57600 * (0.4 + 0.1 * (spell.unlocked + 2)) * ((Math.pow(spell.unlocked + 2, 2) + 1) / (0.1 * timeLineUnlockedTiers + 1)) * (Math.pow(0.97, save.reincarnation - 35))) - save.spells[spell.id].active0 - save.spells[spell.id].active1 - timeLineTimeSpent);
 			  
 			  if (minTierTime > time2tier)
 			  {
