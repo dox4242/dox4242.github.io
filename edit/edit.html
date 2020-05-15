@@ -353,7 +353,7 @@
             <tr v-show='save.alignment == 3' is='widget-field-dropdown' :field.sync='save.mercSpell2' type='spells' filter='neutralmercspells' :colspan='5' name='Mercenary Spell 2'></tr>
             <!--<tr v-show='save.ascension >= 3 || save.ascesion == null' is='widget-field-dropdown' :field.sync='save.' type='spells' :colspan='5' name='Mercenary Unique Building'></tr>-->
             <tr v-show='save.ascension >= 3 || save.ascesion == null' is='widget-field-dropdown' :field.sync='save.mercUnion' :upgrades.sync='upgradesArray' type='upgradeIDs' filter='unions' :colspan='5' name='Mercenary Union'></tr>
-
+			<tr v-show='save.ascension >= 3 || save.ascesion == null' is='widget-field-dropdown' :field.sync='save.mercUnion2' :upgrades.sync='upgradesArray' type='upgradeIDs' filter='unions' :colspan='5' name='Second Mercenary Union (MCC4)'></tr>
             <tr is='widget-fivestat-header'></tr>
             <tr is='widget-stat-time' :stat.sync='save.stats[i.timestat]' :name='i.name + " Playtime"' v-for='i in factions | filterDef "timestat"'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[i.affilstat]' :name='i.name + " Affiliations"' v-for='i in factions | filterDef "affilstat"'></tr>
@@ -590,7 +590,7 @@
             <tr is='widget-stat' :stat.sync='save.stats[48]' name='Honor Among Killers FC'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[112]' name='Lightning Strike FC'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[i.fcstat]' :name='i.name + " Coins Gained"' v-for='i in factions | filterDef "fc"'></tr>
-            <!--tr is='widget-stat-max' :stat.sync='save.stats[i.fcmaxstat]' :name='"Max " + i.name + " Coins Gained"' v-for='i in factions | filterDef "fc"'></tr-->
+            <tr is='widget-stat-max' :stat.sync='save.stats[148]' :name='"Max Faction Coins Gained"'></tr>
           </table>
         </div>
       </div>
@@ -777,6 +777,11 @@
             <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=997 name='Makers 3: Pillars of Creation'></tr>
             <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=998 name='Makers 4: Stoneheart'></tr>
             <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=999 name='Makers 5: Greatest Invention'></tr>
+			<tr is='widget-challenge' :upgrades.sync='upgradesArray' id=1063 name='Mercenary 1: Unlimited Knowledge'></tr>
+            <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=1064 name='Mercenary 2: The Source of Magic'></tr>
+            <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=1065 name='Mercenary 3: Men of the World'></tr>
+            <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=1066 name='Mercenary 4: Return of the King'></tr>
+            <tr is='widget-challenge' :upgrades.sync='upgradesArray' id=1067 name='Mercenary 5: The Art of War'></tr>
 
           </table>
         </div>
@@ -792,6 +797,7 @@
             <tr is='widget-stat' :stat.sync='save.stats[93]' name='Economics Level'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[94]' name='Alchemy Level'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[95]' name='Warfare Level'></tr>
+			<tr is='widget-stat' :stat.sync='save.stats[154]' name='Forbidden Level'></tr>
             <tr><td><b>Miracle (D400) streak</b></td>
             <template v-if="miracleAvail == 'True'"><td><select v-model="miracleinput">
             <option v-for="name in currentbuildingsM">{{ name }}</option></select> {{ miraclemsg }}</td></template>
@@ -918,6 +924,7 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=175 name='I Love You in Every Language Feat'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=272 name='Assistant Love Feat'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=315 name='Chocolate Box Feat'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=354 name='Fairy Love Feat'></tr>
             <tr><td colspan='4'><center><b>Easter Event</b></center></td></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=119500 name='Egg Hunter 1 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=119501 name='Egg Hunter 2 Quest'></tr>
@@ -933,6 +940,7 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=193 name='Grey Easter Feat'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=287 name='Bunny Helpers Feat'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=324 name='Chocolate Egg Feat'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=355 name='Eggsceptional Feat'></tr>
             <tr><td colspan='4'><center><b>Summer Event</b></center></td></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=120800 name='Summeraan Champion 1 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=120801 name='Summeraan Champion 2 Quest'></tr>
@@ -959,6 +967,7 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=244 name='Darkest Heresy Feat'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=293 name='Indifference Feat'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=325 name='World Restoration Feat'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=356 name='Eternal Battle Feat'></tr>
             <tr><td colspan='4'><center><b>Goblin Invasion Event</b></center></td></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=125500 name='Goblin&apos;s Commander 1 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=125501 name='Goblin&apos;s Commander 2 Quest'></tr>
