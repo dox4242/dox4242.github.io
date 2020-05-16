@@ -476,6 +476,102 @@
         }
       }
     });
+	
+	    Vue.component('widget-stat-max', {
+      props: {
+        stat: Object,
+        name: String,
+        hideAb: {
+          type: Boolean,
+          default: function() { return false; }
+        },
+        hidePrevAbs: {
+          type: Boolean,
+          default: function() { return false; }
+        },
+        hideRei: {
+          type: Boolean,
+          default: function() { return false; }
+        },
+        hidePrevReis: {
+          type: Boolean,
+          default: function() { return false; }
+        },
+        hideTotal: {
+          type: Boolean,
+          default: function() { return false; }
+        }
+      },
+      template: '<tr>'
+      + '<th><span class="statname">{{name}}</span></th>'
+      + '<td v-show="!hideAb"><input v-model="stat.stats" number></input></td>'
+      + '<td v-else><span class="nullstat">&mdash;</span></td>'
+      + '<td v-show="!hidePrevAbs"><input v-model="stat.statsReset" number></input></td>'
+      + '<td v-else><span class="nullstat">&mdash;</span></td>'
+      + '<td v-show="!hideRei"><span class="derivedstat">{{rei}}</span></td>'
+      + '<td v-else><span class="nullstat">&mdash;</span></td>'
+      + '<td v-show="!hidePrevReis"><input v-model="stat.statsRei" number></input></td>'
+      + '<td v-else><span class="nullstat">&mdash;</span></td>'
+      + '<td v-show="!hideTotal"><span class="derivedstat">{{total}}</span></td>'
+      + '<td v-else><span class="nullstat">&mdash;</span></td>'
+      + '</tr>',
+      computed: {
+        rei: function() {
+          return Math.max(this.stat.stats, this.stat.statsReset);
+        },
+        total: function() {
+          return Math.max(this.stat.stats, this.stat.statsReset, this.stat.statsRei);
+        }
+      }
+    });    
+	
+	/*Vue.component('widget-mana-regen-max', {
+      props: {
+        stat: Object,
+        name: String,
+        hideAb: {
+          type: Boolean,
+          default: function() { return false; }
+        },
+        hidePrevAbs: {
+          type: Boolean,
+          default: function() { return false; }
+        },
+        hideRei: {
+          type: Boolean,
+          default: function() { return false; }
+        },
+        hidePrevReis: {
+          type: Boolean,
+          default: function() { return false; }
+        },
+        hideTotal: {
+          type: Boolean,
+          default: function() { return false; }
+        }
+      },
+      template: '<tr>'
+      + '<th><span class="statname">{{name}}</span></th>'
+      + '<td v-show="!hideAb"><input v-model="maxManaRegen.stats" number></input></td>'
+      + '<td v-else><span class="nullstat">&mdash;</span></td>'
+      + '<td v-show="!hidePrevAbs"><input v-model="maxManaRegen.statsReset" number></input></td>'
+      + '<td v-else><span class="nullstat">&mdash;</span></td>'
+      + '<td v-show="!hideRei"><span class="derivedstat">{{rei}}</span></td>'
+      + '<td v-else><span class="nullstat">&mdash;</span></td>'
+      + '<td v-show="!hidePrevReis"><input v-model="maxManaRegen.statsRei" number></input></td>'
+      + '<td v-else><span class="nullstat">&mdash;</span></td>'
+      + '<td v-show="!hideTotal"><span class="derivedstat">{{total}}</span></td>'
+      + '<td v-else><span class="nullstat">&mdash;</span></td>'
+      + '</tr>',
+      computed: {
+        rei: function() {
+          return Math.max(this.maxManaRegen.stats, this.maxManaRegen.statsReset);
+        },
+        total: function() {
+          return Math.max(this.maxManaRegen.stats, this.maxManaRegen.statsReset, this.maxManaRegen.statsRei);
+        }
+      }
+    });*/
 
     Vue.component('widget-stat-max-time', {
       props: {
@@ -1383,6 +1479,22 @@
         }
       },
       computed: {
+		  /*maxManaRegen: {
+          get: function() {
+			var manaRegenStat = this.save.stats[146];
+			manaRegenStat.stats *= 30;
+			manaRegenStat.statsReset *= 30;
+			manaRegenStat.statsRei *= 30;
+            return manaRegenStat;
+          },
+          set: function(x) {
+			var manaRegenStat = x;
+			manaRegenStat.stats /= 30;
+			manaRegenStat.statsReset /= 30;
+			manaRegenStat.statsRei /= 30;
+            this.save.stats[146] = x;
+          }
+        },*/
         offlinetime: {
           get: function() {
             this.updateTime()

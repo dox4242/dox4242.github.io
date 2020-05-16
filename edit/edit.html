@@ -297,8 +297,8 @@
             <tr is='widget-field' :field.sync='save.mana' can-edit :colspan='5' name='Mana'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[16]' name='Mana Produced'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[27]' name='Mana Spent'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[133]' name='Highest Max Mana'></tr>
-            <tr is='widget-stat' :stat.sync='save.stats[146]' name='Highest Mana Regen'></tr>
+            <tr is='widget-stat-max' :stat.sync='save.stats[133]' name='Highest Max Mana'></tr>
+            <tr is='widget-stat-max' :stat.sync='save.stats[146]' name='Highest Mana Regen (Per Tick)'></tr>
             <tr is='widget-field' :field.sync='save.contingencyValue' can-edit :colspan='5' name='Contingency Percentage (0-100)'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[15]' name='Spells Cast'></tr>
             <tr is='widget-stat-max' :stat.sync='save.stats[40]' name='Max Spells Cast'></tr>
