@@ -1320,7 +1320,7 @@ var Artifacts = [
       return (value * 100000) + 10;
     },
     display: function (value) {
-      return Math.ceil(value) + ' Excavation Resets (This Game)';
+      return (Math.ceil(value) + 10) + ' Excavation Resets (This Game)';
     }
   },
 	
@@ -1335,7 +1335,7 @@ var Artifacts = [
       return Math.pow(util.save.getSpentBudget(save),2) / 10000000000000;
     },
 	required: function (value) {
-      return Math.pow(value * 10000000000000,1/2);
+      return Math.pow(value * 10000000000000, 1/2);
     },
     display: function (value) {
       return Math.ceil(value) + ' Research Budget Spent';
