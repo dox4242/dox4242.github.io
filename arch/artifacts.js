@@ -1320,7 +1320,7 @@ var Artifacts = [
       return (value * 100000) + 10;
     },
     display: function (value) {
-      return (Math.ceil(value) + 10) + ' Excavation Resets (This Game)';
+      return Math.ceil(value) + ' Excavation Resets (This Game)';
     }
   },
 	
