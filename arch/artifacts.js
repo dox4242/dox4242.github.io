@@ -1289,7 +1289,7 @@ var Artifacts = [
   {
     name: 'Mercenary Insignia',
     id: 330,
-	  reincarnation: 160,
+	reincarnation: 160,
     fixed: function(save) {
       return save.reincarnation >= this.reincarnation && save.faction == 11 && util.save.trophy_owned(save,152) && util.save.trophy_owned(save,131);
     },
@@ -1309,7 +1309,7 @@ var Artifacts = [
   {
     name: 'Obsidian Crown',
     id: 331,
-	  reincarnation: 170,
+	reincarnation: 170,
     fixed: function(save) {
       return save.reincarnation >= this.reincarnation && save.faction == 11 && (util.save.stat(save, 135) + util.save.stat(save, 104)) >= 10;
     },
@@ -1317,7 +1317,7 @@ var Artifacts = [
       return (util.save.stat(save, 135) + util.save.stat(save, 104) - 10) / 100000;
     },
 	required: function (value) {
-      return (value * 10000) + 10;
+      return (value * 100000) + 10;
     },
     display: function (value) {
       return Math.ceil(value) + ' Excavation Resets (This Game)';
