@@ -1353,7 +1353,7 @@ var Artifacts = [
       return (Math.pow(Math.log10(util.save.stat(save, 15),3))) / 5000000;
     },
 	required: function (value) {
-      return Math.pow(Math.pow((value * 5000000),1/3),10);
+      return Math.pow(10, Math.pow((value * 5000000),1/3));
     },
     display: function (value) {
       return Math.ceil(value) + ' Mana Produced (This Game)';
@@ -1371,7 +1371,7 @@ var Artifacts = [
       return (Math.pow(Math.log10(util.save.stat(save, 4),3))) / 1000000;
     },
 	required: function (value) {
-      return Math.pow(Math.pow((value * 1000000),1/3),10);
+      return Math.pow(10, Math.pow((value * 1000000),1/3));
     },
     display: function (value) {
       return Math.ceil(value) + ' Clicks (This Game)';
@@ -1443,7 +1443,7 @@ var Artifacts = [
       return (Math.pow(Math.log10(util.save.assistants(save),3))) / 2000000;
     },
 	required: function (value) {
-      return (Math.pow(Math.pow((value * 2000000),1/3),10));
+      return (Math.pow(10, Math.pow((value * 2000000),1/3)));
     },
     display: function (value) {
       return Math.ceil(value) + ' Assistants';
