@@ -81,11 +81,10 @@
           <label class='input-group-addon'> Output Save:</label>
           <input readonly id='saveOutput' class='form-control' v-model='outputsave' onclick='this.select()'></input>
           <div class='input-group-btn'>
-            <button id='doGenSave' class='btn btn-success' type='button' @click='genSave'>Generate Save</button>
-            <button id='doGenCopy' class='btn btn-info' type='button'>Copy save</button>
+            <button id='doGenSave' class='btn btn-success' type='button' @click='genSave'>Generate and copy save to clipboard</button>
+            <!--<button id='doGenCopy' class='btn btn-info' type='button'>Copy save</button>-->
           </div>
         </div>
-        <p align="right">Note: The Copy save button may not work in some browers.</p>
       </div>
     </div>
     <ul class='nav nav-pills' role='tablist'>

@@ -1437,6 +1437,10 @@
       methods: {
         genSave: function(event) {
           this.outputsave = SaveHandler.Encode(this.save);
+		  $('#saveOutput').trigger('focus');
+		  $('#saveOutput').select();
+	      document.execCommand('copy');
+          window.alert('Copied to clipobard!');
         },
         updateTime: function() {
           this.currentTime = Math.floor(new Date().getTime()/1000);
@@ -1576,15 +1580,9 @@
     // Bind Copy button to copy the current save string
     $('#doSaveCopy').on('click', function(e) {
       $('#saveInput').trigger('focus');
-      var save = $('#saveInput').val();
-      window.prompt('Copy to clipboard: Press Ctrl+C, then Enter', save);
-    });
-
-    // Bind Copy button to copy the generated save string
-    $('#doGenCopy').on('click', function(e) {
-      $('#saveOutput').trigger('focus');
-      var save = $('#saveOutput').val();
-      window.prompt('Copy to clipboard: Press Ctrl+C, then Enter', save);
+      $('#saveInput').select();
+	  document.execCommand('copy');
+      window.alert('Copied to clipobard!');
     });
 
     // Bind Clear button to clear the save input field
