@@ -962,7 +962,7 @@ var Artifacts = [
       return Math.pow(value * 1000000 , (1 / 4.5)) / 3;
     },
     display: function (value) {
-      return Math.ceil(value) + ' Non Ruby Excavation Resets this game';
+      return Math.ceil(value) + ' Excavation Resets this game';
     }
   },
   {
