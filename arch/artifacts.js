@@ -1128,7 +1128,7 @@ var Artifacts = [
       return Math.pow(10,Math.pow(value*250000000,1/3));
     },
     display: function (value) {
-      return util.render.sci(value) + ' Faction Coins found';
+      return util.render.sci(value) + ' Faction Coins found (this Game)';
     }
   },
 
@@ -1147,7 +1147,7 @@ var Artifacts = [
       return value * 5000000000;
     },
     display: function (value) {
-      return util.render.sci(value) + ' Evil Spells cast (This R)';
+      return util.render.sci(value) + ' Evil Spells cast (This Reincarnation)';
     }
   },
 
@@ -1225,7 +1225,7 @@ var Artifacts = [
       return Math.pow(10,Math.pow(value*2000000,1/3));
     },
     display: function (value) {
-      return util.render.sci(value)  + ' Clicks';
+      return util.render.sci(value)  + ' Clicks (This Game)';
     }
   },
 
