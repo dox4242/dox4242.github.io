@@ -1083,7 +1083,7 @@ var Artifacts = [
       return util.save.upgrade_owned(save,747) && save.reincarnation >= this.reincarnation;
     },
     random: function (save) {
-    //(ln(1 + x) ^ 2 / 12000)%, where x is FC collected this game.
+    // (2 * log10(1 + x) ^ 2 / 12000)%, where x is FC collected this game.
       return Math.pow(Math.log10(1 + util.save.faction_coins(save)), 2) / 600000;
     },
     required: function (value) {
