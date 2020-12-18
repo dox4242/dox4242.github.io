@@ -85,7 +85,7 @@
       var num = util.save.stat(this.save, 35);
       var smalls = [];
       var raw_values = 0;
-      var calculatedValues = (this.save.ascension >= 2 ? 100000 : 10000);
+      var calculatedValues = (this.save.ascension >= 1 ? 100000 : 10000);
 	    var excavLimit = calculatedValues;
       var valueLimit = (this.save.ascension >= 2 ? 0.001 : 0.01);
 
