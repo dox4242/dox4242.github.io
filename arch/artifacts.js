@@ -1448,6 +1448,168 @@ var Artifacts = [
     display: function (value) {
       return Math.ceil(value) + ' Assistants';
     }
+  },
+  
+  {
+    name: 'Glowing Wing',
+    id: 364,
+	reincarnation: 220,
+    fixed: function(save) {
+      return save.faction == 0 && save.ascension >= 4 && save.excavations >= 10000;
+    },
+    random: function(save) {
+      return (Math.log10(util.save.mana(save))) / 800000;
+    },
+	required: function (value) {
+      return (Math.pow(10,(value * 800000)));
+    },
+    display: function (value) {
+      return util.render.sci(value) + ' Mana Produced (This Game)';
+    }
+  },
+  
+  {
+    name: 'Sylvan Mirror',
+    id: 369,
+	reincarnation: 220,
+    fixed: function(save) {
+      return save.faction == 1 && save.ascension >= 4 && save.excavations >= 10000;
+    },
+    random: function(save) {
+      return (Math.log10(util.save.faction_coins(save))) / 800000;
+    },
+	required: function (value) {
+      return (Math.pow(10,(value * 800000)));
+    },
+    display: function (value) {
+      return util.render.sci(value) + ' Factions Coins (This Game)';
+    }
+  },
+  
+  {
+    name: 'Solid Cloud',
+    id: 365,
+	reincarnation: 220,
+    fixed: function(save) {
+      return save.faction == 2 && save.ascension >= 4 && save.excavations >= 10000;
+    },
+    random: function(save) {
+      return util.save.active_spells / 400000;
+    },
+	required: function (value) {
+      return value * 4000000;
+    },
+    display: function (value) {
+      return Math.ceil(value) + ' Active Spells';
+    }
+  },
+  
+  {
+    name: 'Orc Fang Necklace',
+    id: 366,
+	reincarnation: 220,
+    fixed: function(save) {
+      return save.faction == 3 && save.ascension >= 4 && save.excavations >= 10000;
+    },
+    random: function(save) {
+      return (Math.log10(util.spells(save))) / 800000;
+    },
+	required: function (value) {
+      return (Math.pow(10,(value * 800000)));
+    },
+    display: function (value) {
+      return util.render.sci(value) + ' Tax Collection Casts (This Game)';
+    }
+  },
+  
+  {
+    name: 'Blood Chalice',
+    id: 371,
+	reincarnation: 220,
+    fixed: function(save) {
+      return save.faction == 4 && save.ascension >= 4 && save.excavations >= 10000;
+    },
+    random: function(save) {
+      return util.save.spell / 1000000;
+    },
+	required: function (value) {
+      return value * 1000000;
+    },
+    display: function (value) {
+      return util.render.time(value) + ' Blood Frenzy Max Duration';
+    }
+  },
+  
+  {
+    name: 'Demon Tail',
+    id: 372,
+	reincarnation: 220,
+    fixed: function(save) {
+      return save.faction == 5 && save.ascension >= 4 && save.excavations >= 10000;
+    },
+    random: function(save) {
+      return util.save.spells / 100000000;
+    },
+	required: function (value) {
+      return value * 100000000;
+    },
+    display: function (value) {
+      return util.render.sci(value) + ' Evil Spells (This Game)';
+    }
+  },
+  
+  {
+    name: 'Frozen Lightning',
+    id: 363,
+	reincarnation: 220,
+    fixed: function(save) {
+      return save.faction == 6 && save.ascension >= 4 && save.excavations >= 10000;
+    },
+    random: function(save) {
+      return util.save.spells / 100000000;
+    },
+	required: function (value) {
+      return value * 100000000;
+    },
+    display: function (value) {
+      return util.render.time(value) + ' Lightning Strike Activity Spell Time (This Game)';
+    }
+  },
+  
+  {
+    name: 'Primal Leaf',
+    id: 367,
+	reincarnation: 220,
+    fixed: function(save) {
+      return save.faction == 7 && save.ascension >= 4 && save.excavations >= 10000;
+    },
+    random: function(save) {
+      return (Math.log10(util.save.max_mana)) / 800000;
+    },
+	required: function (value) {
+      return Math.pow(10,(value * 800000));
+    },
+    display: function (value) {
+      return util.render.sci(value) + ' Maximum Mana in this Reincarnation';
+    }
+  },
+  
+  {
+    name: 'The Blackest Ink',
+    id: 370,
+	reincarnation: 220,
+    fixed: function(save) {
+      return save.faction == 8 && save.ascension >= 4 && save.excavations >= 10000;
+    },
+    random: function(save) {
+      return util.save.time / 1000000;
+    },
+	required: function (value) {
+      return value * 1000000;
+    },
+    display: function (value) {
+      return util.render.time(value) + ' Longest Session This R (Excluding This Game)';
+    }
   }
 	
 ];
