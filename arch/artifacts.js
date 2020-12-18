@@ -1482,7 +1482,7 @@ var Artifacts = [
       return (Math.pow(10,(value * 800000)));
     },
     display: function (value) {
-      return util.render.sci(value) + ' Factions Coins (This Game)';
+      return util.render.sci(value) + '%  Faction Coin Chance';
     }
   },
   
@@ -1572,7 +1572,7 @@ var Artifacts = [
       return value * 100000000;
     },
     display: function (value) {
-      return util.render.time(value) + ' Lightning Strike Activity Spell Time (This Game)';
+      return util.render.time(value) + ' Lightning Strike Activity Time (This Game)';
     }
   },
   
