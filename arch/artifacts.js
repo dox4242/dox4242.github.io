@@ -608,8 +608,9 @@ var Artifacts = [
   {
     name: 'Voodoo Doll',
     id: 187,
+    reincarnation: 16,
     fixed: function(save) {
-      return util.save.upgrade_owned(save,469) && save.alignment == 2;
+      return save.reincarnation >= this.reincarnation && util.save.upgrade_owned(save,469) && save.alignment == 2;
     },
     notry: function(save) {
       return save.alignment != 2;
@@ -660,9 +661,10 @@ var Artifacts = [
   {
     name: 'Dawnstone',
     id: 233,
+    reincarnation: 16,
     fixed: function(save) {
       var h = new Date().getHours();
-      return h >= 5 && h <= 7 && util.save.upgrade_owned(save,469);
+      return save.reincarnation >= this.reincarnation && h >= 5 && h <= 7 && util.save.upgrade_owned(save,469);
     },
     nocache: true,
     random: function(save, e) {
@@ -687,9 +689,10 @@ var Artifacts = [
   {
     name: 'Duskstone',
     id: 234,
+    reincarnation: 16,
     fixed: function(save) {
       var h = new Date().getHours();
-      return h >= 18 && h <= 20 && util.save.upgrade_owned(save,469);
+      return save.reincarnation >= this.reincarnation && h >= 18 && h <= 20 && util.save.upgrade_owned(save,469);
     },
     nocache: true,
     random: function(save, e) {
@@ -887,10 +890,10 @@ var Artifacts = [
       return save.faction == 5 && save.reincarnation >= this.reincarnation && save.excavations >= 2000 && util.save.trophy_owned(save,134) && util.save.trophy_owned(save,140);
     },
     random: function (save) {
-      return (save.buildings[10].q - 10000) / 20000000;
+      return (save.buildings[10].q - 8000) / 20000000;
     },
     required: function (value) {
-      return value * 20000000 + 10000;
+      return value * 20000000 + 8000;
     },
     display: function (value) {
       return Math.ceil(value) + ' Hall of Legends';
@@ -922,10 +925,10 @@ var Artifacts = [
       return save.faction == 3 && save.reincarnation >= this.reincarnation && save.excavations >= 2000 && util.save.trophy_owned(save,129) && util.save.trophy_owned(save,139);
     },
     random: function (save) {
-      return (save.buildings[21].q - 10000) / 30000000;
+      return (save.buildings[21].q - 8000) / 30000000;
     },
     required: function (value) {
-      return value * 30000000 + 10000;
+      return value * 30000000 + 8000;
     },
     display: function (value) {
       return Math.ceil(value) + ' Slave Pens';
@@ -973,10 +976,10 @@ var Artifacts = [
       return save.faction == 0 && save.reincarnation >= this.reincarnation && save.excavations >= 2000 && util.save.trophy_owned(save,147) && util.save.trophy_owned(save,132);
     },
     random: function (save) {
-      return (save.buildings[25].q - 10000) / 20000000;
+      return (save.buildings[25].q - 8000) / 20000000;
     },
     required: function (value) {
-      return value * 20000000 + 10000;
+      return value * 20000000 + 8000;
     },
     display: function (value) {
       return Math.ceil(value) + ' Wizard Towers';
@@ -990,10 +993,10 @@ var Artifacts = [
       return save.prestigeFaction === 9 && save.reincarnation >= this.reincarnation && save.excavations >= 2000 && util.save.trophy_owned(save,136) && util.save.trophy_owned(save,154);
     },
     random: function (save) {
-      return util.save.assistants(save) / 10000000000;
+      return util.save.assistants(save) / 100000000000;
     },
     required: function (value) {
-      return value * 10000000000;
+      return value * 100000000000;
     },
     display: function (value) {
       return Math.ceil(value) + ' Base Assistants';
@@ -1200,10 +1203,10 @@ var Artifacts = [
     random: function (save) {
 	//(log10(1 + x) ^ 3 / 1000000 (1M))%, where x is offline bonus multiplier.
 	// Set to 1000, see above
-      return Math.pow((Math.log10(1000 + 1) - 2),3) / 100000000;
+      return Math.pow((Math.log10(1000 + 1) - 2),3) / 50000000;
     },
     required: function (value) {
-      return Math.pow(10 ,Math.pow(value * 100000000,1/3) + 2);
+      return Math.pow(10 ,Math.pow(value * 50000000,1/3) + 2);
     },
     display: function (value) {
       return util.render.sci(value) + '% Offline Production Bonus';
@@ -1327,7 +1330,7 @@ var Artifacts = [
   {
     name: 'Forgotten Relic',
     id: 344,
-	  reincarnation: 175,
+    reincarnation: 175,
     fixed: function(save) {
       return save.reincarnation >= this.reincarnation;
     },
@@ -1345,7 +1348,7 @@ var Artifacts = [
   {
     name: 'Mana Loom',
     id: 350,
-	  reincarnation: 175,
+    reincarnation: 180,
     fixed: function(save) {
       return save.reincarnation >= this.reincarnation && util.save.upgrade_owned(save,748);
     },
@@ -1363,7 +1366,7 @@ var Artifacts = [
   {
     name: 'Factory',
     id: 349,
-	  reincarnation: 175,
+    reincarnation: 180,
     fixed: function(save) {
       return save.reincarnation >= this.reincarnation && util.save.upgrade_owned(save,388);
     },
@@ -1381,7 +1384,7 @@ var Artifacts = [
  {
     name: 'Mythos',
     id: 351,
-	  reincarnation: 175,
+    reincarnation: 180,
     fixed: function(save) {
       return save.reincarnation >= this.reincarnation && util.save.upgrade_owned(save,224);
     },
@@ -1399,7 +1402,7 @@ var Artifacts = [
   {
     name: 'Vault',
     id: 352,
-	  reincarnation: 175,
+    reincarnation: 180,
     fixed: function(save) {
       return save.reincarnation >= this.reincarnation && util.save.upgrade_owned(save,747);
     },
@@ -1417,7 +1420,7 @@ var Artifacts = [
   {
     name: 'Athanor',
     id: 347,
-	  reincarnation: 175,
+    reincarnation: 180,
     fixed: function(save) {
       return save.reincarnation >= this.reincarnation && util.save.upgrade_owned(save,749);
     },
@@ -1435,7 +1438,7 @@ var Artifacts = [
   {
     name: 'Battlefield',
     id: 348,
-	  reincarnation: 175,
+    reincarnation: 180,
     fixed: function(save) {
       return save.reincarnation >= this.reincarnation && util.save.upgrade_owned(save,178);
     },
@@ -1451,6 +1454,21 @@ var Artifacts = [
   },
   
   {
+    name: 'Apeiron',
+    id: 346,
+    reincarnation: 175,
+    fixed: function(save) {
+     for (i = 0; i <= 10; i++) {
+        if (!util.save.bloodline_upgrades(save, i)) return false;
+     }
+     return save.reincarnation >= this.reincarnation && save.faction == 11;
+    },
+    random: function(save) {
+      return 0.1;
+    }
+  },
+  
+  {
     name: 'Glowing Wing',
     id: 364,
 	reincarnation: 220,
@@ -1458,7 +1476,7 @@ var Artifacts = [
       return save.faction == 0 && save.ascension >= 4 && save.excavations >= 10000;
     },
     random: function(save) {
-      return (Math.log10(util.save.mana(save))) / 800000;
+      return Math.log10(util.save.stat(save, 15)) / 800000
     },
 	required: function (value) {
       return (Math.pow(10,(value * 800000)));
@@ -1476,7 +1494,7 @@ var Artifacts = [
       return save.faction == 1 && save.ascension >= 4 && save.excavations >= 10000;
     },
     random: function(save) {
-      return (Math.log10(util.save.faction_coins(save))) / 800000;
+      return (Math.log10(util.save.fc_chance(save))) / 800000;
     },
 	required: function (value) {
       return (Math.pow(10,(value * 800000)));
@@ -1512,7 +1530,7 @@ var Artifacts = [
       return save.faction == 3 && save.ascension >= 4 && save.excavations >= 10000;
     },
     random: function(save) {
-      return (Math.log10(util.spells(save))) / 800000;
+      return (Math.log10(save.spells[18].c + 1)) / 800000;
     },
 	required: function (value) {
       return (Math.pow(10,(value * 800000)));
@@ -1529,8 +1547,9 @@ var Artifacts = [
     fixed: function(save) {
       return save.faction == 4 && save.ascension >= 4 && save.excavations >= 10000;
     },
+    //max duration doesn't exist in save
     random: function(save) {
-      return util.save.spell / 1000000;
+      return 20 / 1000000;
     },
 	required: function (value) {
       return value * 1000000;
@@ -1548,7 +1567,7 @@ var Artifacts = [
       return save.faction == 5 && save.ascension >= 4 && save.excavations >= 10000;
     },
     random: function(save) {
-      return util.save.spells / 100000000;
+      return (save.spells[1].c + save.spells[8].c + save.spells[15].c + save.spells[11].c + save.spells[4].c) / 100000000;
     },
 	required: function (value) {
       return value * 100000000;
@@ -1566,7 +1585,7 @@ var Artifacts = [
       return save.faction == 6 && save.ascension >= 4 && save.excavations >= 10000;
     },
     random: function(save) {
-      return util.save.spells / 100000000;
+      return save.spells[13].active0 / 100000000;
     },
 	required: function (value) {
       return value * 100000000;
@@ -1584,13 +1603,13 @@ var Artifacts = [
       return save.faction == 7 && save.ascension >= 4 && save.excavations >= 10000;
     },
     random: function(save) {
-      return (Math.log10(util.save.max_mana)) / 800000;
+      return (Math.log10(Math.max(save.stats[133].stats,save.stats[133].statsReset))) / 800000;
     },
 	required: function (value) {
       return Math.pow(10,(value * 800000));
     },
     display: function (value) {
-      return util.render.sci(value) + ' Maximum Mana in this Reincarnation';
+      return util.render.sci(value) + ' Maximum Mana this Reincarnation';
     }
   },
   
@@ -1602,7 +1621,7 @@ var Artifacts = [
       return save.faction == 8 && save.ascension >= 4 && save.excavations >= 10000;
     },
     random: function(save) {
-      return util.save.time / 1000000;
+      return save.stats[39].statsReset / 1000000;
     },
 	required: function (value) {
       return value * 1000000;
