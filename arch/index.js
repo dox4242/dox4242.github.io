@@ -86,16 +86,16 @@
       var smalls = [];
       var raw_values = 0;
       var calculatedValues = 10000;
-      if (this.save.ascencion >= 2) {
+      if (this.save.ascension >= 2) {
 	      calculatedValues = 100000;
-      } else if (this.save.ascencion >= 4) {
+      } else if (this.save.ascension >= 4) {
 	      calculatedValues = 200000;
       }
       var excavLimit = calculatedValues;
       var valueLimit = 0.01;
-      if (this.save.ascencion >= 2) {
+      if (this.save.ascension >= 2) {
 	      valueLimit = 0.001;
-      } else if (this.save.ascencion >= 4) {
+      } else if (this.save.ascension >= 4) {
 	      valueLimit = 0.00005;
       }
 
