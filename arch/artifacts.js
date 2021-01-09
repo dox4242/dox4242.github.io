@@ -1464,7 +1464,7 @@ var Artifacts = [
      return save.reincarnation >= this.reincarnation && save.faction == 11;
     },
     random: function(save) {
-      return 0.1;
+      return 0.001;
     }
   },
   
