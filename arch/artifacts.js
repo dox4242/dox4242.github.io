@@ -591,6 +591,17 @@ var Artifacts = [
       return 0.2
     }
   },
+   {
+    name: 'Ancient Cocoa Bean',
+    id: 269,
+	  reincarnation: 22,
+    fixed: function(save) {
+      return save.reincarnation >= this.reincarnation && save.alignment == 3;
+    },
+    random: function(save) {
+      return 0.1
+    }
+  },
   {
     name: 'Know Your Enemy, Part I',
     id: 178,
@@ -768,18 +779,6 @@ var Artifacts = [
       return util.render.time(value) + ' Playtime'
     }
   },
-  {
-    name: 'Ancient Cocoa Bean',
-    id: 269,
-	  reincarnation: 22,
-    fixed: function(save) {
-      return save.reincarnation >= this.reincarnation && save.alignment == 3;
-    },
-    random: function(save) {
-      return 0.1
-    }
-  },
-
   {
     name: 'Wall Chunk',
     id: 256,
@@ -1036,7 +1035,6 @@ var Artifacts = [
       return Math.ceil(value) + ' Active Spells';
     }
   },
-  //TODO
   {
     name: 'Lantern of Guidance',
     id: 294,
@@ -1045,8 +1043,6 @@ var Artifacts = [
       return util.save.upgrade_owned(save,749) && save.reincarnation >= this.reincarnation;
     },
     random: function (save) {
-    //(x / 10,000,000,000 (10B))%, where x is mana regen.
-	//set to 1000 until i can figure out a way to get the stat
       return 1000 / 1000000000000 ;
     },
     required: function (value) {
@@ -1056,7 +1052,6 @@ var Artifacts = [
       return util.render.sci(value) + ' Mana per second';
     }
   },
-
   {
     name: 'Oil Lamp',
     id: 295,
@@ -1077,7 +1072,6 @@ var Artifacts = [
       return 'At least ' + util.render.time(value * 86400) + ' activity time (all time) for each of these spells: Fairy Chanting, Hellfire Blast and Brainwave';
     }
   },
-
   {
     name: 'Spark of Life',
     id: 296,
@@ -1096,65 +1090,7 @@ var Artifacts = [
       return util.render.sci(value) + ' Faction Coins found';
     }
   },
-
-  {
-    name: 'First Crystal Fragment',
-    id: 300,
-    reincarnation: 125,
-    fixed: function (save) {
-      return save.faction == 0 && save.reincarnation >= this.reincarnation && save.excavations >= 12500;
-    },
-    random: function (save) {
-	//(x / 100000000000 (100B))%, where x is assistant count.
-      return util.save.assistants(save) / 10000000000000;
-    },
-    required: function (value) {
-      return value * 10000000000000;
-    },
-    display: function (value) {
-      return util.render.sci(value) + ' Base Assistants';
-    }
-  },
-
-  {
-    name: 'Second Crystal Fragment',
-    id: 303,
-    reincarnation: 125,
-    fixed: function (save) {
-      return save.faction == 8 && save.reincarnation >= this.reincarnation && save.excavations >= 12500;
-    },
-    random: function (save) {
-	//(log10(1 + x) ^ 3 / 5000000 (5M))%, where x is faction coins this game.
-      return Math.pow(Math.log10(util.save.faction_coins(save) + 1),3) / 250000000;
-    },
-    required: function (value) {
-      return Math.pow(10,Math.pow(value*250000000,1/3));
-    },
-    display: function (value) {
-      return util.render.sci(value) + ' Faction Coins found (this Game)';
-    }
-  },
-
-  {
-    name: 'Third Crystal Fragment',
-    id: 306,
-    reincarnation: 125,
-    fixed: function (save) {
-      return save.faction == 5 && save.reincarnation >= this.reincarnation && save.excavations >= 12500;
-    },
-    random: function (save) {
-	//(x / 50000000 (50M))%, where x is evil spells this R.
-      return (save.spells[1].c + save.spells[1].r + save.spells[8].c + save.spells[8].r + save.spells[15].c + save.spells[15].r + save.spells[11].c + save.spells[11].r + save.spells[4].c + save.spells[4].r) / 5000000000;
-    },
-    required: function (value) {
-      return value * 5000000000;
-    },
-    display: function (value) {
-      return util.render.sci(value) + ' Evil Spells cast (This Reincarnation)';
-    }
-  },
-
-  {
+    {
     name: 'First Iron Fragment',
     id: 301,
     reincarnation: 125,
@@ -1173,7 +1109,6 @@ var Artifacts = [
       return util.render.sci(value) + ' Mana per second';
     }
   },
-
   {
     name: 'Second Iron Fragment',
     id: 304,
@@ -1192,7 +1127,6 @@ var Artifacts = [
       return Math.ceil(value) + '% individual Royal Exchange Bonus';
     }
   },
-
   {
     name: 'Third Iron Fragment',
     id: 307,
@@ -1212,7 +1146,60 @@ var Artifacts = [
       return util.render.sci(value) + '% Offline Production Bonus';
     }
   },
-
+  {
+    name: 'First Crystal Fragment',
+    id: 300,
+    reincarnation: 125,
+    fixed: function (save) {
+      return save.faction == 0 && save.reincarnation >= this.reincarnation && save.excavations >= 12500;
+    },
+    random: function (save) {
+	//(x / 100000000000 (100B))%, where x is assistant count.
+      return util.save.assistants(save) / 10000000000000;
+    },
+    required: function (value) {
+      return value * 10000000000000;
+    },
+    display: function (value) {
+      return util.render.sci(value) + ' Base Assistants';
+    }
+  },
+  {
+    name: 'Second Crystal Fragment',
+    id: 303,
+    reincarnation: 125,
+    fixed: function (save) {
+      return save.faction == 8 && save.reincarnation >= this.reincarnation && save.excavations >= 12500;
+    },
+    random: function (save) {
+	//(log10(1 + x) ^ 3 / 5000000 (5M))%, where x is faction coins this game.
+      return Math.pow(Math.log10(util.save.faction_coins(save) + 1),3) / 250000000;
+    },
+    required: function (value) {
+      return Math.pow(10,Math.pow(value*250000000,1/3));
+    },
+    display: function (value) {
+      return util.render.sci(value) + ' Faction Coins found (this Game)';
+    }
+  },
+  {
+    name: 'Third Crystal Fragment',
+    id: 306,
+    reincarnation: 125,
+    fixed: function (save) {
+      return save.faction == 5 && save.reincarnation >= this.reincarnation && save.excavations >= 12500;
+    },
+    random: function (save) {
+	//(x / 50000000 (50M))%, where x is evil spells this R.
+      return (save.spells[1].c + save.spells[1].r + save.spells[8].c + save.spells[8].r + save.spells[15].c + save.spells[15].r + save.spells[11].c + save.spells[11].r + save.spells[4].c + save.spells[4].r) / 5000000000;
+    },
+    required: function (value) {
+      return value * 5000000000;
+    },
+    display: function (value) {
+      return util.render.sci(value) + ' Evil Spells cast (This Reincarnation)';
+    }
+  },
   {
     name: 'First Stone Fragment',
     id: 302,
@@ -1231,7 +1218,6 @@ var Artifacts = [
       return util.render.sci(value)  + ' Clicks (This Game)';
     }
   },
-
   {
     name: 'Second Stone Fragment',
     id: 305,
@@ -1250,7 +1236,6 @@ var Artifacts = [
       return Math.ceil(value) + ' Buildings (Multipliers do NOT count)';
     }
   },
-
   {
   name: 'Third Stone Fragment',
     id: 308,
@@ -1269,7 +1254,6 @@ var Artifacts = [
       return util.render.sci(value) + ' Tax Collections (This Game)';
     }
   },
-
   {
     name: 'Planetary Force',
     id: 319,
@@ -1288,7 +1272,6 @@ var Artifacts = [
       return Math.ceil(value) + ' Consecutive Days logged in';
     }
   },
-
   {
     name: 'Mercenary Insignia',
     id: 330,
@@ -1306,9 +1289,6 @@ var Artifacts = [
       return Math.ceil(value).toPrecision(1) + ' Gems';
     }
   },
-	
-  
-
   {
     name: 'Obsidian Crown',
     id: 331,
@@ -1326,7 +1306,6 @@ var Artifacts = [
       return Math.ceil(value) + ' Excavation Resets (This Game)';
     }
   },
-	
   {
     name: 'Forgotten Relic',
     id: 344,
@@ -1344,7 +1323,6 @@ var Artifacts = [
       return Math.ceil(value) + ' Research Budget Spent';
     }
   },
-	
   {
     name: 'Mana Loom',
     id: 350,
@@ -1362,7 +1340,6 @@ var Artifacts = [
       return Math.ceil(value) + ' Mana Produced (This Game)';
     }
   },
-	
   {
     name: 'Factory',
     id: 349,
@@ -1380,8 +1357,7 @@ var Artifacts = [
       return Math.ceil(value) + ' Clicks (This Game)';
     }
   },
-	
- {
+  {
     name: 'Mythos',
     id: 351,
     reincarnation: 180,
@@ -1398,7 +1374,6 @@ var Artifacts = [
       return util.render.time(value) + ' minimum Spell Activity Time (This R)';
     }
   },
-	
   {
     name: 'Vault',
     id: 352,
@@ -1416,7 +1391,6 @@ var Artifacts = [
       return Math.ceil(value) + ' individual Royal Exchange Bonus';
     }
   },
-	
   {
     name: 'Athanor',
     id: 347,
@@ -1434,7 +1408,6 @@ var Artifacts = [
       return Math.ceil(value) + ' Alchemy Research Points';
     }
   },	
-
   {
     name: 'Battlefield',
     id: 348,
@@ -1452,7 +1425,6 @@ var Artifacts = [
       return Math.ceil(value) + ' Assistants';
     }
   },
-  
   {
     name: 'Apeiron',
     id: 346,
@@ -1467,7 +1439,6 @@ var Artifacts = [
       return 0.001;
     }
   },
-  
   {
     name: 'Glowing Wing',
     id: 364,
@@ -1485,7 +1456,6 @@ var Artifacts = [
       return util.render.sci(value) + ' Mana Produced (This Game)';
     }
   },
-  
   {
     name: 'Sylvan Mirror',
     id: 369,
@@ -1503,7 +1473,6 @@ var Artifacts = [
       return util.render.sci(value) + '%  Faction Coin Chance';
     }
   },
-  
   {
     name: 'Solid Cloud',
     id: 365,
@@ -1521,7 +1490,6 @@ var Artifacts = [
       return Math.ceil(value) + ' Active Spells';
     }
   },
-  
   {
     name: 'Orc Fang Necklace',
     id: 366,
@@ -1538,8 +1506,7 @@ var Artifacts = [
     display: function (value) {
       return util.render.sci(value) + ' Tax Collection Casts (This Game)';
     }
-  },
-  
+  }, 
   {
     name: 'Blood Chalice',
     id: 371,
@@ -1558,7 +1525,6 @@ var Artifacts = [
       return util.render.time(value) + ' Blood Frenzy Max Duration';
     }
   },
-  
   {
     name: 'Demon Tail',
     id: 372,
@@ -1576,7 +1542,6 @@ var Artifacts = [
       return util.render.sci(value) + ' Evil Spells (This Game)';
     }
   },
-  
   {
     name: 'Frozen Lightning',
     id: 363,
@@ -1594,7 +1559,6 @@ var Artifacts = [
       return util.render.time(value) + ' Lightning Strike Activity Time (This Game)';
     }
   },
-  
   {
     name: 'Primal Leaf',
     id: 367,
@@ -1612,7 +1576,6 @@ var Artifacts = [
       return util.render.sci(value) + ' Maximum Mana this Reincarnation';
     }
   },
-  
   {
     name: 'The Blackest Ink',
     id: 370,
@@ -1630,5 +1593,4 @@ var Artifacts = [
       return util.render.time(value) + ' Longest Session This R (Excluding This Game)';
     }
   }
-	
 ];
