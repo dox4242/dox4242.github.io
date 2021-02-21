@@ -38,7 +38,7 @@
     var forecast = function (saveStr) {
         buildingsOwned = [];
         buildingsAvailable = [];
-        buildingsHighlighted = [[], []];
+        buildingsHighlighted = buildingsHighlighted || [[], []];
         lightningRNG = null;
         miracleRNG = null;
         breathRNG = null;
@@ -63,8 +63,9 @@
         }
         $('#buildings').html('<b>Buildings owned</b> <small><i>(Click a building to toggle its highlighting)</i></small><br>');
         for (var tier in buildingsOwned) {
-            var hit = buildingNames[buildingsOwned[tier]];
-            var span = $('<span />').html(hit).addClass('tier' + tier).data('tier', tier);
+            var bName = buildingNames[buildingsOwned[tier]];
+            var span = $('<span />').html(bName).addClass('tier' + tier).data('tier', tier);
+            if(buildingsHighlighted[0][tier] === true) span.addClass('highlight');
             if (tier != 0) $('#buildings').append(', ');
             $('#buildings').append(span);
         }
@@ -259,6 +260,9 @@
     };
 
     // Add the Maelstrom forecast
+    let maelstromForecastSelector = '#maelstromForecast'
+    let maelstromLISelector = maelstromForecastSelector + ' > ol > li';
+
     var forecastMaelstrom = function (save, buildingsAvailable) {
         var maelstromMessage = '';
         var maelstromForecast = '';
@@ -272,7 +276,7 @@
         // Early exit
         if (maelstromMessage != '' || maelstromForecast != '') {
             $('#maelstromMessage').html('<b>Maelstrom</b><br>').append(maelstromMessage);
-            $('#maelstromForecast').html('<b>Forecast</b><br>').append(maelstromForecast);
+            $(maelstromForecastSelector).html('<b>Forecast</b><br>').append(maelstromForecast);
             return;
         }
 
@@ -280,7 +284,7 @@
         maelstromRNG = new PM_PRNG(save.spells[27].s);
 
         $('#maelstromMessage').html('<b>Maelstrom</b><br>Your RNG state is: ' + maelstromRNG.state + '.');
-        $('#maelstromForecast').html('<b>Forecast</b><br><ol></ol>')
+        $(maelstromForecastSelector).html('<b>Forecast</b><br><ol></ol>')
             .append($('<button class="btn btn-link" type="button" />').html('Give me a longer Forecast').on('click', forecastMaelstromMore));
 
         forecastMaelstromMore();
@@ -292,6 +296,8 @@
             for (var i = 0; i < 10; i++) {
                 //slice() clones the array
                 var eligible = buildingsAvailable.slice();
+                var tierMap = {};
+                buildingsAvailable.map((bi,i) => tierMap[bi] = i);
                 var targets = [];
                 var effects = [];
                 var textResult = [];
@@ -314,21 +320,15 @@
 
                 // Text Result
                 for (var c = 0; c < maelstromTargets; c++) {
-                    textResult.push((c + 1) + '. ' + buildingNames[targets[c]] + ', ' + effects[c]);
+                    var tier = tierMap[targets[c]];
+                    var isHighlight = buildingsHighlighted[0][tier] === true;
+                    var spanClasses = 'tier' + tier + (isHighlight ? ' highlight': '');
+                    var bName = buildingNames[targets[c]];
+                    textResult.push((c + 1) + '. <span data-tier="' + tier + '" class="' + spanClasses + '">' + bName + '</span>, ' + effects[c]);
                 }
 
                 var li = $('<li />').html(textResult.join('<br/>'));//.addClass('tier' + targets[c]).data('tier', targets[c]);
-                $('#maelstromForecast > ol').append(li);
-            }
-        }
-
-        // Update building highlighting
-        for (var tier in buildingsHighlighted[0]) {
-            if (buildingsHighlighted[0][tier]) {
-                $('#maelstromForecast > ol > li.tier' + tier).addClass('highlight');
-            }
-            else {
-                $('#maelstromForecast > ol > li.tier' + tier).removeClass('highlight');
+                $(maelstromForecastSelector + ' > ol').append(li);
             }
         }
     };
@@ -591,11 +591,11 @@
             if ($(this).hasClass('highlight')) {
                 $(this).removeClass('highlight');
                 buildingsHighlighted[0][tier] = buildingsHighlighted[1][tier] = false;
-                $('#lightningForecast > ol, #miracleForecast > ol, #maelstromForceast > ol').children('.tier' + tier).removeClass('highlight');
+                $('#lightningForecast > ol, #miracleForecast > ol, ' + maelstromLISelector).children('.tier' + tier).removeClass('highlight');
             } else {
                 $(this).addClass('highlight');
                 buildingsHighlighted[0][tier] = buildingsHighlighted[1][tier] = true;
-                $('#lightningForecast > ol, #miracleForecast > ol, #maelstromForceast > ol').children('.tier' + tier).addClass('highlight');
+                $('#lightningForecast > ol, #miracleForecast > ol, ' + maelstromLISelector).children('.tier' + tier).addClass('highlight');
             }
         }).on('mouseenter', 'span', function (e) {
             $(this).addClass('hover');
