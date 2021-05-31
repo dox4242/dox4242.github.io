@@ -5,6 +5,7 @@
     return {
       name: artifact.name,
       id: artifact.id,
+	  invertedchance: artifact.invertedchance,
       excav: artifact.excav,
       fixed: artifact.fixed,
       random: artifact.random,
@@ -124,7 +125,7 @@
             remaining -= 1;
           } else if (eligible[i].required && !eligible[i].nocache) {
             var req = eligible[i].required(val, this.save, excav);
-            if (req != NaN && req != Infinity && req >= 0 && (eligible[i].lastreq == null || req < eligible[i].lastreq)) {
+            if (req != NaN && req != Infinity && req >= 0 && (eligible[i].lastreq == null || (eligible[i].invertedchance ? req > eligible[i].lastreq : req < eligible[i].lastreq))) {
               eligible[i].lastreq = req;
               excavation.push(['improve', req, eligible[i]]);
             }
