@@ -901,6 +901,7 @@ var Artifacts = [
   {
     name: 'Dusty Coffin', // TODO: higher is better, might require rework of the entire page logic
     id: 276,
+	invertedchance: true,
     reincarnation: 100,
     fixed: function (save) {
       return save.faction == 4 && save.reincarnation >= this.reincarnation && save.excavations >= 2000 && util.save.trophy_owned(save,150) && util.save.trophy_owned(save,142);
