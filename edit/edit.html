@@ -107,6 +107,9 @@
         <a href='#tab-neutralbuildings' aria-controls='Neutral Buildings' role='tab' data-toggle='pill'> Neutral Buildings </a>
       </li>
       <li role='presentation'>
+        <a href='#tab-uniquebuildings' aria-controls='Unique Buildings' role='tab' data-toggle='pill'> Unique Buildings </a>
+      </li>
+      <li role='presentation'>
         <a href='#tab-magic' aria-controls='Magic' role='tab' data-toggle='pill'> Magic </a>
       </li>
       <li role='presentation'>
@@ -141,6 +144,9 @@
       </li>
       <li role='presentation'>
         <a href='#tab-lineages' aria-controls='Lineages' role='tab' data-toggle='pill'> Lineages </a>
+      </li>
+      <li role='presentation'>
+        <a href='#tab-legacies' aria-controls='Legacies' role='tab' data-toggle='pill'> Legacies </a>
       </li>
       <li role='presentation'>
         <a href='#tab-event-feats' aria-controls='Event Feats & Quests' role='tab' data-toggle='pill'> Event Feats & Quests </a>
@@ -289,6 +295,47 @@
           </table>
         </div>
       </div>
+      <div role='tabpanel' class='tab-pane fade' id='tab-uniquebuildings'>
+        <div class='panel panel-default'>
+          <table class='table'>
+            <tr is='widget-unique-header'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[9]' id=0 name='Max Enchanted Fields'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[25]' id=0 name='Max Swarming Towers'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[23]' id=0 name='Max Training Grounds'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[5]' id=0 name='Max Arboreal Cities'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[11]' id=0 name="Max Heaven's Domain"></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[4]' id=0 name='Max Holy Sites'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[24]' id=0 name='Max Goblin Banks'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[21]' id=0 name='Max Slave Markets'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[18]' id=0 name='Max Undercities'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[19]' id=0 name='Max Flesh Workshops'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[12]' id=0 name='Max Infernal Realms'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[10]' id=1 name='Max Burning Abysses'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[10]' id=0 name='Max Olympian Halls'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[7]' id=0 name='Max Mountain Palaces'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[22]' id=0 name='Max Stonehenges'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[2]' id=0 name="Max Ziggurats"></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[16]' id=0 name='Max Sunken Cities'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[17]' id=0 name='Max Forbidden Libraries'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[3]' id=0 name='Max Dwarven Forges'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[20]' id=0 name='Max High Bastions'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[6]' id=0 name='Max Spider Sanctuaries'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[13]' id=0 name='Max Brothels'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[14]' id=0 name="Max Wyrm's Dens"></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[9]' id=1 name='Max Dragon Pastures'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[15]' id=0 name='Max Mercenary Camps'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[8]' id=0 name='Max Tyrant Garrisons'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[13]' id=1 name='Max Freemasons Halls'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[25]' id=1 name='Max Good Nexuses'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[24]' id=1 name='Max Evil Nexuses'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[1]' id=0 name='Max Neutral Nexuses'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[23]' id=1 name='Max Good Pavilions'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[21]' id=1 name='Max Evil Pavilions'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[7]' id=1 name='Max Neutral Pavilions'></tr>
+            <tr is='widget-unique-max' :building.sync='save.buildings[10]' id=2 name='Max Hall of Originations'></tr>
+          </table>
+        </div>
+      </div>
       <div role='tabpanel' class='tab-pane fade' id='tab-magic'>
         <div class='panel panel-default'>
           <table class='table'>
@@ -311,6 +358,8 @@
             <tr is='widget-field-dropdown' :field.sync='save.strikeTier' type='bTiers' :colspan='5' name='Lightning Strike Tier'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[37]' name='Lightning Strike Casts (alt)'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[64]' hide-prev-abs hide-rei hide-prev-reis hide-total name='Consecutive Goblins Greed Casts'></tr>
+            <tr is='widget-stat-max' :stat.sync='save.stats[156]' name='Highest Grand Balance Targets'></tr>
+            <tr is='widget-stat-max' :stat.sync='save.stats[155]' name='Highest Combo Strike Counter'></tr>
             <tr is='widget-field' :field.sync='save.comboStrikeCont' can-edit :colspan='5' name='Combo Strike Streak'></tr>
           </table>
         </div>
@@ -853,6 +902,8 @@
 			<tr is='widget-research-upgrade-row' :upgrades.sync='upgradesArray' s_name='S11125', s_id='209335', c_name='C11125', c_id='207535', d_name='D11125', d_id='208135', e_name='E11125', e_id='208235', a_name='A11125', a_id='207035', w_name='W11125', w_id='209735'></tr>
 			<tr is='widget-research-upgrade-row' :upgrades.sync='upgradesArray' s_name='S11375', s_id='209136', c_name='C11375', c_id='207436', d_name='D11375', d_id='207936', e_name='E11375', e_id='208336', a_name='A11375', a_id='207236', w_name='W11375', w_id='209536'></tr>
 			<tr is='widget-research-upgrade-row' :upgrades.sync='upgradesArray' s_name='S11625', s_id='209037', c_name='C11625', c_id='207737', d_name='D11625', d_id='207837', e_name='E11625', e_id='208537', a_name='A11625', a_id='207137', w_name='W11625', w_id='209437'></tr>
+			<tr is='widget-research-upgrade-row' :upgrades.sync='upgradesArray' s_name='S11875', s_id='216438', c_name='C11875', c_id='215738', d_name='D11875', d_id='215938', e_name='E11875', e_id='216138', a_name='A11875', a_id='215538', w_name='W11875', w_id='216738'></tr>
+			<tr is='widget-research-upgrade-row' :upgrades.sync='upgradesArray' s_name='S12250', s_id='216539', c_name='C12250', c_id='215639', d_name='D12250', d_id='215839', e_name='E12250', e_id='216039', a_name='A12250', a_id='215439', w_name='W12250', w_id='216639'></tr>
 			<tr is='widget-research-upgrades-header2'></tr>
 			<tr is='widget-research-upgrade-row2' :upgrades.sync='upgradesArray' f_name='F5250', f_id='204900'></tr>
 			<tr is='widget-research-upgrade-row2' :upgrades.sync='upgradesArray' f_name='F5500', f_id='205001'></tr>
@@ -862,6 +913,8 @@
 			<tr is='widget-research-upgrade-row2' :upgrades.sync='upgradesArray' f_name='F11250', f_id='208905'></tr>
 			<tr is='widget-research-upgrade-row2' :upgrades.sync='upgradesArray' f_name='F11500', f_id='208806'></tr>
 			<tr is='widget-research-upgrade-row2' :upgrades.sync='upgradesArray' f_name='F11750', f_id='208707'></tr>
+			<tr is='widget-research-upgrade-row2' :upgrades.sync='upgradesArray' f_name='F12000', f_id='216308'></tr>
+			<tr is='widget-research-upgrade-row2' :upgrades.sync='upgradesArray' f_name='F12500', f_id='216209'></tr>
           </table>
         </div>
       </div>
@@ -928,6 +981,44 @@
          </table>
         </div>
       </div>
+      <div role='tabpanel' class='tab-pane fade' id='tab-legacies'>
+        <div class='panel panel-default'>
+        <table class='table'>
+            <tr is='widget-upgrade-header'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=213401 name='Legacy 1'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=213402 name='Legacy 2'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=213403 name='Legacy 3'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=213404 name='Legacy 4'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=213400 name='Relativity Legacy'></tr>
+            <tr is='widget-legacy-header'></tr>
+            <tr is='widget-legacy' :upgrades.sync='upgradesArray' id=1118 name='Fairy'></tr>
+            <tr is='widget-legacy' :upgrades.sync='upgradesArray' id=1110 name='Elven'></tr>
+            <tr is='widget-legacy' :upgrades.sync='upgradesArray' id=1098 name='Angel'></tr>
+            <tr is='widget-legacy' :upgrades.sync='upgradesArray' id=1122 name='Goblin'></tr>
+            <tr is='widget-legacy' :upgrades.sync='upgradesArray' id=1131 name='Undead'></tr>
+            <tr is='widget-legacy' :upgrades.sync='upgradesArray' id=1102 name='Demon'></tr>
+            <tr is='widget-legacy' :upgrades.sync='upgradesArray' id=1127 name='Titan'></tr>
+            <tr is='widget-legacy' :upgrades.sync='upgradesArray' id=1106 name='Druid'></tr>
+            <tr is='widget-legacy' :upgrades.sync='upgradesArray' id=1114 name='Faceless'></tr>
+            <tr><td><b>Legacy Combos</b></td><td><b>Owned</b></td></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=1148 name='Fairy/Elven (Mystic Forest)'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=1146 name='Fairy/Angel (Dream Realm)'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=1149 name='Fairy/Goblin (Artifact Caveau)'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=1150 name='Fairy/Undead (Twisting Nether)'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=1147 name='Fairy/Demon (Brooding Abyss)'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=1142 name='Elven/Angel (Sacred Glade)'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=1144 name='Elven/Goblin (Greed Factory)'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=1145 name='Elven/Undead (Swamp of Sorrows)'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=1143 name='Elven/Demon (Forbidden Grove)'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=1140 name='Angel/Goblin (Golden Heaven)'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=1141 name='Angel/Undead (Dark Sanctum)'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=1139 name='Angel/Demon (Eternal Battlefield)'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=1152 name='Goblin/Undead (Homunculus Lab)'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=1151 name='Goblin/Demon (Corruption Zone)'></tr>
+            <tr is='widget-upgrade' :upgrades.sync='upgradesArray' id=1153 name='Undead/Demon (Frozen Wastes)'></tr>
+        </table>
+        </div>
+      </div>
       <div role='tabpanel' class='tab-pane fade' id='tab-event-feats'>
         <div class='panel panel-default'>
           <table class='table'>
@@ -940,6 +1031,7 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=175 name='I Love You in Every Language Feat'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=272 name='Assistant Love Feat'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=315 name='Chocolate Box Feat'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=375 name='Unrequitedness Feat'></tr>
 			<tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=354 name='Fairy Love Feat'></tr>
             <tr><td colspan='4'><center><b>Easter Event</b></center></td></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=119500 name='Egg Hunter 1 Quest'></tr>
@@ -957,6 +1049,7 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=287 name='Bunny Helpers Feat'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=324 name='Chocolate Egg Feat'></tr>
 			<tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=355 name='Eggsceptional Feat'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=376 name='Rotten Egg Feat'></tr>
             <tr><td colspan='4'><center><b>Summer Event</b></center></td></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=120800 name='Summeraan Champion 1 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=120801 name='Summeraan Champion 2 Quest'></tr>
@@ -984,6 +1077,7 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=244 name='Darkest Heresy Feat'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=293 name='Indifference Feat'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=325 name='World Restoration Feat'></tr>
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=377 name='Frenzied Army Feat'></tr>
 			<tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=356 name='Eternal Battle Feat'></tr>
             <tr><td colspan='4'><center><b>Goblin Invasion Event</b></center></td></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=125500 name='Goblin&apos;s Commander 1 Quest'></tr>
@@ -1036,6 +1130,7 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=166 name='Unholidays Feat'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=314 name='Freezing Hell Feat'></tr>
 			<tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=353 name='Perfect Snowflake Feat'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=374 name='Snowball Fight Feat'></tr>
             <tr><td colspan='4'><center><b>Idillium Event</b></center></td></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=133900 name='Order Restoration 1 Quest'></tr>
             <tr is='widget-event-trophy' :trophies.sync='trophiesArray' id=133901 name='Order Restoration 2 Quest'></tr>
@@ -1316,6 +1411,7 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=320 name='Future Linkin'></tr>
 			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=327 name='God&#39;s Fingers'></tr>
 			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=345 name='True Harlequin'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' id=378 name='Novice Combinator'></tr>
           </table>
         </div>
       </div>
