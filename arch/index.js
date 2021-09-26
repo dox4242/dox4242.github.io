@@ -86,13 +86,20 @@
             var num = 0
             var smalls = [];
             var raw_values = 0;
-            var calculatedValues = 10000;
-            if (this.save.ascension >= 2) {
-                calculatedValues = 100000;
-            }
-            if (this.save.ascension >= 4) {
-                calculatedValues = 1000000;
-            }
+			var overrideCalculated = $('#calculatedValues').val();
+			if (overrideCalculated < 1) {
+				 var calculatedValues = 10000;
+				if (this.save.ascension >= 2) {
+					calculatedValues = 100000;
+				}
+				if (this.save.ascension >= 4) {
+					calculatedValues = 1000000;
+				}
+				$('#calculatedValues').val(calculatedValues);
+			}
+			else {
+				calculatedValues = overrideCalculated;
+			}
             var excavLimit = calculatedValues;
             var valueLimit = 100 / excavLimit;
             while (remaining > 0) {
@@ -140,7 +147,7 @@
                 if (excavation.length > 2) {
                     events.push(excavation);
                 }
-                if (num > excavLimit || remaining <= canignore) {
+                if (num >= excavLimit || remaining <= canignore) {
                     break;
                 }
             }
