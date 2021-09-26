@@ -94,13 +94,7 @@
                 calculatedValues = 1000000;
             }
             var excavLimit = calculatedValues;
-            var valueLimit = 0.01;
-            if (this.save.ascension >= 2) {
-                valueLimit = 0.001;
-            }
-            if (this.save.ascension >= 4) {
-                valueLimit = 0.0001;
-            }
+            var valueLimit = 100 / excavLimit;
             while (remaining > 0) {
                 excav += 1;
                 num += 1;
