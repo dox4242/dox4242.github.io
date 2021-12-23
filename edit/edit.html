@@ -391,7 +391,7 @@
             <tr is='widget-bloodline-dropdown' :field.sync='save.bFaction' :upgrades.sync='upgradesArray' type='upgradeIDs' filter='bloodlines' :colspan='5' name='Bloodline Faction'></tr>
             <tr is='widget-artifactSet-dropdown' :field.sync='save.artifactSet' :upgrades.sync='upgradesArray' type='upgradeIDs' filter='artifactSets' :colspan='5' name='Artifact Set'></tr>
             <tr is='widget-artifactSet-dropdown' :field.sync='save.stoneheartSet' :upgrades.sync='upgradesArray' type='upgradeIDs' filter='artifactSets' :colspan='5' name='Stoneheart Set'></tr>
-            
+
             <tr is='widget-mercenaryselection-header'></tr>
             <tr v-show='save.alignment == 1 || save.alignment == null' is='widget-field-dropdown' :field.sync='save.mercSpell1' type='spells' filter='goodmercspells' :colspan='5' name='Mercenary Spell 1'></tr>
             <tr v-show='save.alignment == 1 || save.alignment == null' is='widget-field-dropdown' :field.sync='save.mercSpell2' type='spells' filter='goodmercspells' :colspan='5' name='Mercenary Spell 2'></tr>
@@ -766,6 +766,9 @@
 			<tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=363 name='Frozen Lightning'></tr>
 			<tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=367 name='Primal Leaf'></tr>
 			<tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=370 name='The Blackest Ink'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=361 name='Dwarven Anvil'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=368 name='Stiletto Heel'></tr>
+			<tr is='widget-trophy' :trophies.sync='trophiesArray' :colspan='5' id=362 name='Eye of the Dragon'></tr>
           </table>
         </div>
       </div>
@@ -1217,11 +1220,11 @@
             <tr is='widget-stat' :stat.sync='save.stats[150]' name='Crystal Prisms Collected'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[151]' name='Entropic Drops Collected'></tr>
             <tr is='widget-stat' :stat.sync='save.stats[152]' name='Equilibrium Fragments Collected'></tr>
-            <tr is='widget-field' :field.sync='save.eventResources[27].res' can-edit :colspan='5' name='Order Remnant Level'></tr>     
-            <tr is='widget-field' :field.sync='save.eventResources[28].res' can-edit :colspan='5' name='Chaos Remnant Level'></tr> 
-            <tr is='widget-field' :field.sync='save.eventResources[29].res' can-edit :colspan='5' name='Balance Remnant Level'></tr>    
-            <tr is='widget-stat' :stat.sync='save.stats[153]' name='Golden Age Feat counter'></tr>            
-          </table>          
+            <tr is='widget-field' :field.sync='save.eventResources[27].res' can-edit :colspan='5' name='Order Remnant Level'></tr>
+            <tr is='widget-field' :field.sync='save.eventResources[28].res' can-edit :colspan='5' name='Chaos Remnant Level'></tr>
+            <tr is='widget-field' :field.sync='save.eventResources[29].res' can-edit :colspan='5' name='Balance Remnant Level'></tr>
+            <tr is='widget-stat' :stat.sync='save.stats[153]' name='Golden Age Feat counter'></tr>
+          </table>
         </div>
       </div>
       <div role='tabpanel' class='tab-pane fade' id='tab-trophies'>
@@ -1396,7 +1399,7 @@
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=214 name='Helden Sterben Nicht'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=228 name='Master Researcher'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=227 name='Eternal Researcher'></tr>
-            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=267 name='Warrior Researcher'></tr> 
+            <tr is='widget-trophy' :trophies.sync='trophiesArray' id=267 name='Warrior Researcher'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=231 name='Mana Waste'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=236 name='Prismatic Mana'></tr>
             <tr is='widget-trophy' :trophies.sync='trophiesArray' id=238 name='Autoclicker'></tr>
