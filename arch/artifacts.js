@@ -1408,7 +1408,7 @@ var Artifacts = [
     display: function (value) {
       return Math.ceil(value) + ' Alchemy Research Points';
     }
-  },	
+  },
   {
     name: 'Battlefield',
     id: 348,
@@ -1507,7 +1507,7 @@ var Artifacts = [
     display: function (value) {
       return util.render.sci(value) + ' Tax Collection Casts (This Game)';
     }
-  }, 
+  },
   {
     name: 'Blood Chalice',
     id: 371,
@@ -1592,6 +1592,57 @@ var Artifacts = [
     },
     display: function (value) {
       return util.render.time(value) + ' Longest Session This R (Excluding This Game)';
+    }
+  },
+  {
+    name: 'Dwarven Anvil',
+    id: 361,
+	reincarnation: 235,
+    fixed: function(save) {
+      return save.prestigeFaction == 9 && save.ascension >= 4 && save.excavations >= 10000;
+    },
+    random: function(save) {
+      return (Math.log10(1 + save.stats[4].stats + save.stats[4].statsReset)) / 1000000;
+    },
+	required: function (value) {
+      return Math.pow(10,(value * 1000000));
+    },
+    display: function (value) {
+      return util.render.sci(value) + ' Clicks this R';
+    }
+  },
+  {
+    name: 'Stiletto Heel',
+    id: 368,
+	reincarnation: 235,
+    fixed: function(save) {
+      return save.prestigeFaction == 10 && save.ascension >= 4 && save.excavations >= 10000;
+    },
+    random: function(save) {
+      return save.stats[24].stats / 1000000;
+    },
+	required: function (value) {
+      return value * 1000000;
+    },
+    display: function (value) {
+      return Math.ceil(value) + ' Royal exchanges this game';
+    }
+  },
+  {
+    name: 'Eye of the Dragon',
+    id: 362,
+	reincarnation: 235,
+    fixed: function(save) {
+      return save.prestigeFaction == 12 && save.ascension >= 4 && save.excavations >= 10000;
+    },
+    random: function(save) {
+      return (Math.log10(1 + Math.max(save.stats[96].stats,save.stats[96].statsReset))) / 1000000;
+    },
+	required: function (value) {
+      return Math.pow(10,(value * 1000000));
+    },
+    display: function (value) {
+      return util.render.sci(value) + '  Max assistants this R';
     }
   }
 ];
