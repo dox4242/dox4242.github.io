@@ -1593,5 +1593,56 @@ var Artifacts = [
     display: function (value) {
       return util.render.time(value) + ' Longest Session This R (Excluding This Game)';
     }
+  },
+  {
+    name: 'Dwarven Anvil',
+    id: 361,
+	reincarnation: 235,
+    fixed: function(save) {
+      return save.prestigeFaction == 9 && save.ascension >= 4 && save.excavations >= 10000;
+    },
+    random: function(save) {
+      return (Math.log10(util.save.stat(save, 4, 1) + 1)) / 1000000;
+    },
+	required: function (value) {
+      return (Math.pow(10,(value * 1000000)));
+    },
+    display: function (value) {
+      return util.render.sci(value) + ' Clicks This Reincarnation';
+    }
+  },
+  {
+    name: 'Stiletto Heel',
+    id: 368,
+	reincarnation: 235,
+    fixed: function(save) {
+      return save.prestigeFaction == 10 && save.ascension >= 4 && save.excavations >= 10000;
+    },
+    random: function(save) {
+      return util.save.stat(save, 24) / 1000000;
+    },
+	required: function (value) {
+      return value * 1000000;
+    },
+    display: function (value) {
+      return util.render.sci(value) + ' Royal Exchanges';
+    }
+  },
+  {
+    name: 'Eye of the Dragon',
+    id: 362,
+	reincarnation: 235,
+    fixed: function(save) {
+      return save.prestigeFaction == 12 && save.ascension >= 4 && save.excavations >= 10000;
+    },
+    random: function(save) {
+      return (Math.log10(Math.max(save.stats[96].stats,save.stats[96].statsReset))) / 1000000;
+    },
+	required: function (value) {
+      return (Math.pow(10,(value * 1000000)));
+    },
+    display: function (value) {
+      return util.render.sci(value) + ' Max Assistants This Reincarnation';
+    }
   }
 ];
